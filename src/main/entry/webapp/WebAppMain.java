@@ -10,7 +10,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import common.helper.nbReturn;
 import common.helper.nbStringUtil;
 import service.basicFunctions.OperationService;
 import service.basicFunctions.OrderService;
@@ -41,11 +40,10 @@ public class WebAppMain {
     	Map<String,Object> data = new HashMap<String,Object>();  
         data.put("helloWorld","helloWorld");
         
-        
         ModelAndView mav = new ModelAndView("home",data);
         return mav;  
     }
-	
+	 
 	@RequestMapping(value = "/index2") 
     public ModelAndView index2() throws Exception{  
 		SimpleDateFormat dateformat1=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");

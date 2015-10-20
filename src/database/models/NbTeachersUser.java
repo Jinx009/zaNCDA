@@ -32,7 +32,11 @@ public class NbTeachersUser implements Serializable,nbBaseModel {
 	private String bankName;
 
 	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "birth")
 	private Date birth;
+	
+	@Column(name = "mobile_phone")
+	private String mobilePhone;
 
 	@Column(length=32)
 	private String email;
@@ -86,7 +90,7 @@ public class NbTeachersUser implements Serializable,nbBaseModel {
 	@Column(name="unit_price")
 	private int unitPrice;
 
-	@Column(nullable=false, length=20)
+	@Column(nullable=false, length=20,name = "username")
 	private String username;
 
 	@Column(name="wechat_id", length=32)
@@ -393,6 +397,12 @@ public class NbTeachersUser implements Serializable,nbBaseModel {
 
 	public void setStaticLocationName(StaticLocationName locationName) {
 		this.locationName = locationName;
+	}
+	public String getMobilePhone() {
+		return mobilePhone;
+	}
+	public void setMobilePhone(String mobilePhone) {
+		this.mobilePhone = mobilePhone;
 	}
 
 	@Override

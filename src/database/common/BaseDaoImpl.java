@@ -43,9 +43,6 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
 	
 	nbTransactionInterceptor ti = (nbTransactionInterceptor)ApplicationContextProvider.getBeanByName("nbTransactionInterceptor");
 	
-//	@Autowired
-//	private SessionFactory sessionFactory;
-
 	@Resource(name = "entityManagerFactory")
 	protected EntityManagerFactory emf;
 
