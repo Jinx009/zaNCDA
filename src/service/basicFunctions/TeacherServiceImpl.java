@@ -17,4 +17,20 @@ public class TeacherServiceImpl implements TeacherService{
 		return teachersUserDao.findTeacherPageList(nbTeachersUser,pageNum,pageSize);
 	}
 
+	public void doDelete(int id) {
+		teachersUserDao.delete(id);
+	}
+
+	public Object doSave(NbTeachersUser nbTeachersUser) {
+		return teachersUserDao.save(nbTeachersUser);
+	}
+
+	public NbTeachersUser findById(int id) {
+		return teachersUserDao.find(id);
+	}
+
+	public void doUpdate(NbTeachersUser nbTeachersUser) {
+		teachersUserDao.update(nbTeachersUser);
+	}
+
 }

@@ -11,8 +11,12 @@
 <script type="text/javascript" src="/sp/dist/js/bootstrap.js" ></script>
 <script type="text/javascript" src="/sp/js/common.js" ></script>
 <script type="text/javascript" src="/sp/js/date/WdatePicker.js" ></script>
+<script type="text/javascript" src="/sp/dist/jquery.form.js" ></script>
 <script type="text/javascript">
+var dataJson;
+
 $(function(){
+	 loadForms();
 	 getTeacherList(1);
 	 getArea();
 	 getJob();
@@ -77,6 +81,8 @@ function getTeacherList(pageNum){
 		type:"POST",
 		dataType:"json",
 		success:function(res){
+			dataJson = res.list;
+			
 			var menuHtml = "",htmlStr = "";
 			if(null!=res.list&&res.list.length>0){
 				menuHtml += "<li><a href=javascript:getTeacherList('"+res.page.pages+"')>"+res.page.pages+"</a></li>";
@@ -85,7 +91,6 @@ function getTeacherList(pageNum){
 					htmlStr += "<td>"+res.list[i].id+"</td>";
 					htmlStr += "<td>"+res.list[i].username+"</td>";
 					htmlStr += "<td>"+res.list[i].mobilePhone+"</td>";
-					htmlStr += "<td>"+res.list[i].qq+"</td>";
 					htmlStr += "<td>"+res.list[i].qq+"</td>";
 					htmlStr += "<td>"+res.list[i].email+"</td>";
 					htmlStr += "<td>";
@@ -112,6 +117,59 @@ function saveDiv(){
 	})
 	
 	showAlert("saveDiv");
+}
+
+/**
+ * 删除
+ */
+function deleteDiv(index){
+	$("#deleteId").val(dataJson[parseInt(index)].id);
+	
+	showAlert("deleteDiv");
+}
+
+/**
+ * 删除
+ */
+function doDelete(){
+	var id = $("#deleteId").val();
+	var params = "id="+id;
+	
+	$.ajax({
+		url:"",
+		type:"POST",
+		data:params,
+		dataType:"json",
+		success:function(res){
+			
+		}
+	})
+}
+
+/**
+ * 保存
+ */
+function doSave(){
+	
+}
+
+
+
+function addImgs(){
+	  $("#form").submit();
+}
+function loadForms(){
+	 $("#form").ajaxForm({
+		 success :function(data){
+			if("success"==data.result){
+				$("#imgId").attr("src",data.errmsg);
+			}
+		 },
+		 complete:function(t)
+	     {
+				     
+		 }
+	});
 }
 </script>
 
@@ -179,7 +237,6 @@ function saveDiv(){
 						<td>编号</td>
 						<td>姓名</td>
 						<td>手机</td>
-						<td>微信</td>
 						<td>QQ</td>
 						<td>邮箱</td>
 						<td>操作</td>
@@ -293,9 +350,17 @@ function saveDiv(){
 						 	<div class="form-group">
 							    <label class="col-sm-4 control-label">头像</label>
 							    <div class="col-sm-8">
-							      	<img alt="" src="http://www.800bank.com.cn:8089/data/upload/20151019/1445222980641.png" class="img-width" >
+							      	<img alt="" src="" class="img-width" id="imgId" >
 							    </div>
 						  	</div>
+						  	<div class="form-group">
+						  		 <div class="col-sm-12">
+						  			<form action="/uploadImg.html" method="post" id="form" enctype="multipart/form-data"  >
+										<input type="file"  name="file" id="file" />
+										<a class="btn btn-info" onclick="addImgs()" >上传</a>
+									</form>
+								</div>
+							</div>
 						  	<div class="space-div-4" ></div>
 						  	<div class="space-div-4" ></div>
 						  	<div class="form-group">
@@ -366,22 +431,117 @@ function saveDiv(){
 			</div>
 			<div class="space-div-2" ></div>
 			<div class="row" >
-				<div class="col-md-1" ></div>
-				<div class="col-md-10" >
-					<div class="form-group">
-						<label class="col-sm-4 control-label">微信</label>
-						<div class="col-sm-8">
-							  <input type="text" class="form-control"  >
+				 <div class="col-md-1" ></div>
+				 <div class="col-md-10" >
+					<div class="row" >
+						<label class="col-md-6 control-label">1）辅导方式</label>
+						<div class="col-md-6"></div>
+					</div>
+					<div id="util_method_div"  class="row" >
+						<div class="col-md-12" >
+							<div class="row" >
+								<label class="col-md-6 control-label">视频约谈</label>
+								<div class="col-md-6">
+									 <input type="checkbox" class="checkbox"  >
+								</div>
+							</div>
+							<div class="row" >
+								<label class="col-md-6 control-label">电话约谈</label>
+								<div class="col-md-6">
+									 <input type="checkbox" class="checkbox"  >
+								</div>
+							</div>
+						    <div class="row" >
+								<label class="col-md-6 control-label">当前约谈</label>
+								<div class="col-md-6">
+									 <input type="checkbox" class="checkbox"  >
+								</div>
+							</div>
+							 <div class="row" >
+								<label class="col-md-6 control-label">当前约谈</label>
+								<div class="col-md-6">
+									 <input type="checkbox" class="checkbox"  >
+								</div>
+							</div>
 						</div>
 					</div>
+					<div class="row" >
+						<label class="col-md-6 control-label">2）特色管理</label>
+						<div class="col-md-6"></div>
+					</div>
+				<div id="characteristic_div"  class="row" >
+					<div class="col-md-4" >
+						<label>职业选择</label>
+						<div><input type="radio" name="test1" >选择1</div>
+						<div><input type="radio" name="test1" >选择2</div>
+						<div><input type="radio" name="test1" >选择3</div>
+						<div><input type="radio" name="test1" >选择4</div>
+					</div>
+					<div class="col-md-4" >
+						<label>职场关系</label>
+						<div><input type="radio" name="test2" >选择1</div>
+						<div><input type="radio" name="test2" >选择2</div>
+						<div><input type="radio" name="test2" >选择3</div>
+						<div><input type="radio" name="test2" >选择4</div>
+					</div>
+					<div class="col-md-4" >
+						<label>职业发展</label>
+						<div><input type="radio" name="test3" >选择1</div>
+						<div><input type="radio" name="test3" >选择2</div>
+						<div><input type="radio" name="test3" >选择3</div>
+						<div><input type="radio" name="test3" >选择4</div>
+					</div>
+				</div>
+				</div>
+				<div class="col-md-1" ></div>
+			</div>
+			<div class="space-div-4" ></div>
+			<div class="row" >
+				<div class="col-md-12" >
 					<div class="form-group">
-						<label class="col-sm-3 control-label">视频约谈</label>
-						<div class="col-sm-6">
-							 <input type="checkbox" class="checkbox"  >
+						<label class="col-sm-4 control-label">职业生涯自我介绍:</label>
+						<div class="col-sm-8">
+							<textarea class="width100 form-control"  ></textarea>
+						</div>
+					</div>
+					<div class="space-div-4" ></div>
+					<div class="form-group">
+						<label class="col-sm-4 control-label">导师专长自我介绍:</label>
+						<div class="col-sm-8">
+							<textarea class="width100 form-control" ></textarea>
 						</div>
 					</div>
 				</div>
-				<div class="col-md-1" ></div>
+			</div>
+			<div class="space-div-4" ></div>
+		</div>
+	</div>
+	</div>
+	
+		<!-- 确定删除-->
+	<div class="modal face height"  id="deleteDiv" tabindex="-1" role="dialog" aria-labelledby="myDeleteLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="hideAlert('deleteDiv')" >&times;</button>
+				<h4 class="modal-title" id="myriskLabel">确认删除</h4>
+			</div>
+			<div class="modal-body">
+			  	<div class="space-div-4" id="alertMsg" >确定要删除?</div>
+			  	<div class="form-group">
+				    <label class="col-sm-4 control-label"></label>
+				    <div class="col-sm-8">
+				      <input type="hidden" class="form-control" id="deleteId" >
+				    </div>
+			  	</div>
+			  	<div class="space-div-4" ></div>
+			  	<div class="form-group">
+				    <label class="col-sm-4 control-label"></label>
+				    <div class="col-sm-4">
+				      <input type="button" class="btn btn-info width100"  onclick="doDelete()" value="确定" >
+				    </div>
+				     <label class="col-sm-4 control-label"></label>
+			  	</div>
 			</div>
 			<div class="space-div-2" ></div>
 		</div>
