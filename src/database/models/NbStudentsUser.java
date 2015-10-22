@@ -62,6 +62,19 @@ public class NbStudentsUser implements Serializable,nbBaseModel {
 	@OneToOne
 	@JoinColumn(name="job_area")
 	private StaticJobName jobName;
+	
+	@Column(name = "mobile_phone")
+	private String mobilePhone;
+
+	
+	
+	public String getMobilePhone() {
+		return mobilePhone;
+	}
+
+	public void setMobilePhone(String mobilePhone) {
+		this.mobilePhone = mobilePhone;
+	}
 
 	public NbStudentsUser() {
 	}

@@ -18,4 +18,12 @@ public class FixedTopicNameServiceImpl implements FixedTopicNameService {
 		return fixedTopicNameDao.findListByHql(hql);
 	}
 
+	public List<StaticFixedTopicName> findAll() {
+		return fixedTopicNameDao.findAll();
+	}
+
+	public StaticFixedTopicName getById(int id) {
+		return fixedTopicNameDao.find(id);
+	}
+
 }

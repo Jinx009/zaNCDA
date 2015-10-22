@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -23,6 +24,7 @@ import common.helper.HttpWebIOHelper;
 import database.common.PageDataList;
 import database.models.NbTeachersUser;
 import service.basicFunctions.AreaNameService;
+import service.basicFunctions.FixedTopicNameService;
 import service.basicFunctions.JobNameService;
 import service.basicFunctions.TeacherService;
 
@@ -35,6 +37,8 @@ public class TeacherWebEntry {
 	private JobNameService jobNameService;
 	@Autowired
 	private AreaNameService areaNameService;
+	@Autowired
+	private FixedTopicNameService fixedTopicNameService;
 	
 	private Map<String,Object> data;
 	
@@ -49,10 +53,13 @@ public class TeacherWebEntry {
 	 public void upload(@RequestParam(value = "file", required = false) MultipartFile file, HttpServletRequest request, ModelMap model,HttpServletResponse response) throws IOException {  
 	  
         System.out.println("开始上传");  
-        String path = request.getSession().getServletContext().getRealPath("/sp/upload");  
-        String fileName = file.getOriginalFilename();  
+        
+        long currentTime = Calendar.getInstance().getTimeInMillis();
+        String path = request.getSession().getServletContext().getRealPath("/sp/upload/");  
+        
+        String fileName = file.getOriginalFilename();
         System.out.println(path);  
-        File targetFile = new File(path, fileName);  
+        File targetFile = new File(path,String.valueOf(currentTime)+fileName);  
 	    if(!targetFile.exists()){  
 	        targetFile.mkdirs();  
 	    }  
@@ -70,7 +77,22 @@ public class TeacherWebEntry {
 		HttpWebIOHelper._printWebJson(data, response);
 	}
 
-	 
+	 /**
+	  * 编辑
+	  * @param request
+	  * @param response
+	  * @param map
+	  * @return
+	  */
+	 @RequestMapping(value="/admin/teacherEdit")
+	 public String editPage(HttpServletRequest request,HttpServletResponse response,ModelMap map){
+		 
+	     map.put(ConstantUtil.RESULT,ConstantUtil.SUCCESS);
+	     map.put(ConstantUtil.ERROR_MSG,request.getParameter("id"));
+	     map.put("teacher",teacherService.findById(Integer.valueOf(request.getParameter("id"))));
+		 
+		 return "/admin/teacherEdit";
+	 }
 	
 	
 	/**
@@ -144,49 +166,6 @@ public class TeacherWebEntry {
 	@RequestMapping(value = "/teacher/save")
 	public void doSave(HttpServletRequest request,HttpServletResponse response) throws IOException, ParseException{
 		
-		NbTeachersUser nbTeachersUser = new NbTeachersUser();
-		
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		int areaId1 = Integer.valueOf(request.getParameter("area1"));
-		int areaId2 = Integer.valueOf(request.getParameter("area2"));
-		int areaId3 = Integer.valueOf(request.getParameter("area3"));
-		int jobId1 = Integer.valueOf(request.getParameter("job1"));
-		int jobId2 = Integer.valueOf(request.getParameter("job2"));
-		int jobId3 = Integer.valueOf(request.getParameter("job3"));
-		
-		nbTeachersUser.setBankAccount(request.getParameter("bankAccount"));
-		nbTeachersUser.setBankName(request.getParameter("bankName"));
-		nbTeachersUser.setBirth(sdf.parse(request.getParameter("birth")));
-		nbTeachersUser.setEmail(request.getParameter("email"));
-		nbTeachersUser.setGender(Byte.valueOf(request.getParameter("gender")));
-		nbTeachersUser.setHighlight(request.getParameter("highlight"));
-		nbTeachersUser.setIdCard(request.getParameter("idCard"));
-		nbTeachersUser.setIsOnline(Byte.valueOf(request.getParameter("isOnline")));
-		nbTeachersUser.setMobilePhone(request.getParameter("mobilePhone"));
-		nbTeachersUser.setPhoto(request.getParameter("phone"));
-		nbTeachersUser.setQq(request.getParameter("qq"));
-		nbTeachersUser.setRealName(request.getParameter("realName"));
-		nbTeachersUser.setSpecialDescription(request.getParameter("specialDescription"));
-		nbTeachersUser.setStaticAreaName1(areaNameService.findById(areaId1));
-		nbTeachersUser.setStaticAreaName2(areaNameService.findById(areaId2));
-		nbTeachersUser.setStaticAreaName3(areaNameService.findById(areaId3));
-		nbTeachersUser.setStaticJobName1(jobNameService.findById(jobId1));
-		nbTeachersUser.setStaticJobName2(jobNameService.findById(jobId2));
-		nbTeachersUser.setStaticJobName3(jobNameService.findById(jobId3));
-		//nbTeachersUser.setStaticFixedTopicName(null);
-		nbTeachersUser.setTalkFace2face((byte)Integer.valueOf(request.getParameter("faceToFace")).intValue());
-		nbTeachersUser.setTalkPhoneCall((byte)Integer.valueOf(request.getParameter("talkPhoneCall")).intValue());
-		nbTeachersUser.setTalkVideoChat((byte)Integer.valueOf(request.getParameter("talkVideoChat")).intValue());
-		nbTeachersUser.setUnitPrice(Integer.valueOf(request.getParameter("unitPrice")));
-		nbTeachersUser.setUsername(request.getParameter("username"));
-		nbTeachersUser.setWorkStartYear(sdf.parse(request.getParameter("workStartYear")));
-
-		teacherService.doSave(nbTeachersUser);
-		
-		data = new HashMap<String,Object>();
-		data.put(ConstantUtil.RESULT,ConstantUtil.SUCCESS);
-		data.put(ConstantUtil.ERROR_MSG,"保存成功!");
-		
 		HttpWebIOHelper._printWebJson(data, response);
 	}
 	
@@ -230,13 +209,14 @@ public class TeacherWebEntry {
 		nbTeachersUser.setStaticJobName1(jobNameService.findById(jobId1));
 		nbTeachersUser.setStaticJobName2(jobNameService.findById(jobId2));
 		nbTeachersUser.setStaticJobName3(jobNameService.findById(jobId3));
-		//nbTeachersUser.setStaticFixedTopicName(null);
+		nbTeachersUser.setStaticFixedTopicName(fixedTopicNameService.getById(Integer.valueOf(topicId)));
 		nbTeachersUser.setTalkFace2face((byte)Integer.valueOf(request.getParameter("faceToFace")).intValue());
 		nbTeachersUser.setTalkPhoneCall((byte)Integer.valueOf(request.getParameter("talkPhoneCall")).intValue());
 		nbTeachersUser.setTalkVideoChat((byte)Integer.valueOf(request.getParameter("talkVideoChat")).intValue());
 		nbTeachersUser.setUnitPrice(Integer.valueOf(request.getParameter("unitPrice")));
 		nbTeachersUser.setUsername(request.getParameter("username"));
 		nbTeachersUser.setWorkStartYear(sdf.parse(request.getParameter("workStartYear")));
+		nbTeachersUser.setOpenid(request.getParameter("openid"));
 
 		teacherService.doUpdate(nbTeachersUser);
 		

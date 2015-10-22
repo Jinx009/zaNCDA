@@ -46,7 +46,6 @@ public class AdminSessionFilter implements Filter{
 		if(!pathList.contains(servletPath)){
 			if(null==sessionUser){
 				httpServletResponse.sendRedirect("/admin/login.html");
-				return;
 			}
 		}
 		chain.doFilter(request, response);
