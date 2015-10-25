@@ -158,8 +158,8 @@ function editJobName(index){
 		<div class="col-md-2 index-col-md-2" >
 			<div class="list-group">
 			  <a href="/admin/index.html" class="list-group-item">教师管理</a>
-			  <a href="#" class="list-group-item">顾客管理</a>
-			  <a href="#" class="list-group-item">兑付管理</a>
+			  <a href="/admin/student.html" class="list-group-item">顾客管理</a>
+			  <a href="/admin/order.html" class="list-group-item">兑付管理</a>
 			  <a href="/admin/util.html" class="list-group-item active">辅助管理</a>
 			</div>
 		</div>

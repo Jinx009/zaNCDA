@@ -32,14 +32,12 @@ public class NbTeacherScore implements Serializable,nbBaseModel {
 	@Column(nullable=false)
 	private int score;
 
-	@Temporal(TemporalType.TIMESTAMP)
+	@Temporal(TemporalType.DATE)
 	@Column(name="submit_time", nullable=false)
 	private Date submitTime;
 
-	//bi-directional many-to-one association to NbOrder
-	@ManyToOne
-	@JoinColumn(name="order_id", nullable=false)
-	private NbOrder nbOrder;
+	@Column(name = "order_id")
+	private Integer orderId;
 
 	public NbTeacherScore() {
 	}
@@ -67,6 +65,14 @@ public class NbTeacherScore implements Serializable,nbBaseModel {
 	public void setScore(int score) {
 		this.score = score;
 	}
+	
+	public Integer getOrderId() {
+		return orderId;
+	}
+
+	public void setOrderId(Integer orderId) {
+		this.orderId = orderId;
+	}
 
 	public Date getSubmitTime() {
 		return this.submitTime;
@@ -74,14 +80,6 @@ public class NbTeacherScore implements Serializable,nbBaseModel {
 
 	public void setSubmitTime(Date submitTime) {
 		this.submitTime = submitTime;
-	}
-
-	public NbOrder getNbOrder() {
-		return this.nbOrder;
-	}
-
-	public void setNbOrder(NbOrder nbOrder) {
-		this.nbOrder = nbOrder;
 	}
 
 	@Override

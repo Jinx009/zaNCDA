@@ -151,8 +151,8 @@ function loadForms(){
 		<div class="col-md-2 index-col-md-2" >
 			<div class="list-group">
 			  <a href="/admin/index.html" class="list-group-item active">教师管理</a>
-			  <a href="#" class="list-group-item">顾客管理</a>
-			  <a href="#" class="list-group-item">兑付管理</a>
+			  <a href="/admin/student.html" class="list-group-item">顾客管理</a>
+			  <a href="/admin/order.html" class="list-group-item">兑付管理</a>
 			  <a href="/admin/util.html" class="list-group-item ">辅助管理</a>
 			</div>
 		</div>
@@ -167,7 +167,7 @@ function loadForms(){
 				<tbody>
 					<tr>
 						<th>姓名：</th>
-						<td> <input type="text" class="form-control" id="username"  value="${teacher.username }"  ></td>
+						<td> <input type="text" class="form-control" id="username"  value="${teacher.realName }"  ></td>
 						<th>头像:</th>
 						<td><img  src="${teacher.photo }" class="img-width" id="imgId" ></td>
 					</tr>

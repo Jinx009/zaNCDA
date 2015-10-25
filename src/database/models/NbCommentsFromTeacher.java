@@ -28,15 +28,14 @@ public class NbCommentsFromTeacher implements Serializable,nbBaseModel {
 	@Lob
 	@Column(nullable=false)
 	private String comments;
+	
+	@Column(name = "order_id")
+	private Integer orderId;
 
-	@Temporal(TemporalType.TIMESTAMP)
+	@Temporal(TemporalType.DATE)
 	@Column(name="submit_time", nullable=false)
 	private Date submitTime;
 
-	//bi-directional many-to-one association to NbOrder
-	@ManyToOne
-	@JoinColumn(name="order_id", nullable=false)
-	private NbOrder nbOrder;
 
 	public NbCommentsFromTeacher() {
 	}
@@ -64,13 +63,12 @@ public class NbCommentsFromTeacher implements Serializable,nbBaseModel {
 	public void setSubmitTime(Date submitTime) {
 		this.submitTime = submitTime;
 	}
-
-	public NbOrder getNbOrder() {
-		return this.nbOrder;
+	public Integer getOrderId() {
+		return orderId;
 	}
 
-	public void setNbOrder(NbOrder nbOrder) {
-		this.nbOrder = nbOrder;
+	public void setOrderId(Integer orderId) {
+		this.orderId = orderId;
 	}
 
 	@Override
@@ -79,7 +77,6 @@ public class NbCommentsFromTeacher implements Serializable,nbBaseModel {
 		data.put("id",id);
 		data.put("comments",comments);
 		data.put("submitTime",submitTime);
-		data.put("nbOrder",nbOrder);
 		return data;
 	}
 

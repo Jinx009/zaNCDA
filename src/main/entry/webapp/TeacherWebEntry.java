@@ -104,12 +104,12 @@ public class TeacherWebEntry {
 	@RequestMapping(value = "/teacher/list")
 	public void getList(HttpServletRequest request,HttpServletResponse response) throws IOException{
 		int pageNum = Integer.valueOf(request.getParameter("pageNum"));
-		String username = request.getParameter("userName");
+		String realName = request.getParameter("realName");
 		String mobilePhone = request.getParameter("mobilePhone");
 		
 		NbTeachersUser nbTeachersUser = new NbTeachersUser();
-		nbTeachersUser.setUsername(username);
 		nbTeachersUser.setMobilePhone(mobilePhone);
+		nbTeachersUser.setRealName(realName);
 		
 		data = new HashMap<String,Object>();
 		PageDataList<NbTeachersUser> list = teacherService.findPageList(nbTeachersUser,pageNum,20);

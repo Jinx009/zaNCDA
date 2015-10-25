@@ -8,7 +8,6 @@ import database.common.nbBaseModel;
 
 import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 
@@ -55,23 +54,17 @@ public class NbOrder implements Serializable,nbBaseModel {
 	@Column(name="second_pay_time")
 	private Date secondPayTime;
 
-	@Column(name="student_id", nullable=false)
-	private int studentId;
+	@OneToOne
+	@JoinColumn(name="student_id")
+	private NbStudentsUser nbStudentsUser;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="student_prefered_date", nullable=false)
 	private Date studentPreferedDate;
 
-	@Column(name="teacher_id", nullable=false)
-	private int teacherId;
-
-	//bi-directional many-to-one association to NbCommentsFromTeacher
-	@OneToMany(mappedBy="nbOrder")
-	private List<NbCommentsFromTeacher> nbCommentsFromTeachers;
-
-	//bi-directional many-to-one association to NbTeacherScore
-	@OneToMany(mappedBy="nbOrder")
-	private List<NbTeacherScore> nbTeacherScores;
+	@OneToOne
+	@JoinColumn(name="teacher_id")
+	private NbTeachersUser nbTeachersUser;
 	
 	@Column(name="course_topic", nullable=false)
 	private String courseTopic;
@@ -158,13 +151,21 @@ public class NbOrder implements Serializable,nbBaseModel {
 	public void setSecondPayTime(Date secondPayTime) {
 		this.secondPayTime = secondPayTime;
 	}
-
-	public int getStudentId() {
-		return this.studentId;
+	
+	public NbStudentsUser getNbStudentsUser() {
+		return nbStudentsUser;
 	}
 
-	public void setStudentId(int studentId) {
-		this.studentId = studentId;
+	public void setNbStudentsUser(NbStudentsUser nbStudentsUser) {
+		this.nbStudentsUser = nbStudentsUser;
+	}
+
+	public NbTeachersUser getNbTeachersUser() {
+		return nbTeachersUser;
+	}
+
+	public void setNbTeachersUser(NbTeachersUser nbTeachersUser) {
+		this.nbTeachersUser = nbTeachersUser;
 	}
 
 	public Date getStudentPreferedDate() {
@@ -175,57 +176,6 @@ public class NbOrder implements Serializable,nbBaseModel {
 		this.studentPreferedDate = studentPreferedDate;
 	}
 
-	public int getTeacherId() {
-		return this.teacherId;
-	}
-
-	public void setTeacherId(int teacherId) {
-		this.teacherId = teacherId;
-	}
-
-	public List<NbCommentsFromTeacher> getNbCommentsFromTeachers() {
-		return this.nbCommentsFromTeachers;
-	}
-
-	public void setNbCommentsFromTeachers(List<NbCommentsFromTeacher> nbCommentsFromTeachers) {
-		this.nbCommentsFromTeachers = nbCommentsFromTeachers;
-	}
-
-	public NbCommentsFromTeacher addNbCommentsFromTeacher(NbCommentsFromTeacher nbCommentsFromTeacher) {
-		getNbCommentsFromTeachers().add(nbCommentsFromTeacher);
-		nbCommentsFromTeacher.setNbOrder(this);
-
-		return nbCommentsFromTeacher;
-	}
-
-	public NbCommentsFromTeacher removeNbCommentsFromTeacher(NbCommentsFromTeacher nbCommentsFromTeacher) {
-		getNbCommentsFromTeachers().remove(nbCommentsFromTeacher);
-		nbCommentsFromTeacher.setNbOrder(null);
-
-		return nbCommentsFromTeacher;
-	}
-
-	public List<NbTeacherScore> getNbTeacherScores() {
-		return this.nbTeacherScores;
-	}
-
-	public void setNbTeacherScores(List<NbTeacherScore> nbTeacherScores) {
-		this.nbTeacherScores = nbTeacherScores;
-	}
-
-	public NbTeacherScore addNbTeacherScore(NbTeacherScore nbTeacherScore) {
-		getNbTeacherScores().add(nbTeacherScore);
-		nbTeacherScore.setNbOrder(this);
-
-		return nbTeacherScore;
-	}
-
-	public NbTeacherScore removeNbTeacherScore(NbTeacherScore nbTeacherScore) {
-		getNbTeacherScores().remove(nbTeacherScore);
-		nbTeacherScore.setNbOrder(null);
-
-		return nbTeacherScore;
-	}
 
 	public String getCourseTopic() {
 		return courseTopic;
@@ -248,11 +198,9 @@ public class NbOrder implements Serializable,nbBaseModel {
 		data.put("secondPayIsDone",secondPayIsDone);
 		data.put("secondPayPrice",secondPayPrice);
 		data.put("secondPayTime",secondPayTime);
-		data.put("studentId",studentId);
+		data.put("student",nbStudentsUser);
 		data.put("studentPreferedDate",studentPreferedDate);
-		data.put("teacherId",teacherId);
-		data.put("nbCommentsFromTeachers",nbCommentsFromTeachers);
-		data.put("nbTeacherScores",nbTeacherScores);
+		data.put("teacher",nbTeachersUser);
 		data.put("courseTopic",courseTopic);
 		return data;
 	}

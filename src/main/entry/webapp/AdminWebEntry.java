@@ -34,6 +34,26 @@ public class AdminWebEntry {
     }
 	
 	/**
+	 * 跳转后台订单页面
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/admin/order") 
+    public String order() throws Exception{  
+        return "/admin/order";  
+    }
+	
+	/**
+	 * 跳转后台顾客管理
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/admin/student") 
+    public String student() throws Exception{  
+        return "/admin/student";  
+    }
+	
+	/**
 	 * 跳转后台辅助列表
 	 * @return
 	 * @throws Exception

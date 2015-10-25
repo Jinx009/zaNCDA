@@ -29,9 +29,9 @@ public class NbStudentsUser implements Serializable,nbBaseModel {
 	private String email;
 
 	@Column(name="family_member")
-	private int familyMember;
+	private Integer familyMember;
 
-	private byte gender;
+	private Integer gender;
 	
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="birth")
@@ -94,21 +94,30 @@ public class NbStudentsUser implements Serializable,nbBaseModel {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
-	public int getFamilyMember() {
-		return this.familyMember;
+	
+	
+	public Integer getFamilyMember() {
+		return familyMember;
 	}
 
-	public void setFamilyMember(int familyMember) {
+	public void setFamilyMember(Integer familyMember) {
 		this.familyMember = familyMember;
 	}
 
-	public byte getGender() {
-		return this.gender;
+	public Integer getGender() {
+		return gender;
 	}
 
-	public void setGender(byte gender) {
+	public void setGender(Integer gender) {
 		this.gender = gender;
+	}
+
+	public StaticJobName getJobName() {
+		return jobName;
+	}
+
+	public void setJobName(StaticJobName jobName) {
+		this.jobName = jobName;
 	}
 
 	public String getJobTitle() {

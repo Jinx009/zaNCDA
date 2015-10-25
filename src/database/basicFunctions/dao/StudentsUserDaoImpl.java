@@ -2,6 +2,8 @@ package database.basicFunctions.dao;
 
 import org.springframework.stereotype.Repository;
 
+import common.helper.StringUtil;
+
 import database.common.BaseDaoImpl;
 import database.common.PageDataList;
 import database.common.QueryParam;
@@ -14,10 +16,10 @@ public class StudentsUserDaoImpl extends BaseDaoImpl<NbStudentsUser> implements 
 	public PageDataList<NbStudentsUser> findTeacherPageList(NbStudentsUser nbStudentsUser, int pageNum, int pageSize) {
 		QueryParam param = QueryParam.getInstance().addPage(pageNum,pageSize);
 		
-		if (null!=nbStudentsUser.getUsername()&&!"".equals(nbStudentsUser.getUsername())){
-			param.addParam("username",nbStudentsUser.getUsername());
+		if (StringUtil.isNotBlank(nbStudentsUser.getRealName())){
+			param.addParam("realName",nbStudentsUser.getRealName());
 		}
-		if (null!=nbStudentsUser.getMobilePhone()&&!"".equals(nbStudentsUser.getMobilePhone())){
+		if (StringUtil.isNotBlank(nbStudentsUser.getMobilePhone())){
 			param.addParam("mobilePhone",nbStudentsUser.getMobilePhone());
 		}
 		PageDataList<NbStudentsUser> pageDataList = super.findPageList(param);
