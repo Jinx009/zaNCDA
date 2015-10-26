@@ -14,5 +14,9 @@ public interface TeacherService {
 	public NbTeachersUser findById(int id);
 	
 	public void doUpdate(NbTeachersUser nbTeachersUser);
+
+	public NbTeachersUser doLogin(NbTeachersUser nbTeachersUser);
+
+	public NbTeachersUser findByOpenid(String openid);
 	
 }

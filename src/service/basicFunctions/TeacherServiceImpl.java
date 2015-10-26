@@ -32,5 +32,12 @@ public class TeacherServiceImpl implements TeacherService{
 	public void doUpdate(NbTeachersUser nbTeachersUser) {
 		teachersUserDao.update(nbTeachersUser);
 	}
+	public NbTeachersUser doLogin(NbTeachersUser nbTeachersUser) {
+		return teachersUserDao.doLogin(nbTeachersUser);
+	}
+
+	public NbTeachersUser findByOpenid(String openid) {
+		return teachersUserDao.getByOpenid(openid);
+	}
 
 }

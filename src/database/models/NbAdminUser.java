@@ -13,7 +13,7 @@ import javax.persistence.Table;
 import database.common.nbBaseModel;
 
 /**
- * 后台管理员账号
+ * 微信资料
  * @author Jinx
  *
  */

@@ -22,7 +22,7 @@
 	    <url-pattern>/*</url-pattern>  
 	</filter-mapping>
 
-<!-- 配置安全入口Filter --> 
+	<!-- 配置安全入口Filter --> 
 	<filter>
 	    <filter-name>nbAPISecurityFilter</filter-name>
 	    <filter-class>common.helper.nbAPISecurityFilter</filter-class>
@@ -35,6 +35,17 @@
 		</init-param>
 	</filter>
 	
+	<!-- 教师filter -->
+	<filter>
+		<filter-name>teacherSessionFilter</filter-name>
+		<filter-class>common.helper.TeacherSessionFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>teacherSessionFilter</filter-name>
+		<url-pattern>/tpage/*</url-pattern>
+	</filter-mapping>
+	
+	<!-- 后台filter -->
 	<filter>
 		<filter-name>adminSessionFilter</filter-name>
 		<filter-class>common.helper.AdminSessionFilter</filter-class>
@@ -44,14 +55,25 @@
 		<url-pattern>/admin/*</url-pattern>
 	</filter-mapping>
 	
+	<!-- 学生filter -->
+	<filter>
+		<filter-name>studentSessionFilter</filter-name>
+		<filter-class>common.helper.StudentSessionFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>studentSessionFilter</filter-name>
+		<url-pattern>/spage/*</url-pattern>
+	</filter-mapping>
+	
+	
 	<!-- 配置安全入口Filter过滤的地址 --> 
 	<filter-mapping>
 	    <filter-name>nbAPISecurityFilter</filter-name>
 	    <url-pattern>*.api</url-pattern>
 	</filter-mapping>
-<!-- END：配置安全入口Filter --> 
+	<!-- END：配置安全入口Filter --> 
 
-<!-- 配置安全入口Filter --> 
+	<!-- 配置安全入口Filter --> 
 	<filter>
 	    <filter-name>nbHTMLSecurityFilter</filter-name>
 	    <filter-class>common.helper.nbHTMLSecurityFilter</filter-class>
@@ -69,9 +91,9 @@
 	    <filter-name>nbHTMLSecurityFilter</filter-name>
 	    <url-pattern>*.html</url-pattern>
 	</filter-mapping>
-<!-- END：配置安全入口Filter --> 
+	<!-- END：配置安全入口Filter --> 
 
-<!-- 监听spring上下文容器 -->  
+	<!-- 监听spring上下文容器 -->  
     <listener>  
         <listener-class>  
             org.springframework.web.context.ContextLoaderListener  
@@ -99,7 +121,7 @@
 </context-param>
     
 
-<!-- 配置Spring MVC DispatcherServlet -->  
+	<!-- 配置Spring MVC DispatcherServlet -->  
     <servlet>  
         <servlet-name>nbBaseServlet</servlet-name>  
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>  
@@ -122,7 +144,7 @@
         <url-pattern>*.api</url-pattern>  
     </servlet-mapping>
 
-<!-- END:配置Spring MVC DispatcherServlet --> 
+	<!-- END:配置Spring MVC DispatcherServlet --> 
 
   <display-name>nbBase</display-name>
   <welcome-file-list>

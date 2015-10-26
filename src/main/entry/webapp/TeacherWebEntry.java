@@ -5,22 +5,29 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.http.client.ClientProtocolException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import common.helper.ConstantUtil;
 import common.helper.HttpWebIOHelper;
+import common.helper.MD5Util;
+import common.helper.StringUtil;
+import common.wechat.WechatData;
+import common.wechat.WechatUtil;
 import database.common.PageDataList;
 import database.models.NbTeachersUser;
 import service.basicFunctions.AreaNameService;
@@ -78,7 +85,7 @@ public class TeacherWebEntry {
 	}
 
 	 /**
-	  * 编辑
+	  * 后台编辑
 	  * @param request
 	  * @param response
 	  * @param map
@@ -94,6 +101,70 @@ public class TeacherWebEntry {
 		 return "/admin/teacherEdit";
 	 }
 	
+	 /**
+	  * 教师登陆
+	  * @return
+	 * @throws IOException 
+	 * @throws ClientProtocolException 
+	  */
+	 @RequestMapping(value = "/teacher/login")
+	 public String teacherLogin(HttpServletRequest request,HttpServletResponse response) throws ClientProtocolException, IOException{
+		 String code = request.getParameter("code");
+		 NbTeachersUser nbTeachersUser = new NbTeachersUser();
+		 nbTeachersUser.setOpenid("");
+		 
+		 if(StringUtil.isNotBlank(code)){
+			 String openid = WechatUtil.getOauthOpenId(WechatData.APP_ID,WechatData.APP_SECRET,code);
+			 if(StringUtil.isNotBlank(openid)){
+				 nbTeachersUser = teacherService.findByOpenid(openid);
+			 }
+		 }
+		 
+		 request.setAttribute("nbTeachersUser",nbTeachersUser);
+		 request.getSession().setAttribute("teacher_session_user",nbTeachersUser);
+		 return "/teacher/login";
+	 }
+	 
+	 /**
+	  * 教师登陆
+	  * @param request
+	  * @param response
+	  * @throws IOException
+	  */
+	 @RequestMapping(value = "/teacher/doLogin",method = RequestMethod.POST)
+	 public void teacherDoLogin(HttpServletRequest request,HttpServletResponse response) throws IOException{
+		 String username = request.getParameter("username");
+		 String password = request.getParameter("password");
+		 String teacherCode = request.getParameter("code");
+		 String openid = request.getParameter("openid");
+		 
+		 data = new HashMap<String, Object>();
+		 data.put(ConstantUtil.RESULT,ConstantUtil.FAILURE);
+		 
+		 NbTeachersUser nbTeachersUser = new NbTeachersUser();
+		 nbTeachersUser.setUsername(username);
+		 nbTeachersUser.setPassword(MD5Util.toMD5(password));
+		 
+		 NbTeachersUser nbTeachersUser2 = teacherService.doLogin(nbTeachersUser);
+		 
+		 if(!teacherCode.equals(request.getSession().getAttribute("teacherCode").toString())||null==teacherCode){
+	    	data.put(ConstantUtil.ERROR_MSG,"验证码不正确!");
+	     }else if(null==nbTeachersUser2){
+	    	data.put(ConstantUtil.ERROR_MSG,"账号或密码错误!");
+	     }else {
+	    	data.put(ConstantUtil.RESULT,ConstantUtil.SUCCESS);
+	    	data.put(ConstantUtil.ERROR_MSG,"登陆成功!");
+	    	
+	    	if(StringUtil.isNotBlank(openid)){
+	    		nbTeachersUser2.setOpenid(openid);
+	    		nbTeachersUser2.setUpdateTime(new Date());
+	    		teacherService.doUpdate(nbTeachersUser2);
+	    	}
+	    	request.getSession().setAttribute("teacher_session_user",nbTeachersUser2);
+	    }
+		 
+		HttpWebIOHelper._printWebJson(data, response);
+	 }
 	
 	/**
 	 * 教师列表
@@ -227,6 +298,22 @@ public class TeacherWebEntry {
 		HttpWebIOHelper._printWebJson(data, response);
 	}
 	
+	
+	/**
+	 * 获取验证码
+	 * @param request
+	 * @param response
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/teacher/getCode",method = RequestMethod.GET) 
+    public void getCode(HttpServletRequest request, HttpServletResponse response) throws Exception{  
+		Map<String,Object> data = new HashMap<String,Object>();
+		int code = (int) (Math.random() * 9000 + 1000);
+		data.put("teacherCode",code);
+		System.out.println("teacherCode:"+code);
+		request.getSession().setAttribute("teacherCode",code);
+		HttpWebIOHelper._printWebJson(data, response);
+    }
 	
 	/**
 	 * getter & setter

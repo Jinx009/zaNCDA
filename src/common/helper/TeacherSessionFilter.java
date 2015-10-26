@@ -14,9 +14,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import database.models.NbAdminUser;
+import database.models.NbTeachersUser;
 
-public class AdminSessionFilter implements Filter{
+public class TeacherSessionFilter implements Filter{
 	protected String encoding = null;
 	protected FilterConfig filterConfig = null;
 	protected boolean ignore = false;
@@ -36,10 +36,10 @@ public class AdminSessionFilter implements Filter{
 		List<String> pathList = notNeedSessionCheck();
 		
 		HttpSession session = httpServletRequest.getSession();
-		NbAdminUser sessionUser = (NbAdminUser) session.getAttribute("admin_session_user");
+		NbTeachersUser sessionUser = (NbTeachersUser) session.getAttribute("teacher_session_user");
 		if(!pathList.contains(servletPath)){
 			if(null==sessionUser){
-				httpServletResponse.sendRedirect("/admin/login.html");
+				httpServletResponse.sendRedirect("/teacher/login.html");
 				return;
 			}
 		}
@@ -62,10 +62,7 @@ public class AdminSessionFilter implements Filter{
 	}
 
 	private List<String> notNeedSessionCheck(){
-		String[] paths = new String[]{ 
-				"/admin/login.html", 
-				"/admin/doLogin.html", 
-		};
+		String[] paths = new String[]{};
 
 		return Arrays.asList(paths);
 	}

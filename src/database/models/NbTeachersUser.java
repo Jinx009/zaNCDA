@@ -52,7 +52,7 @@ public class NbTeachersUser implements Serializable,nbBaseModel {
 	@Column(name="is_online", nullable=false)
 	private byte isOnline;
 
-	@Column(length=32)
+	@Column(length=128)
 	private String openid;
 
 	@Column(nullable=false, length=20)
@@ -70,6 +70,10 @@ public class NbTeachersUser implements Serializable,nbBaseModel {
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="register_time", nullable=false)
 	private Date registerTime;
+	
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "update_time")
+	private Date updateTime;
 
 	@Lob
 	private String resume;
@@ -403,6 +407,14 @@ public class NbTeachersUser implements Serializable,nbBaseModel {
 	}
 	public void setMobilePhone(String mobilePhone) {
 		this.mobilePhone = mobilePhone;
+	}
+	
+	public Date getUpdateTime() {
+		return updateTime;
+	}
+
+	public void setUpdateTime(Date updateTime) {
+		this.updateTime = updateTime;
 	}
 
 	@Override
