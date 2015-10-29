@@ -85,6 +85,15 @@ public class TeacherWebEntry {
 	}
 
 	 /**
+	  * 教师约谈
+	  * @return
+	  */
+	 @RequestMapping(value="/tpage/comments")
+	 public String pageComments(){
+		 return "/tpage/comments";
+	 }
+	 
+	 /**
 	  * 后台编辑
 	  * @param request
 	  * @param response
@@ -111,19 +120,29 @@ public class TeacherWebEntry {
 	 public String teacherLogin(HttpServletRequest request,HttpServletResponse response) throws ClientProtocolException, IOException{
 		 String code = request.getParameter("code");
 		 NbTeachersUser nbTeachersUser = null;
+		 String realOpenid = "",username = "";
 		 int status = 0;
 		 
 		 if(StringUtil.isNotBlank(code)){
 			 String openid = WechatUtil.getOauthOpenId(WechatData.APP_ID,WechatData.APP_SECRET,code);
 			 if(StringUtil.isNotBlank(openid)){
+				 realOpenid = openid;
 				 nbTeachersUser = teacherService.findByOpenid(openid);
 				 if(null!=nbTeachersUser){
+					 if(StringUtil.isBlank(nbTeachersUser.getRealName())){
+						 username = nbTeachersUser.getRealName();
+					 }else{
+						 username = nbTeachersUser.getUsername();
+					 }
 					 status = 1;
 				 }
 			 }
 		 }
 		 
 		 request.setAttribute("status",status);
+		 request.setAttribute("username",username);
+		 request.setAttribute("openid",realOpenid);
+		 request.setAttribute("url",WechatData.getTeacherOauthUrl());
 		 request.getSession().setAttribute("teacher_session_user",nbTeachersUser);
 		 return "/teacher/login";
 	 }
@@ -301,7 +320,6 @@ public class TeacherWebEntry {
 		HttpWebIOHelper._printWebJson(data, response);
 	}
 	
-	
 	/**
 	 * 获取验证码
 	 * @param request
@@ -317,6 +335,7 @@ public class TeacherWebEntry {
 		request.getSession().setAttribute("teacherCode",code);
 		HttpWebIOHelper._printWebJson(data, response);
     }
+	
 	
 	/**
 	 * getter & setter

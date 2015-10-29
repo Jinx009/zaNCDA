@@ -16,6 +16,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import common.helper.ConstantUtil;
 import common.helper.HttpWebIOHelper;
 import common.helper.StringUtil;
 import database.common.PageDataList;
@@ -90,6 +91,41 @@ public class OrderWebEntry {
 		HttpWebIOHelper._printWebJson(data, response);
 	}
 
+	/**
+	 * 教师约谈
+	 * @param request
+	 * @param response
+	 * @throws IOException
+	 */
+	@RequestMapping(value = "/tdata/comments",method = RequestMethod.POST)
+	public void getTComments(HttpServletRequest request,HttpServletResponse response) throws IOException{
+		NbTeachersUser nbTeachersUser = (NbTeachersUser) request.getSession().getAttribute("teacher_session_user");
+		List<NbOrder> list = orderService.findByAttr("nbTeachersUser",nbTeachersUser.getId());
+		
+		data = new HashMap<String, Object>();
+		data.put(ConstantUtil.RESULT,ConstantUtil.SUCCESS);
+		data.put(ConstantUtil.ERROR_MSG,list);
+		
+		HttpWebIOHelper._printWebJson(data, response);
+	}
+	
+	/**
+	 * 教师个人信息
+	 * @param response
+	 * @param request
+	 * @throws IOException
+	 */
+	@RequestMapping(value = "/tdata/info")
+	public void getTInfo(HttpServletResponse response,HttpServletRequest request) throws IOException{
+		NbTeachersUser nbTeachersUser = (NbTeachersUser) request.getSession().getAttribute("teacher_session_user");
+		
+		data = new HashMap<String, Object>();
+		data.put(ConstantUtil.RESULT,ConstantUtil.SUCCESS);
+		data.put(ConstantUtil.ERROR_MSG,nbTeachersUser);
+		
+		HttpWebIOHelper._printWebJson(data, response);
+	}
+	
 	public Map<String, Object> getData() {
 		return data;
 	}

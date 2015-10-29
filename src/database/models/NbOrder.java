@@ -69,6 +69,9 @@ public class NbOrder implements Serializable,nbBaseModel {
 	@Column(name="course_topic", nullable=false)
 	private String courseTopic;
 
+	@Column(name = "comments_status")
+	private Integer commentsStatus;
+	
 	public NbOrder() {
 	}
 
@@ -183,6 +186,13 @@ public class NbOrder implements Serializable,nbBaseModel {
 
 	public void setCourseTopic(String courseTopic) {
 		this.courseTopic = courseTopic;
+	}
+	public Integer getCommentsStatus() {
+		return commentsStatus;
+	}
+
+	public void setCommentsStatus(Integer commentsStatus) {
+		this.commentsStatus = commentsStatus;
 	}
 
 	@Override

@@ -1,5 +1,9 @@
 package database.basicFunctions.dao;
 
+import java.util.List;
+
+import javax.persistence.Query;
+
 import org.springframework.stereotype.Repository;
 
 import common.helper.StringUtil;
@@ -38,6 +42,16 @@ public class OrderDaoImpl extends BaseDaoImpl<NbOrder> implements OrderDao {
 		PageDataList<NbOrder> pageDataList = super.findPageList(param);
 		
 		return pageDataList;
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<NbOrder> findByHql(String hql) {
+		Query query = em.createQuery(hql);
+		List<NbOrder> list = query.getResultList();
+		if(null!=list&&!list.isEmpty()){
+			return list;
+		}
+		return null;
 	}
 
 }

@@ -16,4 +16,22 @@ public class WechatData {
 	
 	public static final String OAUTH_URL_THREE = "&response_type=code&scope=snsapi_base&state=state#wechat_redirect";
 	
+	
+	/**
+	 * 重定向链接
+	 * @return
+	 */
+	public static String getTeacherOauthUrl(){
+		StringBuffer buffer = new StringBuffer();
+		buffer.append(OAUTH_URL_ONE);
+		buffer.append(OAUTH_URL_TWO);
+		buffer.append("/teacher/login.html");
+		buffer.append(OAUTH_URL_THREE);
+		
+		return buffer.toString();
+	}
+	
+	public static void main(String[] args) {
+		System.out.println(getTeacherOauthUrl());
+	}
 }

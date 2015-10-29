@@ -14,6 +14,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import common.wechat.WechatData;
+
 import database.models.NbTeachersUser;
 
 public class TeacherSessionFilter implements Filter{
@@ -39,7 +41,7 @@ public class TeacherSessionFilter implements Filter{
 		NbTeachersUser sessionUser = (NbTeachersUser) session.getAttribute("teacher_session_user");
 		if(!pathList.contains(servletPath)){
 			if(null==sessionUser){
-				httpServletResponse.sendRedirect("/teacher/login.html");
+				httpServletResponse.sendRedirect(WechatData.getTeacherOauthUrl());
 				return;
 			}
 		}

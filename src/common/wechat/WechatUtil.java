@@ -89,9 +89,8 @@ public class WechatUtil {
 		if (httpCode == 200) {
 			JSONObject jsonObject = JSONObject.fromObject(strResult);
 			
-			System.err.println(new StringBuffer().append("获取openid返回码:").append(jsonObject).toString());
-			
-			if(null!=jsonObject.getString("openid")){
+			System.out.println(new StringBuffer().append("获取openid返回码:").append(jsonObject).toString());
+			if(jsonObject.has("openid")){
 				openId = jsonObject.getString("openid");
 			}
 		}

@@ -1,5 +1,7 @@
 package service.basicFunctions;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +18,11 @@ public class OrderServiceImpl implements OrderService{
 	public PageDataList<NbOrder> findPageList(NbOrder nbOrder, int pageNum,int pageSize) {
 		
 		return orderDao.findTeacherPageList(nbOrder,pageNum,pageSize);
+	}
+
+	public List<NbOrder> findByAttr(String attrName, int id) {
+		String hql = " from NbOrder where "+attrName+".id = "+id+"  ";
+		return orderDao.findByHql(hql);
 	}
 
 }
