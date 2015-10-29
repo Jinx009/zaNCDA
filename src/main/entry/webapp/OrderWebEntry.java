@@ -20,6 +20,7 @@ import common.helper.ConstantUtil;
 import common.helper.HttpWebIOHelper;
 import common.helper.StringUtil;
 import database.common.PageDataList;
+import database.models.AccountModel;
 import database.models.NbCommentsFromTeacher;
 import database.models.NbOrder;
 import database.models.NbStudentsUser;
@@ -122,6 +123,45 @@ public class OrderWebEntry {
 		data = new HashMap<String, Object>();
 		data.put(ConstantUtil.RESULT,ConstantUtil.SUCCESS);
 		data.put(ConstantUtil.ERROR_MSG,nbTeachersUser);
+		
+		HttpWebIOHelper._printWebJson(data, response);
+	}
+	
+	/**
+	 * 教师个人账户
+	 * @param response
+	 * @param request
+	 * @throws IOException
+	 */
+	@RequestMapping(value = "/tdata/account")
+	public void getTAccount(HttpServletResponse response,HttpServletRequest request) throws IOException{
+		NbTeachersUser nbTeachersUser = (NbTeachersUser) request.getSession().getAttribute("teacher_session_user");
+		List<NbOrder> list = orderService.findByAttr("nbTeachersUser",nbTeachersUser.getId());
+		AccountModel accountModel = new AccountModel();
+		
+		for(int i = 0;i<list.size();i++){
+			NbOrder order = list.get(i);
+			accountModel.setAllAccount(accountModel.getAllAccount()+order.getFullPrice());
+			if(1==order.getFirstPayIsDone()){
+				accountModel.setAllPayAccount(accountModel.getAllPayAccount()+order.getFirstPayPrice());
+				accountModel.setPartOneAccount(accountModel.getPartOneAccount()+order.getFirstPayPrice());
+			}else{
+				accountModel.setAllUnPayAccount(accountModel.getAllUnPayAccount()+order.getFirstPayPrice());
+				accountModel.setPartOneUnAccount(accountModel.getPartOneUnAccount()+order.getFirstPayPrice());
+			}
+			if(1==order.getSecondPayIsDone()){
+				accountModel.setAllPayAccount(accountModel.getAllPayAccount()+order.getSecondPayPrice());
+				accountModel.setPartTwoAccount(accountModel.getPartTwoAccount()+order.getSecondPayPrice());
+			}else{
+				accountModel.setAllUnPayAccount(accountModel.getAllUnPayAccount()+order.getSecondPayPrice());
+				accountModel.setPartTwoUnAccount(accountModel.getPartTwoUnAccount()+order.getSecondPayPrice());
+			}
+		}
+		
+		data = new HashMap<String, Object>();
+		data.put(ConstantUtil.RESULT,ConstantUtil.SUCCESS);
+		data.put(ConstantUtil.ERROR_MSG,list);
+		data.put(ConstantUtil.ACCOUNT_MODEL,accountModel);
 		
 		HttpWebIOHelper._printWebJson(data, response);
 	}

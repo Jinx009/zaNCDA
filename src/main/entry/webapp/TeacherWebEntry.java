@@ -94,6 +94,24 @@ public class TeacherWebEntry {
 	 }
 	 
 	 /**
+	  * 教师信息
+	  * @return
+	  */
+	 @RequestMapping(value="/tpage/info")
+	 public String pageInfo(){
+		 return "/tpage/info";
+	 }
+	 
+	 /**
+	  * 教师账户
+	  * @return
+	  */
+	 @RequestMapping(value="/tpage/account")
+	 public String pageAccount(){
+		 return "/tpage/account";
+	 }
+	 
+	 /**
 	  * 后台编辑
 	  * @param request
 	  * @param response

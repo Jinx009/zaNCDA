@@ -32,14 +32,14 @@ public class NbOrder implements Serializable,nbBaseModel {
 	private byte firstPayIsDone;
 
 	@Column(name="first_pay_price")
-	private int firstPayPrice;
+	private Double firstPayPrice;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="first_pay_time")
 	private Date firstPayTime;
 
 	@Column(name="full_price", nullable=false)
-	private int fullPrice;
+	private Double fullPrice;
 
 	@Column(name="second_pay_flow_code", length=64)
 	private String secondPayFlowCode;
@@ -48,7 +48,7 @@ public class NbOrder implements Serializable,nbBaseModel {
 	private byte secondPayIsDone;
 
 	@Column(name="second_pay_price")
-	private int secondPayPrice;
+	private Double secondPayPrice;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="second_pay_time")
@@ -99,28 +99,12 @@ public class NbOrder implements Serializable,nbBaseModel {
 		this.firstPayIsDone = firstPayIsDone;
 	}
 
-	public int getFirstPayPrice() {
-		return this.firstPayPrice;
-	}
-
-	public void setFirstPayPrice(int firstPayPrice) {
-		this.firstPayPrice = firstPayPrice;
-	}
-
 	public Date getFirstPayTime() {
 		return this.firstPayTime;
 	}
 
 	public void setFirstPayTime(Date firstPayTime) {
 		this.firstPayTime = firstPayTime;
-	}
-
-	public int getFullPrice() {
-		return this.fullPrice;
-	}
-
-	public void setFullPrice(int fullPrice) {
-		this.fullPrice = fullPrice;
 	}
 
 	public String getSecondPayFlowCode() {
@@ -137,14 +121,6 @@ public class NbOrder implements Serializable,nbBaseModel {
 
 	public void setSecondPayIsDone(byte secondPayIsDone) {
 		this.secondPayIsDone = secondPayIsDone;
-	}
-
-	public int getSecondPayPrice() {
-		return this.secondPayPrice;
-	}
-
-	public void setSecondPayPrice(int secondPayPrice) {
-		this.secondPayPrice = secondPayPrice;
 	}
 
 	public Date getSecondPayTime() {
@@ -193,6 +169,30 @@ public class NbOrder implements Serializable,nbBaseModel {
 
 	public void setCommentsStatus(Integer commentsStatus) {
 		this.commentsStatus = commentsStatus;
+	}
+	
+	public Double getFirstPayPrice() {
+		return firstPayPrice;
+	}
+
+	public void setFirstPayPrice(Double firstPayPrice) {
+		this.firstPayPrice = firstPayPrice;
+	}
+
+	public Double getFullPrice() {
+		return fullPrice;
+	}
+
+	public void setFullPrice(Double fullPrice) {
+		this.fullPrice = fullPrice;
+	}
+
+	public Double getSecondPayPrice() {
+		return secondPayPrice;
+	}
+
+	public void setSecondPayPrice(Double secondPayPrice) {
+		this.secondPayPrice = secondPayPrice;
 	}
 
 	@Override

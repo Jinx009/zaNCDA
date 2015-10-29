@@ -25,4 +25,7 @@ public class OrderServiceImpl implements OrderService{
 		return orderDao.findByHql(hql);
 	}
 
+	public NbOrder getById(int id) {
+		return orderDao.find(id);
+	}
 }

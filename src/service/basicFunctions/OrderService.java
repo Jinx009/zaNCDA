@@ -10,4 +10,6 @@ public interface OrderService {
 	public PageDataList<NbOrder> findPageList(NbOrder nbOrder,int pageNum,int pageSize);
 
 	public List<NbOrder> findByAttr(String attrName, int id);
+	
+	public NbOrder getById(int id);
 }
