@@ -110,17 +110,20 @@ public class TeacherWebEntry {
 	 @RequestMapping(value = "/teacher/login")
 	 public String teacherLogin(HttpServletRequest request,HttpServletResponse response) throws ClientProtocolException, IOException{
 		 String code = request.getParameter("code");
-		 NbTeachersUser nbTeachersUser = new NbTeachersUser();
-		 nbTeachersUser.setOpenid("");
+		 NbTeachersUser nbTeachersUser = null;
+		 int status = 0;
 		 
 		 if(StringUtil.isNotBlank(code)){
 			 String openid = WechatUtil.getOauthOpenId(WechatData.APP_ID,WechatData.APP_SECRET,code);
 			 if(StringUtil.isNotBlank(openid)){
 				 nbTeachersUser = teacherService.findByOpenid(openid);
+				 if(null!=nbTeachersUser){
+					 status = 1;
+				 }
 			 }
 		 }
 		 
-		 request.setAttribute("nbTeachersUser",nbTeachersUser);
+		 request.setAttribute("status",status);
 		 request.getSession().setAttribute("teacher_session_user",nbTeachersUser);
 		 return "/teacher/login";
 	 }
