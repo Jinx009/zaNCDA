@@ -110,22 +110,6 @@ public class OrderWebEntry {
 		HttpWebIOHelper._printWebJson(data, response);
 	}
 	
-	/**
-	 * 教师个人信息
-	 * @param response
-	 * @param request
-	 * @throws IOException
-	 */
-	@RequestMapping(value = "/tdata/info")
-	public void getTInfo(HttpServletResponse response,HttpServletRequest request) throws IOException{
-		NbTeachersUser nbTeachersUser = (NbTeachersUser) request.getSession().getAttribute("teacher_session_user");
-		
-		data = new HashMap<String, Object>();
-		data.put(ConstantUtil.RESULT,ConstantUtil.SUCCESS);
-		data.put(ConstantUtil.ERROR_MSG,nbTeachersUser);
-		
-		HttpWebIOHelper._printWebJson(data, response);
-	}
 	
 	/**
 	 * 教师个人账户

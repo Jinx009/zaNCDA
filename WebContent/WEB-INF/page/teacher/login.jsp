@@ -98,7 +98,7 @@ body {
 		<div class="space-div-8" ></div>
 		<div class="btn btn-info width100"><a href="/tpage/comments.html" >我的约谈</a></div>
 		<div class="space-div-8" ></div>
-		<div class="btn btn-info width100"><a href="/tpage/info.html" >我的信息</a></div>
+		<div class="btn btn-info width100"><a href="/tpage/info.html?page=1" >我的信息</a></div>
 		<div class="space-div-8" ></div>
 		<div class="btn btn-info width100"><a href="/tpage/account.html" >我的账户</a></div>
 		<div class="space-div-8" ></div>

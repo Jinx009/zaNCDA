@@ -94,13 +94,19 @@ public class TeacherWebEntry {
 	 }
 	 
 	 /**
-	  * 教师信息
+	  * 教师信息 page one
 	  * @return
 	  */
 	 @RequestMapping(value="/tpage/info")
-	 public String pageInfo(){
+	 public String  pageInfo(ModelMap modelMap,HttpServletRequest request){
+		 int pageNum = Integer.valueOf(request.getParameter("pageNum"));
+		 //NbTeachersUser nbTeachersUser = (NbTeachersUser) request.getSession().getAttribute("teacher_session_user");
+		 NbTeachersUser nbTeachersUser = teacherService.findById(1);
+		 modelMap.put("teacher",nbTeachersUser);
+		 modelMap.put("pageNum",pageNum);
 		 return "/tpage/info";
 	 }
+	 
 	 
 	 /**
 	  * 教师账户

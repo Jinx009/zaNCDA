@@ -66,7 +66,13 @@ public class NbStudentsUser implements Serializable,nbBaseModel {
 	@Column(name = "mobile_phone")
 	private String mobilePhone;
 
+	@Temporal(TemporalType.TIME)
+	@Column(name = "add_time")
+	private Date addTime;
 	
+	@Temporal(TemporalType.TIME)
+	@Column(name = "update_time")
+	private Date updateTime;
 	
 	public String getMobilePhone() {
 		return mobilePhone;
@@ -190,6 +196,23 @@ public class NbStudentsUser implements Serializable,nbBaseModel {
 
 	public void setOpenId(String openId) {
 		this.openId = openId;
+	}
+	
+
+	public Date getAddTime() {
+		return addTime;
+	}
+
+	public void setAddTime(Date addTime) {
+		this.addTime = addTime;
+	}
+
+	public Date getUpdateTime() {
+		return updateTime;
+	}
+
+	public void setUpdateTime(Date updateTime) {
+		this.updateTime = updateTime;
 	}
 
 	@Override

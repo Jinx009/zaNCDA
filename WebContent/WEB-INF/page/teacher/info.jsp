@@ -11,13 +11,19 @@
 <script type="text/javascript" src="/sp/dist/js/bootstrap.js" ></script>
 <script type="text/javascript" src="/sp/js/common.js" ></script>
 <script type="text/javascript">
+$(function(){
+	//showData(1);
+})
 
+/**
+ * 加载数据
+ */
 </script>
 <style type="text/css">
 
 </style>
 </head>
 <body>
-	
+<input type="hidden" value="${pageNum }" id="pageNum" >
 </body>
 </html>

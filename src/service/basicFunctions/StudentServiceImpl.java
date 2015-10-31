@@ -21,5 +21,10 @@ public class StudentServiceImpl implements StudentService {
 			NbStudentsUser nbStudentsUser, int pageNum, int pageSize) {
 		return studentsUserDao.findTeacherPageList(nbStudentsUser,pageNum,pageSize);
 	}
+
+	public NbStudentsUser findByOpenid(String openid) {
+		String hql = " from NbStudentsUser where openId = '"+openid+"' order by updateTime desc ";
+		return studentsUserDao.findByHql(hql);
+	}
 	
 }
