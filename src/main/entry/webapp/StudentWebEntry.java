@@ -94,6 +94,10 @@ public class StudentWebEntry {
 		 return "/student/login";
 	}
 	
+	@RequestMapping(value = "/sdata/findTeacher")
+	public void findTeacher(){
+		
+	}
 	
 	public Map<String, Object> getData() {
 		return data;
