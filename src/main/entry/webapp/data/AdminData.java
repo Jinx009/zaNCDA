@@ -22,6 +22,9 @@ public class AdminData {
 	@Autowired
 	private AdminService adminService;
 	
+	private Admin admin;
+	private Map<String,Object> data;
+	
 	/**
 	 * 校验登陆方法
 	 * @param request
@@ -30,28 +33,26 @@ public class AdminData {
 	 */
 	@RequestMapping(value = "/admin/data/doLogin",method = RequestMethod.POST) 
     public void doLogin(HttpServletRequest request, HttpServletResponse response) throws Exception{  
-		Map<String,Object> data = new HashMap<String, Object>();
-		String adminCode = request.getParameter("code");
+		data = new HashMap<String, Object>();
+		String loginCode = request.getParameter("code");
 		
-		Admin nbAdminUser = new Admin();
-		nbAdminUser.setPassword(MD5Util.toMD5(request.getParameter("password")));
-		nbAdminUser.setUserName(request.getParameter("userName"));
-    	Admin nbAdminUser2 = adminService.doAdminUserLogin(nbAdminUser);
+		admin = new Admin();
+		admin.setPwd(MD5Util.toMD5(request.getParameter("password")));
+		admin.setUserName(request.getParameter("userName"));
+		admin = adminService.doLogin(admin);
     	
     	data.put(ConstantUtil.RESULT,ConstantUtil.FAILURE);
-    	
-    	if(!adminCode.equals(request.getSession().getAttribute(ConstantUtil.ADMIN_CODE).toString())||null==adminCode){
+    	if(!loginCode.equals(request.getSession().getAttribute(ConstantUtil.ADMIN_CODE).toString())||null==loginCode){
     		data.put(ConstantUtil.ERROR_MSG,"验证码不正确!");
     	}
-    	else if(null==nbAdminUser2){
+    	else if(null==admin){
     		data.put(ConstantUtil.ERROR_MSG,"账号或密码不正确!");
     	}
     	else{
     		data.put(ConstantUtil.RESULT,ConstantUtil.SUCCESS);
     		data.put(ConstantUtil.ERROR_MSG,"登陆成功!");
-    		request.getSession().setAttribute("admin_session_user",nbAdminUser2);
+    		request.getSession().setAttribute(ConstantUtil.ADMIN_SESSION,admin);
     	}
-    	
     	HttpWebIOHelper._printWebJson(data, response);
     }
 	
@@ -63,11 +64,26 @@ public class AdminData {
 	 */
 	@RequestMapping(value = "/admin/data/getCode",method = RequestMethod.GET) 
     public void getCode(HttpServletRequest request, HttpServletResponse response) throws Exception{  
-		Map<String,Object> data = new HashMap<String,Object>();
+		data = new HashMap<String,Object>();
 		int code = (int) (Math.random() * 9000 + 1000);
 		data.put(ConstantUtil.ADMIN_CODE,code);
 		System.out.println("adminCode:"+code);
 		request.getSession().setAttribute(ConstantUtil.ADMIN_CODE,code);
 		HttpWebIOHelper._printWebJson(data, response);
     }
+
+	
+	 
+	public Admin getAdmin() {
+		return admin;
+	}
+	public void setAdmin(Admin admin) {
+		this.admin = admin;
+	}
+	public Map<String, Object> getData() {
+		return data;
+	}
+	public void setData(Map<String, Object> data) {
+		this.data = data;
+	}
 }

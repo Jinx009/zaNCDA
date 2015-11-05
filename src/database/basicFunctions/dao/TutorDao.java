@@ -5,4 +5,6 @@ import database.models.Tutor;
 
 public interface TutorDao extends BaseDao<Tutor>{
 
+	public Tutor getByHql(String hql);
+	
 }

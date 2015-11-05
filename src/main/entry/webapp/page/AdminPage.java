@@ -15,7 +15,7 @@ public class AdminPage {
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping(value = "/admin/page/login") 
+	@RequestMapping(value = "/admin/login") 
     public String login() throws Exception{  
         return "/admin/login";  
     }

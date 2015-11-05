@@ -13,10 +13,22 @@ import database.models.Admin;
 @Repository("adminDao")
 public class AdminDaoImpl extends BaseDaoImpl<Admin> implements AdminDao {
 
+	private StringBuffer buffer;
+	
 	@SuppressWarnings("unchecked")
-	public Admin doAdminUserLogin(Admin nbAdminUser) {
-		String hql = " from NbAdminUser where userName = '"+nbAdminUser.getUserName()+"'  and password = '"+nbAdminUser.getPassword()+"' ";
-		Query query = em.createQuery(hql);
+	public Admin doLogin(Admin admin) {
+		
+		buffer = new StringBuffer();
+		
+		buffer.append(" FROM Admin  ");
+		buffer.append(" WHERE userName = '");
+		buffer.append(admin.getUserName());
+		buffer.append(" ' AND ");
+		buffer.append(" pwd = ' ");
+		buffer.append(admin.getPwd());
+		buffer.append(" ' ");
+		
+		Query query = em.createQuery(buffer.toString());
 		List<Admin> list = query.getResultList();
 		if(null!=list&&!list.isEmpty()){
 			return list.get(0);
@@ -24,4 +36,10 @@ public class AdminDaoImpl extends BaseDaoImpl<Admin> implements AdminDao {
 		return null;
 	}
 
+	public StringBuffer getBuffer() {
+		return buffer;
+	}
+	public void setBuffer(StringBuffer buffer) {
+		this.buffer = buffer;
+	}
 }

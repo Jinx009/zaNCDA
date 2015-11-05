@@ -5,5 +5,5 @@ import database.models.Admin;
 
 public interface AdminDao extends BaseDao<Admin>{
 
-	Admin doAdminUserLogin(Admin nbAdminUser);
+	public Admin doLogin(Admin admin);
 }

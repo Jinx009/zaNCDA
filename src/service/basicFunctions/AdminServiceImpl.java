@@ -10,11 +10,11 @@ import database.models.Admin;
 public class AdminServiceImpl implements AdminService{
 
 	@Autowired
-	private AdminDao adminUserDao;
+	private AdminDao adminDao;
 	
-	public Admin doAdminUserLogin(Admin nbAdminUser) {
-		Admin nbAdminUser2 = adminUserDao.doAdminUserLogin(nbAdminUser);
-		return nbAdminUser2;
+	public Admin doLogin(Admin admin) {
+		Admin admin2 = adminDao.doLogin(admin);
+		return admin2;
 	}
 
 }

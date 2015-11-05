@@ -29,8 +29,8 @@ public class Admin implements Serializable {
 	@Column(name = "user_name")
 	private String userName;
 	
-	@Column(name = "password")
-	private String password;
+	@Column(name = "pwd")
+	private String pwd;
 	
 	@Column(name = "status")
 	private Integer status;
@@ -60,12 +60,13 @@ public class Admin implements Serializable {
 		this.userName = userName;
 	}
 
-	public String getPassword() {
-		return password;
+	
+	public String getPwd() {
+		return pwd;
 	}
 
-	public void setPassword(String password) {
-		this.password = password;
+	public void setPwd(String pwd) {
+		this.pwd = pwd;
 	}
 
 	public Integer getStatus() {
