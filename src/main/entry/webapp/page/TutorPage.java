@@ -28,7 +28,7 @@ public class TutorPage {
 	 * @throws ClientProtocolException
 	 * @throws IOException
 	 */
-	@RequestMapping(value = "/tutoe/login")
+	@RequestMapping(value = "/tutor/login")
 	public String login(HttpServletRequest request,HttpServletResponse response) throws ClientProtocolException, IOException{
 		 String code = request.getParameter("code");
 		 Tutor tutor = null;
@@ -46,6 +46,6 @@ public class TutorPage {
 		 request.setAttribute("status",status);
 		 request.setAttribute("url",WechatData.getTutorOauthUrl());
 		 request.getSession().setAttribute("teacher_session_user",tutor);
-		 return "/teacher/login";
+		 return "/tutor/login";
 	 }
 }
