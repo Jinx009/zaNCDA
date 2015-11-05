@@ -20,7 +20,7 @@ import service.basicFunctions.AdminService;
 public class AdminData {
 	
 	@Autowired
-	private AdminService adminUserService;
+	private AdminService adminService;
 	
 	/**
 	 * 校验登陆方法
@@ -36,11 +36,11 @@ public class AdminData {
 		Admin nbAdminUser = new Admin();
 		nbAdminUser.setPassword(MD5Util.toMD5(request.getParameter("password")));
 		nbAdminUser.setUserName(request.getParameter("userName"));
-    	Admin nbAdminUser2 = adminUserService.doAdminUserLogin(nbAdminUser);
+    	Admin nbAdminUser2 = adminService.doAdminUserLogin(nbAdminUser);
     	
     	data.put(ConstantUtil.RESULT,ConstantUtil.FAILURE);
     	
-    	if(!adminCode.equals(request.getSession().getAttribute("adminCode").toString())||null==adminCode){
+    	if(!adminCode.equals(request.getSession().getAttribute(ConstantUtil.ADMIN_CODE).toString())||null==adminCode){
     		data.put(ConstantUtil.ERROR_MSG,"验证码不正确!");
     	}
     	else if(null==nbAdminUser2){
@@ -65,9 +65,9 @@ public class AdminData {
     public void getCode(HttpServletRequest request, HttpServletResponse response) throws Exception{  
 		Map<String,Object> data = new HashMap<String,Object>();
 		int code = (int) (Math.random() * 9000 + 1000);
-		data.put("adminCode",code);
+		data.put(ConstantUtil.ADMIN_CODE,code);
 		System.out.println("adminCode:"+code);
-		request.getSession().setAttribute("adminCode",code);
+		request.getSession().setAttribute(ConstantUtil.ADMIN_CODE,code);
 		HttpWebIOHelper._printWebJson(data, response);
     }
 }

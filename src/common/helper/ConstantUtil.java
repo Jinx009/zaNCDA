@@ -9,4 +9,7 @@ public class ConstantUtil {
 	public static final String ADMIN_SESSION = "admin_session";
 	public static final String CUSTOMER_SESSION = "custom_session";
 	public static final String TUTOR_SESSION = "tutor_session";
+	public static final String ADMIN_CODE = "admin_code";
+	public static final String CUSTOMER_CODE = "customer_code";
+	public static final String TUTOR_CODE = "tutor_code";
 }
