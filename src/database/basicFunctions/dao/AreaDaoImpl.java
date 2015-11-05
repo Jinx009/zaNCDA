@@ -3,9 +3,9 @@ package database.basicFunctions.dao;
 import org.springframework.stereotype.Repository;
 
 import database.common.BaseDaoImpl;
-import database.models.Order;
+import database.models.Area;
 
-@Repository("orderDao")
-public class OrderDaoImpl extends BaseDaoImpl<Order> implements OrderDao{
+@Repository("areaDao")
+public class AreaDaoImpl extends BaseDaoImpl<Area> implements AreaDao{
 
 }

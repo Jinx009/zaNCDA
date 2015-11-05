@@ -67,3 +67,33 @@ Date.prototype.format = function(format)
 	}
 	return format;
 } 
+
+/**
+ * 获取支付进度
+ */
+function getPayStatus(data){
+	if(1==data.secondPayIsDone){
+		return 100;
+	}else{
+		if(1==data.firstPayIsDone){
+			return 50;
+		}else{
+			return 0;
+		}
+	}
+}
+
+/**
+ * 获取约谈状态
+ */
+function getOrderStatus(status){
+	if(0==status){
+		return "约谈进行中";
+	}else if(1==status){
+		return "顾客已评价";
+	}else if(2==status){
+		return "教师已评价";
+	}else{
+		return "双方已互评";
+	}
+}

@@ -23,11 +23,11 @@ public class WechatData {
 	 * 重定向链接
 	 * @return
 	 */
-	public static String getTeacherOauthUrl(){
+	public static String getTutorOauthUrl(){
 		StringBuffer buffer = new StringBuffer();
 		buffer.append(OAUTH_URL_ONE);
 		buffer.append(OAUTH_URL_TWO);
-		buffer.append("/teacher/login.html");
+		buffer.append("/tutor/login.html");
 		buffer.append(OAUTH_URL_THREE);
 		
 		return buffer.toString();

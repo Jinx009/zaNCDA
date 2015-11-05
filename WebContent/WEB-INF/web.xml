@@ -35,34 +35,34 @@
 		</init-param>
 	</filter>
 	
-	<!-- 教师filter -->
+	<!-- 导师filter -->
 	<filter>
-		<filter-name>teacherSessionFilter</filter-name>
-		<filter-class>common.helper.TeacherSessionFilter</filter-class>
+		<filter-name>tutorSessionFilter</filter-name>
+		<filter-class>common.helper.filter.TutorSessionFilter</filter-class>
 	</filter>
 	<filter-mapping>
-		<filter-name>teacherSessionFilter</filter-name>
-		<url-pattern>/tpage/*</url-pattern>
+		<filter-name>tutorSessionFilter</filter-name>
+		<url-pattern>/tutor/page/*</url-pattern>
 	</filter-mapping>
 	
 	<!-- 后台filter -->
 	<filter>
 		<filter-name>adminSessionFilter</filter-name>
-		<filter-class>common.helper.AdminSessionFilter</filter-class>
+		<filter-class>common.helper.filter.AdminSessionFilter</filter-class>
 	</filter>
 	<filter-mapping>
 		<filter-name>adminSessionFilter</filter-name>
-		<url-pattern>/admin/*</url-pattern>
+		<url-pattern>/admin/page/*</url-pattern>
 	</filter-mapping>
 	
-	<!-- 学生filter -->
+	<!-- 顾客filter -->
 	<filter>
-		<filter-name>studentSessionFilter</filter-name>
-		<filter-class>common.helper.StudentSessionFilter</filter-class>
+		<filter-name>customerSessionFilter</filter-name>
+		<filter-class>common.helper.filter.CustomerSessionFilter</filter-class>
 	</filter>
 	<filter-mapping>
-		<filter-name>studentSessionFilter</filter-name>
-		<url-pattern>/spage/*</url-pattern>
+		<filter-name>customerSessionFilter</filter-name>
+		<url-pattern>/customer/page/*</url-pattern>
 	</filter-mapping>
 	
 	

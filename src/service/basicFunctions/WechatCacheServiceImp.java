@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import database.basicFunctions.dao.WechatCacheDao;
-import database.models.NbWechatCache;
+import database.models.WechatCache;
 
 @Service("wechatCacheService")
 public class WechatCacheServiceImp implements WechatCacheService{
@@ -12,11 +12,11 @@ public class WechatCacheServiceImp implements WechatCacheService{
 	@Autowired
 	private WechatCacheDao wechatCacheDao;
 	
-	public void updateWechatCache(NbWechatCache nbWechatCache) {
+	public void updateWechatCache(WechatCache nbWechatCache) {
 		wechatCacheDao.update(nbWechatCache);
 	}
 
-	public NbWechatCache getByValue(String cacheName, String appId) {
+	public WechatCache getByValue(String cacheName, String appId) {
 		return wechatCacheDao.getByValue(cacheName,appId);
 	}
 

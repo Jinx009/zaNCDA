@@ -1,11 +1,11 @@
 package service.basicFunctions;
 
-import database.models.NbWechatCache;
+import database.models.WechatCache;
 
 public interface WechatCacheService {
 
-	public void updateWechatCache(NbWechatCache nbWechatCache);
+	public void updateWechatCache(WechatCache nbWechatCache);
 	
-	public NbWechatCache getByValue(String cacheName,String appId);
+	public WechatCache getByValue(String cacheName,String appId);
 	
 }

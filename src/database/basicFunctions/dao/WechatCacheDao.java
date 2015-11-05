@@ -1,10 +1,10 @@
 package database.basicFunctions.dao;
 
 import database.common.BaseDao;
-import database.models.NbWechatCache;
+import database.models.WechatCache;
 
-public interface WechatCacheDao extends BaseDao<NbWechatCache>{
+public interface WechatCacheDao extends BaseDao<WechatCache>{
 
-	public NbWechatCache getByValue(String cacheName, String appId);
+	public WechatCache getByValue(String cacheName, String appId);
 
 }

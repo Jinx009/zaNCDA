@@ -3,9 +3,9 @@ package database.basicFunctions.dao;
 import org.springframework.stereotype.Repository;
 
 import database.common.BaseDaoImpl;
-import database.models.Order;
+import database.models.Trade;
 
-@Repository("orderDao")
-public class OrderDaoImpl extends BaseDaoImpl<Order> implements OrderDao{
+@Repository("tradeDao")
+public class TradeDaoImpl extends BaseDaoImpl<Trade> implements TradeDao{
 
 }
