@@ -90,7 +90,7 @@ public class TeacherWebEntry {
 	  */
 	 @RequestMapping(value="/tpage/comments")
 	 public String pageComments(){
-		 return "/tpage/comments";
+		 return "/teacher/comments";
 	 }
 	 
 	 /**
@@ -104,7 +104,7 @@ public class TeacherWebEntry {
 		 NbTeachersUser nbTeachersUser = teacherService.findById(1);
 		 modelMap.put("teacher",nbTeachersUser);
 		 modelMap.put("pageNum",pageNum);
-		 return "/tpage/info";
+		 return "/teacher/info";
 	 }
 	 
 	 
@@ -114,7 +114,7 @@ public class TeacherWebEntry {
 	  */
 	 @RequestMapping(value="/tpage/account")
 	 public String pageAccount(){
-		 return "/tpage/account";
+		 return "/teacher/account";
 	 }
 	 
 	 /**
@@ -135,7 +135,7 @@ public class TeacherWebEntry {
 	 }
 	
 	 /**
-	  * 教师登陆
+	  * 教师登陆页面
 	  * @return
 	 * @throws IOException 
 	 * @throws ClientProtocolException 
@@ -144,31 +144,38 @@ public class TeacherWebEntry {
 	 public String teacherLogin(HttpServletRequest request,HttpServletResponse response) throws ClientProtocolException, IOException{
 		 String code = request.getParameter("code");
 		 NbTeachersUser nbTeachersUser = null;
-		 String realOpenid = "",username = "";
 		 int status = 0;
 		 
 		 if(StringUtil.isNotBlank(code)){
 			 String openid = WechatUtil.getOauthOpenId(WechatData.APP_ID,WechatData.APP_SECRET,code);
 			 if(StringUtil.isNotBlank(openid)){
-				 realOpenid = openid;
 				 nbTeachersUser = teacherService.findByOpenid(openid);
 				 if(null!=nbTeachersUser){
-					 if(StringUtil.isBlank(nbTeachersUser.getRealName())){
-						 username = nbTeachersUser.getRealName();
-					 }else{
-						 username = nbTeachersUser.getUsername();
-					 }
 					 status = 1;
 				 }
 			 }
 		 }
-		 
 		 request.setAttribute("status",status);
-		 request.setAttribute("username",username);
-		 request.setAttribute("openid",realOpenid);
 		 request.setAttribute("url",WechatData.getTeacherOauthUrl());
 		 request.getSession().setAttribute("teacher_session_user",nbTeachersUser);
 		 return "/teacher/login";
+	 }
+	 
+	 /**
+	  * 教师首页
+	  * @return
+	 * @throws IOException 
+	 * @throws ClientProtocolException 
+	  */
+	 @RequestMapping(value = "/tpage/index")
+	 public String teacherIndex(HttpServletRequest request,HttpServletResponse response) throws ClientProtocolException, IOException{
+		 NbTeachersUser nbTeachersUser = (NbTeachersUser) request.getSession().getAttribute("teacher_session_user");
+		 String realName = "";
+		 if(StringUtil.isNotBlank(nbTeachersUser.getRealName())){
+			 realName = nbTeachersUser.getRealName();
+		 }
+		 request.setAttribute("realName", realName);
+		 return "/teacher/index";
 	 }
 	 
 	 /**
@@ -192,6 +199,7 @@ public class TeacherWebEntry {
 		 nbTeachersUser.setPassword(MD5Util.toMD5(password));
 		 
 		 NbTeachersUser nbTeachersUser2 = teacherService.doLogin(nbTeachersUser);
+		 
 		 
 		 if(!teacherCode.equals(request.getSession().getAttribute("teacherCode").toString())||null==teacherCode){
 	    	data.put(ConstantUtil.ERROR_MSG,"验证码不正确!");
@@ -320,13 +328,13 @@ public class TeacherWebEntry {
 		nbTeachersUser.setQq(request.getParameter("qq"));
 		nbTeachersUser.setRealName(request.getParameter("realName"));
 		nbTeachersUser.setSpecialDescription(request.getParameter("specialDescription"));
-		nbTeachersUser.setStaticAreaName1(areaNameService.findById(areaId1));
-		nbTeachersUser.setStaticAreaName2(areaNameService.findById(areaId2));
-		nbTeachersUser.setStaticAreaName3(areaNameService.findById(areaId3));
-		nbTeachersUser.setStaticJobName1(jobNameService.findById(jobId1));
-		nbTeachersUser.setStaticJobName2(jobNameService.findById(jobId2));
-		nbTeachersUser.setStaticJobName3(jobNameService.findById(jobId3));
-		nbTeachersUser.setStaticFixedTopicName(fixedTopicNameService.getById(Integer.valueOf(topicId)));
+		nbTeachersUser.setAreaName1(areaNameService.findById(areaId1));
+		nbTeachersUser.setAreaName2(areaNameService.findById(areaId2));
+		nbTeachersUser.setAreaName3(areaNameService.findById(areaId3));
+		nbTeachersUser.setJobName1(jobNameService.findById(jobId1));
+		nbTeachersUser.setJobName2(jobNameService.findById(jobId2));
+		nbTeachersUser.setJobName3(jobNameService.findById(jobId3));
+		nbTeachersUser.setFixedTopicName(fixedTopicNameService.getById(Integer.valueOf(topicId)));
 		nbTeachersUser.setTalkFace2face((byte)Integer.valueOf(request.getParameter("faceToFace")).intValue());
 		nbTeachersUser.setTalkPhoneCall((byte)Integer.valueOf(request.getParameter("talkPhoneCall")).intValue());
 		nbTeachersUser.setTalkVideoChat((byte)Integer.valueOf(request.getParameter("talkVideoChat")).intValue());

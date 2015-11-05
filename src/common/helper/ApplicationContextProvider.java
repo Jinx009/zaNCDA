@@ -8,7 +8,6 @@ public class ApplicationContextProvider implements ApplicationContextAware {
 
 	private static ApplicationContext ctx;
 	
-	@Override
 	public void setApplicationContext(ApplicationContext ctx)
 			throws BeansException {
 		this.setAppContext(ctx);

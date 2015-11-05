@@ -23,13 +23,13 @@ public class NbOrder implements Serializable,nbBaseModel {
 
 	@Id
 	@Column(unique=true, nullable=false)
-	private int id;
+	private Integer id;
 
 	@Column(name="first_pay_flow_code", length=64)
 	private String firstPayFlowCode;
 
 	@Column(name="first_pay_is_done", nullable=false)
-	private byte firstPayIsDone;
+	private Byte firstPayIsDone;
 
 	@Column(name="first_pay_price")
 	private Double firstPayPrice;
@@ -45,7 +45,7 @@ public class NbOrder implements Serializable,nbBaseModel {
 	private String secondPayFlowCode;
 
 	@Column(name="second_pay_is_done", nullable=false)
-	private byte secondPayIsDone;
+	private Byte secondPayIsDone;
 
 	@Column(name="second_pay_price")
 	private Double secondPayPrice;
@@ -72,128 +72,187 @@ public class NbOrder implements Serializable,nbBaseModel {
 	@Column(name = "comments_status")
 	private Integer commentsStatus;
 	
-	public NbOrder() {
+	
+
+	public Integer getId() {
+		return id;
 	}
 
-	public int getId() {
-		return this.id;
-	}
 
-	public void setId(int id) {
+
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
+
+
 	public String getFirstPayFlowCode() {
-		return this.firstPayFlowCode;
+		return firstPayFlowCode;
 	}
+
+
 
 	public void setFirstPayFlowCode(String firstPayFlowCode) {
 		this.firstPayFlowCode = firstPayFlowCode;
 	}
 
-	public byte getFirstPayIsDone() {
-		return this.firstPayIsDone;
+
+
+	public Byte getFirstPayIsDone() {
+		return firstPayIsDone;
 	}
 
-	public void setFirstPayIsDone(byte firstPayIsDone) {
+
+
+	public void setFirstPayIsDone(Byte firstPayIsDone) {
 		this.firstPayIsDone = firstPayIsDone;
 	}
 
-	public Date getFirstPayTime() {
-		return this.firstPayTime;
+
+
+	public Double getFirstPayPrice() {
+		return firstPayPrice;
 	}
+
+
+
+	public void setFirstPayPrice(Double firstPayPrice) {
+		this.firstPayPrice = firstPayPrice;
+	}
+
+
+
+	public Date getFirstPayTime() {
+		return firstPayTime;
+	}
+
+
 
 	public void setFirstPayTime(Date firstPayTime) {
 		this.firstPayTime = firstPayTime;
 	}
 
-	public String getSecondPayFlowCode() {
-		return this.secondPayFlowCode;
+
+
+	public Double getFullPrice() {
+		return fullPrice;
 	}
+
+
+
+	public void setFullPrice(Double fullPrice) {
+		this.fullPrice = fullPrice;
+	}
+
+
+
+	public String getSecondPayFlowCode() {
+		return secondPayFlowCode;
+	}
+
+
 
 	public void setSecondPayFlowCode(String secondPayFlowCode) {
 		this.secondPayFlowCode = secondPayFlowCode;
 	}
 
-	public byte getSecondPayIsDone() {
-		return this.secondPayIsDone;
+
+
+	public Byte getSecondPayIsDone() {
+		return secondPayIsDone;
 	}
 
-	public void setSecondPayIsDone(byte secondPayIsDone) {
+
+
+	public void setSecondPayIsDone(Byte secondPayIsDone) {
 		this.secondPayIsDone = secondPayIsDone;
 	}
 
-	public Date getSecondPayTime() {
-		return this.secondPayTime;
+
+
+	public Double getSecondPayPrice() {
+		return secondPayPrice;
 	}
+
+
+
+	public void setSecondPayPrice(Double secondPayPrice) {
+		this.secondPayPrice = secondPayPrice;
+	}
+
+
+
+	public Date getSecondPayTime() {
+		return secondPayTime;
+	}
+
+
 
 	public void setSecondPayTime(Date secondPayTime) {
 		this.secondPayTime = secondPayTime;
 	}
-	
+
+
+
 	public NbStudentsUser getNbStudentsUser() {
 		return nbStudentsUser;
 	}
+
+
 
 	public void setNbStudentsUser(NbStudentsUser nbStudentsUser) {
 		this.nbStudentsUser = nbStudentsUser;
 	}
 
-	public NbTeachersUser getNbTeachersUser() {
-		return nbTeachersUser;
-	}
 
-	public void setNbTeachersUser(NbTeachersUser nbTeachersUser) {
-		this.nbTeachersUser = nbTeachersUser;
-	}
 
 	public Date getStudentPreferedDate() {
-		return this.studentPreferedDate;
+		return studentPreferedDate;
 	}
+
+
 
 	public void setStudentPreferedDate(Date studentPreferedDate) {
 		this.studentPreferedDate = studentPreferedDate;
 	}
 
 
+
+	public NbTeachersUser getNbTeachersUser() {
+		return nbTeachersUser;
+	}
+
+
+
+	public void setNbTeachersUser(NbTeachersUser nbTeachersUser) {
+		this.nbTeachersUser = nbTeachersUser;
+	}
+
+
+
 	public String getCourseTopic() {
 		return courseTopic;
 	}
 
+
+
 	public void setCourseTopic(String courseTopic) {
 		this.courseTopic = courseTopic;
 	}
+
+
+
 	public Integer getCommentsStatus() {
 		return commentsStatus;
 	}
 
+
+
 	public void setCommentsStatus(Integer commentsStatus) {
 		this.commentsStatus = commentsStatus;
 	}
-	
-	public Double getFirstPayPrice() {
-		return firstPayPrice;
-	}
 
-	public void setFirstPayPrice(Double firstPayPrice) {
-		this.firstPayPrice = firstPayPrice;
-	}
 
-	public Double getFullPrice() {
-		return fullPrice;
-	}
-
-	public void setFullPrice(Double fullPrice) {
-		this.fullPrice = fullPrice;
-	}
-
-	public Double getSecondPayPrice() {
-		return secondPayPrice;
-	}
-
-	public void setSecondPayPrice(Double secondPayPrice) {
-		this.secondPayPrice = secondPayPrice;
-	}
 
 	@Override
 	public Map<String, Object> modelToMap() {

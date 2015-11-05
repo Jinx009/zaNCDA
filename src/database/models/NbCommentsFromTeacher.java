@@ -23,7 +23,7 @@ public class NbCommentsFromTeacher implements Serializable,nbBaseModel {
 
 	@Id
 	@Column(unique=true, nullable=false)
-	private int id;
+	private Integer id;
 
 	@Lob
 	@Column(nullable=false)
@@ -39,15 +39,13 @@ public class NbCommentsFromTeacher implements Serializable,nbBaseModel {
 
 	public NbCommentsFromTeacher() {
 	}
-
-	public int getId() {
-		return this.id;
+	
+	public Integer getId() {
+		return id;
 	}
-
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
-
 	public String getComments() {
 		return this.comments;
 	}

@@ -21,7 +21,7 @@ public class StaticAreaName implements Serializable,nbBaseModel {
 
 	@Id
 	@Column(unique=true, nullable=false)
-	private int id;
+	private Integer id;
 
 	@Column(name="area_name", nullable=false, length=32)
 	private String areaName;
@@ -29,21 +29,31 @@ public class StaticAreaName implements Serializable,nbBaseModel {
 	public StaticAreaName() {
 	}
 
-	public int getId() {
-		return this.id;
+	
+
+	public Integer getId() {
+		return id;
 	}
 
-	public void setId(int id) {
+
+
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
+
+
 	public String getAreaName() {
-		return this.areaName;
+		return areaName;
 	}
+
+
 
 	public void setAreaName(String areaName) {
 		this.areaName = areaName;
 	}
+
+
 
 	@Override
 	public Map<String, Object> modelToMap() {

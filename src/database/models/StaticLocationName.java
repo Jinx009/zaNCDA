@@ -21,7 +21,7 @@ public class StaticLocationName implements Serializable,nbBaseModel {
 
 	@Id
 	@Column(unique=true, nullable=false)
-	private int id;
+	private Integer id;
 
 	@Column(name="location_name_top", nullable=false, length=10)
 	private String locationNameTop;
@@ -32,40 +32,46 @@ public class StaticLocationName implements Serializable,nbBaseModel {
 	@Column(name="location_sub_type", nullable=false, length=10)
 	private String locationSubType;
 
-	public StaticLocationName() {
+	
+	public Integer getId() {
+		return id;
 	}
 
-	public int getId() {
-		return this.id;
-	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
+
 	public String getLocationNameTop() {
-		return this.locationNameTop;
+		return locationNameTop;
 	}
+
 
 	public void setLocationNameTop(String locationNameTop) {
 		this.locationNameTop = locationNameTop;
 	}
 
+
 	public String getLocationSub() {
-		return this.locationSub;
+		return locationSub;
 	}
+
 
 	public void setLocationSub(String locationSub) {
 		this.locationSub = locationSub;
 	}
 
+
 	public String getLocationSubType() {
-		return this.locationSubType;
+		return locationSubType;
 	}
+
 
 	public void setLocationSubType(String locationSubType) {
 		this.locationSubType = locationSubType;
 	}
+
 
 	@Override
 	public Map<String, Object> modelToMap() {

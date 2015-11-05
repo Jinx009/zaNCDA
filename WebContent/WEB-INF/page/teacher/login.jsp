@@ -19,16 +19,9 @@ $(function(){
 	var url = $("#url").val();
 	
 	if("0"!=status){
-		$("#accountDiv").css("display","block");
-		$("#loginDiv").css("display","none");
+		location.href = "/tpage/index.html";
 	}else{
-		$("#cancelBtn").css("display","none");
-		if(""!=openid){
-			$("#accountDiv").css("display","none");
-			$("#loginDiv").css("display","block");
-		}else{
-			location.href = url;
-		}
+		
 	}
 })
 
@@ -36,7 +29,6 @@ $(function(){
  * 登陆
  */
 function doLogin(){
-	var url = $("#url").val();
 	var username = $("#username").val();
 	var password = $("#password").val();
 	var openid = $("#openid").val();
@@ -50,7 +42,7 @@ function doLogin(){
 		dataType:"json",
 		success:function(res){
 			if("success"==res.result){
-				location.href = url;
+				location.href = "/tpage/index.html";
 			}else{
 				alert(res.errmsg);
 			}	
@@ -93,21 +85,9 @@ body {
 	<input type="hidden" value="${openid }" id="openid" >
 	<input type="hidden" value="${status }" id="status" >
 	<input type="hidden" value="${url }" id="url" >
-	<div id="accountDiv" style="display:none;" >
-		<div class="space-div-8" ></div>
-		<div class="space-div-8" ></div>
-		<div class="btn btn-info width100"><a href="/tpage/comments.html" >我的约谈</a></div>
-		<div class="space-div-8" ></div>
-		<div class="btn btn-info width100"><a href="/tpage/info.html?page=1" >我的信息</a></div>
-		<div class="space-div-8" ></div>
-		<div class="btn btn-info width100"><a href="/tpage/account.html" >我的账户</a></div>
-		<div class="space-div-8" ></div>
-		<div class="space-div-8 right " onclick="showDiv('loginDiv')" >切换其他账号</div>
-	</div>
-	<div id="loginDiv" style="display:none;" >
+	<div id="loginDiv"  >
 		<div class="space-div-8" >
 			<h2>导师登陆</h2>
-			<input type="file" value="hehe" >
 		</div>
 		<div class="row" >
 		  <div class="col-sm-1"></div>
@@ -132,11 +112,8 @@ body {
 			    </div>
 			  </div>
 			   <div class="form-group">
-				  <a href="" >忘记密码</a>
 			  </div>
 			  <button type="button" class="btn btn-primary" onclick="doLogin()" >登陆</button>
-			  <button type="button" class="btn btn-primary" onclick="goRegister" >注册</button>
-			  <button type="button" class="btn btn-default" id="cancelBtn" onclick="showDiv('accountDiv')" >取消</button>
 			</form>
 	      </div>
 	      <div class="col-sm-1"></div>

@@ -25,7 +25,7 @@ public class NbAdminUser implements Serializable,nbBaseModel {
 	
 	@Id
 	@Column(unique=true, nullable=false)
-	private int id;
+	private Integer id;
 	
 	@Column(name = "user_name")
 	private String userName;
@@ -34,7 +34,7 @@ public class NbAdminUser implements Serializable,nbBaseModel {
 	private String password;
 	
 	@Column(name = "type")
-	private int type;
+	private Integer type;
 
 	public Map<String, Object> modelToMap() {
 		Map<String, Object> data = new HashMap<String, Object>();
@@ -44,30 +44,38 @@ public class NbAdminUser implements Serializable,nbBaseModel {
 		data.put("type",type);
 		return data;
 	}
-	
-	public int getId() {
+
+	public Integer getId() {
 		return id;
 	}
-	public void setId(int id) {
+
+	public void setId(Integer id) {
 		this.id = id;
 	}
+
 	public String getUserName() {
 		return userName;
 	}
+
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
+
 	public String getPassword() {
 		return password;
 	}
+
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public int getType() {
+
+	public Integer getType() {
 		return type;
 	}
-	public void setType(int type) {
+
+	public void setType(Integer type) {
 		this.type = type;
 	}
+	
 	
 }

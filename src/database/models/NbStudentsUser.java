@@ -23,7 +23,7 @@ public class NbStudentsUser implements Serializable,nbBaseModel {
 
 	@Id
 	@Column(unique=true, nullable=false)
-	private int id;
+	private Integer id;
 
 	@Column(length=32)
 	private String email;
@@ -85,11 +85,12 @@ public class NbStudentsUser implements Serializable,nbBaseModel {
 	public NbStudentsUser() {
 	}
 
-	public int getId() {
-		return this.id;
+	
+	public Integer getId() {
+		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 

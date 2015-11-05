@@ -1,5 +1,6 @@
 package service.basicFunctions;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,5 +27,6 @@ public class StudentServiceImpl implements StudentService {
 		String hql = " from NbStudentsUser where openId = '"+openid+"' order by updateTime desc ";
 		return studentsUserDao.findByHql(hql);
 	}
+	
 	
 }

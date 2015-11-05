@@ -23,7 +23,7 @@ public class NbTeachersUser implements Serializable,nbBaseModel {
 
 	@Id
 	@Column(unique=true, nullable=false)
-	private int id;
+	private Integer id;
 
 	@Column(name="bank_account", length=32)
 	private String bankAccount;
@@ -41,7 +41,7 @@ public class NbTeachersUser implements Serializable,nbBaseModel {
 	@Column(length=32)
 	private String email;
 
-	private byte gender;
+	private Byte gender;
 
 	@Column(length=40)
 	private String highlight;
@@ -50,7 +50,7 @@ public class NbTeachersUser implements Serializable,nbBaseModel {
 	private String idCard;
 
 	@Column(name="is_online", nullable=false)
-	private byte isOnline;
+	private Byte isOnline;
 
 	@Column(length=128)
 	private String openid;
@@ -83,16 +83,16 @@ public class NbTeachersUser implements Serializable,nbBaseModel {
 	private String specialDescription;
 
 	@Column(name="talk_face2face", nullable=false)
-	private byte talkFace2face;
+	private Byte talkFace2face;
 
 	@Column(name="talk_phone_call", nullable=false)
-	private byte talkPhoneCall;
+	private Byte talkPhoneCall;
 
 	@Column(name="talk_video_chat", nullable=false)
-	private byte talkVideoChat;
+	private Byte talkVideoChat;
 
 	@Column(name="unit_price")
-	private int unitPrice;
+	private Integer unitPrice;
 
 	@Column(nullable=false, length=20,name = "username")
 	private String username;
@@ -144,278 +144,346 @@ public class NbTeachersUser implements Serializable,nbBaseModel {
 	@JoinColumn(name="prefered_location")
 	private StaticLocationName locationName;
 
-	public NbTeachersUser() {
+	
+	public Integer getId() {
+		return id;
 	}
 
-	public int getId() {
-		return this.id;
-	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
+
 	public String getBankAccount() {
-		return this.bankAccount;
+		return bankAccount;
 	}
+
 
 	public void setBankAccount(String bankAccount) {
 		this.bankAccount = bankAccount;
 	}
 
+
 	public String getBankName() {
-		return this.bankName;
+		return bankName;
 	}
+
 
 	public void setBankName(String bankName) {
 		this.bankName = bankName;
 	}
 
+
 	public Date getBirth() {
-		return this.birth;
+		return birth;
 	}
+
 
 	public void setBirth(Date birth) {
 		this.birth = birth;
 	}
 
-	public String getEmail() {
-		return this.email;
+
+	public String getMobilePhone() {
+		return mobilePhone;
 	}
+
+
+	public void setMobilePhone(String mobilePhone) {
+		this.mobilePhone = mobilePhone;
+	}
+
+
+	public String getEmail() {
+		return email;
+	}
+
 
 	public void setEmail(String email) {
 		this.email = email;
 	}
 
-	public byte getGender() {
-		return this.gender;
+
+	public Byte getGender() {
+		return gender;
 	}
 
-	public void setGender(byte gender) {
+
+	public void setGender(Byte gender) {
 		this.gender = gender;
 	}
 
+
 	public String getHighlight() {
-		return this.highlight;
+		return highlight;
 	}
+
 
 	public void setHighlight(String highlight) {
 		this.highlight = highlight;
 	}
 
+
 	public String getIdCard() {
-		return this.idCard;
+		return idCard;
 	}
+
 
 	public void setIdCard(String idCard) {
 		this.idCard = idCard;
 	}
 
-	public byte getIsOnline() {
-		return this.isOnline;
+
+	public Byte getIsOnline() {
+		return isOnline;
 	}
 
-	public void setIsOnline(byte isOnline) {
+
+	public void setIsOnline(Byte isOnline) {
 		this.isOnline = isOnline;
 	}
 
+
 	public String getOpenid() {
-		return this.openid;
+		return openid;
 	}
+
 
 	public void setOpenid(String openid) {
 		this.openid = openid;
 	}
 
+
 	public String getPassword() {
-		return this.password;
+		return password;
 	}
+
 
 	public void setPassword(String password) {
 		this.password = password;
 	}
 
+
 	public String getPhoto() {
-		return this.photo;
+		return photo;
 	}
+
 
 	public void setPhoto(String photo) {
 		this.photo = photo;
 	}
 
+
 	public String getQq() {
-		return this.qq;
+		return qq;
 	}
+
 
 	public void setQq(String qq) {
 		this.qq = qq;
 	}
 
+
 	public String getRealName() {
-		return this.realName;
+		return realName;
 	}
+
 
 	public void setRealName(String realName) {
 		this.realName = realName;
 	}
 
+
 	public Date getRegisterTime() {
-		return this.registerTime;
+		return registerTime;
 	}
+
 
 	public void setRegisterTime(Date registerTime) {
 		this.registerTime = registerTime;
 	}
 
-	public String getResume() {
-		return this.resume;
+
+	public Date getUpdateTime() {
+		return updateTime;
 	}
+
+
+	public void setUpdateTime(Date updateTime) {
+		this.updateTime = updateTime;
+	}
+
+
+	public String getResume() {
+		return resume;
+	}
+
 
 	public void setResume(String resume) {
 		this.resume = resume;
 	}
 
+
 	public String getSpecialDescription() {
-		return this.specialDescription;
+		return specialDescription;
 	}
+
 
 	public void setSpecialDescription(String specialDescription) {
 		this.specialDescription = specialDescription;
 	}
 
-	public byte getTalkFace2face() {
-		return this.talkFace2face;
+
+	public Byte getTalkFace2face() {
+		return talkFace2face;
 	}
 
-	public void setTalkFace2face(byte talkFace2face) {
+
+	public void setTalkFace2face(Byte talkFace2face) {
 		this.talkFace2face = talkFace2face;
 	}
 
-	public byte getTalkPhoneCall() {
-		return this.talkPhoneCall;
+
+	public Byte getTalkPhoneCall() {
+		return talkPhoneCall;
 	}
 
-	public void setTalkPhoneCall(byte talkPhoneCall) {
+
+	public void setTalkPhoneCall(Byte talkPhoneCall) {
 		this.talkPhoneCall = talkPhoneCall;
 	}
 
-	public byte getTalkVideoChat() {
-		return this.talkVideoChat;
+
+	public Byte getTalkVideoChat() {
+		return talkVideoChat;
 	}
 
-	public void setTalkVideoChat(byte talkVideoChat) {
+
+	public void setTalkVideoChat(Byte talkVideoChat) {
 		this.talkVideoChat = talkVideoChat;
 	}
 
-	public int getUnitPrice() {
-		return this.unitPrice;
+
+	public Integer getUnitPrice() {
+		return unitPrice;
 	}
 
-	public void setUnitPrice(int unitPrice) {
+
+	public void setUnitPrice(Integer unitPrice) {
 		this.unitPrice = unitPrice;
 	}
 
+
 	public String getUsername() {
-		return this.username;
+		return username;
 	}
+
 
 	public void setUsername(String username) {
 		this.username = username;
 	}
 
+
 	public String getWechatId() {
-		return this.wechatId;
+		return wechatId;
 	}
+
 
 	public void setWechatId(String wechatId) {
 		this.wechatId = wechatId;
 	}
 
+
 	public Date getWorkStartYear() {
-		return this.workStartYear;
+		return workStartYear;
 	}
+
 
 	public void setWorkStartYear(Date workStartYear) {
 		this.workStartYear = workStartYear;
 	}
 
-	public StaticAreaName getStaticAreaName1() {
-		return this.areaName1;
+
+	public StaticAreaName getAreaName1() {
+		return areaName1;
 	}
 
-	public void setStaticAreaName1(StaticAreaName areaName1) {
+
+	public void setAreaName1(StaticAreaName areaName1) {
 		this.areaName1 = areaName1;
 	}
 
-	public StaticAreaName getStaticAreaName2() {
-		return this.areaName2;
+
+	public StaticAreaName getAreaName2() {
+		return areaName2;
 	}
 
-	public void setStaticAreaName2(StaticAreaName areaName2) {
+
+	public void setAreaName2(StaticAreaName areaName2) {
 		this.areaName2 = areaName2;
 	}
 
-	public StaticAreaName getStaticAreaName3() {
-		return this.areaName3;
+
+	public StaticAreaName getAreaName3() {
+		return areaName3;
 	}
 
-	public void setStaticAreaName3(StaticAreaName areaName3) {
+
+	public void setAreaName3(StaticAreaName areaName3) {
 		this.areaName3 = areaName3;
 	}
 
-	public StaticFixedTopicName getStaticFixedTopicName() {
-		return this.fixedTopicName;
+
+	public StaticFixedTopicName getFixedTopicName() {
+		return fixedTopicName;
 	}
 
-	public void setStaticFixedTopicName(StaticFixedTopicName fixedTopicName) {
+
+	public void setFixedTopicName(StaticFixedTopicName fixedTopicName) {
 		this.fixedTopicName = fixedTopicName;
 	}
 
-	public StaticJobName getStaticJobName1() {
-		return this.jobName1;
+
+	public StaticJobName getJobName1() {
+		return jobName1;
 	}
 
-	public void setStaticJobName1(StaticJobName jobName1) {
+
+	public void setJobName1(StaticJobName jobName1) {
 		this.jobName1 = jobName1;
 	}
 
-	public StaticJobName getStaticJobName2() {
-		return this.jobName2;
+
+	public StaticJobName getJobName2() {
+		return jobName2;
 	}
 
-	public void setStaticJobName2(StaticJobName jobName2) {
+
+	public void setJobName2(StaticJobName jobName2) {
 		this.jobName2 = jobName2;
 	}
 
-	public StaticJobName getStaticJobName3() {
-		return this.jobName3;
+
+	public StaticJobName getJobName3() {
+		return jobName3;
 	}
 
-	public void setStaticJobName3(StaticJobName jobName3) {
+
+	public void setJobName3(StaticJobName jobName3) {
 		this.jobName3 = jobName3;
 	}
 
-	public StaticLocationName getStaticLocationName() {
-		return this.locationName;
+
+	public StaticLocationName getLocationName() {
+		return locationName;
 	}
 
-	public void setStaticLocationName(StaticLocationName locationName) {
+
+	public void setLocationName(StaticLocationName locationName) {
 		this.locationName = locationName;
 	}
-	public String getMobilePhone() {
-		return mobilePhone;
-	}
-	public void setMobilePhone(String mobilePhone) {
-		this.mobilePhone = mobilePhone;
-	}
-	
-	public Date getUpdateTime() {
-		return updateTime;
-	}
 
-	public void setUpdateTime(Date updateTime) {
-		this.updateTime = updateTime;
-	}
 
 	@Override
 	public Map<String, Object> modelToMap() {

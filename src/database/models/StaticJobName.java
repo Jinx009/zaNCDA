@@ -21,7 +21,7 @@ public class StaticJobName implements Serializable,nbBaseModel {
 
 	@Id
 	@Column(unique=true, nullable=false)
-	private int id;
+	private Integer id;
 
 	@Column(name="job_name", nullable=false, length=32)
 	private String jobName;
@@ -29,21 +29,31 @@ public class StaticJobName implements Serializable,nbBaseModel {
 	public StaticJobName() {
 	}
 
-	public int getId() {
-		return this.id;
+	
+
+	public Integer getId() {
+		return id;
 	}
 
-	public void setId(int id) {
+
+
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
+
+
 	public String getJobName() {
-		return this.jobName;
+		return jobName;
 	}
+
+
 
 	public void setJobName(String jobName) {
 		this.jobName = jobName;
 	}
+
+
 
 	@Override
 	public Map<String, Object> modelToMap() {

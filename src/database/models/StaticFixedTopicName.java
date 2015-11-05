@@ -21,7 +21,7 @@ public class StaticFixedTopicName implements Serializable,nbBaseModel {
 
 	@Id
 	@Column(unique=true, nullable=false)
-	private int id;
+	private Integer id;
 
 	@Column(name="parent_name", nullable=false, length=16)
 	private String parentName;
@@ -29,32 +29,36 @@ public class StaticFixedTopicName implements Serializable,nbBaseModel {
 	@Column(name="sub_name", nullable=false, length=32)
 	private String subName;
 
-	public StaticFixedTopicName() {
+
+	public Integer getId() {
+		return id;
 	}
 
-	public int getId() {
-		return this.id;
-	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
+
 	public String getParentName() {
-		return this.parentName;
+		return parentName;
 	}
+
 
 	public void setParentName(String parentName) {
 		this.parentName = parentName;
 	}
 
+
 	public String getSubName() {
-		return this.subName;
+		return subName;
 	}
+
 
 	public void setSubName(String subName) {
 		this.subName = subName;
 	}
+
 
 	@Override
 	public Map<String, Object> modelToMap() {

@@ -1,5 +1,7 @@
 package common.wechat;
 
+import common.helper.MD5Util;
+
 public class WechatData {
 	
 	public static final String APP_ID = "wx08411a74145eb7dc";
@@ -32,6 +34,8 @@ public class WechatData {
 	}
 	
 	public static void main(String[] args) {
-		System.out.println(getTeacherOauthUrl());
+		String pwd = MD5Util.toMD5("admin");
+		
+		System.out.println(pwd);
 	}
 }

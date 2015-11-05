@@ -98,7 +98,7 @@ public class OrderWebEntry {
 	 * @param response
 	 * @throws IOException
 	 */
-	@RequestMapping(value = "/tdata/comments",method = RequestMethod.POST)
+	@RequestMapping(value = "/tdata/tcomments",method = RequestMethod.POST)
 	public void getTComments(HttpServletRequest request,HttpServletResponse response) throws IOException{
 		NbTeachersUser nbTeachersUser = (NbTeachersUser) request.getSession().getAttribute("teacher_session_user");
 		List<NbOrder> list = orderService.findByAttr("nbTeachersUser",nbTeachersUser.getId());

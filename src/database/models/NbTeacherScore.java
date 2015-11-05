@@ -23,14 +23,14 @@ public class NbTeacherScore implements Serializable,nbBaseModel {
 
 	@Id
 	@Column(unique=true, nullable=false)
-	private int id;
+	private Integer id;
 
 	@Lob
 	@Column(nullable=false)
 	private String comments;
 
 	@Column(nullable=false)
-	private int score;
+	private Integer score;
 
 	@Temporal(TemporalType.DATE)
 	@Column(name="submit_time", nullable=false)
@@ -39,48 +39,56 @@ public class NbTeacherScore implements Serializable,nbBaseModel {
 	@Column(name = "order_id")
 	private Integer orderId;
 
-	public NbTeacherScore() {
+	
+	public Integer getId() {
+		return id;
 	}
 
-	public int getId() {
-		return this.id;
-	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
+
 	public String getComments() {
-		return this.comments;
+		return comments;
 	}
+
 
 	public void setComments(String comments) {
 		this.comments = comments;
 	}
 
-	public int getScore() {
-		return this.score;
+
+	public Integer getScore() {
+		return score;
 	}
 
-	public void setScore(int score) {
+
+	public void setScore(Integer score) {
 		this.score = score;
 	}
-	
+
+
+	public Date getSubmitTime() {
+		return submitTime;
+	}
+
+
+	public void setSubmitTime(Date submitTime) {
+		this.submitTime = submitTime;
+	}
+
+
 	public Integer getOrderId() {
 		return orderId;
 	}
+
 
 	public void setOrderId(Integer orderId) {
 		this.orderId = orderId;
 	}
 
-	public Date getSubmitTime() {
-		return this.submitTime;
-	}
-
-	public void setSubmitTime(Date submitTime) {
-		this.submitTime = submitTime;
-	}
 
 	@Override
 	public Map<String, Object> modelToMap() {

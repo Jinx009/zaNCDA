@@ -20,7 +20,7 @@ public class NbWechatCache implements Serializable,nbBaseModel {
 	
 	@Id
 	@Column(unique=true, nullable=false)
-	private int id;
+	private Integer id;
 	
 	@Column(name = "cache_name")
 	private String cacheName;
@@ -32,7 +32,7 @@ public class NbWechatCache implements Serializable,nbBaseModel {
 	private Integer updateTime;
 	
 	@Column(name = "app_id")
-	private int appId;
+	private String appId;
 
 	public Map<String, Object> modelToMap() {
 		Map<String, Object> data = new HashMap<String, Object>();
@@ -44,37 +44,47 @@ public class NbWechatCache implements Serializable,nbBaseModel {
 		return data;
 	}
 
-	
-	
-	
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
-	public void setId(int id) {
+
+	public void setId(Integer id) {
 		this.id = id;
 	}
+
 	public String getCacheName() {
 		return cacheName;
 	}
+
 	public void setCacheName(String cacheName) {
 		this.cacheName = cacheName;
 	}
+
 	public String getCacheValue() {
 		return cacheValue;
 	}
+
 	public void setCacheValue(String cacheValue) {
 		this.cacheValue = cacheValue;
 	}
+
 	public Integer getUpdateTime() {
 		return updateTime;
 	}
+
 	public void setUpdateTime(Integer updateTime) {
 		this.updateTime = updateTime;
 	}
-	public int getAppId() {
+
+	public String getAppId() {
 		return appId;
 	}
-	public void setAppId(int appId) {
+
+	public void setAppId(String appId) {
 		this.appId = appId;
 	}
+
+	
+	
+	
 }
