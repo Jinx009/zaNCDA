@@ -13,8 +13,12 @@ public class AdminServiceImpl implements AdminService{
 	private AdminDao adminDao;
 	
 	public Admin doLogin(Admin admin) {
-		Admin admin2 = adminDao.doLogin(admin);
-		return admin2;
+		admin = adminDao.doLogin(admin);
+		return admin;
+	}
+
+	public void update(Admin admin) {
+		adminDao.update(admin);
 	}
 
 }

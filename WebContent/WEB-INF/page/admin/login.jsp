@@ -10,36 +10,44 @@
 <script type="text/javascript" src="/sp/dist/js/bootstrap.js" ></script>
 <script type="text/javascript" src="/sp/js/common.js" ></script>
 <script type="text/javascript">
+/**
+ * 登陆
+ */
 function doLogin(){
-	var userName = $("#username").val();	
-	var pwd = $("#password").val();
-	var adminCode = $("#adminCode").val();
-	var params = "userName="+userName+"&password="+pwd+"&code="+adminCode;
+	var userName = $("#userName").val();	
+	var pwd = $("#pwd").val();
+	var code = $("#code").val();
+	var params = "userName="+userName+"&pwd="+pwd+"&code="+code;
 	
 	$.ajax({
-		url:"/admin/doLogin.html",
+		url:"/admin/data/login.html",
 		type:"POST",
 		data:params,
 		dataType:"json",
 		success:function(res){
 			if("success"==res.result){
-				location.href = "/admin/index.html";
+				location.href = "/admin/page/tutor.html";
 			}else{
 				alert(res.errmsg);
 			}
 		}
 	})
 }
+
 $(function(){
-	getAdminCode();
+	getCode();
 })
-function getAdminCode(){
+
+/**
+ * 验证码
+ */
+function getCode(){
 	$.ajax({
-		url:"/manager/getCode.html?time="+getRandom(),
+		url:"/admin/data/getCode.html?time="+getRandom(),
 		type:"GET",
 		dataType:"json",
 		success:function(res){
-			$("#adminCodeText").text(res.adminCode);
+			$("#codeText").text(res.admin_code);
 		}
 	})
 }
@@ -54,21 +62,21 @@ function getAdminCode(){
 			  <div class="form-group">
 			    <label class="col-sm-2 control-label">账号</label>
 			    <div class="col-sm-10">
-			      <input type="text" class="form-control" id="username" placeholder="账户">
+			      <input type="text" class="form-control" id="userName" placeholder="账户">
 			    </div>
 			  </div>
 			  <div class="form-group">
 			    <label  class="col-sm-2 control-label">密码</label>
 			    <div class="col-sm-10">
-			      <input type="password" class="form-control" id="password" placeholder="密码">
+			      <input type="password" class="form-control" id="pwd" placeholder="密码">
 			    </div>
 			  </div>
 			  <div class="form-group">
 			    <label  class="col-sm-2 control-label">验证码</label>
 			    <div class="col-sm-6">
-			      <input type="text" class="form-control" id="adminCode" placeholder="验证码">
+			      <input type="text" class="form-control" id="code" placeholder="验证码">
 			    </div>
-			    <label  class="col-sm-4 control-label" onclick="getAdminCode()" id="adminCodeText" ></label>
+			    <label  class="col-sm-4 control-label" onclick="getCode()" id="codeText" ></label>
 			  </div>
 			  <div class="form-group">
 			    <div class="col-sm-offset-2 col-sm-10"></div>

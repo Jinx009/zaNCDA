@@ -1,5 +1,6 @@
 package main.entry.webapp.data;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -7,16 +8,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import service.basicFunctions.AdminService;
 
 import common.helper.ConstantUtil;
 import common.helper.HttpWebIOHelper;
 import common.helper.MD5Util;
 
 import database.models.Admin;
-import service.basicFunctions.AdminService;
 
+@Controller
 public class AdminData {
 	
 	@Autowired
@@ -31,13 +35,13 @@ public class AdminData {
 	 * @param response
 	 * @throws Exception
 	 */
-	@RequestMapping(value = "/admin/data/doLogin",method = RequestMethod.POST) 
+	@RequestMapping(value = "/admin/data/login",method = RequestMethod.POST) 
     public void doLogin(HttpServletRequest request, HttpServletResponse response) throws Exception{  
 		data = new HashMap<String, Object>();
 		String loginCode = request.getParameter("code");
 		
 		admin = new Admin();
-		admin.setPwd(MD5Util.toMD5(request.getParameter("password")));
+		admin.setPwd(MD5Util.toMD5(request.getParameter("pwd")));
 		admin.setUserName(request.getParameter("userName"));
 		admin = adminService.doLogin(admin);
     	
@@ -52,6 +56,9 @@ public class AdminData {
     		data.put(ConstantUtil.RESULT,ConstantUtil.SUCCESS);
     		data.put(ConstantUtil.ERROR_MSG,"登陆成功!");
     		request.getSession().setAttribute(ConstantUtil.ADMIN_SESSION,admin);
+    		
+    		admin.setLoginTime(new Date());
+    		adminService.update(admin);
     	}
     	HttpWebIOHelper._printWebJson(data, response);
     }
@@ -72,8 +79,8 @@ public class AdminData {
 		HttpWebIOHelper._printWebJson(data, response);
     }
 
-	
 	 
+	
 	public Admin getAdmin() {
 		return admin;
 	}

@@ -1,7 +1,5 @@
 package common.wechat;
 
-import common.helper.MD5Util;
-
 public class WechatData {
 	
 	public static final String APP_ID = "wx08411a74145eb7dc";
@@ -20,7 +18,7 @@ public class WechatData {
 	
 	
 	/**
-	 * 重定向链接
+	 * 导师重定向链接
 	 * @return
 	 */
 	public static String getTutorOauthUrl(){
@@ -33,9 +31,18 @@ public class WechatData {
 		return buffer.toString();
 	}
 	
-	public static void main(String[] args) {
-		String pwd = MD5Util.toMD5("admin");
+	/**
+	 * 顾客重定向链接
+	 * @return
+	 */
+	public static String getCustomerOauthUrl(){
+		StringBuffer buffer = new StringBuffer();
+		buffer.append(OAUTH_URL_ONE);
+		buffer.append(OAUTH_URL_TWO);
+		buffer.append("/customer/login.html");
+		buffer.append(OAUTH_URL_THREE);
 		
-		System.out.println(pwd);
+		return buffer.toString();
 	}
+	
 }

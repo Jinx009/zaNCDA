@@ -122,7 +122,7 @@ public class Tutor {
 	 * 课程价格
 	 */
 	@Column(name = "class_price")
-	private Double classPrice;
+	private String classPrice;
 	/**
 	 * 是否接受面谈
 	 */
@@ -172,7 +172,7 @@ public class Tutor {
 	/**
 	 * 生日
 	 */
-	@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "birthday")
 	private Date birthday;
 	/**
@@ -371,12 +371,12 @@ public class Tutor {
 	public void setqTrade(Trade qTrade) {
 		this.qTrade = qTrade;
 	}
-
-	public Double getClassPrice() {
+	
+	public String getClassPrice() {
 		return classPrice;
 	}
 
-	public void setClassPrice(Double classPrice) {
+	public void setClassPrice(String classPrice) {
 		this.classPrice = classPrice;
 	}
 

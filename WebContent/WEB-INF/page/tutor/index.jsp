@@ -18,9 +18,9 @@
 </style>
 </head>
 <body>
-	<div class="panel panel-primary">您好：${realName }</div>
-	<div class="panel panel-primary" onclick="openUrl('/tpage/orders.html')" >我的约谈</div>
-	<div class="panel panel-success">我的信息</div>
-	<div class="panel panel-info">我的时间</div>
+	<div class="panel panel-primary">您好：${tutor }</div>
+	<div class="panel panel-primary" onclick="openUrl('/tutor/page/order.html')" >我的约谈</div>
+	<div class="panel panel-success" onclick="openUrl('/tutor/page/info.html')" >我的信息</div>
+	<div class="panel panel-info" onclick="openUrl('/tutor/page/time.html')" >我的时间</div>
 </body>
 </html>

@@ -5,4 +5,6 @@ import database.models.Customer;
 
 public interface CustomerDao extends BaseDao<Customer>{
 
+	public Customer getByHql(String hql);
+	
 }

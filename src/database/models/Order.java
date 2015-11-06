@@ -25,7 +25,7 @@ public class Order {
 	@Column(unique=true, nullable=false)
 	private Integer id;
 	
-	@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "add_time")
 	private Date addTime;
 	

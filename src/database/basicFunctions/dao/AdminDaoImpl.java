@@ -23,10 +23,10 @@ public class AdminDaoImpl extends BaseDaoImpl<Admin> implements AdminDao {
 		buffer.append(" FROM Admin  ");
 		buffer.append(" WHERE userName = '");
 		buffer.append(admin.getUserName());
-		buffer.append(" ' AND ");
-		buffer.append(" pwd = ' ");
+		buffer.append("' AND ");
+		buffer.append(" pwd = '");
 		buffer.append(admin.getPwd());
-		buffer.append(" ' ");
+		buffer.append("' ");
 		
 		Query query = em.createQuery(buffer.toString());
 		List<Admin> list = query.getResultList();

@@ -35,11 +35,11 @@ public class Admin implements Serializable {
 	@Column(name = "status")
 	private Integer status;
 	
-	@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "login_time")
 	private Date loginTime;
 	
-	@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "add_time")
 	private Date addTime;
 

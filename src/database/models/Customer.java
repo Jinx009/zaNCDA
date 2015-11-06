@@ -39,11 +39,11 @@ public class Customer {
 	@Column(name = "openid")
 	private String openid;
 	
-	@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "add_time")
 	private Date addTime;
 	
-	@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "login_time")
 	private Date loginTime;
 	
@@ -68,7 +68,7 @@ public class Customer {
 	@JoinColumn(name = "job_id")
 	private Trade job;
 	
-	@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "birthday")
 	private Date birthday;
 	

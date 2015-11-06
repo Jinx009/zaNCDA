@@ -19,7 +19,7 @@ $(function(){
 	var url = $("#url").val();
 	
 	if("0"!=status){
-		location.href = "/tpage/index.html";
+		location.href = "/tutor/page/index.html";
 	}else{
 		
 	}
@@ -29,20 +29,20 @@ $(function(){
  * 登陆
  */
 function doLogin(){
-	var username = $("#username").val();
-	var password = $("#password").val();
+	var userName = $("#userName").val();
+	var pwd = $("#pwd").val();
 	var openid = $("#openid").val();
 	var code = $("#code").val();
-	var params = "username="+username+"&password="+password+"&openid="+openid+"&code="+code;
+	var params = "userName="+userName+"&pwd="+pwd+"&openid="+openid+"&code="+code;
 	
 	$.ajax({
-		url:"/teacher/doLogin.html",
+		url:"/tutor/data/login.html",
 		type:"POST",
 		data:params,
 		dataType:"json",
 		success:function(res){
 			if("success"==res.result){
-				location.href = "/tpage/index.html";
+				location.href = "/tutor/page/index.html";
 			}else{
 				alert(res.errmsg);
 			}	
@@ -55,11 +55,11 @@ function doLogin(){
  */
 function changeCode(){
 	$.ajax({
-		url:"/teacher/getCode.html?time="+getRandom(),
+		url:"/tutor/data/getCode.html?time="+getRandom(),
 		type:"GET",
 		dataType:"json",
 		success:function(res){
-			$("#codeText").html(res.teacherCode);
+			$("#codeText").html(res.tutor_code);
 		}
 	})
 }
@@ -96,13 +96,13 @@ body {
 			  <div class="form-group">
 			    <div class="input-group">
 			      <div class="input-group-addon">账户:</div>
-			      <input type="text" class="form-control" id="username" placeholder="请输入用户名">
+			      <input type="text" class="form-control" id="userName" placeholder="请输入用户名">
 			    </div>
 			  </div>
 			  <div class="form-group">
 			    <div class="input-group">
 			      <div class="input-group-addon">密码:</div>
-			      <input type="text" class="form-control" id="password" placeholder="请输入密码">
+			      <input type="password" class="form-control" id="pwd" placeholder="请输入密码">
 			    </div>
 			  </div>
 			   <div class="form-group">

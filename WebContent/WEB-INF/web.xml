@@ -148,6 +148,6 @@
 
   <display-name>nbBase</display-name>
   <welcome-file-list>
-    <welcome-file>index.html</welcome-file>
+    <welcome-file>/admin/login.html</welcome-file>
   </welcome-file-list>
 </web-app>

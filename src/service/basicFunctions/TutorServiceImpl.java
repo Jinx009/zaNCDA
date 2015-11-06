@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import common.helper.MD5Util;
-
 import database.basicFunctions.dao.TutorDao;
+import database.common.PageDataList;
 import database.models.Tutor;
 
 @Service("tutorService")
@@ -31,7 +31,7 @@ public class TutorServiceImpl implements TutorService{
 		buffer.append(" FROM Tutor  ");
 		buffer.append(" WHERE openid = '");
 		buffer.append(openid);
-		buffer.append(" ' ");
+		buffer.append("' ");
 		
 		return tutorDao.getByHql(buffer.toString());
 	}
@@ -40,11 +40,11 @@ public class TutorServiceImpl implements TutorService{
 		buffer = new StringBuffer();
 		
 		buffer.append(" FROM Tutor ");
-		buffer.append(" WHERE userName = ' ");
+		buffer.append(" WHERE userName = '");
 		buffer.append(tutor.getUserName());
-		buffer.append(" ' AND pwd = ' ");
+		buffer.append("' AND pwd = '");
 		buffer.append(MD5Util.toMD5(tutor.getPwd()));
-		buffer.append(" ' ");
+		buffer.append("' ");
 		
 		return tutorDao.getByHql(buffer.toString());
 	}
@@ -56,7 +56,10 @@ public class TutorServiceImpl implements TutorService{
 	public void update(Tutor tutor) {
 		tutorDao.update(tutor);
 	}
-
+	
+	public PageDataList<Tutor> findPageList(Tutor tutor, int pageNum) {
+		return tutorDao.findTeacherPageList(tutor,pageNum);
+	}
 	
 	
 	
@@ -70,6 +73,4 @@ public class TutorServiceImpl implements TutorService{
 	public void setBuffer(StringBuffer buffer) {
 		this.buffer = buffer;
 	}
-	
-	
 }
