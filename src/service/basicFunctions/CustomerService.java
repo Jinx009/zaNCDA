@@ -11,5 +11,9 @@ public interface CustomerService {
 	public Customer save(Customer customer);
 	
 	public void delete(Integer id);
+
+	public Customer getByOpenid(String openid);
+
+	public Customer doLogin(Customer customer);
 	
 }

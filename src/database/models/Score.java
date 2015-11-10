@@ -32,10 +32,28 @@ public class Score {
 	private String content;
 	
 	/**
-	 * 分数
+	 * 第一维度分数
 	 */
-	@Column(name = "score")
-	private Integer score;
+	@Column(name = "one_score")
+	private Integer oneScore;
+	
+	/**
+	 * 第一维度分数
+	 */
+	@Column(name = "two_score")
+	private Integer twoScore;
+	
+	/**
+	 * 第一维度分数
+	 */
+	@Column(name = "three_score")
+	private Integer threeScore;
+	
+	/**
+	 * 第一维度分数
+	 */
+	@Column(name = "four_score")
+	private Integer fourScore;
 	
 	@OneToOne
 	@JoinColumn(name = "order_id")
@@ -64,13 +82,13 @@ public class Score {
 	public void setContent(String content) {
 		this.content = content;
 	}
-
-	public Integer getScore() {
-		return score;
+	
+	public Integer getOneScore() {
+		return oneScore;
 	}
 
-	public void setScore(Integer score) {
-		this.score = score;
+	public void setOneScore(Integer oneScore) {
+		this.oneScore = oneScore;
 	}
 
 	public Date getAddTime() {
@@ -87,6 +105,30 @@ public class Score {
 
 	public void setqOrder(Order qOrder) {
 		this.qOrder = qOrder;
+	}
+
+	public Integer getTwoScore() {
+		return twoScore;
+	}
+
+	public void setTwoScore(Integer twoScore) {
+		this.twoScore = twoScore;
+	}
+
+	public Integer getThreeScore() {
+		return threeScore;
+	}
+
+	public void setThreeScore(Integer threeScore) {
+		this.threeScore = threeScore;
+	}
+
+	public Integer getFourScore() {
+		return fourScore;
+	}
+
+	public void setFourScore(Integer fourScore) {
+		this.fourScore = fourScore;
 	}
 	
 }
