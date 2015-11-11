@@ -62,7 +62,7 @@ public class CustomerPage {
 	 * 顾客首页
 	 * @return
 	 */
-	@RequestMapping(value = "/tutor/page/index")
+	@RequestMapping(value = "/customer/page/index")
 	public String index(HttpServletRequest request,HttpServletResponse response){
 		String realName = "";
 		customer = (Customer) request.getSession().getAttribute(ConstantUtil.CUSTOMER_SESSION);

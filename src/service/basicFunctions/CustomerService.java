@@ -1,5 +1,6 @@
 package service.basicFunctions;
 
+import database.common.PageDataList;
 import database.models.Customer;
 
 public interface CustomerService {
@@ -15,5 +16,7 @@ public interface CustomerService {
 	public Customer getByOpenid(String openid);
 
 	public Customer doLogin(Customer customer);
+
+	public PageDataList<Customer> findPageList(Customer customer, int pageNum);
 	
 }

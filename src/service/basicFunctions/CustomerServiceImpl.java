@@ -4,8 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import common.helper.MD5Util;
-
 import database.basicFunctions.dao.CustomerDao;
+import database.common.PageDataList;
 import database.models.Customer;
 
 @Service("customerService")
@@ -59,7 +59,9 @@ public class CustomerServiceImpl  implements CustomerService{
 		return customerDao.getByHql(buffer.toString());
 	}
 	
-	
+	public PageDataList<Customer> findPageList(Customer customer, int pageNum) {
+		return customerDao.findTeacherPageList(customer,pageNum);
+	}
 	
 	
 	

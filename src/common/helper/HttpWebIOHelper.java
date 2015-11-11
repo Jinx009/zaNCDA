@@ -18,8 +18,6 @@ import database.common.nbBaseModel;
 
 public class HttpWebIOHelper {
 	
-	//private CommonHelper commonHelper = new CommonHelper();
-
 	public static void _printWebJson(Object theData, HttpServletResponse response) throws IOException{
 		response.setContentType("application/json;charset=UTF-8");
 		PrintWriter out = response.getWriter();

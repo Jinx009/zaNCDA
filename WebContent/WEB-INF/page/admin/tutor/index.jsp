@@ -5,13 +5,12 @@
 <meta charset="UTF-8">
 <title>后台主页</title>
 <link rel="stylesheet" href="/sp/dist/css/bootstrap.css" >
-<link rel="stylesheet" href="/sp/css/main.css" >
+<link rel="stylesheet" href="/sp/css/admin/main.css" >
 
 <script type="text/javascript" src="/sp/dist/jquery.js" ></script>
 <script type="text/javascript" src="/sp/dist/js/bootstrap.js" ></script>
 <script type="text/javascript" src="/sp/js/common.js" ></script>
 <script type="text/javascript" src="/sp/js/date/WdatePicker.js" ></script>
-<script type="text/javascript" src="/sp/dist/jquery.form.js" ></script>
 <script type="text/javascript">
 var data;
 
@@ -33,7 +32,6 @@ function getList(pageNum){
 		dataType:"json",
 		ansyc:false,
 		success:function(res){
-			console.log(res)
 			data = res.data.list;
 			var menuHtml = "",htmlStr = "";
 			if(null!=res.data){
@@ -67,14 +65,14 @@ function getList(pageNum){
  * 编辑
  */
 function openEdit(index){
-	location.href = "/admin/teacherEdit.html?id="+dataJson[parseInt(index)].id;
+	location.href = "/admin/page/tutor/edit.html?id="+data[parseInt(index)].id;
 }
 
 /**
  * 删除
  */
 function deleteDiv(index){
-	$("#deleteId").val(dataJson[parseInt(index)].id);
+	$("#deleteId").val(data[parseInt(index)].id);
 	
 	showAlert("deleteDiv");
 }
@@ -87,13 +85,13 @@ function doDelete(){
 	var params = "id="+id;
 	
 	$.ajax({
-		url:"/teacher/delete.html",
+		url:"/tutor/data/delete.html",
 		type:"POST",
 		data:params,
 		dataType:"json",
 		success:function(res){
 			if("success"==res.result){
-				getTeacherList(1);
+				getList(1);
 				hideAlert("deleteDiv");
 			}
 		}
@@ -101,22 +99,6 @@ function doDelete(){
 }
 
 </script>
-
-<style type="text/css">
-.index-row{
-	width: 96%;
-	margin-left: 2%;
-}
-.index-col-md-2{
-	width: 10%;
-}
-.index-col-md-10{
-	width: 90%;
-}
-.img-width{
-	width: 100px;
-}
-</style>
 </head>
 <body>
 	<div class="space-div-1" ></div>
@@ -124,9 +106,9 @@ function doDelete(){
 		<div class="col-md-2 index-col-md-2" >
 			<div class="list-group">
 			  <a href="/admin/page/tutor.html" class="list-group-item active">导师管理</a>
-			  <a href="/admin/student.html" class="list-group-item">顾客管理</a>
-			  <a href="/admin/order.html" class="list-group-item">约谈管理</a>
-			  <a href="/admin/util.html" class="list-group-item">资料管理</a>
+			  <a href="/admin/page/customer.html" class="list-group-item">顾客管理</a>
+			  <a href="/admin/page/order.html" class="list-group-item">约谈管理</a>
+			  <a href="/admin/page/util.html" class="list-group-item">资料管理</a>
 			</div>
 		</div>
 		<div class="col-md-10 index-col-md-10" >
@@ -152,7 +134,7 @@ function doDelete(){
 				<div class="col-md-3" >
 					<div class="space-div-3 " ></div>
 					<div class="btn-group" role="group" aria-label="...">
-					  <button type="button" class="btn btn-default" onclick="getTeacherList('1');" >执行查询</button>
+					  <button type="button" class="btn btn-default" onclick="getList('1');" >执行查询</button>
 					</div>
 				</div>
 				<div class="col-md-3" ></div>

@@ -5,7 +5,7 @@
 <meta charset="UTF-8">
 <title>后台主页</title>
 <link rel="stylesheet" href="/sp/dist/css/bootstrap.css" >
-<link rel="stylesheet" href="/sp/css/main.css" >
+<link rel="stylesheet" href="/sp/css/admin/main.css" >
 
 <script type="text/javascript" src="/sp/dist/jquery.js" ></script>
 <script type="text/javascript" src="/sp/dist/js/bootstrap.js" ></script>
@@ -16,16 +16,16 @@
 var dataJson;
 
 $(function(){
-	 getTeacherList(1);
+	 getData(1);
 })
 
 /**
  *获取列表 
  */
-function getTeacherList(pageNum){
+function getData(pageNum){
 	var params = "pageNum="+pageNum+"&realName="+$("#searchName").val()+"&mobilePhone="+$("#searchMobile").val();
 	$.ajax({
-		url:"/teacher/list.html",
+		url:"/admin/customer/list.html",
 		data:params,
 		type:"POST",
 		dataType:"json",
@@ -35,7 +35,7 @@ function getTeacherList(pageNum){
 			var menuHtml = "",htmlStr = "";
 			if(null!=res.data){
 				for(var i = 1;i<=parseInt(res.data.page.total);i++){
-					menuHtml += "<li  id=page"+i+" ><a href=javascript:getTeacherList('"+i+"')>"+i+"</a></li>";
+					menuHtml += "<li  id=page"+i+" ><a href=javascript:getData('"+i+"')>"+i+"</a></li>";
 				}
 				
 				for(var i = 0;i<res.data.list.length;i++){
@@ -46,10 +46,7 @@ function getTeacherList(pageNum){
 					htmlStr += "<td>"+res.data.list[i].qq+"</td>";
 					htmlStr += "<td>"+res.data.list[i].email+"</td>";
 					htmlStr += "<td>";
-					htmlStr += "<div class='btn-toolbar' role='toolbar' aria-label='...'>";
-					htmlStr += "<button type='button' class='btn btn-defaul' onclick=openEdit('"+i+"') >编辑</button>";
-					htmlStr += "<button type='button' class='btn btn-defaul' onclick=deleteDiv('"+i+"')  >删除</button>";
-					htmlStr += "</div>";
+					htmlStr += "<a class='btn btn-default' onclick=deleteDiv('"+i+"')  >删除</a>";
 					htmlStr += "</td>";
 				}
 			}
@@ -58,13 +55,6 @@ function getTeacherList(pageNum){
 			$("#dataList").html(htmlStr);
 		}
 	})
-}
-
-/**
- * 编辑
- */
-function openEdit(index){
-	location.href = "/admin/teacherEdit.html?id="+dataJson[parseInt(index)].id;
 }
 
 /**
@@ -84,7 +74,7 @@ function doDelete(){
 	var params = "id="+id;
 	
 	$.ajax({
-		url:"/teacher/delete.html",
+		url:"/customer/data/delete.html",
 		type:"POST",
 		data:params,
 		dataType:"json",
@@ -99,31 +89,16 @@ function doDelete(){
 
 </script>
 
-<style type="text/css">
-.index-row{
-	width: 96%;
-	margin-left: 2%;
-}
-.index-col-md-2{
-	width: 10%;
-}
-.index-col-md-10{
-	width: 90%;
-}
-.img-width{
-	width: 100px;
-}
-</style>
 </head>
 <body>
 	<div class="space-div-1" ></div>
 	<div class="row index-row" >
 		<div class="col-md-2 index-col-md-2" >
 			<div class="list-group">
-			  <a href="/admin/index.html" class="list-group-item active">教师管理</a>
-			  <a href="/admin/student.html" class="list-group-item">顾客管理</a>
-			  <a href="/admin/order.html" class="list-group-item">兑付管理</a>
-			  <a href="/admin/util.html" class="list-group-item">辅助管理</a>
+			  <a href="/admin/page/tutor.html" class="list-group-item ">导师管理</a>
+			  <a href="/admin/page/customer.html" class="list-group-item active">顾客管理</a>
+			  <a href="/admin/page/order.html" class="list-group-item">约谈管理</a>
+			  <a href="/admin/page/util.html" class="list-group-item">资料管理</a>
 			</div>
 		</div>
 		<div class="col-md-10 index-col-md-10" >
@@ -149,7 +124,7 @@ function doDelete(){
 				<div class="col-md-3" >
 					<div class="space-div-3 " ></div>
 					<div class="btn-group" role="group" aria-label="...">
-					  <button type="button" class="btn btn-default" onclick="getTeacherList('1');" >执行查询</button>
+					  <button type="button" class="btn btn-default" onclick="getData('1');" >执行查询</button>
 					</div>
 				</div>
 				<div class="col-md-3" ></div>

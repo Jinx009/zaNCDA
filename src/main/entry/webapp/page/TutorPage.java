@@ -69,6 +69,18 @@ public class TutorPage {
 		return "/tutor/index";
 	}
 
+	/**
+	 * 跳转后台导师编辑页面
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/admin/page/tutor/edit") 
+    public String edit(HttpServletRequest request,HttpServletResponse response){
+		Integer id = Integer.valueOf(request.getParameter("id"));
+		tutor = tutorService.find(id);
+		request.setAttribute("tutor",tutor);
+        return "/admin/tutor/edit";  
+    }
 	
 	
 	public Tutor getTutor() {

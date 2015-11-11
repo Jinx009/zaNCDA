@@ -18,6 +18,7 @@ import service.basicFunctions.CustomerService;
 import common.helper.ConstantUtil;
 import common.helper.HttpWebIOHelper;
 import common.helper.StringUtil;
+import database.common.PageDataList;
 import database.models.Customer;
 
 @Controller
@@ -88,7 +89,31 @@ public class CustomerData {
 		HttpWebIOHelper._printWebJson(data, response);
 	 }
 	
-	
+	/**
+	 * 顾客列表
+	 * @param request
+	 * @param response
+	 * @throws IOException
+	 */
+	@RequestMapping(value = "/admin/customer/list")
+	public void getList(HttpServletRequest request,HttpServletResponse response) throws IOException{
+		data = new HashMap<String,Object>();
+		int pageNum = Integer.valueOf(request.getParameter("pageNum"));
+		String realName = request.getParameter("realName");
+		String mobilePhone = request.getParameter("mobilePhone");
+		
+		customer = new Customer();
+		customer.setMobilePhone(mobilePhone);
+		customer.setRealName(realName);
+		
+		PageDataList<Customer> list = customerService.findPageList(customer,pageNum);
+		data.put("data",list);
+		
+		HttpWebIOHelper._printWebJson(data, response);
+	}
+	 
+	 
+	 
 
 	public Map<String, Object> getData() {
 		return data;

@@ -61,6 +61,10 @@ public class Order {
 	@OneToOne
 	@JoinColumn(name = "time_id")
 	private TutorTime qTutorTime;
+	
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "update_time")
+	private Date updateTime;
 
 	public Integer getId() {
 		return id;
@@ -148,6 +152,14 @@ public class Order {
 
 	public void setqTutorTime(TutorTime qTutorTime) {
 		this.qTutorTime = qTutorTime;
+	}
+
+	public Date getUpdateTime() {
+		return updateTime;
+	}
+
+	public void setUpdateTime(Date updateTime) {
+		this.updateTime = updateTime;
 	}
 	
 	

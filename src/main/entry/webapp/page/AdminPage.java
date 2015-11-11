@@ -26,7 +26,7 @@ public class AdminPage {
 	 */
 	@RequestMapping(value = "/admin/page/order") 
     public String order(){  
-        return "/admin/order";  
+        return "/admin/order/index";  
     }
 	
 	/**
@@ -36,7 +36,7 @@ public class AdminPage {
 	 */
 	@RequestMapping(value = "/admin/page/customer") 
     public String student(){  
-        return "/admin/customer";  
+        return "/admin/customer/index";  
     }
 	
 	/**
@@ -46,7 +46,7 @@ public class AdminPage {
 	 */
 	@RequestMapping(value = "/admin/page/util") 
     public String util(HttpServletRequest request, HttpServletResponse response){  
-		return "/admin/util";  
+		return "/admin/util/index";  
     }
 	
 	/**

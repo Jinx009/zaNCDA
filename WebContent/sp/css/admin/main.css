@@ -1,0 +1,46 @@
+body{
+	font-family: "Microsoft Yahei";
+	width: 100%;
+	margin: 0px;
+}
+.height{
+	height: auto;
+	min-height: 600px;
+	overflow-y:scroll;
+}
+.height400{
+	height: auto;
+	min-height: 400px;
+	overflow-y:scroll;
+}
+.space-div-1{
+	height: 10px;
+}
+.space-div-2{
+	height: 20px;
+}
+.space-div-3{
+	height: 30px;
+}
+.space-div-4{
+	height: 40px;
+}
+.width100{
+	width: 100%;
+}
+.center{
+	text-align: center;
+}
+.index-row{
+	width: 96%;
+	margin-left: 2%;
+}
+.index-col-md-2{
+	width: 10%;
+}
+.index-col-md-10{
+	width: 90%;
+}
+.img-width{
+	width: 100px;
+}

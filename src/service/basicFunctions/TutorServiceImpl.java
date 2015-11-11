@@ -49,7 +49,7 @@ public class TutorServiceImpl implements TutorService{
 		
 		return tutorDao.getByHql(buffer.toString());
 	}
-
+	
 	public void delete(Integer id) {
 		tutorDao.delete(id);
 	}
@@ -61,7 +61,10 @@ public class TutorServiceImpl implements TutorService{
 	public PageDataList<Tutor> findPageList(Tutor tutor, int pageNum) {
 		return tutorDao.findTeacherPageList(tutor,pageNum);
 	}
-	
+
+	public Tutor find(Integer id) {
+		return tutorDao.find(id);
+	}
 	
 	
 	

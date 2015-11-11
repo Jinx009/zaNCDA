@@ -21,4 +21,6 @@ public interface TutorService {
 
 	public PageDataList<Tutor> findPageList(Tutor tutor, int pageNum);
 	
+	public Tutor find(Integer id);
+	
 }
