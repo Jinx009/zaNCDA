@@ -61,6 +61,9 @@ function openLook(index,type){
 	}
 }
 
+/**
+ * 获取顾客评分
+ */
 function getScore(index){
 	var id = data[parseInt(index)].id;
 	
@@ -89,6 +92,45 @@ function getScore(index){
 	})
 	$("#scoreDiv").show();
 	$("#commentsDiv").hide();
+	
+	showAlert("lookDiv");	
+}
+
+/**
+ * 获取导师评语
+ */
+function getComments(index){
+	var id = data[parseInt(index)].id;
+	
+	$.ajax({
+		url:"/comments/data/comments.html",
+		data:"id="+id,
+		dataType:"json",
+		type:"POST",
+		success:function(res){
+			if("success"==res.result){
+				var htmlStr = "";
+				
+				for(var i = 0;i<res.errmsg.length;i++){
+					htmlStr += "<tr><th>编号:"+res.errmsg[i].id+"添加时间:"+jsDateTimeOnly(res.errmsg[i].addTime)+"</th></tr>";
+					htmlStr += "<tr><td>诉求一:"+res.errmsg[i].appealOne+"</td></tr>";
+					htmlStr += "<tr><td>诉求二:"+res.errmsg[i].appealTwo+"</td></tr>";
+					htmlStr += "<tr><td>诉求三:"+res.errmsg[i].appealThree+"</td></tr>";
+					htmlStr += "<tr><td>主要问题:"+res.errmsg[i].question+"</td></tr>";
+					htmlStr += "<tr><td>辅导策略（问题解决情况）:"+res.errmsg[i].solveStatus+"</td></tr>";
+					htmlStr += "<tr><td>辅导策略（主要辅导工具）:"+res.errmsg[i].solveTool+"</td></tr>";
+					htmlStr += "<tr><td>发展建议一:"+res.errmsg[i].adviceOne+"</td></tr>";
+					htmlStr += "<tr><td>发展建议二:"+res.errmsg[i].adviceTwo+"</td></tr>";
+					htmlStr += "<tr><td>发展建议三:"+res.errmsg[i].adviceThree+"</td></tr>";
+					htmlStr += "<tr><td>辅导成效（问题解决情况）:"+res.errmsg[i].solveResult+"</td></tr>";
+					htmlStr += "<tr><td>辅导成效（自我评估）:"+res.errmsg[i].solveAssess+"</td></tr>";
+				}
+				$("#commentsData").html(htmlStr);
+			}
+		}
+	})
+	$("#scoreDiv").hide();
+	$("#commentsDiv").show();
 	
 	showAlert("lookDiv");	
 }
@@ -177,7 +219,7 @@ function getScore(index){
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="hideAlert('lookDiv')" >&times;</button>
-				<h4 class="modal-title" id="myriskLabel">所有顾客评论</h4>
+				<h4 class="modal-title" id="myriskLabel">所有评论</h4>
 			</div>
 			<div class="modal-body height400">
 				    <div class="col-sm-12">
@@ -193,6 +235,11 @@ function getScore(index){
 				    			</tr>
 				    		</thead>
 				    		<tbody id="scoreData" ></tbody>
+				    	</table>
+				    </div>
+				      <div class="col-sm-12">
+				    	<table class="table table-bordered" id="commentsDiv" >
+				    		<tbody id="commentsData" ></tbody>
 				    	</table>
 				    </div>
 			  	</div>
