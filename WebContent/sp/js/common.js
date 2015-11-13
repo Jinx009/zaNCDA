@@ -69,21 +69,6 @@ Date.prototype.format = function(format)
 } 
 
 /**
- * 获取支付进度
- */
-function getPayStatus(data){
-	if(1==data.secondPayIsDone){
-		return 100;
-	}else{
-		if(1==data.firstPayIsDone){
-			return 50;
-		}else{
-			return 0;
-		}
-	}
-}
-
-/**
  * 获取约谈状态
  */
 function getOrderStatus(status){

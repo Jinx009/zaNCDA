@@ -21,8 +21,8 @@ public class TutorServiceImpl implements TutorService{
 		return tutorDao.save(tutor);
 	}
 
-	public List<Tutor> getByParam(Tutor tutor) {
-		return null;
+	public List<Tutor> findAll() {
+		return tutorDao.findAll();
 	}
 
 	public Tutor getByOpenid(String openid) {

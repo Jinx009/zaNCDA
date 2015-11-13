@@ -1,5 +1,7 @@
 package service.basicFunctions;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -63,7 +65,9 @@ public class CustomerServiceImpl  implements CustomerService{
 		return customerDao.findTeacherPageList(customer,pageNum);
 	}
 	
-	
+	public List<Customer> findAll() {
+		return customerDao.findAll();
+	}
 	
 	
 	

@@ -1,5 +1,7 @@
 package service.basicFunctions;
 
+import java.util.List;
+
 import database.common.PageDataList;
 import database.models.Customer;
 
@@ -18,5 +20,7 @@ public interface CustomerService {
 	public Customer doLogin(Customer customer);
 
 	public PageDataList<Customer> findPageList(Customer customer, int pageNum);
+
+	public List<Customer> findAll();
 	
 }

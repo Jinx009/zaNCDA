@@ -9,7 +9,7 @@ public interface TutorService {
 
 	public Tutor saveTutor(Tutor tutor);
 	
-	public List<Tutor> getByParam(Tutor tutor);
+	public List<Tutor> findAll();
 	
 	public Tutor getByOpenid(String openid);
 	

@@ -87,6 +87,21 @@ function doDelete(){
 	})
 }
 
+/**
+ * 下载Excel
+ */
+function getExcel(){
+	$.ajax({
+		url:"/excel/customer.html?time="+getRandom(),
+		type:"GET",
+		dataType:"json",
+		success:function(res){
+			if("success"==res.result){
+				window.open("/sp/excel/customer/"+res.errmsg);
+			}
+		}
+	})
+}
 </script>
 
 </head>
@@ -130,7 +145,7 @@ function doDelete(){
 				<div class="col-md-3" ></div>
 			</div> 
 			<hr class="width100" >
-			<a class="btn btn-default" >导出</a>
+			<a class="btn btn-default" onclick="getExcel()" >导出</a>
 			<table class="table" >
 				<thead>
 					<tr>
