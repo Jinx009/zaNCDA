@@ -1,7 +1,11 @@
 package common.wechat;
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+
 
 import net.sf.json.JSONObject;
 
@@ -13,10 +17,49 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
+import org.dom4j.Document;
+import org.dom4j.DocumentException;
+import org.dom4j.DocumentHelper;
+import org.dom4j.Element;
 
 @SuppressWarnings("deprecation")
 public class WechatUtil {
 
+	/**
+	 * Parse XML
+	 * @param request
+	 * @return
+	 */
+	public static Map<String, String> parseXml(String xmlStr)
+	{
+		InputStream inputStream = null;
+		Map<String, String> map = null;
+		try{
+			map = new HashMap<String, String>();
+			Document document = DocumentHelper.parseText(xmlStr);
+			Element root = document.getRootElement();
+
+			@SuppressWarnings("unchecked")
+			List<Element> elementList = root.elements();
+			for (Element e : elementList)
+				map.put(e.getName(), e.getText());
+		} catch (DocumentException e1){
+			e1.printStackTrace();
+		} finally{
+			try{
+				if (inputStream != null){
+					inputStream.close();
+					inputStream = null;
+				}
+			} catch (IOException e){
+				e.printStackTrace();
+			}
+		}
+
+		return map;
+	}
+	
+	
 	/**
 	 * 获取accessToken
 	 * @param appId

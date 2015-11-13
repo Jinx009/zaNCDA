@@ -30,6 +30,22 @@ public class CustomerPage {
 	private CustomerService customerService;
 
 	/**
+	 * 微信支付页面
+	 * @param request
+	 * @param response
+	 * @return
+	 */
+	@RequestMapping(value = "/customer/page/pay")
+	public String pay(HttpServletRequest request,HttpServletResponse response){
+		customer = (Customer) request.getSession().getAttribute(ConstantUtil.CUSTOMER_SESSION);
+		
+		request.setAttribute("openid",customer.getOpenid());
+		request.setAttribute("orderId",request.getParameter("orderId"));
+		
+		return "/customer/pay";
+	}
+	
+	/**
 	 * 顾客登陆页面
 	 * @param request
 	 * @param response

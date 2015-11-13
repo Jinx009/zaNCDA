@@ -44,9 +44,11 @@ public class AdminData {
 		admin.setPwd(MD5Util.toMD5(request.getParameter("pwd")));
 		admin.setUserName(request.getParameter("userName"));
 		admin = adminService.doLogin(admin);
+		
+		System.out.println(request.getSession().getAttribute(ConstantUtil.ADMIN_CODE)+"---");
     	
     	data.put(ConstantUtil.RESULT,ConstantUtil.FAILURE);
-    	if(!loginCode.equals(request.getSession().getAttribute(ConstantUtil.ADMIN_CODE).toString())||null==loginCode){
+    	if(null==loginCode||!loginCode.equals(request.getSession().getAttribute(ConstantUtil.ADMIN_CODE).toString())){
     		data.put(ConstantUtil.ERROR_MSG,"验证码不正确!");
     	}
     	else if(null==admin){
