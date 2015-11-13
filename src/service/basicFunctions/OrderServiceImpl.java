@@ -1,5 +1,7 @@
 package service.basicFunctions;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -35,7 +37,9 @@ public class OrderServiceImpl implements OrderService {
 		return orderDao.findPageList(order,pageNum);
 	}
 	
-	
+	public List<Order> findAll() {
+		return orderDao.findAll();
+	}
 	
 	
 	

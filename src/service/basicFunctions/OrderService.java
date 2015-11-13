@@ -1,5 +1,7 @@
 package service.basicFunctions;
 
+import java.util.List;
+
 import database.common.PageDataList;
 import database.models.Order;
 
@@ -14,5 +16,7 @@ public interface OrderService {
 	public Order save(Order order);
 
 	public PageDataList<Order> findPageList(Order order, int pageNum);
+
+	public List<Order> findAll();
 	
 }
