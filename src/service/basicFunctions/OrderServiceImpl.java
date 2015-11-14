@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import database.basicFunctions.dao.OrderDao;
 import database.common.PageDataList;
 import database.models.Order;
+import database.models.Tutor;
 
 @Service("orderService")
 public class OrderServiceImpl implements OrderService {
@@ -39,6 +40,19 @@ public class OrderServiceImpl implements OrderService {
 	
 	public List<Order> findAll() {
 		return orderDao.findAll();
+	}
+	
+
+	public List<Order> findTutorList(Tutor tutor) {
+		buffer = new StringBuffer();
+		
+		buffer.append(" FROM  Order ");
+		buffer.append(" WHERE ");
+		buffer.append(" qTutor.id = ");
+		buffer.append(tutor.getId());
+		buffer.append(" ORDER BY addTime DESC ");
+		
+		return orderDao.getByHql(buffer.toString());
 	}
 	
 	

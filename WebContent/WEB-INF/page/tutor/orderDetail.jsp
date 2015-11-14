@@ -4,49 +4,61 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<title>导师平台</title>
-<link rel="stylesheet" href="/sp/dist/css/bootstrap.css" >
+<title>约谈详情</title>
+<link rel="stylesheet" href="/sp/css/base.css" />
+<link rel="stylesheet" href="/sp/css/ncda.css" />
 
 <script type="text/javascript" src="/sp/dist/jquery.js" ></script>
-<script type="text/javascript" src="/sp/dist/js/bootstrap.js" ></script>
 <script type="text/javascript" src="/sp/js/common.js" ></script>
 <script type="text/javascript">
+var replyStatus = false;
+
 $(function(){
 	var id = $("#id").val();
 	var params = "id="+id;
 	$.ajax({
-		url:"/tdata/orderDetail.html",
+		url:"/tutor/data/orderDetail.html",
 		type:"POST",
 		data:params,
 		dataType:"json",
 		success:function(res){
 			console.log(res);
+			replyStatus = getReplyStatus(res.errmsg.order.status,res.errmsg.order.qTutorTime.realDate);
+			
 			var htmlStr = "";
-			htmlStr += "<p>["+res.errmsg.nbStudentsUser.realName+"] 支付状态:"+getPayStatus(res.errmsg)+"%</p>";
+			htmlStr += "<h3>["+res.errmsg.order.qCustomer.realName+"]</h3>";
 			htmlStr += "<p>约谈主题:</p>"
-			htmlStr += "<p>"+res.errmsg.courseTopic+"</p>";
-			htmlStr += "<a class='btn btn-default' >申请取消</a>";
-			htmlStr += "<p>约谈时间:"+jsDateTimeOnly(res.errmsg.studentPreferedDate)+"</p>";
-			htmlStr += "<p>约谈状态；"+getOrderStatus(res.errmsg.commentsStatus)+"</p>";
-			if(null!=res.score&&res.score.length){
-				htmlStr += "<p>客户评分:"+res.score[0].score+"</p>";
-				htmlStr += "<p>客户评语:</p><p>"+res.score[0].comments+"</p>";
+			htmlStr += "<textarea readonly='readonly' >"+res.errmsg.order.topicContent+"</textarea>";
+			htmlStr += "<p>约谈时间:<font>"+jsDateTimeOnly(res.errmsg.order.qTutorTime.realDate)+"("+res.errmsg.order.qTutorTime.realTime+")</font></p>";
+			htmlStr += "<p>约谈状态:<font class='tutor-state-has'>"+getOrderStatus(res.errmsg.order.status)+"</font></p>";
+			htmlStr += "<p>客户评语：</p>";
+			if(null!=res.errmsg&&res.errmsg.length>0){
+				htmlStr += "<textarea readonly='readonly' >"+res.errmsg.score[0].content+"</textarea>";
 			}else{
-				htmlStr += "<p>客户评分:暂未打分!</p>";
-				htmlStr += "<p>客户评语:</p><p>暂无</p>";
+				htmlStr += "<textarea readonly='readonly' >暂未评价</textarea>";
 			}
-			htmlStr += "<a class='btn btn-info' onclick=openUrl('/tpage/epilog.html?id="+id+"') >填小结</a>";
-			$("#dataDiv").html(htmlStr);
+			$(".main-list").html(htmlStr);
 		}
 	})
 })
-</script>
-<style type="text/css">
 
-</style>
+/**
+ * 查看小结
+ */
+function sendComments(){
+	var id = $("#id").val();
+	var params = "id="+id;
+	
+	location.href = "/tutor/page/comments.html?id="+id;
+}
+</script>
 </head>
 <body>
-	<input type="hidden" value="${id }" id="id" >
-	<div id="dataDiv" ></div>
+	<input type="hidden" value="${orderId }" id="id" >
+	<div class="nav-title">约谈详情<div class="close"onclick="openUrl('/tutor/page/index.html')"  >&Chi;</div></div>
+	<div class="main-list"></div>
+	<div class="tutor-search">
+		<div class="tutor-search-btn btn-orange-bg" onclick="sendComments()" >查看并提交约谈小结</div>
+	</div>
 </body>
 </html>

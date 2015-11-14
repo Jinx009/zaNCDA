@@ -15,12 +15,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import common.helper.ConstantUtil;
 import common.helper.HttpWebIOHelper;
 import common.helper.StringUtil;
+import service.basicFunctions.CommentsService;
 import service.basicFunctions.OrderService;
+import service.basicFunctions.ScoreService;
 import database.common.PageDataList;
+import database.models.Comments;
 import database.models.Customer;
 import database.models.Order;
+import database.models.Score;
 import database.models.Tutor;
 
 @Controller
@@ -38,6 +43,12 @@ public class OrderData {
 	
 	@Autowired
 	private OrderService orderService;
+	
+	@Autowired
+	private ScoreService scoreService;
+	
+	@Autowired
+	private CommentsService commentService;
 
 	@RequestMapping(value = "/admin/data/order")
 	public void orderList(HttpServletResponse response,HttpServletRequest request) throws IOException, ParseException{
@@ -77,7 +88,52 @@ public class OrderData {
 		
 	}
 	
+	/**
+	 * 导师订单列表
+	 * @param response
+	 * @param request
+	 * @throws IOException
+	 * @throws ParseException
+	 */
+	@RequestMapping(value = "/tutor/data/order")
+	public void tutorOrderList(HttpServletResponse response,HttpServletRequest request) throws IOException, ParseException{
+		data = new HashMap<String,Object>();
+		
+		tutor = (Tutor) request.getSession().getAttribute(ConstantUtil.TUTOR_SESSION);
+		List<Order> list = orderService.findTutorList(tutor);
+		
+		data.put(ConstantUtil.RESULT,ConstantUtil.SUCCESS);
+		data.put(ConstantUtil.ERROR_MSG,list);
+		
+		HttpWebIOHelper._printWebJson(data, response);
+		
+		
+	}
 	
+	@RequestMapping(value = "/tutor/data/orderDetail")
+	public void tutorOrderDetail(HttpServletResponse response,HttpServletRequest request) throws IOException, ParseException{
+		
+		Integer id = Integer.valueOf(request.getParameter("id"));
+		tutor = (Tutor) request.getSession().getAttribute(ConstantUtil.TUTOR_SESSION);
+		
+		Map<String,Object> map = new HashMap<String, Object>();
+		
+		order = orderService.getById(id);
+		List<Score> scoreList = scoreService.getByAttr(id);
+		List<Comments> commentsList = commentService.getByOrderId(id);
+ 		
+		map.put("order",order);
+		map.put("score",scoreList);
+		map.put("comments",commentsList);
+		
+		data = new HashMap<String,Object>();
+		data.put(ConstantUtil.RESULT,ConstantUtil.SUCCESS);
+		data.put(ConstantUtil.ERROR_MSG,map);
+		
+		HttpWebIOHelper._printWebJson(data, response);
+		
+		
+	}
 	
 	
 	

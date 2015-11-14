@@ -7,5 +7,7 @@ import database.models.Comments;
 public interface CommentsService {
 	
 	public List<Comments> getByOrderId(Integer id);
+
+	public void save(Comments comments);
 	
 }

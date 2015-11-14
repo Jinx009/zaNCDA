@@ -73,12 +73,36 @@ Date.prototype.format = function(format)
  */
 function getOrderStatus(status){
 	if(0==status){
-		return "约谈进行中";
+		return "未支付";
 	}else if(1==status){
-		return "顾客已评价";
+		return "已支付";
 	}else if(2==status){
-		return "教师已评价";
-	}else{
+		return "导师已评价";
+	}else if(3==status){
+		return "导师已评价";
+	}else if(4==status){
+		return "顾客已评价";
+	}else if(5==status){
 		return "双方已互评";
+	}else if(6==status){
+		return "约谈已结束";
+	}else{
+		return "约谈已取消";
 	}
+}
+
+/**
+ * 是否可以评价
+ * @param status
+ * @param time
+ */
+function getReplyStatus(status,time){
+	var timestamp=new Date().getTime();
+	if(parseInt(status)<1){
+		return false;
+	}
+	if(parseFloat(time)<parseFloat(time)){
+		return false;
+	}
+	return true;
 }

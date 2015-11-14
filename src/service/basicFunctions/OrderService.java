@@ -4,6 +4,7 @@ import java.util.List;
 
 import database.common.PageDataList;
 import database.models.Order;
+import database.models.Tutor;
 
 public interface OrderService {
 
@@ -18,5 +19,7 @@ public interface OrderService {
 	public PageDataList<Order> findPageList(Order order, int pageNum);
 
 	public List<Order> findAll();
+
+	public List<Order> findTutorList(Tutor tutor);
 	
 }

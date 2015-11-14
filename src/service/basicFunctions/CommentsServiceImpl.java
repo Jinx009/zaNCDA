@@ -27,6 +27,10 @@ public class CommentsServiceImpl implements CommentsService {
 		
 		return commentsDao.getByHql(buffer.toString());
 	}
+	
+	public void save(Comments comments) {
+		commentsDao.save(comments);
+	}
 
 	
 	

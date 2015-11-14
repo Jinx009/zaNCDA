@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>Wechat-顾客版本</title>
+    <link rel="stylesheet" href="../css/base.css" />
+    <link rel="stylesheet" href="../css/ncda.css" />
+    <script type="text/javascript" src="../js/jquery.js" ></script>
+    <script type="text/javascript">
+    	$(function(){
+    		var width = $(window).width();
+    		var height = $(document).height();
+    		$(".main").css("width",width+"px");
+    		$(".main").css("height",height+"px");
+    		$("#sure").bind("click",function(){
+    			$(".mask").show();
+    			$(".boxWrap").show();
+    			$(".mask").css("width",width+"px");
+    			$(".mask").css("height",height+"px");
+    			$(".boxWrap").css("height",height*0.54+"px");
+    			$(".success-box").show();
+    		})
+    	})
+	</script>
+</head>
+<body>
+	<div class="main">
+		<div class="nav-title">首次注册完善个人信息</div>
+		<div class="register-inp register-inp-top">
+			<span class="register-inp-text">姓名</span>
+			<input  value="" class="register-inp-long"/>
+		</div>
+		<div class="register-inp register-inp-top">
+			<span class="register-inp-text">性别</span>
+			<input  value="" class="register-inp-long"/>
+		</div>
+		<div class="register-inp register-inp-top">
+			<span class="register-inp-text">生日</span>
+			<select  class="register-select-short">
+				<option value="0" selected="selected">1990</option>
+				<option value="1">1991</option>
+				<option value="2">1992</option>
+				<option value="3">1993</option>
+			</select>
+			<span class="register-select-span">年</span>
+		</div>
+		<div class="register-inp register-inp-top">
+			<span class="register-inp-text">行业</span>
+			<select class="register-select-long">
+				<option value="IT" selected="selected">IT</option>
+				<option value="石油">石油</option>
+				<option value="销售">销售</option>
+			</select>
+		</div>
+		<div class="register-inp register-inp-top">
+			<span class="register-inp-text">职位</span>
+			<select class="register-select-long">
+				<option value="医生" selected="selected">医生</option>
+				<option value="教授">教授</option>
+			</select>
+		</div>
+		<div class="register-inp register-inp-top">
+			<span class="register-inp-text">家庭成员</span>
+			<select class="register-select-short">
+				<option value="one" selected="selected">one</option>
+				<option value="two">two</option>
+				<option value="three">three</option>
+			</select>
+			<span class="register-select-span">人</span>
+		</div>
+		<div class="register-inp register-inp-top">
+			<span class="register-inp-text">E-mail</span>
+			<input  value="" class="register-inp-long"/>
+		</div>
+		<div class="register-inp register-inp-top">
+			<span class="register-inp-text">QQ</span>
+			<input  value="" class="register-inp-long"/>
+		</div>
+		<div class="register-inp register-inp-top">
+			<span class="register-inp-text">微信</span>
+			<input  value="" class="register-inp-long"/>
+		</div>
+		<div class="sure-btn">
+			<div class="tutor-search-btn" id="sure">提交</div>
+		</div>
+		<!--蒙版-->
+		<div class="mask"></div>
+		<!--悬浮框	start-->
+		<div class="boxWrap">
+			<!--注册成功	start-->
+			<div class="success-box">
+				<div class="success-img">
+					<img src="../img/success.png"/>
+				</div>
+				<p class="success-p">恭喜您，注册成功！</p>
+				<div class="success-btn success-btn-bgColor">确定</div>
+			</div>
+			<!--注册成功	start-->
+		</div>
+		<!--悬浮框	end-->
+	</div>
+	
+	
+	
+</body>
+</html>

@@ -68,6 +68,17 @@ public class TutorPage {
 		request.setAttribute("tutor",realName);
 		return "/tutor/index";
 	}
+	
+	/**
+	 * 导师信息
+	 * @return
+	 */
+	@RequestMapping(value = "/tutor/page/infoOne")
+	public String info(HttpServletRequest request,HttpServletResponse response){
+		tutor = (Tutor) request.getSession().getAttribute(ConstantUtil.TUTOR_SESSION);
+		request.setAttribute("tutor",tutor);
+		return "/tutor/infoOne";
+	}
 
 	/**
 	 * 跳转后台导师编辑页面

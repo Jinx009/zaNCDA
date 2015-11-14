@@ -111,7 +111,7 @@ public class Tutor {
 	 * 性别
 	 */
 	@Column(name = "sex")
-	private Integer sex;
+	private String sex;
 	/**
 	 * 自己行业
 	 */
@@ -172,7 +172,7 @@ public class Tutor {
 	/**
 	 * 生日
 	 */
-	@Temporal(TemporalType.TIMESTAMP)
+	@Temporal(TemporalType.DATE)
 	@Column(name = "birthday")
 	private Date birthday;
 	/**
@@ -356,11 +356,12 @@ public class Tutor {
 		this.idNumber = idNumber;
 	}
 
-	public Integer getSex() {
+	
+	public String getSex() {
 		return sex;
 	}
 
-	public void setSex(Integer sex) {
+	public void setSex(String sex) {
 		this.sex = sex;
 	}
 
