@@ -12,7 +12,13 @@
 <script type="text/javascript" src="/sp/js/common.js" ></script>
 <script type="text/javascript" src="/sp/js/date/WdatePicker.js" ></script>
 <script type="text/javascript">
-
+$(function(){
+	$("input").each(function(){
+		if(""!=$(this).val()&&null!=$(this).val()){
+			$(this).attr("readOnly","readOnly");
+		}
+	})
+})
 </script>
 </head>
 <body class="tutor-bg">
@@ -28,41 +34,42 @@
 	</div>
 	<div class="register-inp register-inp-top">
 		<span class="register-inp-text">生日</span>
-		<input value="${tutor.birthday }" id="birthDay"  onClick="WdatePicker()" class="register-inp-long"/>
+		<input value="${tutor.birthday }" id="birthday"  onClick="WdatePicker()" class="register-inp-long"/>
 	</div>
 	<div class="register-inp register-inp-top">
+		<input type="hidden" id="tradeValue" value="${tutor.qTrade.tradeName }" >
 		<span class="register-inp-text">行业</span>
-		<select class="register-select-long">
-			<option value="" selected="selected"></option>
+		<select class="register-select-long" id="trade" >
+			<option selected="selected" >请选择行业</option>
 		</select>
 	</div>
 	<div class="register-inp register-inp-top">
 		<span class="register-inp-text">E-mail</span>
-		<input  value="" class="register-inp-long"/>
+		<input  value="${tutor.email }" id="email" class="register-inp-long"/>
 	</div>
 	<div class="register-inp register-inp-top">
 		<span class="register-inp-text">QQ</span>
-		<input  value="" class="register-inp-long"/>
+		<input  value="${tutor.qq }"  id="qq" class="register-inp-long"/>
 	</div>
 	<div class="register-inp register-inp-top">
 		<span class="register-inp-text">微信号</span>
-		<input  value="" class="register-inp-long"/>
+		<input  value="${tutor.wechatName }" id="wechatName" class="register-inp-long"/>
 	</div>
 	<div class="register-inp register-inp-top">
 		<span class="register-inp-text">身份证</span>
-		<input  value="" class="register-inp-long"/>
+		<input  value="${tutor.idNumber }" id="idNumber" class="register-inp-long"/>
 	</div>
 	<div class="register-inp register-inp-top">
 		<span class="register-inp-text">银行账号</span>
-		<input  value="" class="register-inp-long"/>
+		<input  value="${tutor.bankCard }" id="bankCard" class="register-inp-long"/>
 	</div>
 	<div class="register-inp register-inp-top">
 		<span class="register-inp-text">确认账号</span>
-		<input  value="" class="register-inp-long"/>
+		<input  value="${tutor.bankCard }" class="register-inp-long"/>
 	</div>
 	<div class="register-inp register-inp-top">
 		<span class="register-inp-text">银行名称</span>
-		<input  value="" class="register-inp-long"/>
+		<input  value="${tutor.bankName }" id="bankName" class="register-inp-long"/>
 	</div>
 	<div class="sure-btn">
 		<div class="tutor-search-btn btn-orange-bg">下一步</div>

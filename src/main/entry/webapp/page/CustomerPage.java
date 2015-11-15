@@ -89,6 +89,57 @@ public class CustomerPage {
 		return "/customer/index";
 	}
 	
+	/**
+	 * 新建约谈
+	 * @return
+	 */
+	@RequestMapping(value = "/customer/page/new")
+	public String newPage(){
+		return "/customer/new";
+	}
+	
+	/**
+	 * 约谈管理
+	 * @return
+	 */
+	@RequestMapping(value = "/customer/page/manage")
+	public String manage(){
+		return "/customer/manage";
+	}
+	
+	/**
+	 * 筛选结果
+	 * @return
+	 */
+	@RequestMapping(value = "/customer/page/selectResult")
+	public String selectResult(){
+		return "/customer/selectResult";
+	}
+	
+	/**
+	 * 筛选条件
+	 * @return
+	 */
+	@RequestMapping(value = "/customer/page/selectTutor")
+	public String selectTutor(){
+		return "/customer/selectTutor";
+	}
+	
+	@RequestMapping(value = "/customer/page/qOne")
+	public String qOne(){
+		return "/customer/qOne";
+	}
+	
+	@RequestMapping(value = "/customer/page/qTwo")
+	public String qTwo(){
+		return "/customer/qTwo";
+	}
+	
+	@RequestMapping(value = "/customer/page/qThree")
+	public String qThree(){
+		return "/customer/qThree";
+	}
+	
 	
 	
 	public Map<String, Object> getData() {

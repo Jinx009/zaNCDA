@@ -5,10 +5,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <title>顾客平台</title>
-<link rel="stylesheet" href="/sp/dist/css/bootstrap.css" >
+<link rel="stylesheet" href="/sp/css/base.css" />
+<link rel="stylesheet" href="/sp/css/ncda.css" />
 
 <script type="text/javascript" src="/sp/dist/jquery.js" ></script>
-<script type="text/javascript" src="/sp/dist/js/bootstrap.js" ></script>
 <script type="text/javascript" src="/sp/js/common.js" ></script>
 <script type="text/javascript">
 $(function(){
@@ -59,65 +59,38 @@ function changeCode(){
 		type:"GET",
 		dataType:"json",
 		success:function(res){
-			$("#codeText").html(res.tutor_code);
+			$("#codeText").html(res.customer_code);
 		}
 	})
 }
 </script>
-<style type="text/css">
-.width100{
-	width: 100%;
-}
-body {
-	width: 100%;
-	font-family: "Microsoft Yahei";
-	text-align: center;
-}
-.space-div-8{
-	height: 80px;
-}
-.right{
-	text-align: right;
-}
-</style>
 </head>
 <body>
 	<input type="hidden" value="${openid }" id="openid" >
 	<input type="hidden" value="${status }" id="status" >
 	<input type="hidden" value="${url }" id="url" >
-	<div id="loginDiv"  >
-		<div class="space-div-8" >
-			<h2>导师登陆</h2>
-		</div>
-		<div class="row" >
-		  <div class="col-sm-1"></div>
-	      <div class="col-sm-10">
-	      	<form class="form-inline">
-			  <div class="form-group">
-			    <div class="input-group">
-			      <div class="input-group-addon">账户:</div>
-			      <input type="text" class="form-control" id="userName" placeholder="请输入用户名">
-			    </div>
-			  </div>
-			  <div class="form-group">
-			    <div class="input-group">
-			      <div class="input-group-addon">密码:</div>
-			      <input type="password" class="form-control" id="pwd" placeholder="请输入密码">
-			    </div>
-			  </div>
-			   <div class="form-group">
-			    <div class="input-group">
-			      <input type="text" class="form-control" id="code" placeholder="请输入验证码">
-			      <div class="input-group-addon" id="codeText" onclick="changeCode()" ></div>
-			    </div>
-			  </div>
-			   <div class="form-group">
-			  </div>
-			  <button type="button" class="btn btn-primary" onclick="doLogin()" >登陆</button>
-			</form>
-	      </div>
-	      <div class="col-sm-1"></div>
-	     </div>
+	<div class="nav-title">登录</div>
+	<div class="logo">
+		<img src="/sp/images/logo.png"/>
 	</div>
+	<div class="register-inp login-inp-top">
+		<span class="register-inp-text">手机号</span>
+		<input type="text" placeholder="请输入您的手机号码"  value="" id="userName"  class="register-inp-long"/>
+	</div>
+	<div class="register-inp login-inp-top">
+		<span class="register-inp-text">密码</span>
+		<input type="password" placeholder="请输入您的密码"  value="" id="pwd" class="register-inp-long"/>
+	</div>
+	<div class="register-inp login-inp-top">
+		<span class="register-inp-text">验证码</span>
+		<input type="text"  value="" id="code" class="register-inp-short"/>
+		<div class="register-inp-btn" id="codeText" onclick="changeCode()" ></div>
+	</div>
+	<div class="clear"></div>
+	
+	<div class="tutor-search">
+		<div class="tutor-search-btn" onclick="doLogin()" >登录</div>
+	</div>
+	<div class="register-tip"><a href="register.html">立即注册</a></div>
 </body>
 </html>

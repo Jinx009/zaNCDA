@@ -442,7 +442,7 @@
 	appearance:none;
 	-moz-appearance:none; 
 	-webkit-appearance:none;
-	background: url(../img/select_right.png) no-repeat center right;
+	background: url(/sp/images/select_right.png) no-repeat center right;
 }
 .register-inp select option{
 	height: 30px;
@@ -566,7 +566,7 @@
 }
 .tutorDetails-bg{
 	width: 100%;
-	background: url(../img/tutorDetail_head_bg.png) no-repeat;
+	background: url(/sp/images/tutorDetail_head_bg.png) no-repeat;
 	background-size:100% 100% ;
 	min-height: 147px;
 	position: relative;
@@ -761,6 +761,9 @@
 	background: #FFFFFF;
 	color: #6e6666;
 	text-align: center;
+	position: fixed;
+	bottom: 0px;
+	z-index: 9999;
 }
 .index-nav div{
 	width: 49%;
@@ -1066,7 +1069,7 @@
 	
 }
 .personal-wrap input{
-	background:url(../img/calendar.png) no-repeat 98% center;
+	background:url(/sp/images/calendar.png) no-repeat 98% center;
 	height: 44px;
 	width: 100%;
 }
