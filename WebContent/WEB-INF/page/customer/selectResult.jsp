@@ -4,6 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 <link rel="stylesheet" href="/sp/css/base.css" />
 <link rel="stylesheet" href="/sp/css/ncda.css" />
 <title>筛选结果</title>
@@ -16,10 +17,17 @@
 function goNext(){
 	location.href = "/customer/page/selectResult.html";
 }
+
+/**
+ * 上一步
+ */
+function goBack(){
+	window.history.back();
+}
 </script>
 </head>
 <body class="tutor-bg">
-<a href="#"><div class="nav-title"><span class="nav-back">&lt;</span>我们推荐的导师</div></a>
+<a ><div class="nav-title"><span class="nav-back" onclick="goBack();" >&lt;</span>我们推荐的导师</div></a>
 <!--匹配成功-->
 <div class="tutor-tip" id="tutor-tip-success">
 	<p>恭喜!</p>

@@ -21,4 +21,4 @@ html, body, div, span, applet, object, iframe,h1, h2, h3, h4, h5, h6, p, blockqu
 textarea,input,select{border-color: #ebebeb;border-radius: 4px;}
 button{border: 0;border-radius: 4px;}
 .clear{clear: both;}
-input{border-width: 1px;}
+input{border: 0px;border: 1px solid #ebebeb;text-align: center;}

@@ -2,9 +2,6 @@
 .tutor-bg{
 	background: #ededed;
 }
-.none{
-	display: none;
-}
 .white-bg{
 	background: #FFFFFF;
 	width: 100%;
@@ -242,14 +239,6 @@
 .tutor-tip p{
 	line-height: 24px;
 }
-/*.tutor-like{
-	line-height: 30px;
-	font-size: 1.0em;
-}
-.tutor-desc{
-	line-height: 30px;
-	font-size: 1.0em;
-}*/
 .tutor-desc{
 	clear: both;
 	height: 24px;
@@ -371,6 +360,12 @@
 	padding-top: 33px;
 	padding-bottom: 22px;
 }
+.main-btn{
+	width: 100%;
+	background: #FFFFFF;
+	padding-top: 10px;
+	padding-bottom: 18px;
+}
 .sure-btn{
 	width: 100%;
 	background: #FFFFFF;
@@ -442,7 +437,7 @@
 	appearance:none;
 	-moz-appearance:none; 
 	-webkit-appearance:none;
-	background: url(/sp/images/select_right.png) no-repeat center right;
+	background: url(../img/select_right.png) no-repeat center right;
 }
 .register-inp select option{
 	height: 30px;
@@ -473,6 +468,7 @@
 	height: 50px;
 	line-height: 50px;
 	text-align: center;
+	border-radius: 4px;
 }
 .register-tip{
 	position: absolute;
@@ -566,10 +562,11 @@
 }
 .tutorDetails-bg{
 	width: 100%;
-	background: url(/sp/images/tutorDetail_head_bg.png) no-repeat;
+	background: url(../img/tutorDetail_head_bg.png) no-repeat;
 	background-size:100% 100% ;
 	min-height: 147px;
 	position: relative;
+	border-top: 1px solid #355d9e;
 }
 .tutorDetails-bg img{
 	position: absolute;
@@ -590,7 +587,7 @@
 	vertical-align: middle;
 }
 .tutor-title{
-	width: 58%;
+	width: 62%;
 	margin: 0 auto; 
 	height: 30px;
 	line-height: 30px;
@@ -603,11 +600,15 @@
 	font-size: 1.0em;
 	height: 30px;
 	float: left;	
+	width: 30%;
 }
 .tutor-title li:nth-child(2){
 	padding: 0px 10px;
+	text-align: center;
+	width: 29%;
 }
 .tutor-title li img{
+	width: 100%;
 	vertical-align: middle;
 }
 .tutor-content{
@@ -626,7 +627,7 @@
 	float: left;
 	color: #FFFFFF;
 	border-radius: 18px;
-	padding: 10px 20px;
+	padding: 10px 16px;
 	margin-right: 5px;
 	font-size: 1.0em;
 }
@@ -641,10 +642,18 @@
 	width: 100%;
 	height: 50px;
 	line-height: 50px;
-	text-align: center;
 }
 .choice-title h1{
 	font-size: 1.3em;
+	font-weight: normal;
+	text-align: center;
+}
+.choice-title p{
+	width: 94%;
+	margin: 0 auto;
+	font-size: 1.3em;
+	font-weight: normal;
+	text-align: left;
 }
 .choice-question li{
 	width: 97%;
@@ -657,6 +666,9 @@
 	float: right;
 	width: 8px;
 	margin-right: 3px;
+}
+.information-question{
+	padding-bottom: 10px;
 }
 .choice-text{
 	width: 94%;
@@ -761,9 +773,6 @@
 	background: #FFFFFF;
 	color: #6e6666;
 	text-align: center;
-	position: fixed;
-	bottom: 0px;
-	z-index: 9999;
 }
 .index-nav div{
 	width: 49%;
@@ -825,11 +834,12 @@
 .index-img{
 	position: relative;
 	width: 100%;
-	min-height: 224px;
+	height: 224px;
 }
 .index-big{
 	position: absolute;
 	width: 100%;
+	height: 224px;
 	top: 0px;
 	left: 0px;
 	z-index: 22;
@@ -1069,7 +1079,7 @@
 	
 }
 .personal-wrap input{
-	background:url(/sp/images/calendar.png) no-repeat 98% center;
+	background:url(../img/calendar.png) no-repeat 98% center;
 	height: 44px;
 	width: 100%;
 }
@@ -1241,7 +1251,7 @@
 	margin-top: 13px;
 }
 .main-list{
-	width: 100%;
+	width: 88%;
 	margin: 0 auto;
 	margin-bottom: 5px;
 	padding: 10px 6%;
@@ -1259,7 +1269,7 @@
 .main-list textarea{
 	min-height: 106px;
 	background: #fafafa;
-	width: 82%;
+	width: 94%;
 	padding: 3%;
 	margin:5px 0px;
 }
@@ -1306,4 +1316,166 @@
 }
 .index-list-bg-three{
 	background: #fe9e2e;
+}
+.select-title{
+	width: 82%;
+	margin: 0 auto;
+	height: 50px;
+	line-height: 50px;
+	margin-top: 7%;
+}
+.select-answer li{
+	width: 82%;
+	padding: 0px 9%;
+}
+.appoint-list{
+	clear: both;
+	width: 100%;
+	margin: 0 auto;
+	padding: 0px 5%;
+	background: #FFFFFF;
+	margin-bottom: 5px;
+	overflow: hidden;
+}
+.appoint-list h3{
+	font-weight: normal;
+	height: 50px;
+	line-height: 50px;
+	font-size: 1.3em;
+	color: #a3a3a3;
+}
+
+.appoint-inp{
+	width: 90%;
+	margin-bottom:10px;
+	height: 50px;
+}
+.appoint-inp-short{
+	width: 71%;
+	float: left;
+	height: 50px;
+}
+.appoint-inp-btn{
+	width: 26%;
+	height: 50px;
+	line-height: 50px;
+	text-align: center;
+	background: #6887B6;
+	color: #FFFFFF;
+	float: right;
+	border-radius: 4px;
+}
+.teacher-two-btn{
+	width: 90%;
+	margin: 0 auto;
+	height: 44px;
+	background: #FFFFFF;
+	padding: 20px 5%;
+}
+.teacher-orange-btn{
+	background: #fe9e2e;
+}
+.teacher-normal-btn{
+	background: #4ebbb6;
+}
+.teacher-two-btn button{
+	float: left;
+	width: 40%;
+	height: 44px;
+	line-height: 44px;
+	font-size: 1.3em;
+	letter-spacing: 2px;
+	text-align: center; 
+	color: #FFFFFF;
+	border-radius: 4px;
+}
+
+.teacher-two-btn button:last-child{
+	float: right;
+}
+.cancel-block{
+	
+}
+.cancel-left{
+	float: left;
+}
+.cancel-right{
+	float: right;
+	width: 25%;
+	background: #4ebcb7;
+	color: #FFFFFF;
+	height: 48px;
+	line-height: 48px;
+	text-align: center;
+	border-radius: 4px;
+}
+.interview-box{
+	width: 84%;
+	margin:0 auto;
+	padding-top: 5%;
+}
+.interview-p{
+	padding-bottom: 5%;
+}
+.interview-box textarea{
+	width: 94%;
+	background: #fafafa;
+	color: #9b9b9b;
+	padding: 3%;
+}
+.interview-btn{
+	width: 84%;
+	position: absolute;
+	bottom: 5%;
+	left: 8%;
+}
+.interview-btn button{
+	float: left;
+	width: 42%;
+	height: 44px;
+	line-height: 44px;
+	text-align: center;
+	background: #4ebcb7;
+	color: #FFFFFF;
+	border-radius: 4px;
+	font-size: 1.125em;
+	letter-spacing: 2px;
+}
+.interview-btn button:last-child{
+	float: right;
+}
+.interview-inp{
+	width: 100%;
+	margin: 0 auto;
+	height: 44px;
+	
+}
+.interview-sel{
+	width: 100%;
+	margin: 0 auto;
+	height: 44px;
+	-moz-appearance:none; 
+	-webkit-appearance:none;
+	background: url(../img/select_right.png) no-repeat center right;
+	
+}
+.interview-big-btn{
+	
+	width: 84%;
+	left: 8%;
+	height: 44px;
+	line-height: 44px;
+	text-align: center;
+	color: #FFFFFF;
+	background: #fe9e2e;
+	border-radius: 4px;
+	position: absolute;
+	bottom: 5%;
+	font-size: 1.3em;
+	letter-spacing: 2px;
+}
+#calendar{
+	border-top: 1px solid #d1d1d1;
+	border-bottom: 1px solid #d1d1d1;
+	margin: 3% 0px;
 }

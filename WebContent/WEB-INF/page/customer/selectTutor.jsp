@@ -4,6 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 <link rel="stylesheet" href="/sp/css/base.css" />
 <link rel="stylesheet" href="/sp/css/ncda.css" />
 <title>筛选导师</title>
@@ -19,7 +20,7 @@ function goNext(){
 </script>
 </head>
 <body>
-<a href="#"><div class="nav-title"><span class="nav-back" onclick="openUrl('/customer/page/new.html')" >&lt;</span>新建辅导</div></a>
+<a><div class="nav-title"><span class="nav-back" onclick="openUrl('/customer/page/new.html')" >&lt;</span>新建辅导</div></a>
 <div class="choice-title"><h1>请选择您心仪导师的属性</h1></div>
 <div class="register-inp register-inp-top">
 	<span class="register-inp-text">擅长领域<b>*</b></span>
