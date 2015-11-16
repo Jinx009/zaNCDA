@@ -18,7 +18,69 @@ $(function(){
 			$(this).attr("readOnly","readOnly");
 		}
 	})
+	$.ajax({
+		url:"/trade/data/list.html?time="+getRandom(),
+		type:"GET",
+		dataType:"json",
+		success:function(res){
+			var htmlStr = "";
+			for(var i = 0;i<res.errmsg.length;i++){
+				if("0"==res.errmsg[i].parentId){
+					htmlStr += "<option value='"+res.errmsg[i].id+"' >"+res.errmsg[i].tradeName+"</option>";
+				}
+			}
+			$("#trade").html(htmlStr);
+			
+			var tradeId = $("#tradeValue").val();
+			var element1 = document.getElementById("trade");   
+	           
+	        for(i=0;i<element1.length;i++)
+	        {
+	          if(value1==element1.options[i].value)
+	          {  
+	              element1.options[i].selected=true; 
+	          }  
+	        }  
+		}
+	})
 })
+
+/**
+ * 保存第一页信息
+ */
+function saveInfoOne(){
+	var realName = $("#realName").val();
+	var sex = $("#sex").val();
+	var birthday = $("#birthday").val();
+	var trade = $("#trade").val();
+	var email = $("#email").val();
+	var qq = $("#qq").val();
+	var wechatName = $("#wechatName").val();
+	var idNumber = $("#idNumber").val();
+	var bankCard = $("#bankCard").val();
+	var reBankCard = $("#reBankCard").val();
+	var bankName = $("#bankName").val();
+	
+	var params = "realName="+realName+"&sex="+sex+"&birthday="+birthday+"&trade="+trade+
+				 "&email="+email+"&qq="+qq+"&wechatName="+wechatName+"&idNumber="+idNumber+
+				 "&bankCard="+bankCard+"&bankName="+bankName;
+	
+	if(reBankCard!=bankCard){
+		alert("银行卡号不一致!");
+	}else{
+		$.ajax({
+			url:"/tutor/data/saveInfoOne.html",
+			type:"POST",
+			data:params,
+			dataType:"json",
+			success:function(res){
+				if("success"==res.result){
+					location.href = "/tutor/page/infoTwo.html";
+				}
+			}
+		})
+	}
+}
 </script>
 </head>
 <body class="tutor-bg">
@@ -37,7 +99,7 @@ $(function(){
 		<input value="${tutor.birthday }" id="birthday"  onClick="WdatePicker()" class="register-inp-long"/>
 	</div>
 	<div class="register-inp register-inp-top">
-		<input type="hidden" id="tradeValue" value="${tutor.qTrade.tradeName }" >
+		<input type="hidden" id="tradeValue" value="${trade}" >
 		<span class="register-inp-text">行业</span>
 		<select class="register-select-long" id="trade" >
 			<option selected="selected" >请选择行业</option>
@@ -65,14 +127,14 @@ $(function(){
 	</div>
 	<div class="register-inp register-inp-top">
 		<span class="register-inp-text">确认账号</span>
-		<input  value="${tutor.bankCard }" class="register-inp-long"/>
+		<input  value="${tutor.bankCard }" id="reBankCard" class="register-inp-long"/>
 	</div>
 	<div class="register-inp register-inp-top">
 		<span class="register-inp-text">银行名称</span>
 		<input  value="${tutor.bankName }" id="bankName" class="register-inp-long"/>
 	</div>
 	<div class="sure-btn">
-		<div class="tutor-search-btn btn-orange-bg">下一步</div>
+		<div class="tutor-search-btn btn-orange-bg" onclick="saveInfoOne()" >下一步</div>
 	</div>
 </div>
 </body>

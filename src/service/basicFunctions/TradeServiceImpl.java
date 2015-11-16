@@ -17,6 +17,10 @@ public class TradeServiceImpl  implements TradeService{
 	public List<Trade> findList() {
 		return tradeDao.findAll();
 	}
+
+	public Trade find(Integer tradeId) {
+		return tradeDao.find(tradeId);
+	}
 	
 	
 	

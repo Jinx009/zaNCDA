@@ -7,5 +7,7 @@ import database.models.Trade;
 public interface TradeService {
 
 	public List<Trade> findList();
+
+	public Trade find(Integer tradeId);
 	
 }

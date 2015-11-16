@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import common.helper.MD5Util;
+import common.helper.tool.util.ResultUtil;
 import database.basicFunctions.dao.TutorDao;
 import database.common.PageDataList;
 import database.models.Tutor;
@@ -66,6 +67,48 @@ public class TutorServiceImpl implements TutorService{
 		return tutorDao.find(id);
 	}
 	
+	public List<Tutor> findSelectList(Tutor tutor, Integer type,Integer workYears) {
+		buffer = new StringBuffer();
+		
+		List<Integer> list = ResultUtil.getWorkYears(workYears);
+		String typeResult = ResultUtil.getType(type);
+		
+		buffer.append(" SELECT id FROM q_tutor WHERE ");
+		buffer.append(" ( ");
+		buffer.append(" good_trade_one = ");
+		buffer.append(tutor.getTradeOne().getId());
+		buffer.append(" OR ");
+		buffer.append(" good_trade_two = ");
+		buffer.append(tutor.getTradeOne().getId());
+		buffer.append(" OR ");
+		buffer.append(" good_trade_three = ");
+		buffer.append(tutor.getTradeOne().getId());
+		buffer.append(" ) ");
+		buffer.append(" AND ");
+		buffer.append(" ( ");
+		buffer.append(" good_area_one = ");
+		buffer.append(tutor.getAreaOne().getId());
+		buffer.append(" OR ");
+		buffer.append(" good_area_two = ");
+		buffer.append(tutor.getAreaOne().getId());
+		buffer.append(" OR ");
+		buffer.append(" good_area_three = ");
+		buffer.append(tutor.getAreaOne().getId());
+		buffer.append(" ) ");
+		buffer.append(" AND ");
+		buffer.append("( work_years >= ");
+		buffer.append(list.get(0));
+		buffer.append(" ) AND ( ");
+		buffer.append(" work_years < ");
+		buffer.append(list.get(1));
+		buffer.append(") AND ");
+		buffer.append(typeResult);
+		buffer.append("  =  1 ");
+		
+		System.out.println(buffer.toString());
+		
+		return tutorDao.getBySql(buffer.toString());
+	}
 	
 	
 	

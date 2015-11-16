@@ -27,6 +27,10 @@ public class TopicServiceImpl implements TopicService{
 		
 		return topicDao.getByHql(buffer.toString());
 	}
+	
+	public Topic find(Integer topicId) {
+		return topicDao.find(topicId);
+	}
 
 	
 	

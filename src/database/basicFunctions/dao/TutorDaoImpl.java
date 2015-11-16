@@ -1,5 +1,6 @@
 package database.basicFunctions.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Query;
@@ -38,6 +39,21 @@ public class TutorDaoImpl extends BaseDaoImpl<Tutor> implements TutorDao{
 		PageDataList<Tutor> pageDataList = super.findPageList(param);
 		
 		return pageDataList;
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<Tutor> getBySql(String sql) {
+		Query query =  em.createNativeQuery(sql);
+		List<Object[]> list = query.getResultList();
+		List<Tutor> result = null;
+		if(null!=list&&!list.isEmpty()){
+			result = new ArrayList<Tutor>();
+			for(int i = 0;i<list.size();i++){
+				Tutor tutor = find((Integer)list.get(i)[0]);
+				result.add(tutor);
+			}
+		}
+		return result;
 	}
 
 }

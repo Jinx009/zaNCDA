@@ -11,62 +11,72 @@
 <script type="text/javascript" src="/sp/dist/jquery.js" ></script>
 <script type="text/javascript" src="/sp/js/common.js" ></script>
 <script type="text/javascript">
+$(function(){
+	$.ajax({
+		url:'/trade/data/list.html?time='+getRandom(),
+		type:'GET',
+		dataType:'json',
+		success:function(res){
+			var htmlStr = '',htmlStr2 = '';
+			for(var i = 0;i<res.errmsg.length;i++){
+				if('0'==res.errmsg[i].parentId){
+					htmlStr += '<option value='+res.errmsg[i].id+' >'+res.errmsg[i].tradeName+'</option>';
+				}else{
+					htmlStr2 += '<option value='+res.errmsg[i].id+' >'+res.errmsg[i].tradeName+'</option>';
+				}
+			}
+			$('#trade').html(htmlStr);
+			$('#area').html(htmlStr2);
+		}
+	})
+})
 /**
  * 下一步
  */
 function goNext(){
-	location.href = "/customer/page/selectResult.html";
+	var trade = $("#trade").val();
+	var area = $("#area").val();
+	var workYears = $("#workYears").val();
+	var type = $("#type").val();
+	var id = $("#id").val();
+	
+	location.href = "/customer/page/selectResult.html?type="+type+"&trade="+trade+"&area="+area+"&workYears="+workYears+"&id="+id;
 }
 </script>
 </head>
 <body>
+<input type="hidden" value="${id }" id="id" >
 <a><div class="nav-title"><span class="nav-back" onclick="openUrl('/customer/page/new.html')" >&lt;</span>新建辅导</div></a>
 <div class="choice-title"><h1>请选择您心仪导师的属性</h1></div>
 <div class="register-inp register-inp-top">
-	<span class="register-inp-text">擅长领域<b>*</b></span>
-	<select class="register-select-long">
-		<option value="" selected="selected"></option>
-		
-	</select>
-</div>
-
-<div class="register-inp register-inp-top">
 	<span class="register-inp-text">专注行业<b>*</b></span>
-	<select class="register-select-long">
+	<select class="register-select-long" id="trade" >
 		<option value="" selected="selected"></option>
-		
 	</select>
 </div>
-
+<div class="register-inp register-inp-top">
+	<span class="register-inp-text">擅长领域<b>*</b></span>
+	<select class="register-select-long" id="area" >
+		<option value="" selected="selected"></option>
+	</select>
+</div>
 <div class="register-inp register-inp-top">
 	<span class="register-inp-text">从业年限</span>
-	<select class="register-select-long">
-		<option value="" selected="selected"></option>
-		
+	<select class="register-select-long" id="workYears" >
+		<option value="1" selected="selected">1年以内</option>
+		<option value="2" >1-3年</option>
+		<option value="3" >3-5年</option>
+		<option value="4" >5-7年</option>
+		<option value="5" >7年以上</option>
 	</select>
 </div>
 
 <div class="register-inp register-inp-top">
 	<span class="register-inp-text">沟通方式</span>
-	<select class="register-select-long">
-		<option value="" selected="selected"></option>
-		
-	</select>
-</div>
-
-<div class="register-inp register-inp-top">
-	<span class="register-inp-text">辅导方式<b>*</b></span>
-	<select class="register-select-long">
-		<option value="" selected="selected"></option>
-		
-	</select>
-</div>
-
-<div class="register-inp register-inp-top">
-	<span class="register-inp-text">常驻地区</span>
-	<select class="register-select-long">
-		<option value="" selected="selected"></option>
-		
+	<select class="register-select-long" id="type" >
+		<option value="1" selected="selected">当面约谈</option>
+		<option value="2" >视频约谈</option>
+		<option value="3" >电话约谈</option>
 	</select>
 </div>
 

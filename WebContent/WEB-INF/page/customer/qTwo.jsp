@@ -50,7 +50,7 @@ function goNext(){
 <div class="clear"></div>
 <div class="choice-text">
 	<p>我想自己书写我的职场困惑场景</p>
-	<textarea placeholder="输入您的职场困惑"></textarea>
+	<textarea placeholder="输入您的职场困惑" ></textarea>
 </div>
 <div class="sure-btn">
 	<div class="tutor-search-btn" onclick="goNext()" >下一步</div>

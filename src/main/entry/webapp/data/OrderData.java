@@ -21,11 +21,15 @@ import common.helper.StringUtil;
 import service.basicFunctions.CommentsService;
 import service.basicFunctions.OrderService;
 import service.basicFunctions.ScoreService;
+import service.basicFunctions.TopicService;
+import service.basicFunctions.TradeService;
+import service.basicFunctions.TutorService;
 import database.common.PageDataList;
 import database.models.Comments;
 import database.models.Customer;
 import database.models.Order;
 import database.models.Score;
+import database.models.Topic;
 import database.models.Tutor;
 
 @Controller
@@ -49,6 +53,15 @@ public class OrderData {
 	
 	@Autowired
 	private CommentsService commentService;
+	
+	@Autowired
+	private TradeService tradeService;
+	
+	@Autowired
+	private TutorService tutorService;
+	
+	@Autowired
+	private TopicService topicService;
 
 	@RequestMapping(value = "/admin/data/order")
 	public void orderList(HttpServletResponse response,HttpServletRequest request) throws IOException, ParseException{
@@ -110,6 +123,13 @@ public class OrderData {
 		
 	}
 	
+	/**
+	 * 订单详情
+	 * @param response
+	 * @param request
+	 * @throws IOException
+	 * @throws ParseException
+	 */
 	@RequestMapping(value = "/tutor/data/orderDetail")
 	public void tutorOrderDetail(HttpServletResponse response,HttpServletRequest request) throws IOException, ParseException{
 		
@@ -132,9 +152,43 @@ public class OrderData {
 		
 		HttpWebIOHelper._printWebJson(data, response);
 		
-		
 	}
 	
+	/**
+	 * 保存订单
+	 * @param response
+	 * @param request
+	 * @throws IOException
+	 * @throws ParseException
+	 */
+	@RequestMapping(value = "/tutor/data/orderDetail")
+	public void saveOrderDetail(HttpServletResponse response,HttpServletRequest request) throws IOException, ParseException{
+		
+		Integer id = Integer.valueOf(request.getParameter("id"));
+		Integer tutorId = Integer.valueOf(request.getParameter("tutorId"));
+		customer = (Customer) request.getSession().getAttribute(ConstantUtil.CUSTOMER_SESSION);
+		Topic topic = topicService.find(id);
+		tutor = tutorService.find(tutorId);
+		
+		order = new Order();
+		order.setAddTime(new Date());
+		order.setPayStatus(0);
+		order.setPrice(tutor.getFacePrice());
+		order.setProcedures(tutor.getFacePrice()*0.03);
+		order.setqCustomer(customer);
+		order.setqTutor(tutor);
+		order.setStatus(0);
+		order.setTopic(topic);
+		order.setTopicContent("");
+		order.setUpdateTime(new Date());
+		
+		data = new HashMap<String,Object>();
+		data.put(ConstantUtil.RESULT,ConstantUtil.SUCCESS);
+		data.put(ConstantUtil.ERROR_MSG,order);
+		
+		HttpWebIOHelper._printWebJson(data, response);
+		
+	}
 	
 	
 	public List<Order> getList() {

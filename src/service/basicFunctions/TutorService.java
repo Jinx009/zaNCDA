@@ -22,5 +22,7 @@ public interface TutorService {
 	public PageDataList<Tutor> findPageList(Tutor tutor, int pageNum);
 	
 	public Tutor find(Integer id);
+
+	public List<Tutor> findSelectList(Tutor tutor, Integer type,Integer workYears);
 	
 }

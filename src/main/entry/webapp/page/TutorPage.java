@@ -76,8 +76,22 @@ public class TutorPage {
 	@RequestMapping(value = "/tutor/page/infoOne")
 	public String info(HttpServletRequest request,HttpServletResponse response){
 		tutor = (Tutor) request.getSession().getAttribute(ConstantUtil.TUTOR_SESSION);
+		if(null!=tutor.getqTrade()){
+			request.setAttribute("trade",tutor.getqTrade().getId());
+		}else{
+			request.setAttribute("trade","");
+		}
 		request.setAttribute("tutor",tutor);
 		return "/tutor/infoOne";
+	}
+	
+	/**
+	 * 完善信息二
+	 * @return
+	 */
+	@RequestMapping(value = "/tutor/page/infoTwo")
+	public String infoTwo(){
+		return "/tutor/infoTwo";
 	}
 
 	/**

@@ -65,6 +65,11 @@ public class Order {
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "update_time")
 	private Date updateTime;
+	
+	@OneToOne
+	@JoinColumn(name = "topic")
+	private Topic topic;
+	
 
 	public Integer getId() {
 		return id;
@@ -160,6 +165,14 @@ public class Order {
 
 	public void setUpdateTime(Date updateTime) {
 		this.updateTime = updateTime;
+	}
+
+	public Topic getTopic() {
+		return topic;
+	}
+
+	public void setTopic(Topic topic) {
+		this.topic = topic;
 	}
 	
 	

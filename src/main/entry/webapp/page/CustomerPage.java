@@ -112,7 +112,18 @@ public class CustomerPage {
 	 * @return
 	 */
 	@RequestMapping(value = "/customer/page/selectResult")
-	public String selectResult(){
+	public String selectResult(HttpServletRequest request){
+		Integer trade = Integer.valueOf(request.getParameter("trade"));
+		Integer area = Integer.valueOf(request.getParameter("area"));
+		Integer type = Integer.valueOf(request.getParameter("type"));
+		Integer workYears = Integer.valueOf(request.getParameter("workYears"));
+		Integer id = Integer.valueOf(request.getParameter("id"));
+
+		request.setAttribute("trade",trade);
+		request.setAttribute("id",id);
+		request.setAttribute("area",area);
+		request.setAttribute("type",type);
+		request.setAttribute("workYears",workYears);
 		return "/customer/selectResult";
 	}
 	
@@ -121,7 +132,8 @@ public class CustomerPage {
 	 * @return
 	 */
 	@RequestMapping(value = "/customer/page/selectTutor")
-	public String selectTutor(){
+	public String selectTutor(HttpServletRequest request){
+		request.setAttribute("id",request.getParameter("id"));
 		return "/customer/selectTutor";
 	}
 	

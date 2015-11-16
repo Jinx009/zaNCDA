@@ -1,7 +1,6 @@
 package main.entry.webapp.data;
 
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -14,48 +13,40 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import common.helper.ConstantUtil;
 import common.helper.HttpWebIOHelper;
-import service.basicFunctions.TradeService;
-import database.models.Trade;
+import service.basicFunctions.TutorTimeService;
+import database.models.TutorTime;
 
 @Controller
-public class TradeData {
+public class TutorTimeData {
 
 	private Map<String,Object> data;
 	
-	private List<Trade> list;
-	
 	@Autowired
-	private TradeService tradeService;
+	private TutorTimeService tutorTimeService;
 	
 	/**
-	 * 所有行业信息
+	 * 所选导师可选时间
 	 * @param request
 	 * @param response
 	 * @throws IOException
 	 */
-	@RequestMapping(value = "/trade/data/list")
-	public void tradeList(HttpServletRequest request,HttpServletResponse response) throws IOException{
-		data = new HashMap<String, Object>();
+	@RequestMapping(value = "/customer/data/time")
+	public void getTime(HttpServletRequest request,HttpServletResponse response) throws IOException{
+		Integer tutorId = Integer.valueOf(request.getParameter("tutorId"));
 		
-		list = tradeService.findList();
+		List<TutorTime> list = tutorTimeService.getByTutorId(tutorId);
 		
 		data.put(ConstantUtil.RESULT,ConstantUtil.SUCCESS);
 		data.put(ConstantUtil.ERROR_MSG,list);
 		
 		HttpWebIOHelper._printWebJson(data, response);
 	}
-	
 
 	public Map<String, Object> getData() {
 		return data;
 	}
+
 	public void setData(Map<String, Object> data) {
 		this.data = data;
-	}
-	public List<Trade> getList() {
-		return list;
-	}
-	public void setList(List<Trade> list) {
-		this.list = list;
 	}
 }
