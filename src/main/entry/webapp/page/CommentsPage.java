@@ -15,7 +15,7 @@ import database.models.Order;
 @Controller
 public class CommentsPage {
 
-	Order order;
+	private Order order;
 	
 	@Autowired
 	private OrderService orderService;
@@ -33,12 +33,7 @@ public class CommentsPage {
 		request.setAttribute("order",order);
 		return "/tutor/comments";
 	}
-	
-	
-	
-	public Order getOrder() {
-		return order;
-	}
+
 	public void setOrder(Order order) {
 		this.order = order;
 	}

@@ -36,7 +36,7 @@ $(function(){
 	           
 	        for(i=0;i<element1.length;i++)
 	        {
-	          if(value1==element1.options[i].value)
+	          if(tradeId==element1.options[i].value)
 	          {  
 	              element1.options[i].selected=true; 
 	          }  

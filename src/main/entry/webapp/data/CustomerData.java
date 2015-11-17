@@ -3,7 +3,6 @@ package main.entry.webapp.data;
 import java.io.IOException;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -25,10 +24,7 @@ import database.models.Customer;
 public class CustomerData {
 
 	private Map<String,Object> data;
-	
 	private Customer customer;
-	
-	private List<Customer> list;
 	
 	@Autowired
 	private CustomerService customerService;
@@ -112,31 +108,15 @@ public class CustomerData {
 		
 		HttpWebIOHelper._printWebJson(data, response);
 	}
-	 
-	 
-	 
 
-	public Map<String, Object> getData() {
-		return data;
-	}
-
+	
+	
 	public void setData(Map<String, Object> data) {
 		this.data = data;
-	}
-
-	public Customer getCustomer() {
-		return customer;
 	}
 
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
 	}
 
-	public List<Customer> getList() {
-		return list;
-	}
-
-	public void setList(List<Customer> list) {
-		this.list = list;
-	}
 }

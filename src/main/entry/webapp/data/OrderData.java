@@ -36,13 +36,8 @@ import database.models.Tutor;
 public class OrderData {
 
 	private Map<String,Object> data;
-	
 	private Order order;
-	
-	private List<Order> list;
-	
 	private Tutor tutor;
-	
 	private Customer customer;
 	
 	@Autowired
@@ -161,7 +156,7 @@ public class OrderData {
 	 * @throws IOException
 	 * @throws ParseException
 	 */
-	@RequestMapping(value = "/tutor/data/orderDetail")
+	@RequestMapping(value = "/tutor/data/saveOrder")
 	public void saveOrderDetail(HttpServletResponse response,HttpServletRequest request) throws IOException, ParseException{
 		
 		Integer id = Integer.valueOf(request.getParameter("id"));
@@ -189,42 +184,17 @@ public class OrderData {
 		HttpWebIOHelper._printWebJson(data, response);
 		
 	}
-	
-	
-	public List<Order> getList() {
-		return list;
-	}
-
-	public void setList(List<Order> list) {
-		this.list = list;
-	}
-
-	public Map<String, Object> getData() {
-		return data;
-	}
 
 	public void setData(Map<String, Object> data) {
 		this.data = data;
-	}
-
-	public Order getOrder() {
-		return order;
 	}
 
 	public void setOrder(Order order) {
 		this.order = order;
 	}
 
-	public Tutor getTutor() {
-		return tutor;
-	}
-
 	public void setTutor(Tutor tutor) {
 		this.tutor = tutor;
-	}
-
-	public Customer getCustomer() {
-		return customer;
 	}
 
 	public void setCustomer(Customer customer) {

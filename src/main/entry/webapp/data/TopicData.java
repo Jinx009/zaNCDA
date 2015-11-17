@@ -5,7 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,44 +14,35 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import common.helper.ConstantUtil;
 import common.helper.HttpWebIOHelper;
-import service.basicFunctions.ScoreService;
-import database.models.Score;
+import service.basicFunctions.TopicService;
+import database.models.Topic;
 
 @Controller
-public class ScoreData {
+public class TopicData {
 
 	private Map<String,Object> data;
-	private List<Score> list;
 	
 	@Autowired
-	private ScoreService scoreService;
-	
+	private TopicService topicService;
+
 	/**
-	 * 顾客评分
-	 * @param request
+	 * 获取主题
 	 * @param response
 	 * @throws IOException
 	 */
-	@RequestMapping(value = "/score/data/score" ,method = RequestMethod.POST)
-	public void getScore(HttpServletRequest request,HttpServletResponse response) throws IOException{
+	@RequestMapping(value = "/topic/data/list",method=RequestMethod.GET)
+	public void getTopic(HttpServletResponse response) throws IOException{
 		data = new HashMap<String, Object>();
 		
-		Integer id =  Integer.valueOf(request.getParameter("id"));
-		list = scoreService.getByAttr(id);
+		List<Topic> list = topicService.findAll();
 		
 		data.put(ConstantUtil.RESULT,ConstantUtil.SUCCESS);
 		data.put(ConstantUtil.ERROR_MSG,list);
 		
 		HttpWebIOHelper._printWebJson(data, response);
 	}
-
+	
 	public void setData(Map<String, Object> data) {
 		this.data = data;
 	}
-
-	public void setList(List<Score> list) {
-		this.list = list;
-	}
-
-	
 }

@@ -17,7 +17,7 @@ import javax.persistence.TemporalType;
  *
  */
 @Entity
-@Table(name="q_tutoe_time")
+@Table(name="q_tutor_time")
 @NamedQuery(name="TutorTime.findAll", query="SELECT n FROM TutorTime n")
 public class TutorTime {
 

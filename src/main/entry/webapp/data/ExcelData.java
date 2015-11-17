@@ -180,14 +180,8 @@ public class ExcelData {
 		
 		HttpWebIOHelper._printWebJson(data, response);
 	}
-	
-	
-	
-	public Map<String, Object> getData() {
-		return data;
-	}
+
 	public void setData(Map<String, Object> data) {
 		this.data = data;
 	}
-	
 }

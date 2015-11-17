@@ -25,11 +25,8 @@ import database.models.Order;
 public class CommentsData {
 
 	private Map<String,Object> data;
-	
 	private List<Comments> list;
-	
 	private Order order;
-	
 	private Comments comments;
 	
 	@Autowired
@@ -91,34 +88,22 @@ public class CommentsData {
 		
 		HttpWebIOHelper._printWebJson(data, response);
 	}
+
 	
 	
-	
-	public Map<String, Object> getData() {
-		return data;
-	}
 	public void setData(Map<String, Object> data) {
 		this.data = data;
 	}
-	public List<Comments> getList() {
-		return list;
-	}
+
 	public void setList(List<Comments> list) {
 		this.list = list;
-	}
-	public Comments getComments() {
-		return comments;
-	}
-
-	public void setComments(Comments comments) {
-		this.comments = comments;
-	}
-
-	public Order getOrder() {
-		return order;
 	}
 
 	public void setOrder(Order order) {
 		this.order = order;
+	}
+
+	public void setComments(Comments comments) {
+		this.comments = comments;
 	}
 }

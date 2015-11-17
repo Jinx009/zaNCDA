@@ -1,7 +1,6 @@
 package main.entry.webapp.page;
 
 import java.io.IOException;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -21,8 +20,6 @@ import database.models.Customer;
 
 @Controller
 public class CustomerPage {
-	
-	private Map<String,Object> data;
 	
 	private Customer customer;
 	
@@ -151,21 +148,9 @@ public class CustomerPage {
 	public String qThree(){
 		return "/customer/qThree";
 	}
+
 	
 	
-	
-	public Map<String, Object> getData() {
-		return data;
-	}
-
-	public void setData(Map<String, Object> data) {
-		this.data = data;
-	}
-
-	public Customer getCustomer() {
-		return customer;
-	}
-
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
 	}

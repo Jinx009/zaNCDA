@@ -20,10 +20,11 @@ import database.models.Tutor;
 @Controller
 public class TutorPage {
 
+
+	private Tutor tutor;
+	
 	@Autowired
 	private TutorService tutorService;
-	
-	private Tutor tutor;
 	
 	/**
 	 * 导师登陆页面
@@ -76,6 +77,7 @@ public class TutorPage {
 	@RequestMapping(value = "/tutor/page/infoOne")
 	public String info(HttpServletRequest request,HttpServletResponse response){
 		tutor = (Tutor) request.getSession().getAttribute(ConstantUtil.TUTOR_SESSION);
+		tutor = tutorService.find(tutor.getId());
 		if(null!=tutor.getqTrade()){
 			request.setAttribute("trade",tutor.getqTrade().getId());
 		}else{
@@ -90,10 +92,23 @@ public class TutorPage {
 	 * @return
 	 */
 	@RequestMapping(value = "/tutor/page/infoTwo")
-	public String infoTwo(){
+	public String infoTwo(HttpServletRequest request,HttpServletResponse response){
+		tutor = (Tutor) request.getSession().getAttribute(ConstantUtil.TUTOR_SESSION);
+		tutor = tutorService.find(tutor.getId());
 		return "/tutor/infoTwo";
 	}
 
+	/**
+	 * 完善信息三
+	 * @return
+	 */
+	@RequestMapping(value = "/tutor/page/infoThree")
+	public String infoThree(HttpServletRequest request,HttpServletResponse response){
+		tutor = (Tutor) request.getSession().getAttribute(ConstantUtil.TUTOR_SESSION);
+		tutor = tutorService.find(tutor.getId());
+		return "/tutor/infoThree";
+	}
+	
 	/**
 	 * 跳转后台导师编辑页面
 	 * @return
@@ -106,11 +121,8 @@ public class TutorPage {
 		request.setAttribute("tutor",tutor);
         return "/admin/tutor/edit";  
     }
+
 	
-	
-	public Tutor getTutor() {
-		return tutor;
-	}
 	public void setTutor(Tutor tutor) {
 		this.tutor = tutor;
 	}

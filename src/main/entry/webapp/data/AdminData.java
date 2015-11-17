@@ -25,7 +25,6 @@ public class AdminData {
 	
 	@Autowired
 	private AdminService adminService;
-	
 	private Admin admin;
 	private Map<String,Object> data;
 	
@@ -81,17 +80,12 @@ public class AdminData {
 		HttpWebIOHelper._printWebJson(data, response);
     }
 
-	 
 	
-	public Admin getAdmin() {
-		return admin;
-	}
+	
 	public void setAdmin(Admin admin) {
 		this.admin = admin;
 	}
-	public Map<String, Object> getData() {
-		return data;
-	}
+
 	public void setData(Map<String, Object> data) {
 		this.data = data;
 	}

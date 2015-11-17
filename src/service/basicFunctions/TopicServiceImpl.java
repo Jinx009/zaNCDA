@@ -32,7 +32,9 @@ public class TopicServiceImpl implements TopicService{
 		return topicDao.find(topicId);
 	}
 
-	
+	public List<Topic> findAll() {
+		return topicDao.findAll();
+	}
 	
 	
 	public StringBuffer getBuffer() {
@@ -42,4 +44,5 @@ public class TopicServiceImpl implements TopicService{
 	public void setBuffer(StringBuffer buffer) {
 		this.buffer = buffer;
 	}
+
 }

@@ -21,7 +21,6 @@ import database.models.Trade;
 public class TradeData {
 
 	private Map<String,Object> data;
-	
 	private List<Trade> list;
 	
 	@Autowired
@@ -44,17 +43,11 @@ public class TradeData {
 		
 		HttpWebIOHelper._printWebJson(data, response);
 	}
-	
 
-	public Map<String, Object> getData() {
-		return data;
-	}
 	public void setData(Map<String, Object> data) {
 		this.data = data;
 	}
-	public List<Trade> getList() {
-		return list;
-	}
+
 	public void setList(List<Trade> list) {
 		this.list = list;
 	}

@@ -216,37 +216,24 @@ public class TutorData {
 		
 		HttpWebIOHelper._printWebJson(data, response);
 	}
-	
-	
-	public Map<String, Object> getData() {
-		return data;
-	}
+
 	public void setData(Map<String, Object> data) {
 		this.data = data;
 	}
-	public Tutor getTutor() {
-		return tutor;
-	}
+
 	public void setTutor(Tutor tutor) {
 		this.tutor = tutor;
 	}
-	public Trade getTrade() {
-		return trade;
-	}
+
 	public void setTrade(Trade trade) {
 		this.trade = trade;
 	}
-	public Trade getTrade2() {
-		return trade2;
-	}
+
 	public void setTrade2(Trade trade2) {
 		this.trade2 = trade2;
 	}
-	public Topic getTopic() {
-		return topic;
-	}
+
 	public void setTopic(Topic topic) {
 		this.topic = topic;
 	}
-	
 }
