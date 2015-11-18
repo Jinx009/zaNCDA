@@ -15,11 +15,28 @@ public class TimePage {
 	@Autowired
 	private TutorTimeService tutorTimeService;
 	
+	/**
+	 * 顾客选择时间
+	 * @param request
+	 * @param response
+	 * @return
+	 */
 	@RequestMapping(value = "/customer/page/time")
 	public String time(HttpServletRequest request,HttpServletResponse response){
 		request.setAttribute("tutorId",request.getParameter("tutorId"));
 		request.setAttribute("topicId",request.getParameter("topicId"));
 		return "/customer/time";
+	}
+	
+	/**
+	 * 顾客选择时间
+	 * @param request
+	 * @param response
+	 * @return
+	 */
+	@RequestMapping(value = "/tutor/page/time")
+	public String index(HttpServletRequest request,HttpServletResponse response){
+		return "/tutor/time";
 	}
 	
 }

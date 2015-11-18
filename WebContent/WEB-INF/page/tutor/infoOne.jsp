@@ -85,7 +85,7 @@ function saveInfoOne(){
 </head>
 <body class="tutor-bg">
 <div class="main">
-	<div class="nav-title">首次注册完善个人信息</div>
+<div class="nav-title">个人信息（一）<div class="close" onclick="openUrl('/tutor/page/index.html')" >&Chi;</div></div>
 	<div class="register-inp register-inp-top">
 		<span class="register-inp-text">姓名</span>
 		<input  value="${tutor.realName}" id="realName" class="register-inp-long"/>

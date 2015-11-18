@@ -2,6 +2,12 @@
 .tutor-bg{
 	background: #ededed;
 }
+.center option{
+	text-align: center;
+}
+.left{
+	text-align: left;
+}
 .white-bg{
 	background: #FFFFFF;
 	width: 100%;
@@ -69,6 +75,9 @@
 	background: #FFFFFF;
 	border-radius: 4px;
 	display: none;
+}
+.center{
+	text-align: center;
 }
 
 .success-box{
@@ -437,7 +446,7 @@
 	appearance:none;
 	-moz-appearance:none; 
 	-webkit-appearance:none;
-	background: url(../img/select_right.png) no-repeat center right;
+	background: url(/sp/images/select_right.png) no-repeat center right;
 }
 .register-inp select option{
 	height: 30px;
@@ -562,7 +571,7 @@
 }
 .tutorDetails-bg{
 	width: 100%;
-	background: url(../img/tutorDetail_head_bg.png) no-repeat;
+	background: url(/sp/images/tutorDetail_head_bg.png) no-repeat;
 	background-size:100% 100% ;
 	min-height: 147px;
 	position: relative;
@@ -1079,7 +1088,7 @@
 	
 }
 .personal-wrap input{
-	background:url(../img/calendar.png) no-repeat 98% center;
+	background:url(/sp/images/calendar.png) no-repeat 98% center;
 	height: 44px;
 	width: 100%;
 }
@@ -1456,7 +1465,7 @@
 	height: 44px;
 	-moz-appearance:none; 
 	-webkit-appearance:none;
-	background: url(../img/select_right.png) no-repeat center right;
+	background: url(/sp/images/select_right.png) no-repeat center right;
 	
 }
 .interview-big-btn{

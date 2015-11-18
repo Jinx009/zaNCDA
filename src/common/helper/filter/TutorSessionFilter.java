@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import common.helper.ConstantUtil;
+import common.helper.tool.util.AgentUtil;
 import common.wechat.WechatData;
 import database.models.Tutor;
 
@@ -41,8 +42,13 @@ public class TutorSessionFilter implements Filter{
 		Tutor sessionUser = (Tutor) session.getAttribute(ConstantUtil.TUTOR_SESSION);
 		if(!pathList.contains(servletPath)){
 			if(null==sessionUser){
-				httpServletResponse.sendRedirect(WechatData.getTutorOauthUrl());
-				return;
+				if(AgentUtil.judgeAgent(httpServletRequest)){
+					httpServletResponse.sendRedirect(WechatData.getTutorOauthUrl());
+					return;
+				}else{
+					httpServletResponse.sendRedirect("/tutor/login.html");
+					return;
+				}
 			}
 		}
 		chain.doFilter(request, response);

@@ -15,7 +15,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import common.helper.ConstantUtil;
-
+import common.helper.tool.util.AgentUtil;
+import common.wechat.WechatData;
 import database.models.Customer;
 
 public class CustomerSessionFilter implements Filter {
@@ -41,8 +42,13 @@ public class CustomerSessionFilter implements Filter {
 		Customer  sessionUser = (Customer) session.getAttribute(ConstantUtil.CUSTOMER_SESSION);
 		if(!pathList.contains(servletPath)){
 			if(null==sessionUser){
-				httpServletResponse.sendRedirect("/customer/login.html");
-				return;
+				if(AgentUtil.judgeAgent(httpServletRequest)){
+					httpServletResponse.sendRedirect(WechatData.getCustomerOauthUrl());
+					return;
+				}else{
+					httpServletResponse.sendRedirect("/customer/login.html");
+					return;
+				}
 			}
 		}
 		chain.doFilter(request, response);

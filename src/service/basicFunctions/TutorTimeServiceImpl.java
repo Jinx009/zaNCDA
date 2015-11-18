@@ -31,7 +31,7 @@ public class TutorTimeServiceImpl implements TutorTimeService {
 	}
 
 	public List<TutorTime> getByTutorId(Integer id) {
-		SimpleDateFormat format = new SimpleDateFormat("yyyy MM dd HH mm ss"); 
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd"); 
 		
 		buffer = new StringBuffer();
 		
@@ -42,8 +42,9 @@ public class TutorTimeServiceImpl implements TutorTimeService {
 		buffer.append(" AND ");
 		buffer.append(" status = 0 ");
 		buffer.append(" AND ");
-		buffer.append(" realTime > ");
+		buffer.append(" realTime > '");
 		buffer.append(format.format(new Date()));
+		buffer.append("'  ");
 		
 		return tutorTimeDao.getByHql(buffer.toString());
 	}

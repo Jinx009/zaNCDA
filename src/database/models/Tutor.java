@@ -34,7 +34,7 @@ public class Tutor {
 	 * 工作年限
 	 */
 	@Column(name = "work_years")
-	private Double workYears;
+	private Integer workYears;
 	/**
 	 * 个人介绍
 	 */
@@ -244,11 +244,12 @@ public class Tutor {
 		this.pwd = pwd;
 	}
 
-	public Double getWorkYears() {
+	
+	public Integer getWorkYears() {
 		return workYears;
 	}
 
-	public void setWorkYears(Double workYears) {
+	public void setWorkYears(Integer workYears) {
 		this.workYears = workYears;
 	}
 

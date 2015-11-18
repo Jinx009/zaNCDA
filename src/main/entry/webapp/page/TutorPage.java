@@ -95,6 +95,7 @@ public class TutorPage {
 	public String infoTwo(HttpServletRequest request,HttpServletResponse response){
 		tutor = (Tutor) request.getSession().getAttribute(ConstantUtil.TUTOR_SESSION);
 		tutor = tutorService.find(tutor.getId());
+		request.setAttribute("tutor",tutor);
 		return "/tutor/infoTwo";
 	}
 
@@ -106,7 +107,55 @@ public class TutorPage {
 	public String infoThree(HttpServletRequest request,HttpServletResponse response){
 		tutor = (Tutor) request.getSession().getAttribute(ConstantUtil.TUTOR_SESSION);
 		tutor = tutorService.find(tutor.getId());
+		if(null!=tutor.getqTopic()){
+			request.setAttribute("topicId",tutor.getqTopic().getId());
+		}else{
+			request.setAttribute("topicId",0);
+		}
+		if(null!=tutor.getTradeOne()){
+			request.setAttribute("t1",tutor.getTradeOne().getId());
+		}else{
+			request.setAttribute("t1",0);
+		}
+		if(null!=tutor.getTradeTwo()){
+			request.setAttribute("t2",tutor.getTradeTwo().getId());
+		}else{
+			request.setAttribute("t2",0);
+		}
+		if(null!=tutor.getTradeThree()){
+			request.setAttribute("t3",tutor.getTradeThree().getId());
+		}else{
+			request.setAttribute("t3",0);
+		}
+		if(null!=tutor.getAreaOne()){
+			request.setAttribute("a1",tutor.getAreaOne().getId());
+		}else{
+			request.setAttribute("a1",0);
+		}
+		if(null!=tutor.getAreaTwo()){
+			request.setAttribute("a2",tutor.getAreaTwo().getId());
+		}else{
+			request.setAttribute("a2",0);
+		}
+		if(null!=tutor.getAreaThree()){
+			request.setAttribute("a3",tutor.getAreaThree().getId());
+		}else{
+			request.setAttribute("a3",0);
+		}
+		request.setAttribute("tutor",tutor);
 		return "/tutor/infoThree";
+	}
+	
+	/**
+	 * 完善信息三
+	 * @return
+	 */
+	@RequestMapping(value = "/tutor/page/infoFour")
+	public String infoFour(HttpServletRequest request,HttpServletResponse response){
+		tutor = (Tutor) request.getSession().getAttribute(ConstantUtil.TUTOR_SESSION);
+		tutor = tutorService.find(tutor.getId());
+		request.setAttribute("tutor",tutor);
+		return "/tutor/infoFour";
 	}
 	
 	/**

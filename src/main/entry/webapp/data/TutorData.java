@@ -73,7 +73,7 @@ public class TutorData {
 		data = new HashMap<String, Object>();
 		
 		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
-		Integer tradeId = Integer.valueOf(request.getParameter("tradeId"));
+		Integer tradeId = Integer.valueOf(request.getParameter("trade"));
 		trade = tradeService.find(tradeId);
 		
 		tutor = (Tutor) request.getSession().getAttribute(ConstantUtil.TUTOR_SESSION);
@@ -94,7 +94,111 @@ public class TutorData {
 		
 		HttpWebIOHelper._printWebJson(data, response);
 	}
+	
+	/**
+	 * 保存第二步
+	 * @param response
+	 * @param request
+	 * @throws ParseException
+	 * @throws IOException
+	 */
+	@RequestMapping(value = "/tutor/data/saveInfoTwo",method = RequestMethod.POST)
+	public void saveInfoTwo(HttpServletResponse response,HttpServletRequest request) throws ParseException, IOException{
+		data = new HashMap<String, Object>();
+		
+		Integer workYears = Integer.valueOf(request.getParameter("workYears"));
+		Integer faceStatus = Integer.valueOf(request.getParameter("face"));
+		Integer mobileStatus = Integer.valueOf(request.getParameter("mobile"));
+		Integer videoStatus = Integer.valueOf(request.getParameter("video"));
+		
+		tutor = (Tutor) request.getSession().getAttribute(ConstantUtil.TUTOR_SESSION);
+		tutor = tutorService.find(tutor.getId());
+		
+		tutor.setFaceStatus(faceStatus);
+		tutor.setMobileStatus(mobileStatus);
+		tutor.setVideoStatus(videoStatus);
+		tutor.setWorkYears(workYears);
+		tutorService.update(tutor);
+		
+		data.put(ConstantUtil.RESULT,ConstantUtil.SUCCESS);
+		data.put(ConstantUtil.ERROR_MSG,"修改成功!");
+		
+		HttpWebIOHelper._printWebJson(data, response);
+	}
+	
+	/**
+	 * 保存第三步
+	 * @param response
+	 * @param request
+	 * @throws ParseException
+	 * @throws IOException
+	 */
+	@RequestMapping(value = "/tutor/data/saveInfoThree",method = RequestMethod.POST)
+	public void saveInfoThree(HttpServletResponse response,HttpServletRequest request) throws ParseException, IOException{
+		data = new HashMap<String, Object>();
+		
+		Integer trade1 = Integer.valueOf(request.getParameter("trade1"));
+		Integer trade2 = Integer.valueOf(request.getParameter("trade2"));
+		Integer trade3 = Integer.valueOf(request.getParameter("trade3"));
+		Integer area1 = Integer.valueOf(request.getParameter("area1"));
+		Integer area2 = Integer.valueOf(request.getParameter("area2"));
+		Integer area3 = Integer.valueOf(request.getParameter("area3"));
+		Integer topic = Integer.valueOf(request.getParameter("topic"));
+		
+		tutor = (Tutor) request.getSession().getAttribute(ConstantUtil.TUTOR_SESSION);
+		tutor = tutorService.find(tutor.getId());
+		
+		Trade t1 = tradeService.find(trade1);
+		Trade t2 = tradeService.find(trade2);
+		Trade t3 = tradeService.find(trade3);
+		Trade a1 = tradeService.find(area1);
+		Trade a2 = tradeService.find(area2);
+		Trade a3 = tradeService.find(area3);
+		Topic topic1 = topicService.find(topic);
+		
+		tutor.setTradeOne(t1);
+		tutor.setTradeTwo(t2);
+		tutor.setTradeThree(t3);
+		tutor.setAreaOne(a1);
+		tutor.setAreaTwo(a2);
+		tutor.setAreaThree(a3);
+		tutor.setqTopic(topic1);
+		
+		tutorService.update(tutor);
+		
+		data.put(ConstantUtil.RESULT,ConstantUtil.SUCCESS);
+		data.put(ConstantUtil.ERROR_MSG,"修改成功!");
+		
+		HttpWebIOHelper._printWebJson(data, response);
+	}
 
+	/**
+	 * 保存第四步
+	 * @param response
+	 * @param request
+	 * @throws ParseException
+	 * @throws IOException
+	 */
+	@RequestMapping(value = "/tutor/data/saveInfoFour",method = RequestMethod.POST)
+	public void saveInfoFour(HttpServletResponse response,HttpServletRequest request) throws ParseException, IOException{
+		data = new HashMap<String, Object>();
+		
+		String aptitude = request.getParameter("aptitude");
+		String personalIntroduction = request.getParameter("personalIntroduction");
+		
+		tutor = (Tutor) request.getSession().getAttribute(ConstantUtil.TUTOR_SESSION);
+		tutor = tutorService.find(tutor.getId());
+		
+		tutor.setAptitude(aptitude);
+		tutor.setPersonalIntroduction(personalIntroduction);
+		
+		tutorService.update(tutor);
+		
+		data.put(ConstantUtil.RESULT,ConstantUtil.SUCCESS);
+		data.put(ConstantUtil.ERROR_MSG,"修改成功!");
+		
+		HttpWebIOHelper._printWebJson(data, response);
+	}
 	 /**
 	  * 导师登陆
 	  * @param request

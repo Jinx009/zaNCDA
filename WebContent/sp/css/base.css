@@ -22,3 +22,6 @@ textarea,input,select{border-color: #ebebeb;border-radius: 4px;}
 button{border: 0;border-radius: 4px;}
 .clear{clear: both;}
 input{border: 0px;border: 1px solid #ebebeb;text-align: center;}
+.none{
+	display: none;
+}
