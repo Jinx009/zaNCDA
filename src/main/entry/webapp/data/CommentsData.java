@@ -82,6 +82,14 @@ public class CommentsData {
 		
 		commentsService.save(comments);
 		
+		order = orderService.getById(id);
+		if(2==order.getStatus()){
+			order.setStatus(4);
+		}else{
+			order.setStatus(3);
+		}
+		orderService.update(order);
+		
 		data = new HashMap<String, Object>();
 		data.put(ConstantUtil.RESULT,ConstantUtil.SUCCESS);
 		data.put(ConstantUtil.ERROR_MSG,"新增成功！");

@@ -22,5 +22,7 @@ public interface CustomerService {
 	public PageDataList<Customer> findPageList(Customer customer, int pageNum);
 
 	public List<Customer> findAll();
+
+	public Customer getByUserName(String mobile);
 	
 }

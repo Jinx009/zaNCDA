@@ -23,7 +23,13 @@ public class TutorServiceImpl implements TutorService{
 	}
 
 	public List<Tutor> findAll() {
-		return tutorDao.findAll();
+		buffer = new StringBuffer();
+		
+		buffer.append(" FROM Tutor  ");
+		buffer.append(" WHERE ");
+		buffer.append(" status = 1 ");
+		
+		return tutorDao.getByHqlList(buffer.toString());
 	}
 
 	public Tutor getByOpenid(String openid) {

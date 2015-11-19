@@ -123,7 +123,7 @@ function  saveOrder(id){
 	var topicId = $('#id').val();
 	var tutorId = id;
 	
-	location.href = '/customer/page/time.html?topicId='+topicId+'&tutorId='+tutorId;
+	location.href = '/customer/page/tutorDetail.html?topicId='+topicId+'&tutorId='+tutorId;
 }
 
 /**

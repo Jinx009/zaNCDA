@@ -11,12 +11,13 @@
 <script type="text/javascript" src="/sp/dist/jquery.js" ></script>
 <script type="text/javascript" src="/sp/js/common.js" ></script>
 <script type="text/javascript">
+var url = "";
 $(function(){
 	changeCode();
 	
 	var status = $("#status").val();
 	var openid = $("#openid").val();
-	var url = $("#url").val();
+	url = $("#url").val();
 	
 	if("0"!=status){
 		location.href = "/customer/page/index.html";
@@ -42,7 +43,11 @@ function doLogin(){
 		dataType:"json",
 		success:function(res){
 			if("success"==res.result){
-				location.href = "/customer/page/index.html";
+				if(null!=url&&""!=url){
+					location.href = url;
+				}else{
+					location.href = "/customer/page/index.html";
+				}
 			}else{
 				alert(res.errmsg);
 			}	
@@ -91,6 +96,6 @@ function changeCode(){
 	<div class="tutor-search">
 		<div class="tutor-search-btn" onclick="doLogin()" >登录</div>
 	</div>
-	<div class="register-tip"><a href="register.html">立即注册</a></div>
+	<div class="register-tip"><a href="/customer/register.html">立即注册</a></div>
 </body>
 </html>

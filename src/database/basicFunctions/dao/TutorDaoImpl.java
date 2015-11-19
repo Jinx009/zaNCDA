@@ -36,6 +36,7 @@ public class TutorDaoImpl extends BaseDaoImpl<Tutor> implements TutorDao{
 		if (StringUtil.isNotBlank(tutor.getMobilePhone())){
 			param.addParam("mobilePhone",tutor.getMobilePhone());
 		}
+		param.addParam("status",1);
 		PageDataList<Tutor> pageDataList = super.findPageList(param);
 		
 		return pageDataList;
@@ -54,6 +55,16 @@ public class TutorDaoImpl extends BaseDaoImpl<Tutor> implements TutorDao{
 			}
 		}
 		return result;
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<Tutor> getByHqlList(String hql) {
+		Query query = em.createQuery(hql);
+		List<Tutor> list = query.getResultList();
+		if(null!=list&&!list.isEmpty()){
+			return list;
+		}
+		return null;
 	}
 
 }

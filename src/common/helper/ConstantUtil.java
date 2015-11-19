@@ -12,5 +12,6 @@ public class ConstantUtil {
 	public static final String ADMIN_CODE = "admin_code";
 	public static final String CUSTOMER_CODE = "customer_code";
 	public static final String TUTOR_CODE = "tutor_code";
+	public static final String CUSTOMER_REGISTER_CODE = "customer_register_code";
 	public static final int PAGE_SIZE = 20;
 }

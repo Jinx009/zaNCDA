@@ -16,12 +16,12 @@ public class TimePage {
 	private TutorTimeService tutorTimeService;
 	
 	/**
-	 * 顾客选择时间
+	 * 顾客选择导师时间
 	 * @param request
 	 * @param response
 	 * @return
 	 */
-	@RequestMapping(value = "/customer/page/time")
+	@RequestMapping(value = "/customer/page/times")
 	public String time(HttpServletRequest request,HttpServletResponse response){
 		request.setAttribute("tutorId",request.getParameter("tutorId"));
 		request.setAttribute("topicId",request.getParameter("topicId"));

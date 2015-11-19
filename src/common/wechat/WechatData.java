@@ -35,11 +35,12 @@ public class WechatData {
 	 * 顾客重定向链接
 	 * @return
 	 */
-	public static String getCustomerOauthUrl(){
+	public static String getCustomerOauthUrl(String redirectUrl){
 		StringBuffer buffer = new StringBuffer();
 		buffer.append(OAUTH_URL_ONE);
 		buffer.append(OAUTH_URL_TWO);
-		buffer.append("/customer/login.html");
+		buffer.append("/customer/login.html?redirectUrl=");
+		buffer.append(redirectUrl);
 		buffer.append(OAUTH_URL_THREE);
 		
 		return buffer.toString();

@@ -13,4 +13,6 @@ public interface TutorDao extends BaseDao<Tutor>{
 	public PageDataList<Tutor> findTeacherPageList(Tutor tutor, int pageNum);
 
 	public List<Tutor> getBySql(String sql);
+
+	public List<Tutor> getByHqlList(String hql);
 }

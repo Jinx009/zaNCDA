@@ -14,8 +14,8 @@ import common.helper.ConstantUtil;
 import common.helper.StringUtil;
 import common.wechat.WechatData;
 import common.wechat.WechatUtil;
-
 import service.basicFunctions.CustomerService;
+import service.basicFunctions.TutorService;
 import database.models.Customer;
 
 @Controller
@@ -25,6 +25,9 @@ public class CustomerPage {
 	
 	@Autowired
 	private CustomerService customerService;
+	
+	@Autowired
+	private TutorService tutorService;
 
 	/**
 	 * 微信支付页面
@@ -53,6 +56,7 @@ public class CustomerPage {
 	@RequestMapping(value = "/customer/login")
 	public String login(HttpServletRequest request,HttpServletResponse response) throws ClientProtocolException, IOException{
 		 String code = request.getParameter("code");
+		 String redirectUrl = request.getParameter("redirectUrl");
 		 customer = null;
 		 int status = 0;
 		 
@@ -66,8 +70,8 @@ public class CustomerPage {
 			 }
 		 }
 		 request.setAttribute("status",status);
-		 request.setAttribute("url",WechatData.getCustomerOauthUrl());
 		 request.getSession().setAttribute(ConstantUtil.CUSTOMER_SESSION,customer);
+		 request.setAttribute("url",redirectUrl);
 		 return "/customer/login";
 	 }
 	
@@ -87,12 +91,48 @@ public class CustomerPage {
 	}
 	
 	/**
+	 * 成功案例详情
+	 * @return
+	 */
+	@RequestMapping(value = "/customer/page/caseDetail")
+	public String detail(HttpServletRequest request,HttpServletResponse response){
+		return "/customer/caseDetail";
+	}
+	
+	/**
 	 * 新建约谈
 	 * @return
 	 */
 	@RequestMapping(value = "/customer/page/new")
 	public String newPage(){
 		return "/customer/new";
+	}
+	
+	
+	/**
+	 * 顾客选择导师详情
+	 * @param request
+	 * @param response
+	 * @return
+	 */
+	@RequestMapping(value = "/customer/page/tutorDetail")
+	public String tutorDetail(HttpServletRequest request,HttpServletResponse response){
+		Integer tutorId = Integer.valueOf(request.getParameter("tutorId"));
+		request.setAttribute("tutor",tutorService.find(tutorId));
+		request.setAttribute("tutorId",tutorId);
+		request.setAttribute("topicId",request.getParameter("topicId"));
+		
+		return "/customer/tutorDetail";
+	}
+	
+	
+	/**
+	 * 注册
+	 * @return
+	 */
+	@RequestMapping(value = "/customer/register")
+	public String register(){
+		return "/customer/register";
 	}
 	
 	/**

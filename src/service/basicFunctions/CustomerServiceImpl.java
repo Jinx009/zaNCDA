@@ -69,7 +69,17 @@ public class CustomerServiceImpl  implements CustomerService{
 		return customerDao.findAll();
 	}
 	
-	
+	public Customer getByUserName(String mobile) {
+		buffer = new StringBuffer();
+		
+		buffer.append(" FROM Customer ");
+		buffer.append(" WHERE ");
+		buffer.append(" userName = '");
+		buffer.append(mobile);
+		buffer.append("' ");
+		
+		return customerDao.getByHql(buffer.toString());
+	}
 	
 	
 	
@@ -80,4 +90,6 @@ public class CustomerServiceImpl  implements CustomerService{
 	public void setBuffer(StringBuffer buffer) {
 		this.buffer = buffer;
 	}
+
+
 }

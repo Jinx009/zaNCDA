@@ -141,3 +141,25 @@ function getNowDate()
     }
     return CurrentDate;
 } 
+
+var myreg = /^(((13[0-9]{1})|(15[0-9]{1})|(16[0-9]{1})|(14[0-9]{1})|(17[0-9]{1})|(18[0-9]{1}))+\d{8})$/; 
+/**
+ * 手机号码校验
+ * @param mobile
+ */
+function validateTel(mobile)
+{
+    if(mobile.length==0)
+    {
+       return "请输入手机号码!";
+    }    
+    if(mobile.length!=11)
+    {
+        return "请输入有效的手机号码";
+    }
+    if(!myreg.test(mobile))
+    {
+        return "请输入有效的手机号码";
+    }
+    return "success";
+}

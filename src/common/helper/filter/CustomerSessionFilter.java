@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import common.helper.ConstantUtil;
+import common.helper.StringUtil;
 import common.helper.tool.util.AgentUtil;
 import common.wechat.WechatData;
 import database.models.Customer;
@@ -35,15 +36,22 @@ public class CustomerSessionFilter implements Filter {
 
 		HttpServletRequest httpServletRequest = (HttpServletRequest) request;
 		HttpServletResponse httpServletResponse = (HttpServletResponse) response;
+		HttpSession session = httpServletRequest.getSession();
 		String servletPath = httpServletRequest.getServletPath();
+		String queryString = httpServletRequest.getQueryString();
 		List<String> pathList = notNeedSessionCheck();
 		
-		HttpSession session = httpServletRequest.getSession();
+		String redirectURL = servletPath;
+		
+		if (StringUtil.isNotBlank(queryString))
+		{
+			redirectURL = httpServletRequest.getContextPath()+servletPath + "?"+ StringUtil.isNull(queryString);
+		}
 		Customer  sessionUser = (Customer) session.getAttribute(ConstantUtil.CUSTOMER_SESSION);
 		if(!pathList.contains(servletPath)){
 			if(null==sessionUser){
 				if(AgentUtil.judgeAgent(httpServletRequest)){
-					httpServletResponse.sendRedirect(WechatData.getCustomerOauthUrl());
+					httpServletResponse.sendRedirect(WechatData.getCustomerOauthUrl(redirectURL));
 					return;
 				}else{
 					httpServletResponse.sendRedirect("/customer/login.html");

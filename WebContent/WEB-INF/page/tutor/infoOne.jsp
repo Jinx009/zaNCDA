@@ -60,10 +60,11 @@ function saveInfoOne(){
 	var bankCard = $("#bankCard").val();
 	var reBankCard = $("#reBankCard").val();
 	var bankName = $("#bankName").val();
+	var classPrice = $("#classPrice").val();
 	
 	var params = "realName="+realName+"&sex="+sex+"&birthday="+birthday+"&trade="+trade+
 				 "&email="+email+"&qq="+qq+"&wechatName="+wechatName+"&idNumber="+idNumber+
-				 "&bankCard="+bankCard+"&bankName="+bankName;
+				 "&bankCard="+bankCard+"&bankName="+bankName+"&classPrice="+classPrice;
 	
 	if(reBankCard!=bankCard){
 		alert("银行卡号不一致!");
@@ -112,6 +113,10 @@ function saveInfoOne(){
 	<div class="register-inp register-inp-top">
 		<span class="register-inp-text">QQ</span>
 		<input  value="${tutor.qq }"  id="qq" class="register-inp-long"/>
+	</div>
+	<div class="register-inp register-inp-top">
+		<span class="register-inp-text">授课价格</span>
+		<input  value="${tutor.classPrice }"  id="classPrice" class="register-inp-long"/>
 	</div>
 	<div class="register-inp register-inp-top">
 		<span class="register-inp-text">微信号</span>

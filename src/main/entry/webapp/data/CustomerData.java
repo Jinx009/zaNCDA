@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import service.basicFunctions.CustomerService;
 import common.helper.ConstantUtil;
 import common.helper.HttpWebIOHelper;
+import common.helper.MD5Util;
 import common.helper.StringUtil;
 import database.common.PageDataList;
 import database.models.Customer;
@@ -42,6 +43,57 @@ public class CustomerData {
 		data.put(ConstantUtil.CUSTOMER_CODE,code);
 		System.out.println("customerCode:"+code);
 		request.getSession().setAttribute(ConstantUtil.CUSTOMER_CODE,code);
+		HttpWebIOHelper._printWebJson(data, response);
+    }
+	
+	/**
+	 * 执行注册
+	 * @param request
+	 * @param response
+	 * @throws IOException
+	 */
+	public void doRegister(HttpServletRequest request,HttpServletResponse response) throws IOException{
+		String mobile = request.getParameter("mobile");
+		String pwd = request.getParameter("pwd");
+		String code = request.getParameter("code");
+		customer = customerService.getByUserName(mobile);
+		
+		data = new HashMap<String, Object>();
+		data.put(ConstantUtil.RESULT,ConstantUtil.FAILURE);
+		
+		if(!request.getSession().getAttribute(ConstantUtil.CUSTOMER_REGISTER_CODE).equals(code)){
+			data.put(ConstantUtil.ERROR_MSG,"验证码错误!");
+		}else if(null!=customer){
+			data.put(ConstantUtil.ERROR_MSG,"账户已存在!");
+		}else{
+			customer = new Customer();
+			customer.setAddTime(new Date());
+			customer.setLoginTime(new Date());
+			customer.setPwd(MD5Util.toMD5(pwd));
+			customer.setUserName(mobile);
+			
+			customerService.save(customer);
+			
+			data.put(ConstantUtil.RESULT,ConstantUtil.SUCCESS);
+			data.put(ConstantUtil.ERROR_MSG,"注册成功!");
+		}
+		
+		HttpWebIOHelper._printWebJson(data, response);
+	}
+	
+	/**
+	 * 获取验证码
+	 * @param request
+	 * @param response
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/customer/data/getRegisterCode",method = RequestMethod.GET) 
+    public void getRegisterCode(HttpServletRequest request, HttpServletResponse response) throws Exception{  
+		data = new HashMap<String,Object>();
+		int code = (int) (Math.random() * 9000 + 1000);
+		data.put(ConstantUtil.CUSTOMER_REGISTER_CODE,code);
+		System.out.println("customerRegisterCode:"+code);
+		request.getSession().setAttribute(ConstantUtil.CUSTOMER_REGISTER_CODE,code);
 		HttpWebIOHelper._printWebJson(data, response);
     }
 
