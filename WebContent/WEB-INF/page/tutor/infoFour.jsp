@@ -16,7 +16,6 @@ function saveData(){
 	var personalIntroduction = $("#personalIntroduction").val();
 	
 	var params = "aptitude="+aptitude+"&personalIntroduction="+personalIntroduction;
-	alert(params)
 	
 	$.ajax({
 		url:"/tutor/data/saveInfoFour.html",

@@ -27,7 +27,6 @@ function saveInf(){
 
 	var params = "realName="+realName+"&qq="+qq+"&email="+email+"&sex="+sex+"&birthday="+birthday+
 				"&famillyNumber="+famillyNumber+"&wechatName="+wechatName;
-	alert(params)
 	$.ajax({
 		url:"/customer/data/saveInfo.html",
 		type:"POST",

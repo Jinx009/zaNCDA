@@ -193,6 +193,7 @@ public class TutorData {
 		
 		tutor.setAptitude(aptitude);
 		tutor.setPersonalIntroduction(personalIntroduction);
+		tutor.setStatus(1);
 		
 		tutorService.update(tutor);
 		

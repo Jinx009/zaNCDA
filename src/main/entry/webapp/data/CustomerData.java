@@ -100,7 +100,7 @@ public class CustomerData {
 		data = new HashMap<String, Object>();
 		data.put(ConstantUtil.RESULT,ConstantUtil.FAILURE);
 		
-		if(!request.getSession().getAttribute(ConstantUtil.CUSTOMER_REGISTER_CODE).equals(code)){
+		if(!request.getSession().getAttribute(ConstantUtil.CUSTOMER_REGISTER_CODE).toString().equals(code)){
 			data.put(ConstantUtil.ERROR_MSG,"验证码错误!");
 		}else if(null!=customer){
 			data.put(ConstantUtil.ERROR_MSG,"账户已存在!");
@@ -110,6 +110,7 @@ public class CustomerData {
 			customer.setLoginTime(new Date());
 			customer.setPwd(MD5Util.toMD5(pwd));
 			customer.setUserName(mobile);
+			customer.setBirthday(new Date());
 			
 			customerService.save(customer);
 			

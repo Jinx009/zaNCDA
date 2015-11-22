@@ -78,7 +78,7 @@ function changeTime(){
 <input type="hidden" value="${openid }" id="openId" >
 <input type="hidden" value="1" id="fee" >
 <div class="main">
-	<a href="#"><div class="nav-title"><span class="nav-back">&lt;</span>确定您的个人信息</div></a>
+	<a href="#"><div class="nav-title"><span class="nav-back" onclick="openUrl('/customer/page/index.html')" >&lt;</span>导师时间</div></a>
 	<div class="personal-wrap">
 		<p>一句话概括您相约谈的主题内容(限80字内)</p>
 		<textarea placeholder="输入您想约谈的内容……" id="topicContent" ></textarea>

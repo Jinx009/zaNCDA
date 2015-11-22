@@ -40,13 +40,16 @@ function getDate(){
 		url:"/tutor/data/time.html?time="+getRandom(),
 		type:"GET",
 		dataType:"json",
+		ansyc:false,
 		success:function(res){
 			var htmlStr = "";
-			for(var i = 0;i<res.errmsg.length;i++){
-				htmlStr += "<div class='appoint-inp'>";
-				htmlStr += "<input readOnly='readOnly'  value="+jsDateTimeOnly(res.errmsg[i].realDate)+"&nbsp;&nbsp;"+res.errmsg[i].realTime+" class='appoint-inp-short'/>";
-				htmlStr += "<div class='appoint-inp-btn' onclick=deleteTime('"+res.errmsg[i].id+"') >删除</div>";
-				htmlStr += "</div>";
+			if(null!=res.errmsg){
+				for(var i = 0;i<res.errmsg.length;i++){
+					htmlStr += "<div class='appoint-inp'>";
+					htmlStr += "<input readOnly='readOnly'  value="+jsDateTimeOnly(res.errmsg[i].realDate)+"&nbsp;&nbsp;"+res.errmsg[i].realTime+" class='appoint-inp-short'/>";
+					htmlStr += "<div class='appoint-inp-btn' onclick=deleteTime('"+res.errmsg[i].id+"') >删除</div>";
+					htmlStr += "</div>";
+				}
 			}
 			$("#dataTime").html(htmlStr);
 		}

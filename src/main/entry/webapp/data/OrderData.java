@@ -158,10 +158,12 @@ public class OrderData {
 		customer = (Customer) request.getSession().getAttribute(ConstantUtil.CUSTOMER_SESSION);
 		List<Order> orderList = new ArrayList<Order>();
 		List<Order> list = orderService.findCustomerList(customer);
-		for(int i = 0;i<list.size();i++){
-			order = list.get(i);
-			order.setTopicContent(list.get(i).getTopic().getName());
-			orderList.add(order);
+		if(null!=list&&!list.isEmpty()){
+			for(int i = 0;i<list.size();i++){
+				order = list.get(i);
+				order.setTopicContent(list.get(i).getTopic().getName());
+				orderList.add(order);
+			}
 		}
 		
 		data.put(ConstantUtil.RESULT,ConstantUtil.SUCCESS);
