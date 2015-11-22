@@ -22,4 +22,14 @@ public class TutorTimeDaoImpl extends BaseDaoImpl<TutorTime> implements TutorTim
 		return null;
 	}
 
+	@SuppressWarnings({ "unchecked" })
+	public List<TutorTime> getDate(String sql){
+		Query query =  em.createNativeQuery(sql,TutorTime.class);
+		List<TutorTime> list = query.getResultList();
+		if(null!=list&&!list.isEmpty()){
+			return list;
+		}
+		return null;
+	}
+
 }

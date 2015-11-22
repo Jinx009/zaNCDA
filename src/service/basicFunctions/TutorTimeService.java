@@ -14,4 +14,7 @@ public interface TutorTimeService {
 	
 	public List<TutorTime> getByTutorId(Integer id);
 	
+	public List<TutorTime> getDate(Integer id);
+	
+	public List<TutorTime> getTime(Integer id,String realDate);
 }

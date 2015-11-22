@@ -49,6 +49,36 @@ public class TutorTimeServiceImpl implements TutorTimeService {
 		return tutorTimeDao.getByHql(buffer.toString());
 	}
 
+	public List<TutorTime> getDate(Integer id) {
+		buffer = new StringBuffer();
+	
+		buffer.append(" SELECT status,id,real_date,tutor_id, COUNT(DISTINCT real_date) as real_time ");
+		buffer.append(" FROM ");
+		buffer.append(" q_tutor_time ");
+		buffer.append(" WHERE ");
+		buffer.append(" STATUS = 0  ");
+		buffer.append(" AND tutor_id =  ");
+		buffer.append(id);
+		buffer.append(" AND real_date > now() ");
+		buffer.append(" GROUP BY real_date ORDER by real_date ");
+		
+		return tutorTimeDao.getDate(buffer.toString());
+	}
+
+	public List<TutorTime> getTime(Integer id, String realDate) {
+		buffer = new StringBuffer();
+		
+		buffer.append(" FROM TutorTime ");
+		buffer.append(" WHERE ");
+		buffer.append(" qTutor.id =  ");
+		buffer.append(id);
+		buffer.append(" AND ");
+		buffer.append(" realDate =  '");
+		buffer.append(realDate);
+		buffer.append("'  ");
+		
+		return tutorTimeDao.getByHql(buffer.toString());
+	}
 	
 	
 	
@@ -59,4 +89,5 @@ public class TutorTimeServiceImpl implements TutorTimeService {
 	public void setBuffer(StringBuffer buffer) {
 		this.buffer = buffer;
 	}
+
 }

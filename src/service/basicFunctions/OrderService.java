@@ -3,6 +3,7 @@ package service.basicFunctions;
 import java.util.List;
 
 import database.common.PageDataList;
+import database.models.Customer;
 import database.models.Order;
 import database.models.Tutor;
 
@@ -21,5 +22,7 @@ public interface OrderService {
 	public List<Order> findAll();
 
 	public List<Order> findTutorList(Tutor tutor);
+
+	public List<Order> findCustomerList(Customer customer);
 	
 }

@@ -1,5 +1,7 @@
 package common.wechat;
 
+import java.io.UnsupportedEncodingException;
+
 public class WechatData {
 	
 	public static final String APP_ID = "wx08411a74145eb7dc";
@@ -34,13 +36,14 @@ public class WechatData {
 	/**
 	 * 顾客重定向链接
 	 * @return
+	 * @throws UnsupportedEncodingException 
 	 */
-	public static String getCustomerOauthUrl(String redirectUrl){
+	public static String getCustomerOauthUrl(String redirectUrl) throws UnsupportedEncodingException{
 		StringBuffer buffer = new StringBuffer();
 		buffer.append(OAUTH_URL_ONE);
 		buffer.append(OAUTH_URL_TWO);
 		buffer.append("/customer/login.html?redirectUrl=");
-		buffer.append(redirectUrl);
+		buffer.append(java.net.URLEncoder.encode(redirectUrl,"utf-8"));
 		buffer.append(OAUTH_URL_THREE);
 		
 		return buffer.toString();

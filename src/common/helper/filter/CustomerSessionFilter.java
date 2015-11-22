@@ -54,7 +54,7 @@ public class CustomerSessionFilter implements Filter {
 					httpServletResponse.sendRedirect(WechatData.getCustomerOauthUrl(redirectURL));
 					return;
 				}else{
-					httpServletResponse.sendRedirect("/customer/login.html");
+					httpServletResponse.sendRedirect("/customer/login.html?redirectUrl="+java.net.URLEncoder.encode(redirectURL,"utf-8"));
 					return;
 				}
 			}

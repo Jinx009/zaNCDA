@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import database.basicFunctions.dao.OrderDao;
 import database.common.PageDataList;
+import database.models.Customer;
 import database.models.Order;
 import database.models.Tutor;
 
@@ -55,7 +56,18 @@ public class OrderServiceImpl implements OrderService {
 		return orderDao.getByHql(buffer.toString());
 	}
 	
-	
+	public List<Order> findCustomerList(Customer customer) {
+		buffer = new StringBuffer();
+		
+		buffer.append(" FROM Order ");
+		buffer.append(" WHERE ");
+		buffer.append(" qCustomer.id = ");
+		buffer.append(customer.getId());
+		buffer.append(" AND status <=4   ");
+		buffer.append(" ORDER BY addTime DESC ,status DESC ");
+		
+		return orderDao.getByHql(buffer.toString());
+	}
 	
 	
 	
@@ -70,5 +82,6 @@ public class OrderServiceImpl implements OrderService {
 	public void setBuffer(StringBuffer buffer) {
 		this.buffer = buffer;
 	}
+
 
 }

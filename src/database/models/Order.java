@@ -70,6 +70,9 @@ public class Order {
 	@JoinColumn(name = "topic")
 	private Topic topic;
 	
+	@Column(name = "bank")
+	private String bank;
+	
 
 	public Integer getId() {
 		return id;
@@ -173,6 +176,14 @@ public class Order {
 
 	public void setTopic(Topic topic) {
 		this.topic = topic;
+	}
+
+	public String getBank() {
+		return bank;
+	}
+
+	public void setBank(String bank) {
+		this.bank = bank;
 	}
 	
 	

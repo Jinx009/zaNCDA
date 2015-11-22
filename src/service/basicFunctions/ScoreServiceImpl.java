@@ -23,9 +23,13 @@ public class ScoreServiceImpl implements ScoreService{
 		buffer.append(" WHERE ");
 		buffer.append(" qOrder.id = ");
 		buffer.append(id);
-		buffer.append(" ORDER BY addTime ");
+		buffer.append(" ORDER BY addTime DESC ");
 		
 		return scoreDao.getByHql(buffer.toString());
+	}
+	
+	public void save(Score score) {
+		scoreDao.save(score);
 	}
 
 	public StringBuffer getBuffer() {
@@ -35,4 +39,5 @@ public class ScoreServiceImpl implements ScoreService{
 	public void setBuffer(StringBuffer buffer) {
 		this.buffer = buffer;
 	}
+
 }

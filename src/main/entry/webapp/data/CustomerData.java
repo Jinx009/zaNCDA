@@ -56,6 +56,7 @@ public class CustomerData {
 		String mobile = request.getParameter("mobile");
 		String pwd = request.getParameter("pwd");
 		String code = request.getParameter("code");
+		
 		customer = customerService.getByUserName(mobile);
 		
 		data = new HashMap<String, Object>();
@@ -104,7 +105,7 @@ public class CustomerData {
 	  * @throws IOException
 	  */
 	 @RequestMapping(value = "/customer/data/login",method = RequestMethod.POST)
-	 public void teacherDoLogin(HttpServletRequest request,HttpServletResponse response) throws IOException{
+	 public void customerrDoLogin(HttpServletRequest request,HttpServletResponse response) throws IOException{
 		 String userName = request.getParameter("userName");
 		 String pwd = request.getParameter("pwd");
 		 String loginCode = request.getParameter("code");
@@ -125,15 +126,13 @@ public class CustomerData {
 	    	data.put(ConstantUtil.ERROR_MSG,"账号或密码错误!");
 	     }else {
     		request.getSession().setAttribute(ConstantUtil.CUSTOMER_SESSION,customer);
-    		
-    		data.put(ConstantUtil.RESULT,ConstantUtil.SUCCESS);
-	    	data.put(ConstantUtil.ERROR_MSG,"登陆成功!");
     		if(StringUtil.isNotBlank(openid)){
     			customer.setOpenid(openid);
 	    	}
     		customer.setLoginTime(new Date());
     		customerService.update(customer);
-	    	
+    		data.put(ConstantUtil.RESULT,ConstantUtil.SUCCESS);
+	    	data.put(ConstantUtil.ERROR_MSG,"登陆成功!");
 	    }
 		HttpWebIOHelper._printWebJson(data, response);
 	 }

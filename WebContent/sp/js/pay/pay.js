@@ -111,6 +111,7 @@ function getSign(){
  */
 function callPlay(){
    sign = getSign();
+   alert(pay_id+"--"+sign)
    WeixinJSBridge.invoke('getBrandWCPayRequest', {
            "appId":"wx08411a74145eb7dc",    
            "timeStamp":time,        
@@ -122,14 +123,18 @@ function callPlay(){
        function(res){     
     	   WeixinJSBridge.log(res.err_msg);
            if(res.err_msg == "get_brand_wcpay_request:ok" ) {
-        	   var params = "order_id="+$("#order_id").val();
+        	   var tutorId = $("#tutorId").val();
+        	   var topicId = $("#topicId").val();
+        	   var timeId = $("#time").val();
+        	   var topicContent = $("#topicContent").html();
+        	   var params = "tutorId="+tutorId+"&topicId="+topicId+"&timeId="+timeId+"&topicContent="+topicContent;
         	   $.ajax({
-        		   url:"app-order!changePay.action",
+        		   url:"/customer/data/saveOrder.html",
         		   type:"POST",
-        		   dataType:"html",
+        		   dataType:"json",
         		   data:params,
         		   success:function(res){
-        			   if("success"==res){
+        			   if("success"==res.result){
         				   alert("支付成功");
         			   }
         		   }
@@ -145,7 +150,7 @@ var pay_id;
  * 发起支付
  */
 function pay(){
-	var order_id = "NCDA"+$("#order_id").val();    
+	var order_id = "NCDA"+$("#orderId").val();    
 	var total_fee = parseInt($("#fee").val())*100;   
 	var openId = $("#openId").val();
 	var nonceStr = getNonceStr();

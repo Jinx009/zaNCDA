@@ -107,7 +107,44 @@ public class TutorTimeData {
 		HttpWebIOHelper._printWebJson(date, response);
 	}
 	
-
+	/**
+	 * 获取订单老师时间
+	 * @param request
+	 * @param response
+	 * @throws IOException
+	 */
+	@RequestMapping(value = "/customer/data/orderDate",method = RequestMethod.POST)
+	public void getDate(HttpServletRequest  request,HttpServletResponse response) throws IOException{
+		Integer tutorId =Integer.valueOf(request.getParameter("tutorId"));
+		
+		List<TutorTime> list = tutorTimeService.getDate(tutorId);
+		
+		data = new HashMap<String, Object>();
+		data.put(ConstantUtil.RESULT,ConstantUtil.SUCCESS);
+		data.put(ConstantUtil.ERROR_MSG,list);
+		
+		HttpWebIOHelper._printWebJson(data, response);
+	}
+	
+	/**
+	 * 获取订单老师时间
+	 * @param request
+	 * @param response
+	 * @throws IOException
+	 */
+	@RequestMapping(value = "/customer/data/orderTime",method = RequestMethod.POST)
+	public void getOrderTime(HttpServletRequest  request,HttpServletResponse response) throws IOException{
+		Integer tutorId =Integer.valueOf(request.getParameter("tutorId"));
+		String realDate = request.getParameter("realDate");
+		
+		List<TutorTime> list = tutorTimeService.getTime(tutorId,realDate);
+		
+		data = new HashMap<String, Object>();
+		data.put(ConstantUtil.RESULT,ConstantUtil.SUCCESS);
+		data.put(ConstantUtil.ERROR_MSG,list);
+		
+		HttpWebIOHelper._printWebJson(data, response);
+	}
 	
 	public void setData(Map<String, Object> data) {
 		this.data = data;

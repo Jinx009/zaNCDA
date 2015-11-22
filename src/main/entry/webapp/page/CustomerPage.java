@@ -46,6 +46,15 @@ public class CustomerPage {
 	}
 	
 	/**
+	 * 个人信息
+	 * @return
+	 */
+	@RequestMapping(value = "/customer/page/info")
+	public String info(){
+		return "/customer/info";
+	}
+	
+	/**
 	 * 顾客登陆页面
 	 * @param request
 	 * @param response
@@ -58,10 +67,11 @@ public class CustomerPage {
 		 String code = request.getParameter("code");
 		 String redirectUrl = request.getParameter("redirectUrl");
 		 customer = null;
+		 String openid = "";
 		 int status = 0;
 		 
 		 if(StringUtil.isNotBlank(code)){
-			 String openid = WechatUtil.getOauthOpenId(WechatData.APP_ID,WechatData.APP_SECRET,code);
+			 openid = WechatUtil.getOauthOpenId(WechatData.APP_ID,WechatData.APP_SECRET,code);
 			 if(StringUtil.isNotBlank(openid)){
 				 customer = customerService.getByOpenid(openid);
 				 if(null!=customer){
@@ -69,6 +79,7 @@ public class CustomerPage {
 				 }
 			 }
 		 }
+		 request.setAttribute("openId",openid);
 		 request.setAttribute("status",status);
 		 request.getSession().setAttribute(ConstantUtil.CUSTOMER_SESSION,customer);
 		 request.setAttribute("url",redirectUrl);

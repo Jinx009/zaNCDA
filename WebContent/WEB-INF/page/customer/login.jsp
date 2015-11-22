@@ -35,7 +35,7 @@ function doLogin(){
 	var openid = $("#openid").val();
 	var code = $("#code").val();
 	var params = "userName="+userName+"&pwd="+pwd+"&openid="+openid+"&code="+code;
-	
+	alert(params)
 	$.ajax({
 		url:"/customer/data/login.html",
 		type:"POST",

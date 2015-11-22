@@ -3,6 +3,7 @@ package main.entry.webapp.data;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -97,6 +98,32 @@ public class OrderData {
 	}
 	
 	/**
+	 * 取消订单
+	 * @param response
+	 * @param request
+	 * @throws IOException
+	 * @throws ParseException
+	 */
+	@RequestMapping(value = "/customer/data/cacleOrder")
+	public void cacleOrder(HttpServletResponse response,HttpServletRequest request) throws IOException, ParseException{
+		data = new HashMap<String,Object>();
+		Integer orderId = Integer.valueOf(request.getParameter("orderId"));
+		String bank = request.getParameter("bank");
+		order = orderService.getById(orderId);
+		order.setStatus(6);
+		order.setBank(bank);
+		
+		orderService.update(order);
+		
+		data.put(ConstantUtil.RESULT,ConstantUtil.SUCCESS);
+		data.put(ConstantUtil.ERROR_MSG,"取消成功!");
+		
+		HttpWebIOHelper._printWebJson(data, response);
+		
+		
+	}
+	
+	/**
 	 * 导师订单列表
 	 * @param response
 	 * @param request
@@ -116,6 +143,31 @@ public class OrderData {
 		HttpWebIOHelper._printWebJson(data, response);
 		
 		
+	}
+	
+	/**
+	 * 顾客订单
+	 * @param request
+	 * @param response
+	 * @throws IOException
+	 */
+	@RequestMapping(value = "/customer/data/order")
+	public void customerOrderList(HttpServletRequest request,HttpServletResponse response) throws IOException{
+		data = new HashMap<String, Object>();
+		
+		customer = (Customer) request.getSession().getAttribute(ConstantUtil.CUSTOMER_SESSION);
+		List<Order> orderList = new ArrayList<Order>();
+		List<Order> list = orderService.findCustomerList(customer);
+		for(int i = 0;i<list.size();i++){
+			order = list.get(i);
+			order.setTopicContent(list.get(i).getTopic().getName());
+			orderList.add(order);
+		}
+		
+		data.put(ConstantUtil.RESULT,ConstantUtil.SUCCESS);
+		data.put(ConstantUtil.ERROR_MSG,orderList);
+		
+		HttpWebIOHelper._printWebJson(data, response);
 	}
 	
 	/**
@@ -159,22 +211,23 @@ public class OrderData {
 	@RequestMapping(value = "/tutor/data/saveOrder")
 	public void saveOrderDetail(HttpServletResponse response,HttpServletRequest request) throws IOException, ParseException{
 		
-		Integer id = Integer.valueOf(request.getParameter("id"));
+		Integer topicId = Integer.valueOf(request.getParameter("topicId"));
 		Integer tutorId = Integer.valueOf(request.getParameter("tutorId"));
 		customer = (Customer) request.getSession().getAttribute(ConstantUtil.CUSTOMER_SESSION);
-		Topic topic = topicService.find(id);
+		Topic topic = topicService.find(topicId);
 		tutor = tutorService.find(tutorId);
+		String topicContent = request.getParameter("topicContent");
 		
 		order = new Order();
 		order.setAddTime(new Date());
-		order.setPayStatus(0);
+		order.setPayStatus(1);
 		order.setPrice(tutor.getFacePrice());
 		order.setProcedures(tutor.getFacePrice()*0.03);
 		order.setqCustomer(customer);
 		order.setqTutor(tutor);
-		order.setStatus(0);
+		order.setStatus(1);
 		order.setTopic(topic);
-		order.setTopicContent("");
+		order.setTopicContent(topicContent);
 		order.setUpdateTime(new Date());
 		
 		data = new HashMap<String,Object>();

@@ -9,4 +9,6 @@ public interface TutorTimeDao extends BaseDao<TutorTime>{
 
 	public List<TutorTime> getByHql(String hql);
 
+	public List<TutorTime> getDate(String sql);
+
 }
