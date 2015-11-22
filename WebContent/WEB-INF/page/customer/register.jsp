@@ -33,7 +33,7 @@ function getRegisterCode(){
  * 执行注册
  */
 function doRegister(){
-	var mobile = $("#mobile").val();
+	var mobile = $("#mobilePhone").val();
 	var pwd = $("#pwd").val();
 	var repwd = $("#repwd").val();
 	var code = $("#code").val();
@@ -74,12 +74,12 @@ function doRegister(){
 	
 	<div class="register-inp register-inp-top">
 		<span class="register-inp-text">密码</span>
-		<input placeholder="请输入您的密码" id="pwd"  value="" class="register-inp-long"/>
+		<input placeholder="请输入您的密码" id="pwd" type="password" value="" class="register-inp-long"/>
 	</div>
 	
 	<div class="register-inp register-inp-top">
 		<span class="register-inp-text">重复密码</span>
-		<input placeholder="请重复输入您的密码" id="repwd"  value="" class="register-inp-long"/>
+		<input placeholder="请重复输入您的密码" id="repwd" type="password" value="" class="register-inp-long"/>
 	</div>
 	
 	<div class="register-inp register-inp-top">

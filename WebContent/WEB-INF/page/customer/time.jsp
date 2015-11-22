@@ -75,7 +75,7 @@ function changeTime(){
 <input type="hidden" value="${tutorId }" id="tutorId" />
 <input type="hidden" value="${topicId }" id="topicId" >
 <input type="hidden" value="" id="orderId" >
-<input type="hidden" value="${openId }" id="openId" >
+<input type="hidden" value="${openid }" id="openId" >
 <input type="hidden" value="1" id="fee" >
 <div class="main">
 	<a href="#"><div class="nav-title"><span class="nav-back">&lt;</span>确定您的个人信息</div></a>

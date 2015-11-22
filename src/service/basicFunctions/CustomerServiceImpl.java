@@ -22,7 +22,7 @@ public class CustomerServiceImpl  implements CustomerService{
 		return customerDao.find(id);
 	}
 
-	public void update(Customer customer) {
+	public void doUpdate(Customer customer) {
 		customerDao.update(customer);
 	}
 

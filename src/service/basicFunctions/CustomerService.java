@@ -9,7 +9,7 @@ public interface CustomerService {
 	
 	public Customer getById(Integer id);
 	
-	public void update(Customer customer);
+	public void doUpdate(Customer customer);
 	
 	public Customer save(Customer customer);
 	

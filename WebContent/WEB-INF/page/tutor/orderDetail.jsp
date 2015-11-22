@@ -32,7 +32,7 @@ $(function(){
 			htmlStr += "<p>约谈时间:<font>"+jsDateTimeOnly(res.errmsg.order.qTutorTime.realDate)+"("+res.errmsg.order.qTutorTime.realTime+")</font></p>";
 			htmlStr += "<p>约谈状态:<font class='tutor-state-has'>"+getOrderStatus(res.errmsg.order.status)+"</font></p>";
 			htmlStr += "<p>客户评语：</p>";
-			if(null!=res.errmsg&&res.errmsg.length>0){
+			if(null!=res.errmsg.score&&res.errmsg.score.length>0){
 				htmlStr += "<textarea readonly='readonly' >"+res.errmsg.score[0].content+"</textarea>";
 			}else{
 				htmlStr += "<textarea readonly='readonly' >暂未评价</textarea>";

@@ -14,7 +14,7 @@ public class WechatData {
 	
 	public static final String OAUTH_URL_ONE = "https://open.weixin.qq.com/connect/oauth2/authorize?appid="+APP_ID+"&redirect_uri=";
 	
-	public static final String OAUTH_URL_TWO = "http://www.jinxq.club";
+	public static final String OAUTH_URL_TWO = "http://t03.0angle.com";
 	
 	public static final String OAUTH_URL_THREE = "&response_type=code&scope=snsapi_base&state=state#wechat_redirect";
 	
@@ -45,7 +45,6 @@ public class WechatData {
 		buffer.append("/customer/login.html?redirectUrl=");
 		buffer.append(java.net.URLEncoder.encode(redirectUrl,"utf-8"));
 		buffer.append(OAUTH_URL_THREE);
-		
 		return buffer.toString();
 	}
 	

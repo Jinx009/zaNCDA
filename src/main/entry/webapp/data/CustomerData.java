@@ -1,6 +1,8 @@
 package main.entry.webapp.data;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -17,7 +19,6 @@ import service.basicFunctions.CustomerService;
 import common.helper.ConstantUtil;
 import common.helper.HttpWebIOHelper;
 import common.helper.MD5Util;
-import common.helper.StringUtil;
 import database.common.PageDataList;
 import database.models.Customer;
 
@@ -47,11 +48,48 @@ public class CustomerData {
     }
 	
 	/**
+	 * 保存个人信息
+	 * @param request
+	 * @param response
+	 * @throws ParseException
+	 * @throws IOException
+	 */
+	@RequestMapping(value = "/customer/data/saveInfo",method = RequestMethod.POST)
+	public void saveInfo(HttpServletRequest request,HttpServletResponse response) throws ParseException, IOException{
+		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+		String realName = request.getParameter("realName");
+		String qq = request.getParameter("qq");
+		String email = request.getParameter("email");
+		String birthday = request.getParameter("birthday");
+		String sex = request.getParameter("sex");
+		String famillyNumber = request.getParameter("famillyNumber");
+		String wechatName = request.getParameter("wechatName");
+		
+		customer = (Customer) request.getSession().getAttribute(ConstantUtil.CUSTOMER_SESSION);
+		
+		customer.setRealName(realName);
+		customer.setQq(qq);
+		customer.setEmail(email);
+		customer.setBirthday(sdf.parse(birthday));
+		customer.setSex(sex);
+		customer.setFamillyNumber(Integer.valueOf(famillyNumber));
+		customer.setWechatName(wechatName);
+		
+		customerService.doUpdate(customer);
+		
+		data =new HashMap<String, Object>();
+		data.put(ConstantUtil.RESULT,ConstantUtil.SUCCESS);
+		data.put(ConstantUtil.ERROR_MSG,"保存成功！");
+		
+		HttpWebIOHelper._printWebJson(data, response);
+	}
+	/**
 	 * 执行注册
 	 * @param request
 	 * @param response
 	 * @throws IOException
 	 */
+	@RequestMapping(value = "/customer/data/doRegister",method = RequestMethod.POST)
 	public void doRegister(HttpServletRequest request,HttpServletResponse response) throws IOException{
 		String mobile = request.getParameter("mobile");
 		String pwd = request.getParameter("pwd");
@@ -125,12 +163,14 @@ public class CustomerData {
 	     }else if(null==customer){
 	    	data.put(ConstantUtil.ERROR_MSG,"账号或密码错误!");
 	     }else {
+	    	 System.out.println("-----------------------------mytestopenid="+openid);
     		request.getSession().setAttribute(ConstantUtil.CUSTOMER_SESSION,customer);
-    		if(StringUtil.isNotBlank(openid)){
+    		customer = customerService.getById(customer.getId());
+    		if(null!=openid&&!"".equals(openid)){
     			customer.setOpenid(openid);
 	    	}
     		customer.setLoginTime(new Date());
-    		customerService.update(customer);
+    		customerService.doUpdate(customer);
     		data.put(ConstantUtil.RESULT,ConstantUtil.SUCCESS);
 	    	data.put(ConstantUtil.ERROR_MSG,"登陆成功!");
 	    }

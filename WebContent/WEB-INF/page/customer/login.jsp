@@ -35,7 +35,6 @@ function doLogin(){
 	var openid = $("#openid").val();
 	var code = $("#code").val();
 	var params = "userName="+userName+"&pwd="+pwd+"&openid="+openid+"&code="+code;
-	alert(params)
 	$.ajax({
 		url:"/customer/data/login.html",
 		type:"POST",
@@ -71,7 +70,7 @@ function changeCode(){
 </script>
 </head>
 <body>
-	<input type="hidden" value="${openid }" id="openid" >
+	<input type="hidden" value="openId" id="openid" >
 	<input type="hidden" value="${status }" id="status" >
 	<input type="hidden" value="${url }" id="url" >
 	<div class="nav-title">登录</div>

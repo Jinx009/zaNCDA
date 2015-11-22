@@ -113,7 +113,7 @@ public class OrderData {
 		order.setStatus(6);
 		order.setBank(bank);
 		
-		orderService.update(order);
+		orderService.doUpdate(order);
 		
 		data.put(ConstantUtil.RESULT,ConstantUtil.SUCCESS);
 		data.put(ConstantUtil.ERROR_MSG,"取消成功!");

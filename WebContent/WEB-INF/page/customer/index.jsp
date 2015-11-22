@@ -7,6 +7,9 @@
 <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 <link rel="stylesheet" href="/sp/css/base.css" />
 <link rel="stylesheet" href="/sp/css/ncda.css" />
+
+<script type="text/javascript" src="/sp/dist/jquery.js" ></script>
+<script type="text/javascript" src="/sp/js/common.js" ></script>
 <title>首页</title>
 </head>
 <body>
@@ -23,7 +26,7 @@
 		</div>
 	</div>
 	
-	<div class="index-box">
+	<div class="index-box"  onclick="openUrl('/customer/page/caseDetail.html')" >
 		<div class="index-img">
 			<img src="/sp/images/caseDetail_bg.png" class="index-big"/>
 			<img src="/sp/images/index-label-recommend.png" class="index-small"/>
@@ -39,7 +42,7 @@
 		
 	</div>
 	
-	<div class="index-box">
+	<div class="index-box" onclick="openUrl('/customer/page/caseDetail.html')" >
 		<div class="index-img">
 			<img src="/sp/images/caseDetail_bg.png" class="index-big"/>
 			<img src="/sp/images/index-label-hot.png" class="index-small"/>
@@ -55,7 +58,7 @@
 		</div>
 	</div>
 	
-	<div class="index-box">
+	<div class="index-box"  onclick="openUrl('/customer/page/caseDetail.html')" >
 		<div class="index-img">
 			<img src="/sp/images/caseDetail_bg.png" class="index-big"/>
 			<img src="/sp/images/index-label-only.png" class="index-small"/>

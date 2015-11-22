@@ -58,4 +58,14 @@ public class AdminPage {
     public String index(HttpServletRequest request, HttpServletResponse response){  
 		return "/admin/tutor/index";  
     }
+	
+	/**
+	 * 跳转后台主页面
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/admin/page/edit") 
+    public String edit(HttpServletRequest request, HttpServletResponse response){  
+		return "/admin/tutor/edit";  
+    }
 }

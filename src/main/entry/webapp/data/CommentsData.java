@@ -88,7 +88,7 @@ public class CommentsData {
 		}else{
 			order.setStatus(3);
 		}
-		orderService.update(order);
+		orderService.doUpdate(order);
 		
 		data = new HashMap<String, Object>();
 		data.put(ConstantUtil.RESULT,ConstantUtil.SUCCESS);

@@ -61,7 +61,7 @@ function doSendComments(){
 				 "&adviceOne="+adviceOne+"&adviceTwo="+adviceTwo+"&adviceThree="+adviceThree+
 				 "&solveAssess="+solveAssess+"&id="+id;
 	
-	$ajax({
+	$.ajax({
 		url:"/comments/data/save.html",
 		type:"POST",
 		data:params,

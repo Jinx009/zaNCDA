@@ -106,6 +106,8 @@ function getSign(){
      return sign;
 }
 
+var pay_id;
+
 /**
  * 支付回调
  */
@@ -144,8 +146,6 @@ function callPlay(){
    ); 
 }
 
-var pay_id;
-
 /**
  * 发起支付
  */
@@ -158,15 +158,21 @@ function pay(){
 	var md5 = CryptoJS.MD5(str).toString();
 	
 	var params = "sign="+md5+"&openId="+openId+"&fee="+total_fee+"&nonce_str="+nonceStr+"&client_ip=127.0.0.1&order_id="+order_id;
-	$.ajax({
-		url:"/getPayId.html",
-		type:"POST",
-		data:params,
-		dataType:"html",
-		success:function(res){
-			pay_id = res;
-			callPlay();
-		}
-	})
+
+	if(null==openId||""==openId){
+		alert("尚未从微信登陆，无法完成交易!");
+	}else{
+		$.ajax({
+			url:"/getPayId.html",
+			type:"POST",
+			data:params,
+			dataType:"json",
+			success:function(res){
+				alert(res.errmsg)
+				pay_id = res.errmsg;
+				callPlay();
+			}
+		})
+	}
 }
 

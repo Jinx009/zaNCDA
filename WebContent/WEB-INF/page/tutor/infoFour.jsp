@@ -12,10 +12,11 @@
 <script type="text/javascript" src="/sp/js/common.js" ></script>
 <script type="text/javascript">
 function saveData(){
-	var aptitude = $("#aptitude").html();
-	var personalIntroduction = $("#personalIntroduction").html();
+	var aptitude = $("#aptitude").val();
+	var personalIntroduction = $("#personalIntroduction").val();
 	
 	var params = "aptitude="+aptitude+"&personalIntroduction="+personalIntroduction;
+	alert(params)
 	
 	$.ajax({
 		url:"/tutor/data/saveInfoFour.html",

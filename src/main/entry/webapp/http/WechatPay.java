@@ -2,6 +2,7 @@ package main.entry.webapp.http;
 
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import common.helper.ConstantUtil;
 import common.helper.HttpWebIOHelper;
 import common.wechat.WechatData;
 import common.wechat.WechatUtil;
@@ -57,7 +59,10 @@ public class WechatPay {
 		
 		String res = WechatUtil.getPrePayId(xml);
 		Map<String,String> map = WechatUtil.parseXml(res);
+		Map<String,String> data = new HashMap<String, String>();
+		data.put(ConstantUtil.RESULT,ConstantUtil.SUCCESS);
+		data.put(ConstantUtil.ERROR_MSG, map.get("prepay_id"));
 		
-		HttpWebIOHelper._printWebJson(map.get("prepay_id"), response);
+		HttpWebIOHelper._printWebJson(data, response);
 	}
 }

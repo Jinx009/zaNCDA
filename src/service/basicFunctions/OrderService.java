@@ -13,7 +13,7 @@ public interface OrderService {
 	
 	public void  delete(Integer id);
 	
-	public void update(Order order);
+	public void doUpdate(Order order);
 	
 	public Order save(Order order);
 

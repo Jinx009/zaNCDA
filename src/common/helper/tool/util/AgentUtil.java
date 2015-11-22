@@ -18,6 +18,8 @@ public final class AgentUtil
 	{
 		String ua =request.getHeader("user-agent").toLowerCase();
 		
+		System.out.println(ua);
+		
 		if (ua.indexOf("micromessenger") > 0) 
 		{
 		       return true;

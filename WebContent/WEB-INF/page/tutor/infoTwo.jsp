@@ -75,7 +75,6 @@ function saveInfoTwo(){
 	var video = type.video.status;
 	var workYears = $("#workYears").val();
 	var params = "face="+face+"&mobile="+mobile+"&video="+video+"&workYears="+workYears;
-	alert(params)
 	$.ajax({
 		url:"/tutor/data/saveInfoTwo.html",
 		type:"POST",

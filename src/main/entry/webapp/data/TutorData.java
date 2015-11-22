@@ -87,6 +87,7 @@ public class TutorData {
 		tutor.setWechatName(request.getParameter("wechatName"));
 		tutor.setIdNumber(request.getParameter("idNumber"));
 		tutor.setClassPrice(request.getParameter("classPrice"));
+		tutor.setRealName(request.getParameter("realName"));
 
 		tutorService.update(tutor);
 		

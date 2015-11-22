@@ -36,7 +36,6 @@ public class TutorDaoImpl extends BaseDaoImpl<Tutor> implements TutorDao{
 		if (StringUtil.isNotBlank(tutor.getMobilePhone())){
 			param.addParam("mobilePhone",tutor.getMobilePhone());
 		}
-		param.addParam("status",1);
 		PageDataList<Tutor> pageDataList = super.findPageList(param);
 		
 		return pageDataList;

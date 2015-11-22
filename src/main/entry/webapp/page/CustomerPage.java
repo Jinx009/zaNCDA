@@ -50,7 +50,9 @@ public class CustomerPage {
 	 * @return
 	 */
 	@RequestMapping(value = "/customer/page/info")
-	public String info(){
+	public String info(HttpServletRequest req){
+		customer = (Customer)req.getSession().getAttribute(ConstantUtil.CUSTOMER_SESSION);
+		req.setAttribute("customer",customer);
 		return "/customer/info";
 	}
 	
@@ -79,7 +81,7 @@ public class CustomerPage {
 				 }
 			 }
 		 }
-		 request.setAttribute("openId",openid);
+		 request.setAttribute("openid",openid);
 		 request.setAttribute("status",status);
 		 request.getSession().setAttribute(ConstantUtil.CUSTOMER_SESSION,customer);
 		 request.setAttribute("url",redirectUrl);

@@ -4,6 +4,8 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.NamedQuery;
@@ -19,6 +21,7 @@ public class Customer {
 
 	@Id
 	@Column(unique=true, nullable=false)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
 	@Column(name = "user_name")
@@ -31,7 +34,7 @@ public class Customer {
 	private String realName;
 	
 	@Column(name = "sex")
-	private Integer sex;
+	private String sex;
 	
 	@Column(name = "wechat_name")
 	private String wechatName;
@@ -110,11 +113,12 @@ public class Customer {
 		this.realName = realName;
 	}
 
-	public Integer getSex() {
+	
+	public String getSex() {
 		return sex;
 	}
 
-	public void setSex(Integer sex) {
+	public void setSex(String sex) {
 		this.sex = sex;
 	}
 

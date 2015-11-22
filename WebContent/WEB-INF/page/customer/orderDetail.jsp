@@ -16,7 +16,10 @@ var score = new Array();
 $(function(){
 	var orderId = $("#orderId").val();
 	var time = $("#time").val();
-	
+	score[1] = 1;
+	score[2] = 1;
+	score[3] = 1;
+	score[4] = 1;
 	$.ajax({
 		url:"/score/data/score.html",
 		data:"id="+orderId,
@@ -30,6 +33,10 @@ $(function(){
 					scoreTwo = res.errmsg[0].twoScore;
 					scoreThree = res.errmsg[0].threeScore;
 					scoreFour = res.errmsg[0].fourScore;
+					score[1] = res.errmsg[0].oneScore;
+					score[2] = res.errmsg[0].twoScore;
+					score[3] = res.errmsg[0].threeScore;
+					score[4] = res.errmsg[0].fourScore;
 					
 					changeStar('1',scoreOne);
 					changeStar('2',scoreTwo);
@@ -44,13 +51,13 @@ $(function(){
 /**
  * 分配分数
  */
-function changeStar(index,score){
-	score[parseInt(index)] = score;
+function changeStar(index,scoreValue){
+	score[parseInt(index)] = scoreValue;
 	
 	for(var i = 1;i<=5;i++){
 		$("#"+index+i).attr("src","/sp/images/evaluate.png");
 	}
-	for(var i = 1;i<=parseInt(score);i++){
+	for(var i = 1;i<=parseInt(scoreValue);i++){
 		$("#"+index+i).attr("src","/sp/images/evaluate_actived.png");
 	}
 }
@@ -59,13 +66,12 @@ function changeStar(index,score){
  * 保存分数
  */
 function saveScore(){
-	var content = $("#content").html();
+	var content = $("#content").val();
 	var orderId = $("#orderId").val();
 	var params = "oneScore="+score[1]+"&twoScore="+score[2]+"&threeScore="+score[3]+"&fourScore="+
 				 score[4]+"&content="+content+"&orderId="+orderId;
-	
 	$.ajax({
-		url:"score/data/save.html",
+		url:"/score/data/save.html",
 		type:"POST",
 		data:params,
 		dataType:"json",
@@ -138,21 +144,21 @@ function cacleOrder(){
 	<div>
 		<span>维度(一)：</span>
 		<ul>
-			<li><img id="11" onclick="changeStar('1','1')" src="/sp/images/evaluate_actived.png"/></li>
-			<li><img id="12" onclick="changeStar('1','2')" src="/sp/images/evaluate_actived.png"/></li>
-			<li><img id="13" onclick="changeStar('1','3')" src="/sp/images/evaluate_actived.png"/></li>
-			<li><img id="14" onclick="changeStar('1','4')" src="/sp/images/evaluate_actived.png"/></li>
-			<li><img id="15" onclick="changeStar('1','5')" src="/sp/images/evaluate_actived.png"/></li>
+			<li><img id="11" onclick="changeStar('1','1')" src="/sp/images/evaluate.png"/></li>
+			<li><img id="12" onclick="changeStar('1','2')" src="/sp/images/evaluate.png"/></li>
+			<li><img id="13" onclick="changeStar('1','3')" src="/sp/images/evaluate.png"/></li>
+			<li><img id="14" onclick="changeStar('1','4')" src="/sp/images/evaluate.png"/></li>
+			<li><img id="15" onclick="changeStar('1','5')" src="/sp/images/evaluate.png"/></li>
 		</ul>
 	</div>
 	
 	<div>
 		<span>维度(二)：</span>
 		<ul>
-			<li><img id="21" onclick="changeStar('2','1')" src="/sp/images/evaluate_actived.png"/></li>
-			<li><img id="22" onclick="changeStar('2','2')" src="/sp/images/evaluate_actived.png"/></li>
-			<li><img id="23" onclick="changeStar('2','3')" src="/sp/images/evaluate_actived.png"/></li>
-			<li><img id="24" onclick="changeStar('2','4')" src="/sp/images/evaluate_actived.png"/></li>
+			<li><img id="21" onclick="changeStar('2','1')" src="/sp/images/evaluate.png"/></li>
+			<li><img id="22" onclick="changeStar('2','2')" src="/sp/images/evaluate.png"/></li>
+			<li><img id="23" onclick="changeStar('2','3')" src="/sp/images/evaluate.png"/></li>
+			<li><img id="24" onclick="changeStar('2','4')" src="/sp/images/evaluate.png"/></li>
 			<li><img id="25" onclick="changeStar('2','5')" src="/sp/images/evaluate.png"/></li>
 		</ul>
 	</div>
@@ -160,9 +166,9 @@ function cacleOrder(){
 	<div>
 		<span>维度(三)：</span>
 		<ul>
-			<li><img id="31" onclick="changeStar('3','1')" src="/sp/images/evaluate_actived.png"/></li>
-			<li><img id="32" onclick="changeStar('3','2')" src="/sp/images/evaluate_actived.png"/></li>
-			<li><img id="33" onclick="changeStar('3','3')" src="/sp/images/evaluate_actived.png"/></li>
+			<li><img id="31" onclick="changeStar('3','1')" src="/sp/images/evaluate.png"/></li>
+			<li><img id="32" onclick="changeStar('3','2')" src="/sp/images/evaluate.png"/></li>
+			<li><img id="33" onclick="changeStar('3','3')" src="/sp/images/evaluate.png"/></li>
 			<li><img id="34" onclick="changeStar('3','4')" src="/sp/images/evaluate.png"/></li>
 			<li><img id="35" onclick="changeStar('3','5')" src="/sp/images/evaluate.png"/></li>
 		</ul>
@@ -171,10 +177,10 @@ function cacleOrder(){
 	<div>
 		<span>维度(四)：</span>
 		<ul>
-			<li><img id="41" onclick="changeStar('4','1')" src="/sp/images/evaluate_actived.png"/></li>
-			<li><img id="42" onclick="changeStar('4','2')" src="/sp/images/evaluate_actived.png"/></li>
-			<li><img id="43" onclick="changeStar('4','3')" src="/sp/images/evaluate_actived.png"/></li>
-			<li><img id="44" onclick="changeStar('4','4')" src="/sp/images/evaluate_actived.png"/></li>
+			<li><img id="41" onclick="changeStar('4','1')" src="/sp/images/evaluate.png"/></li>
+			<li><img id="42" onclick="changeStar('4','2')" src="/sp/images/evaluate.png"/></li>
+			<li><img id="43" onclick="changeStar('4','3')" src="/sp/images/evaluate.png"/></li>
+			<li><img id="44" onclick="changeStar('4','4')" src="/sp/images/evaluate.png"/></li>
 			<li><img id="45" onclick="changeStar('4','5')" src="/sp/images/evaluate.png"/></li>
 		</ul>
 	</div>

@@ -52,7 +52,7 @@ function goBack(){
 <input type="hidden" value="${order.id }" id="id" >
 <input type="hidden" value="${order.status }" id="status">
 <input type="hidden" value="${order.qTutorTime.realTime }" id="time" >
-<div class="nav-title">约谈小结提示页<div class="close"  onclick="openUrl('/tutor/page/index.html')" >&Chi;</div></div>
+<div class="nav-title">约谈小结提示页<div class="close"  onclick="openUrl('/customer/page/index.html')" >&Chi;</div></div>
 	
 	<div class="summaryDetails-title">
 		<p>一、用户的主要诉求</p>

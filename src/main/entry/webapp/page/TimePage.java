@@ -7,6 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import common.helper.ConstantUtil;
+
+import database.models.Customer;
 import service.basicFunctions.TutorTimeService;
 
 @Controller
@@ -25,6 +28,8 @@ public class TimePage {
 	public String time(HttpServletRequest request,HttpServletResponse response){
 		request.setAttribute("tutorId",request.getParameter("tutorId"));
 		request.setAttribute("topicId",request.getParameter("topicId"));
+		Customer customer = (Customer) request.getSession().getAttribute(ConstantUtil.CUSTOMER_SESSION);
+		request.setAttribute("openid",customer.getOpenid());
 		return "/customer/time";
 	}
 	

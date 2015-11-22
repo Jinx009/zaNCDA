@@ -81,6 +81,13 @@ public class ScoreData {
 		
 		scoreService.save(score);
 		
+		if(3==order.getStatus()){
+			order.setStatus(4);
+		}else{
+			order.setStatus(2);
+		}
+		orderService.doUpdate(order);
+		
 		data.put(ConstantUtil.RESULT,ConstantUtil.SUCCESS);
 		data.put(ConstantUtil.ERROR_MSG,"修改成功!");
 		

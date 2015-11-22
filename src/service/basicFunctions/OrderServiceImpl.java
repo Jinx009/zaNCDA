@@ -27,7 +27,7 @@ public class OrderServiceImpl implements OrderService {
 		orderDao.delete(id);
 	}
 
-	public void update(Order order) {
+	public void doUpdate(Order order) {
 		orderDao.update(order);
 	}
 

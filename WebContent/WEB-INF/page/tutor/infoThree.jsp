@@ -216,7 +216,7 @@ function saveData(){
 	var topic = topicId;
 	
 	var params = "trade1="+trade1+"&trade2="+trade2+"&trade3="+trade3+
-				 "area1="+area1+"&area2="+area2+"&area3="+area3+"&topic="+topic;
+				 "&area1="+area1+"&area2="+area2+"&area3="+area3+"&topic="+topic;
 	$.ajax({
 		url:"/tutor/data/saveInfoThree.html",
 		type:"POST",
