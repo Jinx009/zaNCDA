@@ -45,6 +45,7 @@ public class WechatData {
 		buffer.append("/customer/login.html?redirectUrl=");
 		buffer.append(java.net.URLEncoder.encode(redirectUrl,"utf-8"));
 		buffer.append(OAUTH_URL_THREE);
+		
 		return buffer.toString();
 	}
 	

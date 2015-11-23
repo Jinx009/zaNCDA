@@ -39,9 +39,10 @@ public class TutorPage {
 		 String code = request.getParameter("code");
 		 tutor = null;
 		 int status = 0;
+		 String  openid = "";
 		 
 		 if(StringUtil.isNotBlank(code)){
-			 String openid = WechatUtil.getOauthOpenId(WechatData.APP_ID,WechatData.APP_SECRET,code);
+			 openid = WechatUtil.getOauthOpenId(WechatData.APP_ID,WechatData.APP_SECRET,code);
 			 if(StringUtil.isNotBlank(openid)){
 				 tutor = tutorService.getByOpenid(openid);
 				 if(null!=tutor){
@@ -49,6 +50,7 @@ public class TutorPage {
 				 }
 			 }
 		 }
+		 request.setAttribute("openid",openid);
 		 request.setAttribute("status",status);
 		 request.setAttribute("url",WechatData.getTutorOauthUrl());
 		 request.getSession().setAttribute(ConstantUtil.TUTOR_SESSION,tutor);

@@ -39,7 +39,7 @@ public class TutorServiceImpl implements TutorService{
 		buffer.append(" WHERE openid = '");
 		buffer.append(openid);
 		buffer.append("' ");
-		buffer.append(" ORDER BY updateTime DESC ");
+		buffer.append(" ORDER BY loginTime DESC ");
 		
 		return tutorDao.getByHql(buffer.toString());
 	}
