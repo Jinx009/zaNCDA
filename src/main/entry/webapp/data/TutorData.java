@@ -279,12 +279,17 @@ public class TutorData {
 	public void getCommonList(HttpServletRequest request,HttpServletResponse response) throws IOException{
 		data = new HashMap<String,Object>();
 		List<Tutor> list = tutorService.findAll();
-		List<Tutor> result = new ArrayList<Tutor>();
-		for(int i = 0;i<list.size();i++){
-			tutor = list.get(i);
-			tutor.setqTrade(tradeService.find(11111));
-			result.add(tutor);
+		List<Tutor> result = null;
+		if(null!=list&&!list.isEmpty()){
+			result = new ArrayList<Tutor>();
+			for(int i = 0;i<list.size();i++){
+				tutor = list.get(i);
+				tutor.setBankName(tutor.getTradeOne().getTradeName());
+				tutor.setBankCard(tutor.getAreaOne().getTradeName());
+				result.add(tutor);
+			}
 		}
+		
 		data.put(ConstantUtil.RESULT,ConstantUtil.SUCCESS);
 		data.put(ConstantUtil.ERROR_MSG,result);
 		
@@ -318,8 +323,19 @@ public class TutorData {
 		
 		
 		List<Tutor> list = tutorService.findSelectList(tutor,type,workYears);
+		List<Tutor> result = null;
+		if(null!=list&&!list.isEmpty()){
+			result = new ArrayList<Tutor>();
+			for(int i = 0;i<list.size();i++){
+				tutor = list.get(i);
+				tutor.setBankName(tutor.getTradeOne().getTradeName());
+				tutor.setBankCard(tutor.getAreaOne().getTradeName());
+				result.add(tutor);
+			}
+		}
+		
 		data.put(ConstantUtil.RESULT,ConstantUtil.SUCCESS);
-		data.put(ConstantUtil.ERROR_MSG,list);
+		data.put(ConstantUtil.ERROR_MSG,result);
 		
 		HttpWebIOHelper._printWebJson(data, response);
 	}

@@ -40,11 +40,13 @@ public class WechatPay {
 		String sign = request.getParameter("sign");
 		String nonce_str = request.getParameter("nonce_str");
 		
+		System.out.println("pay  openId:"+openId);
+		
 		String xml = 
 				"<xml>"+
 				   "<appid>"+WechatData.APP_ID+"</appid>"+
 				   "<body>NCDA</body>"+
-				   "<mch_id>1230109502</mch_id>"+
+				   "<mch_id>1280820801</mch_id>"+
 				   "<nonce_str>"+nonce_str+"</nonce_str>"+
 				   "<notify_url>http://t03.0angel.com/pay/callBack.html</notify_url>"+
 				   "<openid>"+openId+"</openid>"+
@@ -59,6 +61,7 @@ public class WechatPay {
 		
 		String res = WechatUtil.getPrePayId(xml);
 		Map<String,String> map = WechatUtil.parseXml(res);
+		System.out.println("res="+res);
 		Map<String,String> data = new HashMap<String, String>();
 		data.put(ConstantUtil.RESULT,ConstantUtil.SUCCESS);
 		data.put(ConstantUtil.ERROR_MSG, map.get("prepay_id"));

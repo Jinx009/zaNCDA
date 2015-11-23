@@ -113,7 +113,6 @@ var pay_id;
  */
 function callPlay(){
    sign = getSign();
-   alert(pay_id+"--"+sign)
    WeixinJSBridge.invoke('getBrandWCPayRequest', {
            "appId":"wx08411a74145eb7dc",    
            "timeStamp":time,        
@@ -131,13 +130,13 @@ function callPlay(){
         	   var topicContent = $("#topicContent").html();
         	   var params = "tutorId="+tutorId+"&topicId="+topicId+"&timeId="+timeId+"&topicContent="+topicContent;
         	   $.ajax({
-        		   url:"/customer/data/saveOrder.html",
+        		   url:"/tutor/data/saveOrder.html",
         		   type:"POST",
         		   dataType:"json",
         		   data:params,
-        		   success:function(res){
-        			   if("success"==res.result){
-        				   alert("支付成功");
+        		   success:function(data){
+        			   if("success"==data.result){
+        				   alert("支付成功,订单已保存!");
         			   }
         		   }
         	   })
@@ -151,10 +150,21 @@ function callPlay(){
  */
 function pay(){
 	var order_id = "NCDA"+$("#orderId").val();    
-	var total_fee = parseInt($("#fee").val())*100;   
+	var total_fee = parseInt($("#fee").val());   
 	var openId = $("#openId").val();
 	var nonceStr = getNonceStr();
-	var str = "appid=wx08411a74145eb7dc&body=NCDA&mch_id=1230109502&nonce_str="+nonceStr+"&notify_url=http://t03.0angel.com/pay/callBack.html&openid="+openId+"&out_trade_no="+order_id+"&spbill_create_ip=127.0.0.1&total_fee="+total_fee+"&trade_type=JSAPI&key=jinxjinxjinxjinxjinxjinxjinxjinx";
+	var str = "appid=wx08411a74145eb7dc"+
+			   "&body=NCDA"+
+			   "&mch_id=1280820801"+
+			   "&nonce_str="+nonceStr+
+			   "&notify_url=http://t03.0angel.com/pay/callBack.html"+
+			   "&openid="+openId+
+			   "&out_trade_no="+order_id+
+			   "&spbill_create_ip=127.0.0.1"+
+			   "&total_fee="+total_fee+
+			   "&trade_type=JSAPI"+
+			   "&key=jinxjinxjinxjinxjinxjinxjinxjinx";
+	
 	var md5 = CryptoJS.MD5(str).toString();
 	
 	var params = "sign="+md5+"&openId="+openId+"&fee="+total_fee+"&nonce_str="+nonceStr+"&client_ip=127.0.0.1&order_id="+order_id;
@@ -168,7 +178,6 @@ function pay(){
 			data:params,
 			dataType:"json",
 			success:function(res){
-				alert(res.errmsg)
 				pay_id = res.errmsg;
 				callPlay();
 			}

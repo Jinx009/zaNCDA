@@ -70,7 +70,7 @@ function changeCode(){
 </script>
 </head>
 <body>
-	<input type="hidden" value="openId" id="openid" >
+	<input type="hidden" value="${openid }" id="openid" >
 	<input type="hidden" value="${status }" id="status" >
 	<input type="hidden" value="${url }" id="url" >
 	<div class="nav-title">登录</div>

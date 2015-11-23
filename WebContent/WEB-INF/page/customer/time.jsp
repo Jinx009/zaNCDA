@@ -17,7 +17,10 @@
 <script type="text/javascript">
 $(function(){
 	getDate();
-	$("#orderId").val(getRandom());
+
+	var timestamp = Date.parse(new Date());
+
+	$("#orderId").val(timestamp);
 })
 
 /**

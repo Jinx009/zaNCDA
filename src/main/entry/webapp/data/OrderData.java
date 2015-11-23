@@ -231,6 +231,11 @@ public class OrderData {
 		order.setTopic(topic);
 		order.setTopicContent(topicContent);
 		order.setUpdateTime(new Date());
+		order.setPayTime(new Date());
+		
+		System.out.println("保存数据!");
+		
+		orderService.save(order);
 		
 		data = new HashMap<String,Object>();
 		data.put(ConstantUtil.RESULT,ConstantUtil.SUCCESS);
