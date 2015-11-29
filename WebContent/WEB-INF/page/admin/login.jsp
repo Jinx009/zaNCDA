@@ -83,7 +83,7 @@ function getCode(){
 			  </div>
 			  <div class="form-group">
 			    <div class="col-sm-offset-2 col-sm-10">
-			      <button type="button" class="btn btn-default" onclick="doLogin()" >登陆</button>
+			      <button type="button" class="btn btn-default" onclick="doLogin()" >登录</button>
 			    </div>
 			  </div>
 			</form>

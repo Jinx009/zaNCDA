@@ -51,7 +51,7 @@ public class UploadData {
 	    }  
 	    data = new HashMap<String,Object>();
 	    data.put(ConstantUtil.RESULT,ConstantUtil.SUCCESS);
-	    data.put(ConstantUtil.ERROR_MSG,"/sp/upload/"+fileName);
+	    data.put(ConstantUtil.ERROR_MSG,"/sp/upload/"+String.valueOf(currentTime)+fileName);
 		HttpWebIOHelper._printWebJson(data, response);
 	}
 

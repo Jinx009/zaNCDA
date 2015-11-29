@@ -22,6 +22,7 @@ import service.basicFunctions.TradeService;
 import service.basicFunctions.TutorService;
 import common.helper.ConstantUtil;
 import common.helper.HttpWebIOHelper;
+import common.helper.MD5Util;
 import common.helper.StringUtil;
 import database.common.PageDataList;
 import database.models.Topic;
@@ -44,6 +45,26 @@ public class TutorData {
 	
 	@Autowired
 	private TopicService topicService;
+	
+	/**
+	 * 删除导师
+	 * @param request
+	 * @param response
+	 * @throws IOException
+	 */
+	@RequestMapping(value = "/tutor/data/delete",method = RequestMethod.POST)
+	public void delete(HttpServletRequest request,HttpServletResponse response) throws IOException{
+		data = new HashMap<String, Object>();
+		
+		Integer id = Integer.valueOf(request.getParameter("id"));
+		
+		tutorService.delete(id);
+		
+		data.put(ConstantUtil.RESULT,ConstantUtil.SUCCESS);
+		data.put(ConstantUtil.ERROR_MSG,"删除成功!");
+		
+		HttpWebIOHelper._printWebJson(data, response);
+	}
 	
 	/**
 	 * 获取验证码
@@ -294,6 +315,123 @@ public class TutorData {
 		data.put(ConstantUtil.ERROR_MSG,result);
 		
 		HttpWebIOHelper._printWebJson(data, response);
+	}
+	
+	/**
+	 * 新建导师
+	 * @param req
+	 * @param res
+	 * @throws ParseException
+	 * @throws IOException
+	 */
+	@RequestMapping(value = "/tutor/data/save",method = RequestMethod.POST )
+	public void save(HttpServletRequest req,HttpServletResponse res) throws ParseException, IOException{
+		
+		Trade trade1 = tradeService.find(Integer.valueOf(req.getParameter("trade1")));
+		Trade trade2 = tradeService.find(Integer.valueOf(req.getParameter("trade2")));
+		Trade trade3 = tradeService.find(Integer.valueOf(req.getParameter("trade3")));
+		Trade area1 = tradeService.find(Integer.valueOf(req.getParameter("area1")));
+		Trade area2 = tradeService.find(Integer.valueOf(req.getParameter("area2")));
+		Trade area3 = tradeService.find(Integer.valueOf(req.getParameter("area3")));
+		topic = topicService.find(Integer.valueOf(req.getParameter("topicId")));
+		
+		tutor = new Tutor();
+		tutor.setUserName(req.getParameter("username"));
+		tutor.setRealName(req.getParameter("realname"));
+		tutor.setPwd(MD5Util.toMD5(req.getParameter("pwd")));
+		tutor.setPhotoPath(req.getParameter("photoPath"));
+		tutor.setSex(req.getParameter("sex"));
+		tutor.setMobilePhone(req.getParameter("mobilePhone"));
+		tutor.setAptitude(req.getParameter("aptitude"));
+		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+		if(StringUtil.isNotBlank(req.getParameter("birth"))){
+			tutor.setBirthday(sdf.parse(req.getParameter("birth")));
+		}else{
+			tutor.setBirthday(new Date());
+		}
+		
+		tutor.setClassPrice(req.getParameter("classPrice"));
+		tutor.setPersonalIntroduction(req.getParameter("personalIntroduction"));
+		tutor.setBankCard(req.getParameter("bankAccount"));
+		tutor.setBankName(req.getParameter("bankName"));
+		tutor.setVideoStatus(Integer.valueOf(req.getParameter("videoStatus")));
+		tutor.setMobileStatus(Integer.valueOf(req.getParameter("mobileStatus")));
+		tutor.setFaceStatus(Integer.valueOf(req.getParameter("faceStatus")));
+		tutor.setQq(req.getParameter("qq"));
+		tutor.setEmail(req.getParameter("email"));
+		tutor.setIdNumber(req.getParameter("idCard"));
+		tutor.setWorkYears(Integer.valueOf(req.getParameter("workYears")));
+		tutor.setStatus(Integer.valueOf(req.getParameter("isOnline")));
+		tutor.setTradeOne(trade1);
+		tutor.setTradeTwo(trade2);
+		tutor.setTradeThree(trade3);
+		tutor.setAreaOne(area1);
+		tutor.setAreaTwo(area2);
+		tutor.setAreaThree(area3);
+		tutor.setqTopic(topic);
+		
+		tutorService.saveTutor(tutor);
+		
+		data = new HashMap<String, Object>();
+		data.put(ConstantUtil.RESULT,ConstantUtil.SUCCESS);
+		data.put(ConstantUtil.ERROR_MSG,"操作成功");
+		
+		HttpWebIOHelper._printWebJson(data, res);
+	}
+	
+	/**
+	 * 更新导师
+	 * @param req
+	 * @param res
+	 * @throws ParseException
+	 * @throws IOException
+	 */
+	@RequestMapping(value = "/tutor/data/update",method = RequestMethod.POST )
+	public void update(HttpServletRequest req,HttpServletResponse res) throws ParseException, IOException{
+		
+		Trade trade1 = tradeService.find(Integer.valueOf(req.getParameter("trade1")));
+		Trade trade2 = tradeService.find(Integer.valueOf(req.getParameter("trade2")));
+		Trade trade3 = tradeService.find(Integer.valueOf(req.getParameter("trade3")));
+		Trade area1 = tradeService.find(Integer.valueOf(req.getParameter("area1")));
+		Trade area2 = tradeService.find(Integer.valueOf(req.getParameter("area2")));
+		Trade area3 = tradeService.find(Integer.valueOf(req.getParameter("area3")));
+		topic = topicService.find(Integer.valueOf(req.getParameter("topicId")));
+		
+		tutor = tutorService.find(Integer.valueOf(req.getParameter("id")));
+		tutor.setRealName(req.getParameter("username"));
+		tutor.setPhotoPath(req.getParameter("photoPath"));
+		tutor.setSex(req.getParameter("sex"));
+		tutor.setMobilePhone(req.getParameter("mobilePhone"));
+		tutor.setAptitude(req.getParameter("aptitude"));
+		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+		tutor.setBirthday(sdf.parse(req.getParameter("birth")));
+		tutor.setClassPrice(req.getParameter("classPrice"));
+		tutor.setPersonalIntroduction(req.getParameter("personalIntroduction"));
+		tutor.setBankCard(req.getParameter("bankAccount"));
+		tutor.setBankName(req.getParameter("bankName"));
+		tutor.setVideoStatus(Integer.valueOf(req.getParameter("videoStatus")));
+		tutor.setMobileStatus(Integer.valueOf(req.getParameter("mobileStatus")));
+		tutor.setFaceStatus(Integer.valueOf(req.getParameter("faceStatus")));
+		tutor.setQq(req.getParameter("qq"));
+		tutor.setEmail(req.getParameter("email"));
+		tutor.setIdNumber(req.getParameter("idCard"));
+		tutor.setWorkYears(Integer.valueOf(req.getParameter("workYears")));
+		tutor.setStatus(Integer.valueOf(req.getParameter("isOnline")));
+		tutor.setTradeOne(trade1);
+		tutor.setTradeTwo(trade2);
+		tutor.setTradeThree(trade3);
+		tutor.setAreaOne(area1);
+		tutor.setAreaTwo(area2);
+		tutor.setAreaThree(area3);
+		tutor.setqTopic(topic);
+		
+		tutorService.update(tutor);
+		
+		data = new HashMap<String, Object>();
+		data.put(ConstantUtil.RESULT,ConstantUtil.SUCCESS);
+		data.put(ConstantUtil.ERROR_MSG,"操作成功");
+		
+		HttpWebIOHelper._printWebJson(data, res);
 	}
 	
 	/**

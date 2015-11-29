@@ -163,3 +163,10 @@ function validateTel(mobile)
     }
     return "success";
 }
+
+function isNull(object){
+	if(null==object||""==object){
+		return "";
+	}
+	return object;
+}

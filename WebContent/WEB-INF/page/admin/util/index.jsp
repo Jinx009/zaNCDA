@@ -89,6 +89,7 @@ function getData(){
 							<thead>
 								<tr>
 									<td>编号</td>
+									<td>行业名称</td>
 									<td>领域名称</td>
 								</tr>
 							</thead>

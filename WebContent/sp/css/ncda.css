@@ -2,12 +2,6 @@
 .tutor-bg{
 	background: #ededed;
 }
-.center option{
-	text-align: center;
-}
-.left{
-	text-align: left;
-}
 .white-bg{
 	background: #FFFFFF;
 	width: 100%;
@@ -15,6 +9,15 @@
 }
 .position{
 	position: relative;
+}
+.code{
+	position: fixed;
+	right: 30px;
+	bottom: 50px;
+	display: none;
+}
+.code img{
+	width: 100%;
 }
 .nav-title{
 	width: 100%;
@@ -28,24 +31,19 @@
 }
 .nav-back{
 	position: absolute;
-	left: 0;
+	left: 4%;
 	top: 0px;
-	color: #FFFFFF;
-	height: 45px;
-	line-height: 45px;
-	font-size: 1.875em;
-	display: block;
-	width: 30px;
-	text-align: center;
+}
+.nav-back img{
+	vertical-align: middle;
 }
 .close{
 	position: absolute;
 	right: 4%;
 	bottom: 0px;
-	color: #FFFFFF;
-	height: 45px;
-	line-height: 45px;
-	font-size: 1.3em;
+}
+.close img{
+	vertical-align: middle;
 }
 .main{
 	position: relative;
@@ -75,9 +73,6 @@
 	background: #FFFFFF;
 	border-radius: 4px;
 	display: none;
-}
-.center{
-	text-align: center;
 }
 
 .success-box{
@@ -135,11 +130,14 @@
 }
 .cancel-box dl{
 	text-align: center;
-	margin-top: 8%;
-	margin-bottom: 8%;
 }
 .cancel-box dl dt img{
 	width: 30px;
+}
+.cancel-middle{
+	position: absolute;
+	left: 4%;
+	width: 92%;
 }
 .cancel-box h3{
 	color: #ff5e70;
@@ -152,11 +150,12 @@
 	width: 92%;
 	padding: 2px 4%;
 	margin-bottom: 8px;
+	background: #fcfcfc;
 }
 .cancel-box textarea{
 	width: 92%;
 	padding: 4%;
-	min-height: 134px;
+	background: #fcfcfc;
 }
 .cancel-tip{
 	color: #ff5e70;
@@ -219,11 +218,14 @@
 }
 .tutor-img{
 	display: table-cell;
+	vertical-align: middle;
+	margin-right: 13px;
+}
+.tutor-img img{
 	width: 97px;
 	height: 97px;
 	border-radius: 48.5px;
-	vertical-align: middle;
-	margin-right: 13px;
+	border: 2px solid #cdd8e8;
 }
 
 .tutor-text{
@@ -247,6 +249,8 @@
 }
 .tutor-tip p{
 	line-height: 24px;
+	text-align: left;
+	font-size: 1.0em;
 }
 .tutor-desc{
 	clear: both;
@@ -446,7 +450,7 @@
 	appearance:none;
 	-moz-appearance:none; 
 	-webkit-appearance:none;
-	background: url(/sp/images/select_right.png) no-repeat center right;
+	background: url(../img/select_right.png) no-repeat center right;
 }
 .register-inp select option{
 	height: 30px;
@@ -479,13 +483,20 @@
 	text-align: center;
 	border-radius: 4px;
 }
-.register-tip{
+.register-inp-position{
+	width: 100%;
 	position: absolute;
-	right: 18px;
+	right: 0px;
 	bottom: 0px;
+}
+.register-tip{
+	width: 94%;
+	max-width: 705px;
+	margin: 0 auto;
 	height: 40px;
 	line-height: 40px;
 	color: #989898;
+	text-align: right;
 }
 .register-tip a{
 	margin-left: 5px;
@@ -508,7 +519,7 @@
 }
 .pay-text{
 	position: absolute;
-	top: 35%;
+	top: 40%;
 	left: 0px;
 	width: 100%;
 	text-align: center;
@@ -517,11 +528,16 @@
 .pay-text-tip{
 	color: #A19999;
 }
-.pay-success-btn{
+.pay-success-btn-position{
 	position: absolute;
-	width: 84%;
-	left: 8%;
+	width: 100%;
+	left: 0%;
 	bottom: 6%;
+}
+.pay-success-btn{
+	width: 86%;
+	max-width: 645px;
+	margin: 0 auto;
 	height: 44px;
 	line-height: 44px;
 	text-align: center;
@@ -536,8 +552,8 @@
 	padding-top: 0px;
 	border-radius: 4px;
 	-webkit-box-shadow:0 0 6px rgba(0,0,0,0.3); 
-  -moz-box-shadow:0 0 6px rgba(0,0,0,0.3);
-  box-shadow:0 0 6px rgba(98,95,95,0.3);
+    -moz-box-shadow:0 0 6px rgba(0,0,0,0.3);
+    box-shadow:0 0 6px rgba(98,95,95,0.3);
 	
 }
 .caseDetails-wrap{
@@ -571,16 +587,17 @@
 }
 .tutorDetails-bg{
 	width: 100%;
-	background: url(/sp/images/tutorDetail_head_bg.png) no-repeat;
+	background: url(../img/tutorDetail_head_bg.png) no-repeat;
 	background-size:100% 100% ;
 	min-height: 147px;
+	max-height: 286px;
 	position: relative;
 	border-top: 1px solid #355d9e;
 }
 .tutorDetails-bg img{
 	position: absolute;
 	left: 34%;
-	top: 19px;
+	top: 12%;
 	width: 32%;
 	margin: 0 auto;
 }
@@ -639,6 +656,7 @@
 	padding: 10px 16px;
 	margin-right: 5px;
 	font-size: 1.0em;
+	margin-bottom: 5px;
 }
 .tutor-content-li-business li{
 	background: #ffc1ab;
@@ -768,9 +786,9 @@
 	margin: 0 auto;
 	border-radius: 4px;
 	-webkit-box-shadow:0 0 6px rgba(0,0,0,0.3); 
-  -moz-box-shadow:0 0 6px rgba(0,0,0,0.3);
-  box-shadow:0 0 6px rgba(98,95,95,0.3);
-  margin-bottom: 20px;
+    -moz-box-shadow:0 0 6px rgba(0,0,0,0.3);
+    box-shadow:0 0 6px rgba(98,95,95,0.3);
+    margin-bottom: 20px;
 	padding-bottom: 10px;
 	position: relative;
 
@@ -843,11 +861,13 @@
 .index-img{
 	position: relative;
 	width: 100%;
+	height: auto;
 	height: 224px;
 }
 .index-big{
 	position: absolute;
 	width: 100%;
+	height: auto;
 	height: 224px;
 	top: 0px;
 	left: 0px;
@@ -936,6 +956,10 @@
 	width: 100%;
 	height: 42px;
 	color: #656666;
+	appearance:none;
+	-moz-appearance:none; 
+	-webkit-appearance:none;
+	background: url(../img/select_right.png) no-repeat right center;
 }
 .summaryDetails-sel textarea{
 	width: 91%;
@@ -1088,9 +1112,10 @@
 	
 }
 .personal-wrap input{
-	background:url(/sp/images/calendar.png) no-repeat 98% center;
-	height: 44px;
-	width: 100%;
+	padding: 2px 2%;
+	background:url(../img/calendar.png) no-repeat 98% center;
+	height: 40px;
+	width: 96%;
 }
 .personal-tip{
 	width: 94%;
@@ -1128,17 +1153,23 @@
 	padding-bottom: 3px;
 	margin-left: 5px;
 }
-.btn-position{
+.btn-fixed{
 	width: 100%;
-	position: absolute;
+	margin: 0 auto;
+	position: fixed;
 	bottom: 2%;
 	left: 0px;
 }
+.btn-position{
+	width: 100%;
+	margin-top: 10%;
+	margin-bottom: 2%;
+}
 .two-btn{
 	width: 92%;
+	max-width: 690px;
 	margin: 0 auto;
 	height: 44px;
-	
 }
 .two-btn button{
 	float: left;
@@ -1149,6 +1180,7 @@
 	letter-spacing: 2px;
 	text-align: center;
 	background: #4ebcb7;
+	
 	color: #FFFFFF;
 }
 .two-btn button:last-child{
@@ -1249,6 +1281,7 @@
 	text-justify:inter-ideograph;
 	line-height: 24px;
 	font-size: 1.0em;
+	margin-bottom: 10px;
 }
 .right-cancel{
 	width: 84%;
@@ -1339,7 +1372,7 @@
 }
 .appoint-list{
 	clear: both;
-	width: 100%;
+	width: 90%;
 	margin: 0 auto;
 	padding: 0px 5%;
 	background: #FFFFFF;
@@ -1353,9 +1386,8 @@
 	font-size: 1.3em;
 	color: #a3a3a3;
 }
-
 .appoint-inp{
-	width: 90%;
+	width: 100%;
 	margin-bottom:10px;
 	height: 50px;
 }
@@ -1465,7 +1497,7 @@
 	height: 44px;
 	-moz-appearance:none; 
 	-webkit-appearance:none;
-	background: url(/sp/images/select_right.png) no-repeat center right;
+	background: url(../img/select_right.png) no-repeat center right;
 	
 }
 .interview-big-btn{

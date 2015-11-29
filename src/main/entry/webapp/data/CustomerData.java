@@ -16,11 +16,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import service.basicFunctions.CustomerService;
+import service.basicFunctions.TradeService;
 import common.helper.ConstantUtil;
 import common.helper.HttpWebIOHelper;
 import common.helper.MD5Util;
 import database.common.PageDataList;
 import database.models.Customer;
+import database.models.Trade;
 
 @Controller
 public class CustomerData {
@@ -30,6 +32,9 @@ public class CustomerData {
 	
 	@Autowired
 	private CustomerService customerService;
+	
+	@Autowired
+	private TradeService tradeService;
 	
 	/**
 	 * 获取验证码
@@ -64,6 +69,11 @@ public class CustomerData {
 		String sex = request.getParameter("sex");
 		String famillyNumber = request.getParameter("famillyNumber");
 		String wechatName = request.getParameter("wechatName");
+		Integer tradeId =Integer.valueOf( request.getParameter("trade"));
+		Integer jobId = Integer.valueOf(request.getParameter("job"));
+		
+		Trade trade = tradeService.find(tradeId);
+		Trade job = tradeService.find(jobId);
 		
 		customer = (Customer) request.getSession().getAttribute(ConstantUtil.CUSTOMER_SESSION);
 		
@@ -74,6 +84,8 @@ public class CustomerData {
 		customer.setSex(sex);
 		customer.setFamillyNumber(Integer.valueOf(famillyNumber));
 		customer.setWechatName(wechatName);
+		customer.setTrade(trade);
+		customer.setJob(job);
 		
 		customerService.doUpdate(customer);
 		

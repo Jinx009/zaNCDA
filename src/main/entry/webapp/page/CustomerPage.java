@@ -52,6 +52,16 @@ public class CustomerPage {
 	@RequestMapping(value = "/customer/page/info")
 	public String info(HttpServletRequest req){
 		customer = (Customer)req.getSession().getAttribute(ConstantUtil.CUSTOMER_SESSION);
+		if(null!=customer.getTrade()){
+			req.setAttribute("tradeId",customer.getTrade().getId());
+		}else{
+			req.setAttribute("tradeId","");
+		}
+		if(null!=customer.getqArea()){
+			req.setAttribute("jobId",customer.getJob().getId());
+		}else{
+			req.setAttribute("jobId","");
+		}
 		req.setAttribute("customer",customer);
 		return "/customer/info";
 	}
@@ -94,12 +104,6 @@ public class CustomerPage {
 	 */
 	@RequestMapping(value = "/customer/page/index")
 	public String index(HttpServletRequest request,HttpServletResponse response){
-		String realName = "";
-		customer = (Customer) request.getSession().getAttribute(ConstantUtil.CUSTOMER_SESSION);
-		if(StringUtil.isNotBlank(customer.getRealName())){
-			realName = customer.getRealName();
-		}
-		request.setAttribute("customer",realName);
 		return "/customer/index";
 	}
 	

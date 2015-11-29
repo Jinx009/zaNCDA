@@ -14,12 +14,29 @@
 <script type="text/javascript" src="/sp/dist/jquery.form.js" ></script>
 <script type="text/javascript">
 var dataJson;
+var tradeData = new Array(),areaData = new Array();
 
 $(function(){
-	getArea();
-	getJob();
+	getTrade();
 	loadForms();
 	getData()
+	
+	var face = $("#faceValue").val();
+	var mobile = $("#mobileValue").val();
+	var video = $("#videoValue").val();
+	
+	if("1"==face){
+		$("#faceStatus").attr("checked","checked");
+		$("#faceStatus").attr("checked",true);
+	}
+	if("1"==mobile){
+		$("#mobileStatus").attr("checked","checked");
+		$("#mobileStatus").attr("checked",true);
+	}
+	if("1"==video){
+		$("#videoStatus").attr("checked",true);
+		$("#videoStatus").attr("checked","checked");
+	}
 })
 
 /**
@@ -36,18 +53,23 @@ function getData(){
 				var htmlStr1 = "",htmlStr2 = "",htmlStr3 = "";
 				for(var i = 0;i<res.errmsg.length;i++){
 					if("1"==res.errmsg[i].parentId){
-						htmlStr1 += "<div><input type='radio' name='topicId' value="+res.errmsg[i].id+" />"+res.errmsg[i].name+"</div>";
+						htmlStr1 += "<div><input type='radio' id=radio"+res.errmsg[i].id+" name='topicId' value="+res.errmsg[i].id+" />"+res.errmsg[i].name+"</div>";
 					}
 					if("2"==res.errmsg[i].parentId){
-						htmlStr2 += "<div><input type='radio' name='topicId' value="+res.errmsg[i].id+" />"+res.errmsg[i].name+"</div>";
+						htmlStr2 += "<div><input type='radio' id=radio"+res.errmsg[i].id+"  name='topicId' value="+res.errmsg[i].id+" />"+res.errmsg[i].name+"</div>";
 					}
 					if("3"==res.errmsg[i].parentId){
-						htmlStr3 += "<div><input type='radio' name='topicId' value="+res.errmsg[i].id+" />"+res.errmsg[i].name+"</div>";
+						htmlStr3 += "<div><input type='radio' id=radio"+res.errmsg[i].id+"  name='topicId' value="+res.errmsg[i].id+" />"+res.errmsg[i].name+"</div>";
 					}
 				}
 				$("#topicDiv1").html(htmlStr1);
 				$("#topicDiv2").html(htmlStr2);
 				$("#topicDiv3").html(htmlStr3);
+			}
+			var topicId = $("#topicId").val();
+			if(null!=topicId&&""!=topicId){
+				 $("#radio"+topicId).attr("checked","checked");
+				 $("#radio"+topicId).attr("checked",true);
 			}
 		}
 	})
@@ -59,49 +81,126 @@ function getData(){
 /**
  * 擅长领域
  */
-function getArea(){
+function getTrade(){
 	$.ajax({
 		url:"/trade/data/list.html",
 		type:"POST",
 		dataType:"json",
 		success:function(res){
-			var htmlStr = "";
+			var htmlStr = "",htmlStr1 = "";
 			
 			for(var i = 0;i<res.errmsg.length;i++){
-				htmlStr += "<option value="+res.errmsg[i].id+" >";
-				htmlStr += res.errmsg[i].tradeName;
-				htmlStr += "</option>";
+				if("0"==res.errmsg[i].parentId){
+					tradeData.push(res.errmsg[i]);
+					htmlStr += "<option value="+res.errmsg[i].id+" >";
+					htmlStr += res.errmsg[i].tradeName;
+					htmlStr += "</option>";
+				}else{
+					areaData.push(res.errmsg[i]);
+					htmlStr1 += "<option value="+res.errmsg[i].id+" >";
+					htmlStr1 += res.errmsg[i].tradeName;
+					htmlStr1 += "</option>";
+				}
 			}
 			
-			$("#area1").html(htmlStr);
-			$("#area2").html(htmlStr);
-			$("#area3").html(htmlStr);
+			$("#trade1").html(htmlStr);
+			$("#trade2").html(htmlStr);
+			$("#trade3").html(htmlStr);
+			
+			var trade1 = $("#trade1Value").val();
+			var trade2 = $("#trade2Value").val();
+			var trade3 = $("#trade3Value").val();
+			var area1 = $("#area1Value").val();
+			var area2 = $("#area2Value").val();
+			var area3 = $("#area3Value").val();
+			
+			if(""!=trade1){
+				var element = document.getElementById("trade1");  
+		   	 	for(i=0;i<element.length;i++)
+		   	    {
+		   	      if(trade1==element.options[i].value)
+		   	      {  
+		   	          element.options[i].selected=true; 
+		   	      }  
+		   	    } 
+			}
+			if(""!=trade2){
+				var element = document.getElementById("trade2");  
+		   	 	for(i=0;i<element.length;i++)
+		   	    {
+		   	      if(trade2==element.options[i].value)
+		   	      {  
+		   	          element.options[i].selected=true; 
+		   	      }  
+		   	    } 
+			}
+			if(""!=trade3){
+				var element = document.getElementById("trade3");  
+		   	 	for(i=0;i<element.length;i++)
+		   	    {
+		   	      if(trade3==element.options[i].value)
+		   	      {  
+		   	          element.options[i].selected=true; 
+		   	      }  
+		   	    } 
+			}
+			var trade1Value = $("#trade1").val();
+			var trade2Value = $("#trade2").val();
+			var trade3Value = $("#trade3").val();
+			
+			var areaHtml1 = "",areaHtml2 = "",areaHtml3 = "";
+			for(var i = 0;i<areaData.length;i++){
+				if(trade1Value==areaData[i].parentId){
+					areaHtml1  += "<option value="+areaData[i].id+" >"+areaData[i].tradeName+"</option>";
+				}
+				if(trade2Value==areaData[i].parentId){
+					areaHtml2  += "<option value="+areaData[i].id+" >"+areaData[i].tradeName+"</option>";
+				}
+				if(trade3Value==areaData[i].parentId){
+					areaHtml3  += "<option value="+areaData[i].id+" >"+areaData[i].tradeName+"</option>";
+				}
+			}
+			$("#area1").html(areaHtml1);
+			$("#area2").html(areaHtml2);
+			$("#area3").html(areaHtml3);
+			
+			var element1 = document.getElementById("area1");  
+	   	 	for(i=0;i<element1.length;i++)
+	   	    {
+	   	      if(area1==element1.options[i].value)
+	   	      {  
+	   	          element1.options[i].selected=true; 
+	   	      }  
+	   	    } 
+	   		var element2 = document.getElementById("area1");  
+	   	 	for(i=0;i<element2.length;i++)
+	   	    {
+	   	      if(area2==element2.options[i].value)
+	   	      {  
+	   	          element2.options[i].selected=true; 
+	   	      }  
+	   	    } 
+	   		var element3 = document.getElementById("area1");  
+	   	 	for(i=0;i<element3.length;i++)
+	   	    {
+	   	      if(area3==element3.options[i].value)
+	   	      {  
+	   	          element3.options[i].selected=true; 
+	   	      }  
+	   	    } 
 		}
 	})
 }
 
-/**
- *获取职位
- */
-function getJob(){
-	$.ajax({
-		url:"/trade/data/list.html",
-		type:"POST",
-		dataType:"json",
-		success:function(res){
-			var htmlStr = "";
-			
-			for(var i = 0;i<res.errmsg.length;i++){
-				htmlStr += "<option value="+res.errmsg[i].id+"  >";
-				htmlStr += res.errmsg[i].tradeName;
-				htmlStr += "</option>";
-			}
-			
-			$("#job1").html(htmlStr);
-			$("#job2").html(htmlStr);
-			$("#job3").html(htmlStr);
+function changeTrade(index){
+	var trade = $("#trade"+index).val();
+	var htmlStr = "";
+	for(var i = 0;i<areaData.length;i++){
+		if(trade==areaData[i].parentId){
+			htmlStr += "<option value="+areaData[i].id+" >"+areaData[i].tradeName+"</option>";
 		}
-	})
+	}
+	$("#area"+index).html(htmlStr);
 }
 
 /**
@@ -126,6 +225,65 @@ function loadForms(){
 		 }
 	});
 }
+
+function saveInfo(){
+	var id = $("#id").val();
+	var username = $("#username").val();
+	var photoPath = $("#imgId").attr("src");
+	var sex = $("#sex").val();
+	var mobilePhone = $("#mobilePhone").val();
+	var aptitude = $("#aptitude").val();
+	var birth = $("#birth").val();
+	var classPrice = $("#classPrice").val();
+	var trade1 = $("#trade1").val();
+	var trade2 = $("#trade2").val();
+	var trade3 = $("#trade3").val();
+	var area1 = $("#area1").val();
+	var area2 = $("#area2").val();
+	var area3 = $("#area3").val();
+	var isOnline = $("#isOnline").val();
+	var bankAccount = $("#bankAccount").val();
+	var bankAccount1 = $("#bankAccount1").val();
+	var bankName = $("#bankName").val();
+	var idCard = $("#idCard").val();
+	var email = $("#email").val();
+	var workYears = $("#workYears").val();
+	var qq = $("#qq").val();
+	var mobileStatus = 0,videoStatus = 0,faceStatus = 0;
+	if("checked"==$("#mobileStatus").is(":checked")||true==$("#mobileStatus").is(":checked")){
+		mobileStatus = 1;
+	}
+	if("checked"==$("#videoStatus").is(":checked")||true==$("#videoStatus").is(":checked")){
+		videoStatus = 1;
+	}
+	if("checked"==$("#faceStatus").is(":checked")||true==$("#faceStatus").is(":checked")){
+		faceStatus = 1;
+	}
+	var topicId = $('input[name="topicId"]:checked').val();
+	console.log(topicId)
+	var personalIntroduction = $("#personalIntroduction").val();
+
+	var params = "username="+username+"&photoPath="+photoPath+"&sex="+sex+"&mobilePhone="+mobilePhone+"&aptitude="+aptitude+"&birth="+
+				birth+"&classPrice="+classPrice+"&trade1="+trade1+"&trade2="+trade2+"&trade3="+trade3+"&area1="+area1+"&area2="+
+				area2+"&area3="+area3+"&isOnline="+isOnline+"&bankAccount="+bankAccount+"&bankName="+bankName+"&idCard="+idCard+
+				"&email="+email+"&workYears="+workYears+"&qq="+qq+"&mobileStatus="+mobileStatus+"&faceStatus="+faceStatus+"&videoStatus="+
+				videoStatus+"&personalIntroduction="+personalIntroduction+"&id="+id+"&topicId="+topicId;
+	if(bankAccount!=bankAccount1){
+		alert("银行卡号确认信息不一致!");
+	}else{
+		$.ajax({
+			url:"/tutor/data/update.html",
+			type:"POST",
+			data:params,
+			dataType:"json",
+			success:function(res){
+				if("success"==res.result){
+					alert("编辑成功!");
+				}
+			}
+		})
+	}
+}
 </script>
 
 <style type="text/css">
@@ -146,6 +304,7 @@ function loadForms(){
 </style>
 </head>
 <body>
+	<input type="hidden" id="id" value="${tutor.id }" >
 	<div class="space-div-1" ></div>
 	<div class="row index-row" >
 		<div class="col-md-2 index-col-md-2" >
@@ -158,10 +317,17 @@ function loadForms(){
 		</div>
 		<div class="col-md-10 index-col-md-10" >
 			<div class="btn-group" role="group" aria-label="...">
-			  <button type="button" class="btn btn-default" onclick="openUrl('/admin/page/index.html')" >返回首页</button>
+			  <button type="button" class="btn btn-default" onclick="openUrl('/admin/page/tutor.html')" >返回首页</button>
 			  <button type="button" class="btn btn-info" >教师编辑</button>
 			</div>
 			<input type="hidden" value="${errmsg}" id="editId" >
+			<input type="hidden" value="${topicId }" id="topicId" >
+			<input type="hidden" value="${trade1 }" id="trade1Value" >
+			<input type="hidden" value="${trade2 }" id="trade2Value" >
+			<input type="hidden" value="${trade3 }" id="trade3Value" >
+			<input type="hidden" value="${area1 }" id="area1Value" >
+			<input type="hidden" value="${area2 }" id="area2Value" >
+			<input type="hidden" value="${area3 }" id="area3Value" >
 			<div class="space-div-4" ></div>
 			<table class="table table-bordered" >
 				<tbody>
@@ -193,17 +359,17 @@ function loadForms(){
 						<th>电话：</th>
 						<td><input class="form-control" value="${tutor.mobilePhone }" id="mobilePhone"  ></td>
 						<th>认证资质：</th>
-						<td><textarea  id="highlight"  style="height: 80px;" class="form-control" >${tutor.aptitude }</textarea></td>
+						<td><textarea  id="aptitude"  style="height: 80px;" class="form-control" >${tutor.aptitude }</textarea></td>
 					</tr>
 					<tr>
 						<th>生日：</th>
 						<td><input class="form-control" value="${tutor.birthday }" id="birth"  onClick="WdatePicker()" readonly="readonly" ></td>
 						<th>单价：</th>
-						<td><input type="text" id="unitPrice"  class="form-control" value="${tutor.classPrice }" placeholder="元/次"  ></td>
+						<td><input type="text" id="classPrice"  class="form-control" value="${tutor.classPrice }" placeholder="元/次"  ></td>
 					</tr>
 					<tr>
 						<th>行业1：</th>
-						<td> <select class="form-control" id="job1" name="job1" ></select></td>
+						<td> <select class="form-control" id="trade1"  onchange="changeTrade('1')"  ></select></td>
 						<th>有效：</th>
 						<td>
 							<select class="form-control" id="isOnline" >
@@ -214,21 +380,21 @@ function loadForms(){
 					</tr>
 					<tr>
 						<th>行业2：</th>
-						<td> <select class="form-control" id="job2" name="job2" ></select></td>
+						<td> <select class="form-control" id="trade2" onchange="changeTrade('2')"   ></select></td>
 						<th>银行卡号：</th>
 						<td><input type="text" class="form-control" value="${tutor.bankCard }" id="bankAccount"  ></td>
 					</tr>
 					<tr>
 						<th>行业3：</th>
-						<td> <select class="form-control" id="job3" name="job3" ></select></td>
+						<td> <select class="form-control" id="trade3" onchange="changeTrade('3')" ></select></td>
 						<th>银行卡号：</th>
-						<td><input type="text" class="form-control" value="${tutor.bankCard }" id="bankAccount"  ></td>
+						<td><input type="text" class="form-control" value="${tutor.bankCard }" id="bankAccount1"  ></td>
 					</tr>
 					<tr>
 						<th>擅长领域1：</th>
 						<td> <select class="form-control" id="area1" name="area1" ></select></td>
 						<th>银行名称：</th>
-						<td><input type="text" class="form-control" value="${tutor.bankName}" /></td>
+						<td><input type="text" id="bankName" class="form-control" value="${tutor.bankName}" /></td>
 					</tr>
 					<tr>
 						<th>擅长领域2：</th>
@@ -252,7 +418,7 @@ function loadForms(){
 						<th></th>
 						<td></td>
 						<th>openid：</th>
-						<td>  <input type="text" id="openid" value="${tutor.openid }" class="form-control"  ></td>
+						<td>  <input type="text" id="openid" readonly="readonly" value="${tutor.openid }" class="form-control"  ></td>
 					</tr>
 					<tr>
 						<th colspan="4" >辅助方式：</th>
@@ -296,6 +462,11 @@ function loadForms(){
 					<tr>
 						<th>导师专长自我介绍:</th>
 						<td colspan="3" ><textarea class="form-control" id="personalIntroduction" >${tutor.personalIntroduction }</textarea></td>
+					</tr>
+					<tr>
+						<td colspan="4" >
+							<a class="btn btn-info"  onclick="saveInfo()" >保存</a>
+						</td>
 					</tr>
 				</tbody>
 			</table>

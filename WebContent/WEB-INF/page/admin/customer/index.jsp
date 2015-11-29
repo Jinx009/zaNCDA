@@ -46,7 +46,7 @@ function getData(pageNum){
 					htmlStr += "<td>"+res.data.list[i].qq+"</td>";
 					htmlStr += "<td>"+res.data.list[i].email+"</td>";
 					htmlStr += "<td>";
-					htmlStr += "<a class='btn btn-default' onclick=deleteDiv('"+i+"')  >删除</a>";
+					htmlStr += "<a class='btn btn-default' onclick=modelDiv('"+i+"')  >详情</a>";
 					htmlStr += "</td>";
 				}
 			}
@@ -57,36 +57,9 @@ function getData(pageNum){
 	})
 }
 
-/**
- * 删除
- */
-function deleteDiv(index){
-	$("#deleteId").val(dataJson[parseInt(index)].id);
+function moreDiv(index){
 	
-	showAlert("deleteDiv");
 }
-
-/**
- * 删除
- */
-function doDelete(){
-	var id = $("#deleteId").val();
-	var params = "id="+id;
-	
-	$.ajax({
-		url:"/customer/data/delete.html",
-		type:"POST",
-		data:params,
-		dataType:"json",
-		success:function(res){
-			if("success"==res.result){
-				getTeacherList(1);
-				hideAlert("deleteDiv");
-			}
-		}
-	})
-}
-
 /**
  * 下载Excel
  */

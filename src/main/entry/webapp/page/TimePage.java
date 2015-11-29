@@ -8,7 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import common.helper.ConstantUtil;
-
+import common.helper.tool.util.AgentUtil;
 import database.models.Customer;
 import service.basicFunctions.TutorTimeService;
 
@@ -29,7 +29,12 @@ public class TimePage {
 		request.setAttribute("tutorId",request.getParameter("tutorId"));
 		request.setAttribute("topicId",request.getParameter("topicId"));
 		Customer customer = (Customer) request.getSession().getAttribute(ConstantUtil.CUSTOMER_SESSION);
-		request.setAttribute("openid",customer.getOpenid());
+		if(AgentUtil.judgeAgent(request)){
+			request.setAttribute("openid",customer.getOpenid());
+		}else{
+			request.setAttribute("openid","");
+		}
+		
 		return "/customer/time";
 	}
 	

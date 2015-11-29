@@ -161,6 +161,15 @@ public class TutorPage {
 	}
 	
 	/**
+	 * 新建导师
+	 * @return
+	 */
+	@RequestMapping(value = "/admin/page/tutor/new")
+	public String newTutor(){
+		return "/admin/tutor/new";
+	}
+	
+	/**
 	 * 跳转后台导师编辑页面
 	 * @return
 	 * @throws Exception
@@ -170,6 +179,41 @@ public class TutorPage {
 		Integer id = Integer.valueOf(request.getParameter("id"));
 		tutor = tutorService.find(id);
 		request.setAttribute("tutor",tutor);
+		if(null!=tutor.getqTopic()){
+			request.setAttribute("topicId",tutor.getqTopic().getId());
+		}else{
+			request.setAttribute("topicId","");
+		}
+		if(null!=tutor.getTradeOne()){
+			request.setAttribute("trade1",tutor.getTradeOne().getId());
+		}else{
+			request.setAttribute("trade1","");
+		}
+		if(null!=tutor.getTradeThree()){
+			request.setAttribute("trade2",tutor.getTradeTwo().getId());
+		}else{
+			request.setAttribute("trade2","");
+		}
+		if(null!=tutor.getTradeThree()){
+			request.setAttribute("trade3",tutor.getTradeThree().getId());
+		}else{
+			request.setAttribute("trade3","");
+		}
+		if(null!=tutor.getAreaOne()){
+			request.setAttribute("area1",tutor.getAreaOne().getId());
+		}else{
+			request.setAttribute("area1","");
+		}
+		if(null!=tutor.getAreaTwo()){
+			request.setAttribute("area2",tutor.getAreaTwo().getId());
+		}else{
+			request.setAttribute("area2","");
+		}
+		if(null!=tutor.getAreaThree()){
+			request.setAttribute("area3",tutor.getAreaThree().getId());
+		}else{
+			request.setAttribute("area3","");
+		}
         return "/admin/tutor/edit";  
     }
 

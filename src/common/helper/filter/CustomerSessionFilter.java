@@ -78,7 +78,10 @@ public class CustomerSessionFilter implements Filter {
 	}
 
 	private List<String> notNeedSessionCheck(){
-		String[] paths = new String[]{};
+		String[] paths = new String[]{
+				"/customer/page/index.html",
+				"/customer/page/caseDetail.html"
+		};
 
 		return Arrays.asList(paths);
 	}

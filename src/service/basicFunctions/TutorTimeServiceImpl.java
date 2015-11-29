@@ -42,9 +42,11 @@ public class TutorTimeServiceImpl implements TutorTimeService {
 		buffer.append(" AND ");
 		buffer.append(" status = 0 ");
 		buffer.append(" AND ");
-		buffer.append(" realTime > '");
+		buffer.append(" realDate > '");
 		buffer.append(format.format(new Date()));
 		buffer.append("'  ");
+		
+		System.out.println("---------------"+buffer.toString());
 		
 		return tutorTimeDao.getByHql(buffer.toString());
 	}

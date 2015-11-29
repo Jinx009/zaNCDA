@@ -12,21 +12,95 @@
 <script type="text/javascript" src="/sp/js/common.js" ></script>
 <script type="text/javascript" src="/sp/js/date/WdatePicker.js" ></script>
 <script type="text/javascript">
+var tradeData = new Array(),areaData = new Array();
 $(function(){
 	$("#birthday").val(jsDateTimeOnly($("#birth").val()));
+	
+	$.ajax({
+		url:"/trade/data/list.html?time="+getRandom(),
+		type:"GET",
+		dataType:"json",
+		success:function(res){
+			var htmlStr = "",htmlStr1 = "";
+			for(var i = 0;i<res.errmsg.length;i++){
+				if("0"==res.errmsg[i].parentId){
+					htmlStr += "<option value="+res.errmsg[i].id+" >"+res.errmsg[i].tradeName+"</option>";
+					tradeData.push(res.errmsg[i]);
+				}else{
+					htmlStr1 += "<option value="+res.errmsg[i].id+" >"+res.errmsg[i].tradeName+"</option>";
+					areaData.push(res.errmsg[i]);
+				}
+			}
+			$("#trade").html(htmlStr);
+			$("#job").html(htmlStr1);
+		}
+	})
+	
+	var trade = $("#tradeValue").val();
+	var area = $("#jobValue").val();
+	
+	var element1 = document.getElementById("trade");   
+    if(""!=trade){
+   	 	for(i=0;i<element1.length;i++)
+   	    {
+   	      if(trade==element1.options[i].value)
+   	      {  
+   	          element1.options[i].selected=true; 
+   	      }  
+   	    }  
+    }
+    
+	var element2 = document.getElementById("job");   
+    if(""!=area){
+   	 	for(i=0;i<element2.length;i++)
+   	    {
+   	      if(area==element2.options[i].value)
+   	      {  
+   	          element2.options[i].selected=true; 
+   	      }  
+   	    } 
+    }
+    
+    var familly = $("#familly").val();
+    if(null!=familly&&""!=familly){
+    	var element3 = document.getElementById("famillyNumber");  
+   	 	for(i=0;i<element3.length;i++)
+   	    {
+   	      if(familly==element3.options[i].value)
+   	      {  
+   	          element3.options[i].selected=true; 
+   	      }  
+   	    } 
+    }
 })
 
+
+function changeTrade(){
+	var trade = $("#trade").val();
+	var htmlStr = "";
+	for(var i = 0;i<areaData.length;i++){
+		if(trade == areaData[i].parentId){
+			htmlStr += "<option value="+areaData[i].id+" >"+areaData[i].tradeName+"</option>";
+		}
+	}
+	$("#job").html(htmlStr);
+}
+/**
+ * 保存个人信息
+ */
 function saveInf(){
 	var realName = $("#realName").val();
 	var qq = $("#qq").val();
 	var email =  $("#email").val();
 	var sex = $("#sex").val();
 	var birthday = $("#birthday").val();
-	var famillyNumber = $("#familly").val();
+	var famillyNumber = $("#famillyNumber").val();
 	var wechatName = $("#wechatName").val();
+	var trade = $("#trade").val();
+	var job = $("#job").val();
 
 	var params = "realName="+realName+"&qq="+qq+"&email="+email+"&sex="+sex+"&birthday="+birthday+
-				"&famillyNumber="+famillyNumber+"&wechatName="+wechatName;
+				"&famillyNumber="+famillyNumber+"&wechatName="+wechatName+"&trade="+trade+"&job="+job;
 	$.ajax({
 		url:"/customer/data/saveInfo.html",
 		type:"POST",
@@ -56,24 +130,29 @@ function saveInf(){
 	<input type="hidden" id="birth" value="${customer.birthday }" >
 	<input  value="" id="birthday" onClick="WdatePicker()"  class="register-inp-long"/>
 </div>
-<!-- <div class="register-inp register-inp-top">
-	<span class="register-inp-text">行业</span>
-	<select class="register-select-long">
-		<option value="IT" selected="selected">IT</option>
-		<option value="石油">石油</option>
-		<option value="销售">销售</option>
-	</select>
+<div class="register-inp register-inp-top">
+	<input type="hidden" value="${tradeId }" id="tradeValue" >
+	<span class="register-inp-text"  >行业</span>
+	<select class="register-select-long" id="trade" onclick="changeTrade()"></select>
 </div>
 <div class="register-inp register-inp-top">
 	<span class="register-inp-text">职位</span>
-	<select class="register-select-long">
-		<option value="医生" selected="selected">医生</option>
-		<option value="教授">教授</option>
-	</select>
-</div> -->
+	<input type="hidden" value="${jobId }" id="jobValue" >
+	<select class="register-select-long" id="job" ></select>
+</div>
 <div class="register-inp register-inp-top">
 	<span class="register-inp-text">家庭成员个数</span>
-	<input  value="${customer.famillyNumber }" type="text" id="familly" class="register-inp-long"/>
+	<select class="register-select-long" id="famillyNumber" >
+		<option value="1" >1</option>
+		<option value="2" >2</option>
+		<option value="3" >3</option>
+		<option value="4" >4</option>
+		<option value="5" >5</option>
+		<option value="6" >6</option>
+		<option value="7" >7</option>
+		<option value="8" >8</option>
+	</select>
+	<input  value="${customer.famillyNumber }" type="hidden" id="familly" class="register-inp-long"/>
 </div>
 <div class="register-inp register-inp-top">
 	<span class="register-inp-text">E-mail</span>

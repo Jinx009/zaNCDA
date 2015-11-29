@@ -35,17 +35,16 @@ function getList(pageNum){
 			data = res.data.list;
 			var menuHtml = "",htmlStr = "";
 			if(null!=res.data){
-				for(var i = 1;i<=parseInt(res.data.page.total);i++){
-					menuHtml += "<li  id=page"+i+" ><a href=javascript:getTeacherList('"+i+"')>"+i+"</a></li>";
+				for(var i = 1;i<=parseInt(res.data.page.pages);i++){
+					menuHtml += "<li  id=page"+i+" ><a href=javascript:getList('"+i+"')>"+i+"</a></li>";
 				}
-				
 				for(var i = 0;i<res.data.list.length;i++){
 					htmlStr += "<tr>";
 					htmlStr += "<td>"+res.data.list[i].id+"</td>";
-					htmlStr += "<td>"+res.data.list[i].realName+"</td>";
-					htmlStr += "<td>"+res.data.list[i].mobilePhone+"</td>";
-					htmlStr += "<td>"+res.data.list[i].qq+"</td>";
-					htmlStr += "<td>"+res.data.list[i].email+"</td>";
+					htmlStr += "<td>"+isNull(res.data.list[i].realName)+"</td>";
+					htmlStr += "<td>"+isNull(res.data.list[i].mobilePhone)+"</td>";
+					htmlStr += "<td>"+isNull(res.data.list[i].qq)+"</td>";
+					htmlStr += "<td>"+isNull(res.data.list[i].email)+"</td>";
 					htmlStr += "<td>";
 					htmlStr += "<div class='btn-toolbar' role='toolbar' aria-label='...'>";
 					htmlStr += "<button type='button' class='btn btn-defaul' onclick=openEdit('"+i+"') >编辑</button>";
@@ -113,6 +112,10 @@ function getExcel(){
 		}
 	})
 }
+
+function newTutor(){
+	location.href = "/admin/page/tutor/new.html";
+}
 </script>
 </head>
 <body>
@@ -156,6 +159,7 @@ function getExcel(){
 			</div> 
 			<hr class="width100" >
 			<a class="btn btn-default" onclick="getExcel()" >导出</a>
+			<a class="btn btn-default" onclick="newTutor()" >新建</a>
 			<table class="table" >
 				<thead>
 					<tr>
