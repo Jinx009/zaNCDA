@@ -38,8 +38,8 @@ function getData(pageNum){
 				for(var i = 0;i<res.data.list.length;i++){
 					htmlStr += "<tr>";
 					htmlStr += "<td>"+res.data.list[i].id+"</td>";
-					htmlStr += "<td>"+res.data.list[i].qTutor.realName+"</td>";
-					htmlStr += "<td>"+res.data.list[i].qCustomer.realName+"</td>";
+					htmlStr += "<td>"+isNull(res.data.list[i].qTutor.realName)+"</td>";
+					htmlStr += "<td>"+isNull(res.data.list[i].qCustomer.realName)+"</td>";
 					htmlStr += "<td>";
 					htmlStr += "<a class='btn btn-default' onclick=openLook('"+i+"','comments') >查看导师评论</a>";
 					htmlStr += "<a class='btn btn-default' onclick=openLook('"+i+"','score') >查看顾客评论</a>";

@@ -41,12 +41,12 @@ function getData(pageNum){
 				for(var i = 0;i<res.data.list.length;i++){
 					htmlStr += "<tr>";
 					htmlStr += "<td>"+res.data.list[i].id+"</td>";
-					htmlStr += "<td>"+res.data.list[i].realName+"</td>";
-					htmlStr += "<td>"+res.data.list[i].mobilePhone+"</td>";
-					htmlStr += "<td>"+res.data.list[i].qq+"</td>";
-					htmlStr += "<td>"+res.data.list[i].email+"</td>";
+					htmlStr += "<td>"+isNull(res.data.list[i].realName)+"</td>";
+					htmlStr += "<td>"+isNull(res.data.list[i].mobilePhone)+"</td>";
+					htmlStr += "<td>"+isNull(res.data.list[i].qq)+"</td>";
+					htmlStr += "<td>"+isNull(res.data.list[i].email)+"</td>";
 					htmlStr += "<td>";
-					htmlStr += "<a class='btn btn-default' onclick=modelDiv('"+i+"')  >详情</a>";
+					//htmlStr += "<a class='btn btn-default' onclick=modelDiv('"+i+"')  >详情</a>";
 					htmlStr += "</td>";
 				}
 			}
