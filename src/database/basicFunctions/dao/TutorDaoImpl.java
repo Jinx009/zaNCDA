@@ -12,6 +12,7 @@ import common.helper.StringUtil;
 import database.common.BaseDaoImpl;
 import database.common.PageDataList;
 import database.common.QueryParam;
+import database.common.SearchFilter.Operators;
 import database.models.Tutor;
 
 @Repository("tutorDao")
@@ -31,10 +32,10 @@ public class TutorDaoImpl extends BaseDaoImpl<Tutor> implements TutorDao{
 		QueryParam param = QueryParam.getInstance().addPage(pageNum,ConstantUtil.PAGE_SIZE);
 		
 		if (StringUtil.isNotBlank(tutor.getRealName())){
-			param.addParam("realName",tutor.getRealName());
+			param.addParam("realName",Operators.LIKE,tutor.getRealName());
 		}
 		if (StringUtil.isNotBlank(tutor.getMobilePhone())){
-			param.addParam("mobilePhone",tutor.getMobilePhone());
+			param.addParam("mobilePhone",Operators.LIKE,tutor.getMobilePhone());
 		}
 		PageDataList<Tutor> pageDataList = super.findPageList(param);
 		

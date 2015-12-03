@@ -34,7 +34,7 @@ function getData(pageNum){
 			dataJson = res.data.list;
 			var menuHtml = "",htmlStr = "";
 			if(null!=res.data){
-				for(var i = 1;i<=parseInt(res.data.page.total);i++){
+				for(var i = 1;i<=parseInt(res.data.page.pages);i++){
 					menuHtml += "<li  id=page"+i+" ><a href=javascript:getData('"+i+"')>"+i+"</a></li>";
 				}
 				
@@ -45,8 +45,9 @@ function getData(pageNum){
 					htmlStr += "<td>"+isNull(res.data.list[i].mobilePhone)+"</td>";
 					htmlStr += "<td>"+isNull(res.data.list[i].qq)+"</td>";
 					htmlStr += "<td>"+isNull(res.data.list[i].email)+"</td>";
+					htmlStr += "<td>"+isNull(res.data.list[i].wechatName)+"</td>";
 					htmlStr += "<td>";
-					//htmlStr += "<a class='btn btn-default' onclick=modelDiv('"+i+"')  >详情</a>";
+					htmlStr += "<a class='btn btn-default' onclick=moreDiv('"+i+"')  >查看</a>";
 					htmlStr += "</td>";
 				}
 			}
@@ -58,7 +59,31 @@ function getData(pageNum){
 }
 
 function moreDiv(index){
+	var object = dataJson[parseInt(index)];
+	var htmlStr = "";
+	htmlStr += "<tr><th>姓名</th><td>"+isNull(object.realName)+"</td>";
+	htmlStr += "<th>电话</th><td>"+isNull(object.mobilePhone)+"</td></tr>";
+	htmlStr += "<tr><th>微信</th><td>"+isNull(object.wechatName)+"</td>";
+	htmlStr += "<th>注册时间</th><td>"+jsDateTimeOnly(object.addTime)+"</td></tr>";
+	htmlStr += "<tr><th>邮箱</th><td>"+isNull(object.email)+"</td>";
+	htmlStr += "<th>qq</th><td>"+isNull(object.qq)+"</td></tr>";
+	if(null!=object.trade&&""!=object.trade){
+		htmlStr += "<tr><th>行业</th><td>"+isNull(object.trade.tradeName)+"</td>";
+	}else{
+		htmlStr += "<tr><th>行业</th><td></td>";
+	}
+	if(null!=object.job&&""!=object.job){
+		htmlStr += "<th>领域</th><td>"+isNull(object.job.tradeName)+"</td></tr>";
+	}else{
+		htmlStr += "<tr><th>领域</th><td></td></tr>";
+	}
+	htmlStr += "<tr><th>性别</th><td>"+isNull(object.sex)+"</td>";
+	htmlStr += "<th>生日</th><td>"+jsDateTimeOnly(object.birthday)+"</td></tr>";
+	htmlStr += "<tr><th>身份证号</th><td>"+isNull(object.idNumber)+"</td>";
+	htmlStr += "<th></th><td></td></tr>";
 	
+	$("#lookData").html(htmlStr);
+	showAlert('lookDiv');
 }
 /**
  * 下载Excel
@@ -94,14 +119,14 @@ function getExcel(){
 				<div class="col-md-6" >
 				<form class="form-horizontal">
 					  <div class="form-group">
-					    <label class="col-sm-3 control-label">导师姓名:</label>
+					    <label class="col-sm-3 control-label">顾客姓名:</label>
 					    <div class="col-sm-5">
 					      <input type="text" class="form-control" id="searchName" value="" >
 					      <label class="col-sm-4 control-label"></label>
 					    </div>
 					  </div>
 					  <div class="form-group">
-					    <label class="col-sm-3 control-label">导师手机:</label>
+					    <label class="col-sm-3 control-label">顾客手机:</label>
 					    <div class="col-sm-5">
 					      <input type="text" class="form-control" id="searchMobile"  value="" >
 					    </div>
@@ -127,6 +152,7 @@ function getExcel(){
 						<td>手机</td>
 						<td>QQ</td>
 						<td>邮箱</td>
+						<td>微信</td>
 						<td>操作</td>
 					</tr>
 				</thead>
@@ -141,29 +167,15 @@ function getExcel(){
 	</div>
 	
 		<!-- 确定删除-->
-	<div class="modal face height"  id="deleteDiv" tabindex="-1" role="dialog" aria-labelledby="myDeleteLabel" aria-hidden="true">
+	<div class="modal face height"  id="lookDiv" tabindex="-1" role="dialog" aria-labelledby="myDeleteLabel" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="hideAlert('deleteDiv')" >&times;</button>
-				<h4 class="modal-title" id="myriskLabel">确认删除</h4>
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="hideAlert('lookDiv')" >&times;</button>
+				<h4 class="modal-title" id="myriskLabel">顾客详情</h4>
 			</div>
 			<div class="modal-body">
-			  	<div class="space-div-4" id="alertMsg" >确定要删除?</div>
-			  	<div class="form-group">
-				    <label class="col-sm-4 control-label"></label>
-				    <div class="col-sm-8">
-				      <input type="hidden" class="form-control" id="deleteId" >
-				    </div>
-			  	</div>
-			  	<div class="space-div-4" ></div>
-			  	<div class="form-group">
-				    <label class="col-sm-4 control-label"></label>
-				    <div class="col-sm-4">
-				      <input type="button" class="btn btn-info width100"  onclick="doDelete()" value="确定" >
-				    </div>
-				     <label class="col-sm-4 control-label"></label>
-			  	</div>
+			  	<table class="table"  id="lookData"></table>
 			</div>
 			<div class="space-div-2" ></div>
 		</div>

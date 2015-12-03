@@ -21,16 +21,16 @@ public class OrderDaoImpl extends BaseDaoImpl<Order> implements OrderDao{
 		QueryParam param = QueryParam.getInstance().addPage(pageNum,ConstantUtil.PAGE_SIZE);
 		
 		if (StringUtil.isNotBlank(order.getqTutor().getRealName())){
-			param.addParam("qTutor.realName",order.getqTutor().getRealName());
+			param.addParam("qTutor.realName",Operators.LIKE,order.getqTutor().getRealName());
 		}
 		if (StringUtil.isNotBlank(order.getqTutor().getMobilePhone())){
-			param.addParam("qTutor.mobilePhone",order.getqTutor().getMobilePhone());
+			param.addParam("qTutor.mobilePhone",Operators.LIKE,order.getqTutor().getMobilePhone());
 		}
 		if(StringUtil.isNotBlank(order.getqCustomer().getRealName())){
-			param.addParam("qCustomer.realName",order.getqCustomer().getRealName());
+			param.addParam("qCustomer.realName",Operators.LIKE,order.getqCustomer().getRealName());
 		}
 		if(StringUtil.isNotBlank(order.getqCustomer().getMobilePhone())){
-			param.addParam("qCustomer.mobilePhone",order.getqCustomer().getMobilePhone());
+			param.addParam("qCustomer.mobilePhone",Operators.LIKE,order.getqCustomer().getMobilePhone());
 		}
 		if (null!=order.getAddTime()) {
 			param.addParam("addTime", Operators.GTE,order.getAddTime());

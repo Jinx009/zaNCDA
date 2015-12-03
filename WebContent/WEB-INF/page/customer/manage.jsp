@@ -49,7 +49,7 @@ function goDetail(id){
 </script>
 </head>
 <body>
-<a href="#"><div class="nav-title"><span class="nav-back" onclick="openUrl('/customer/page/index.html')" >&lt;</span>约谈管理</div></a>
+<a href="#"><div class="nav-title"><span class="close" onclick="openUrl('/customer/page/index.html')" >&lt;</span>约谈管理</div></a>
 <div id="dataList" ></div>
 </body>
 </html>

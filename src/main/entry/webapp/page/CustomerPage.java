@@ -87,7 +87,7 @@ public class CustomerPage {
 			 if(StringUtil.isNotBlank(openid)){
 				 customer = customerService.getByOpenid(openid);
 				 if(null!=customer){
-					 status = 1;
+					 status = 0;
 				 }
 			 }
 		 }

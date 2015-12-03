@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import common.helper.ConstantUtil;
 import common.helper.tool.util.AgentUtil;
 import database.models.Customer;
+import database.models.Tutor;
+import service.basicFunctions.TutorService;
 import service.basicFunctions.TutorTimeService;
 
 @Controller
@@ -17,6 +19,8 @@ public class TimePage {
 
 	@Autowired
 	private TutorTimeService tutorTimeService;
+	@Autowired
+	private TutorService tutorService;
 	
 	/**
 	 * 顾客选择导师时间
@@ -28,12 +32,14 @@ public class TimePage {
 	public String time(HttpServletRequest request,HttpServletResponse response){
 		request.setAttribute("tutorId",request.getParameter("tutorId"));
 		request.setAttribute("topicId",request.getParameter("topicId"));
+		Tutor tutor = tutorService.find(Integer.valueOf(request.getParameter("tutorId")));
 		Customer customer = (Customer) request.getSession().getAttribute(ConstantUtil.CUSTOMER_SESSION);
 		if(AgentUtil.judgeAgent(request)){
 			request.setAttribute("openid",customer.getOpenid());
 		}else{
 			request.setAttribute("openid","");
 		}
+		request.setAttribute("fee",tutor.getFacePrice());
 		
 		return "/customer/time";
 	}

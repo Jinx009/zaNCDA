@@ -343,6 +343,9 @@ public class TutorData {
 		tutor.setSex(req.getParameter("sex"));
 		tutor.setMobilePhone(req.getParameter("mobilePhone"));
 		tutor.setAptitude(req.getParameter("aptitude"));
+		tutor.setFacePrice(Double.valueOf(req.getParameter("facePrice")));
+		tutor.setVideoPrice(Double.valueOf(req.getParameter("facePrice")));
+		tutor.setMobilePrice(Double.valueOf(req.getParameter("facePrice")));
 		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
 		if(StringUtil.isNotBlank(req.getParameter("birth"))){
 			tutor.setBirthday(sdf.parse(req.getParameter("birth")));
@@ -398,6 +401,9 @@ public class TutorData {
 		topic = topicService.find(Integer.valueOf(req.getParameter("topicId")));
 		
 		tutor = tutorService.find(Integer.valueOf(req.getParameter("id")));
+		tutor.setFacePrice(Double.valueOf(req.getParameter("facePrice")));
+		tutor.setVideoPrice(Double.valueOf(req.getParameter("facePrice")));
+		tutor.setMobilePrice(Double.valueOf(req.getParameter("facePrice")));
 		tutor.setRealName(req.getParameter("username"));
 		tutor.setPhotoPath(req.getParameter("photoPath"));
 		tutor.setSex(req.getParameter("sex"));

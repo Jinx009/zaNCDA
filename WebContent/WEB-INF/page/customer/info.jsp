@@ -116,7 +116,7 @@ function saveInf(){
 </script>
 </head>
 <body>
-<a href="#"><div class="nav-title"><span class="nav-back" onclick="openUrl('/customer/page/index.html')" >&lt;</span>个人信息</div></a>
+<a href="#"><div class="nav-title"><span class="close" onclick="openUrl('/customer/page/index.html')" >&lt;</span>个人信息</div></a>
 <div class="register-inp register-inp-top">
 	<span class="register-inp-text">姓名</span>
 	<input  value="${customer.realName }" id="realName" class="register-inp-long"/>
@@ -141,7 +141,7 @@ function saveInf(){
 	<select class="register-select-long" id="job" ></select>
 </div>
 <div class="register-inp register-inp-top">
-	<span class="register-inp-text">家庭成员个数</span>
+	<span class="register-inp-text">家庭成员</span>
 	<select class="register-select-long" id="famillyNumber" >
 		<option value="1" >1</option>
 		<option value="2" >2</option>

@@ -31,7 +31,7 @@ function getData(pageNum){
 			data = res.data.list;
 			var menuHtml = "",htmlStr = "";
 			if(null!=res.data){
-				for(var i = 1;i<=parseInt(res.data.page.total);i++){
+				for(var i = 1;i<=parseInt(res.data.page.pages);i++){
 					menuHtml += "<li  id=page"+i+" ><a href=javascript:getTeacherList('"+i+"')>"+i+"</a></li>";
 				}
 				
@@ -40,6 +40,9 @@ function getData(pageNum){
 					htmlStr += "<td>"+res.data.list[i].id+"</td>";
 					htmlStr += "<td>"+isNull(res.data.list[i].qTutor.realName)+"</td>";
 					htmlStr += "<td>"+isNull(res.data.list[i].qCustomer.realName)+"</td>";
+					htmlStr += "<td>"+jsDateTimeOnly(res.data.list[i].qTutorTime.realDate)+"</td>";
+					htmlStr += "<td>"+res.data.list[i].qTutorTime.realTime+"</td>";
+					htmlStr += "<td>"+getOrderStatus(res.data.list[i].status)+"</td>";
 					htmlStr += "<td>";
 					htmlStr += "<a class='btn btn-default' onclick=openLook('"+i+"','comments') >查看导师评论</a>";
 					htmlStr += "<a class='btn btn-default' onclick=openLook('"+i+"','score') >查看顾客评论</a>";
@@ -134,6 +137,21 @@ function getComments(index){
 	
 	showAlert("lookDiv");	
 }
+/**
+ * 下载Excel
+ */
+function getExcel(){
+	$.ajax({
+		url:"/excel/order.html?time="+getRandom(),
+		type:"GET",
+		dataType:"json",
+		success:function(res){
+			if("success"==res.result){
+				window.open("/sp/excel/order/"+res.errmsg);
+			}
+		}
+	})
+}
 </script>
 </head>
 <body>
@@ -152,15 +170,15 @@ function getComments(index){
 				<div class="col-md-4" >
 				<form class="form-horizontal">
 					  <div class="form-group">
-					    <label class="col-sm-3 control-label">导师姓名:</label>
-					    <div class="col-sm-5">
+					    <label class="col-sm-4 control-label">导师姓名:</label>
+					    <div class="col-sm-4">
 					      <input type="text" class="form-control" id="tutorName" value="" >
 					      <label class="col-sm-4 control-label"></label>
 					    </div>
 					  </div>
 					  <div class="form-group">
-					    <label class="col-sm-3 control-label">导师手机:</label>
-					    <div class="col-sm-5">
+					    <label class="col-sm-4 control-label">导师手机:</label>
+					    <div class="col-sm-4">
 					      <input type="text" class="form-control" id="tutorPhone"  value="" >
 					    </div>
 					     <label class="col-sm-4 control-label"></label>
@@ -170,16 +188,16 @@ function getComments(index){
 				<div class="col-md-4" >
 				<form class="form-horizontal">
 					  <div class="form-group">
-					    <label class="col-sm-3 control-label">导师姓名:</label>
-					    <div class="col-sm-5">
-					      <input type="text" class="form-control" id="tutorName" value="" >
+					    <label class="col-sm-4 control-label">顾客姓名:</label>
+					    <div class="col-sm-4">
+					      <input type="text" class="form-control" id="customerName" value="" >
 					      <label class="col-sm-4 control-label"></label>
 					    </div>
 					  </div>
 					  <div class="form-group">
-					    <label class="col-sm-3 control-label">导师手机:</label>
-					    <div class="col-sm-5">
-					      <input type="text" class="form-control" id="tutorPhone"  value="" >
+					    <label class="col-sm-4 control-label">顾客手机:</label>
+					    <div class="col-sm-4">
+					      <input type="text" class="form-control" id="customerPhone"  value="" >
 					    </div>
 					     <label class="col-sm-4 control-label"></label>
 					  </div>
@@ -193,13 +211,16 @@ function getComments(index){
 				</div>
 			</div> 
 			<hr class="width100" >
-			<a class="btn btn-default" >导出</a>
+			<a class="btn btn-default" onclick="getExcel()" >导出</a>
 			<table class="table" >
 				<thead>
 					<tr>
 						<td>编号</td>
 						<td>导师姓名</td>
 						<td>顾客姓名</td>
+						<td>约谈日期</td>
+						<td>约谈时间</td>
+						<td>订单状态</td>
 						<td>操作</td>
 					</tr>
 				</thead>

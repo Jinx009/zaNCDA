@@ -8,10 +8,10 @@ import org.springframework.stereotype.Repository;
 
 import common.helper.ConstantUtil;
 import common.helper.StringUtil;
-
 import database.common.BaseDaoImpl;
 import database.common.PageDataList;
 import database.common.QueryParam;
+import database.common.SearchFilter.Operators;
 import database.models.Customer;
 
 @Repository("customerDao")
@@ -31,10 +31,10 @@ public class CustomerDaoImpl extends BaseDaoImpl<Customer> implements CustomerDa
 		QueryParam param = QueryParam.getInstance().addPage(pageNum,ConstantUtil.PAGE_SIZE);
 		
 		if (StringUtil.isNotBlank(customer.getRealName())){
-			param.addParam("realName",customer.getRealName());
+			param.addParam("realName",Operators.LIKE,customer.getRealName());
 		}
 		if (StringUtil.isNotBlank(customer.getMobilePhone())){
-			param.addParam("mobilePhone",customer.getMobilePhone());
+			param.addParam("mobilePhone",Operators.LIKE,customer.getMobilePhone());
 		}
 		PageDataList<Customer> pageDataList = super.findPageList(param);
 		

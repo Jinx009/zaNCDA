@@ -11,22 +11,21 @@
 <script type="text/javascript" src="/sp/dist/jquery.js" ></script>
 <script type="text/javascript" src="/sp/js/common.js" ></script>
 <script type="text/javascript">
+var areaData;
 $(function(){
 	$.ajax({
 		url:'/trade/data/list.html?time='+getRandom(),
 		type:'GET',
 		dataType:'json',
 		success:function(res){
-			var htmlStr = '',htmlStr2 = '';
+			areaData = res.errmsg;
+			var htmlStr = '';
 			for(var i = 0;i<res.errmsg.length;i++){
 				if('0'==res.errmsg[i].parentId){
 					htmlStr += '<option value='+res.errmsg[i].id+' >'+res.errmsg[i].tradeName+'</option>';
-				}else{
-					htmlStr2 += '<option value='+res.errmsg[i].id+' >'+res.errmsg[i].tradeName+'</option>';
 				}
 			}
 			$('#trade').html(htmlStr);
-			$('#area').html(htmlStr2);
 		}
 	})
 })
@@ -42,6 +41,17 @@ function goNext(){
 	
 	location.href = "/customer/page/selectResult.html?type="+type+"&trade="+trade+"&area="+area+"&workYears="+workYears+"&id="+id;
 }
+
+function changeTrade(){
+	var trade = $("#trade").val();
+	var htmlStr = "";
+	for(var i = 0;i<areaData.length;i++){
+		if(areaData[i].parentId==trade){
+			htmlStr += "<option value="+areaData[i].id+" >"+areaData[i].tradeName+"</option>";
+		}
+	}
+	$("#area").html(htmlStr);
+}
 </script>
 </head>
 <body>
@@ -50,7 +60,7 @@ function goNext(){
 <div class="choice-title"><h1>请选择您心仪导师的属性</h1></div>
 <div class="register-inp register-inp-top">
 	<span class="register-inp-text">专注行业<b>*</b></span>
-	<select class="register-select-long" id="trade" >
+	<select class="register-select-long" id="trade" onchange="changeTrade()" >
 		<option value="" selected="selected"></option>
 	</select>
 </div>

@@ -46,7 +46,7 @@ public class TutorPage {
 			 if(StringUtil.isNotBlank(openid)){
 				 tutor = tutorService.getByOpenid(openid);
 				 if(null!=tutor){
-					 status = 1;
+					 status = 0;
 				 }
 			 }
 		 }

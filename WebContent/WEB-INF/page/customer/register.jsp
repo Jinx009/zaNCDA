@@ -63,7 +63,7 @@ function doRegister(){
 </script>
 </head>
 <body>
-<a href="#"><div class="nav-title"><span class="nav-back"  onclick="openUrl('/customer/login.html')" >&lt;</span>注册</div></a>
+<a href="#"><div class="nav-title"><span class="close"  onclick="openUrl('/customer/login.html')" >&lt;</span>注册</div></a>
 	
 	<div class="register-inp register-inp-top">
 		<span class="register-inp-text">手机号</span>

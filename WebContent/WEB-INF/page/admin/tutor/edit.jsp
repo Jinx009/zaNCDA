@@ -249,6 +249,7 @@ function saveInfo(){
 	var email = $("#email").val();
 	var workYears = $("#workYears").val();
 	var qq = $("#qq").val();
+	var faceStatus = $("#faceStatus").val();
 	var mobileStatus = 0,videoStatus = 0,faceStatus = 0;
 	if("checked"==$("#mobileStatus").is(":checked")||true==$("#mobileStatus").is(":checked")){
 		mobileStatus = 1;
@@ -267,7 +268,7 @@ function saveInfo(){
 				birth+"&classPrice="+classPrice+"&trade1="+trade1+"&trade2="+trade2+"&trade3="+trade3+"&area1="+area1+"&area2="+
 				area2+"&area3="+area3+"&isOnline="+isOnline+"&bankAccount="+bankAccount+"&bankName="+bankName+"&idCard="+idCard+
 				"&email="+email+"&workYears="+workYears+"&qq="+qq+"&mobileStatus="+mobileStatus+"&faceStatus="+faceStatus+"&videoStatus="+
-				videoStatus+"&personalIntroduction="+personalIntroduction+"&id="+id+"&topicId="+topicId;
+				videoStatus+"&personalIntroduction="+personalIntroduction+"&id="+id+"&topicId="+topicId+"&faceStatus="+faceStatus;
 	if(bankAccount!=bankAccount1){
 		alert("银行卡号确认信息不一致!");
 	}else{
@@ -309,10 +310,10 @@ function saveInfo(){
 	<div class="row index-row" >
 		<div class="col-md-2 index-col-md-2" >
 			<div class="list-group">
-			  <a href="/admin/index.html" class="list-group-item active">教师管理</a>
-			  <a href="/admin/student.html" class="list-group-item">顾客管理</a>
-			  <a href="/admin/order.html" class="list-group-item">兑付管理</a>
-			  <a href="/admin/util.html" class="list-group-item ">辅助管理</a>
+			  <a href="/admin/page/tutor.html" class="list-group-item active">导师管理</a>
+			    <a href="/admin/page/customer.html" class="list-group-item">顾客管理</a>
+			  <a href="/admin/page/order.html" class="list-group-item">约谈管理</a>
+			  <a href="/admin/page/util.html" class="list-group-item">资料管理</a>
 			</div>
 		</div>
 		<div class="col-md-10 index-col-md-10" >
@@ -415,8 +416,8 @@ function saveInfo(){
 						<td>  <input type="text" id="qq" value="${tutor.qq }" class="form-control"  ></td>
 					</tr>
 					<tr>
-						<th></th>
-						<td></td>
+						<th>约谈价格：</th>
+						<td><input type="text" id="facePrice" class="form-control" value="${tutor.facePrice }" ></td>
 						<th>openid：</th>
 						<td>  <input type="text" id="openid" readonly="readonly" value="${tutor.openid }" class="form-control"  ></td>
 					</tr>

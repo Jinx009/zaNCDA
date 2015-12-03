@@ -2,6 +2,7 @@ package main.entry.webapp.data;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
@@ -70,13 +71,48 @@ public class ExcelData {
 		cell = row.createCell((short) 1);
 		cell.setCellValue("导师电话");
 		cell.setCellStyle(style);
-		cell = row.createCell((short) 2);
-
+		cell = row.createCell((short)2);
+		cell.setCellValue("擅长行业1");
+		cell.setCellStyle(style);
+		cell = row.createCell((short) 3);
+		cell.setCellValue("擅长行业2");
+		cell.setCellStyle(style);
+		cell = row.createCell((short) 4);
+		cell.setCellValue("擅长行业3");
+		cell.setCellStyle(style);
+		cell = row.createCell((short) 5);
+		cell.setCellValue("擅长领域1");
+		cell.setCellStyle(style);
+		cell = row.createCell((short) 6);
+		cell.setCellValue("擅长领域2");
+		cell.setCellStyle(style);
+		cell = row.createCell((short) 7);
+		cell.setCellValue("擅长领域3");
+		cell.setCellStyle(style);
+		cell = row.createCell((short) 8);
+		cell.setCellValue("擅长主题");
+		cell.setCellStyle(style);
+		cell = row.createCell((short) 9);
+		cell.setCellValue("约谈价格");
+		cell.setCellStyle(style);
+		int index = 1;
 		for (int i = 0; i < list.size(); i++) {
-			row = sheet.createRow((int) i + 1);
+			row = sheet.createRow(index);
 			Tutor tutor = list.get(i);
-			row.createCell((short) 0).setCellValue(tutor.getRealName());
-			row.createCell((short) 1).setCellValue(tutor.getMobilePhone());
+			if(null!=tutor.getqTopic()){
+				row.createCell((short) 0).setCellValue(tutor.getRealName());
+				row.createCell((short) 1).setCellValue(tutor.getMobilePhone());
+				row.createCell((short) 2).setCellValue(tutor.getTradeOne().getTradeName());
+				row.createCell((short) 3).setCellValue(tutor.getTradeTwo().getTradeName());
+				row.createCell((short) 4).setCellValue(tutor.getTradeThree().getTradeName());
+				row.createCell((short) 5).setCellValue(tutor.getAreaOne().getTradeName());
+				row.createCell((short) 6).setCellValue(tutor.getAreaTwo().getTradeName());
+				row.createCell((short) 7).setCellValue(tutor.getAreaThree().getTradeName());
+				row.createCell((short) 8).setCellValue(tutor.getqTopic().getName());
+				row.createCell((short) 9).setCellValue(String.valueOf(tutor.getFacePrice()));
+				
+				index++;
+			}
 		}
 		
 		FileOutputStream fout = new FileOutputStream(path+"/"+currentTime+".xls");
@@ -104,25 +140,40 @@ public class ExcelData {
 		List<Customer> list = customerService.findAll();
 		
 		HSSFWorkbook wb = new HSSFWorkbook();
-		HSSFSheet sheet = wb.createSheet("学生表");
+		HSSFSheet sheet = wb.createSheet("顾客表");
 		HSSFRow row = sheet.createRow((int) 0);
 		HSSFCellStyle style = wb.createCellStyle();
 		sheet.setDefaultColumnWidth(100);
 		style.setAlignment(HSSFCellStyle.ALIGN_CENTER);
 
 		HSSFCell cell = row.createCell((short) 0);
-		cell.setCellValue("学生姓名");
+		cell.setCellValue("顾客姓名");
 		cell.setCellStyle(style);
 		cell = row.createCell((short) 1);
-		cell.setCellValue("学生电话");
+		cell.setCellValue("顾客电话");
 		cell.setCellStyle(style);
 		cell = row.createCell((short) 2);
-
+		cell.setCellValue("顾客qq");
+		cell.setCellStyle(style);
+		cell = row.createCell((short) 3);
+		cell.setCellValue("顾客邮箱");
+		cell.setCellStyle(style);
+		cell = row.createCell((short) 4);
+		cell.setCellValue("顾客微信号");
+		cell.setCellStyle(style);
+		
+		int index =1;
 		for (int i = 0; i < list.size(); i++) {
-			row = sheet.createRow((int) i + 1);
+			row = sheet.createRow(index);
 			Customer customer = list.get(i);
+			
 			row.createCell((short) 0).setCellValue(customer.getRealName());
 			row.createCell((short) 1).setCellValue(customer.getMobilePhone());
+			row.createCell((short) 2).setCellValue(customer.getQq());
+			row.createCell((short) 3).setCellValue(customer.getEmail());
+			row.createCell((short) 4).setCellValue(customer.getWechatName());
+			
+			index++;
 		}
 		
 		FileOutputStream fout = new FileOutputStream(path+"/"+currentTime+".xls");
@@ -157,18 +208,39 @@ public class ExcelData {
 		style.setAlignment(HSSFCellStyle.ALIGN_CENTER);
 
 		HSSFCell cell = row.createCell((short) 0);
-		cell.setCellValue("学生姓名");
+		cell.setCellValue("顾客姓名");
 		cell.setCellStyle(style);
 		cell = row.createCell((short) 1);
 		cell.setCellValue("导师姓名");
 		cell.setCellStyle(style);
 		cell = row.createCell((short) 2);
-
+		cell.setCellValue("约谈日期");
+		cell.setCellStyle(style);
+		cell = row.createCell((short) 3);
+		cell.setCellValue("约谈时间");
+		cell.setCellStyle(style);
+		cell = row.createCell((short) 4);
+		cell.setCellValue("约谈主题");
+		cell.setCellStyle(style);
+		cell = row.createCell((short) 5);
+		cell.setCellValue("订单状态");
+		cell.setCellStyle(style);
+		cell = row.createCell((short) 6);
+		cell.setCellValue("约谈详细主题");
+		cell.setCellStyle(style);
+	
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		
 		for (int i = 0; i < list.size(); i++) {
 			row = sheet.createRow((int) i + 1);
 			Order order = list.get(i);
 			row.createCell((short) 0).setCellValue(order.getqCustomer().getRealName());
 			row.createCell((short) 1).setCellValue(order.getqTutor().getRealName());
+			row.createCell((short) 2).setCellValue(sdf.format(order.getqTutorTime().getRealDate()));
+			row.createCell((short) 3).setCellValue(order.getqTutorTime().getRealTime());
+			row.createCell((short) 4).setCellValue(order.getTopic().getName());
+			row.createCell((short) 5).setCellValue(getStatus(order.getStatus()));
+			row.createCell((short) 6).setCellValue(order.getTopicContent());
 		}
 		
 		FileOutputStream fout = new FileOutputStream(path+"/"+currentTime+".xls");
@@ -181,6 +253,29 @@ public class ExcelData {
 		HttpWebIOHelper._printWebJson(data, response);
 	}
 
+	public static String getStatus(Integer status){
+		if(0==status){
+			return "未支付";
+		}
+		if(1==status){
+			return "约谈中";
+		}
+		if(2==status){
+			return "导师已小结";
+		}
+		if(3==status){
+			return "顾客已评价";
+		}
+		if(4==status){
+			return "双方已互评";
+		}
+		if(5==status){
+			return "订单已取消";
+		}
+		
+		return null;
+	}
+	
 	public void setData(Map<String, Object> data) {
 		this.data = data;
 	}

@@ -78,16 +78,16 @@ function getOrderStatus(status){
 		return "已支付";
 	}else if(2==status){
 		return "导师已评价";
-	}else if(3==status){
+	}else if(2==status){
 		return "导师已评价";
-	}else if(4==status){
+	}else if(3==status){
 		return "顾客已评价";
-	}else if(5==status){
+	}else if(4==status){
 		return "双方已互评";
-	}else if(6==status){
-		return "约谈已结束";
-	}else{
+	}else if(5==status){
 		return "约谈已取消";
+	}else{
+		return "约谈已结束";
 	}
 }
 
