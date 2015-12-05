@@ -39,6 +39,11 @@ public class OrderServiceImpl implements OrderService {
 		return orderDao.findPageList(order,pageNum);
 	}
 	
+	public PageDataList<Order> findPagePayList(Order order, int pageNum) {
+		return orderDao.findPagePayList(order,pageNum);
+	}
+
+	
 	public List<Order> findAll() {
 		return orderDao.findAll();
 	}

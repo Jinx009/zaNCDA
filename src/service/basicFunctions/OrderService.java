@@ -24,5 +24,7 @@ public interface OrderService {
 	public List<Order> findTutorList(Tutor tutor);
 
 	public List<Order> findCustomerList(Customer customer);
+
+	public PageDataList<Order> findPagePayList(Order order, int pageNum);
 	
 }

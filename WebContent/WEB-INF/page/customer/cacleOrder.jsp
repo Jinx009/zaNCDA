@@ -13,9 +13,9 @@
 function saveCacle(){
 	var orderId = $("#orderId").val();
 	var bank = $("#bank").val();
-	var season = $("#season").val();
+	var reason = $("#reason").val();
 	
-	var params = "orderId="+orderId+"&bank="+bank+"&season="+season;
+	var params = "orderId="+orderId+"&bank="+bank+"&reason="+reason;
 	
 	$.ajax({
 		url:"/customer/data/cacleOrder.html",
@@ -50,7 +50,7 @@ function saveCacle(){
 				<p>手续费：10%&nbsp;&nbsp;&nbsp;1-5个工作日内到账</p>
 			</div>
 			<div class="clear"></div>
-			<textarea placeholder="请填写您取消的原因	" id="season" ></textarea>
+			<textarea placeholder="请填写您取消的原因	" id="reason" ></textarea>
 			<div class="cancel-box-btn-position">
 				<div class="cancel-box-btn">
 					<button onclick="saveCacle()" >确定</button>

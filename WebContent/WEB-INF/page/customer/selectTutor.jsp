@@ -26,6 +26,8 @@ $(function(){
 				}
 			}
 			$('#trade').html(htmlStr);
+			
+			changeTrade();
 		}
 	})
 })

@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import common.helper.ConstantUtil;
 import common.helper.HttpWebIOHelper;
@@ -25,6 +26,7 @@ import service.basicFunctions.ScoreService;
 import service.basicFunctions.TopicService;
 import service.basicFunctions.TradeService;
 import service.basicFunctions.TutorService;
+import service.basicFunctions.TutorTimeService;
 import database.common.PageDataList;
 import database.models.Comments;
 import database.models.Customer;
@@ -32,6 +34,7 @@ import database.models.Order;
 import database.models.Score;
 import database.models.Topic;
 import database.models.Tutor;
+import database.models.TutorTime;
 
 @Controller
 public class OrderData {
@@ -58,6 +61,9 @@ public class OrderData {
 	
 	@Autowired
 	private TopicService topicService;
+	
+	@Autowired
+	private TutorTimeService tutorTimeService;
 
 	@RequestMapping(value = "/admin/data/order")
 	public void orderList(HttpServletResponse response,HttpServletRequest request) throws IOException, ParseException{
@@ -97,6 +103,71 @@ public class OrderData {
 		
 	}
 	
+	@RequestMapping(value = "/admin/data/orderPay")
+	public void orderPayList(HttpServletResponse response,HttpServletRequest request) throws IOException, ParseException{
+		data = new HashMap<String,Object>();
+		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+		Date startDate = null,endDate = null;
+		if(StringUtil.isNotBlank(request.getParameter("startDate"))){
+			startDate = sdf.parse(request.getParameter("startDate"));
+		}
+		if(StringUtil.isNotBlank(request.getParameter("endDate"))){
+			endDate = sdf.parse(request.getParameter("endDate"));
+		}
+		int pageNum = Integer.valueOf(request.getParameter("pageNum"));
+		String tutorName = request.getParameter("tutorName");
+		String tutorPhone = request.getParameter("tutorPhone");
+		String customerName = request.getParameter("customerName");
+		String customerPhone = request.getParameter("customerPhone");
+		Integer payStatus = Integer.valueOf(request.getParameter("payStatus"));
+		
+		
+		order = new Order();
+		tutor = new Tutor();
+		customer = new Customer();
+		tutor.setRealName(tutorName);
+		tutor.setMobilePhone(tutorPhone);
+		customer.setRealName(customerName);
+		customer.setMobilePhone(customerPhone);
+		order.setqTutor(tutor);
+		order.setqCustomer(customer);
+		order.setAddTime(startDate);
+		order.setUpdateTime(endDate);
+		order.setPayStatus(payStatus);
+		
+		PageDataList<Order> list = orderService.findPagePayList(order,pageNum);
+		data.put("data",list);
+		
+		HttpWebIOHelper._printWebJson(data, response);
+		
+		
+	}
+	
+	/**
+	 * 更新兑付状态
+	 * @param request
+	 * @param response
+	 * @throws IOException 
+	 */
+	@RequestMapping(value = "/order/data/update",method = RequestMethod.POST)
+	public void updatePayOrder(HttpServletRequest request,HttpServletResponse response) throws IOException{
+		data = new HashMap<String, Object>();
+		order  = orderService.getById(Integer.valueOf(request.getParameter("id")));
+		order.setPayMoney(Double.valueOf(request.getParameter("payMoney")));
+		order.setReason(request.getParameter("reason"));
+		order.setBank(request.getParameter("bank"));
+		order.setBankName(request.getParameter("bankName"));
+		order.setPayStatus(1);
+		order.setProcedures(Double.valueOf(request.getParameter("procedures")));
+		
+		orderService.doUpdate(order);
+		
+		data.put(ConstantUtil.RESULT,ConstantUtil.SUCCESS);
+		data.put(ConstantUtil.ERROR_MSG,"保存成功!");
+		
+		HttpWebIOHelper._printWebJson(data, response);
+	}
+	
 	/**
 	 * 取消订单
 	 * @param response
@@ -109,8 +180,9 @@ public class OrderData {
 		data = new HashMap<String,Object>();
 		Integer orderId = Integer.valueOf(request.getParameter("orderId"));
 		String bank = request.getParameter("bank");
+		order.setProcedures(Double.valueOf(request.getParameter("procedures")));
 		order = orderService.getById(orderId);
-		order.setStatus(6);
+		order.setStatus(5);
 		order.setBank(bank);
 		
 		orderService.doUpdate(order);
@@ -215,14 +287,18 @@ public class OrderData {
 		
 		Integer topicId = Integer.valueOf(request.getParameter("topicId"));
 		Integer tutorId = Integer.valueOf(request.getParameter("tutorId"));
+		Integer timeId = Integer.valueOf(request.getParameter("timeId"));
 		customer = (Customer) request.getSession().getAttribute(ConstantUtil.CUSTOMER_SESSION);
 		Topic topic = topicService.find(topicId);
 		tutor = tutorService.find(tutorId);
+		TutorTime time = tutorTimeService.getById(timeId);
+		time.setStatus(1);
+		tutorTimeService.update(time);
 		String topicContent = request.getParameter("topicContent");
 		
 		order = new Order();
 		order.setAddTime(new Date());
-		order.setPayStatus(1);
+		order.setPayStatus(0);
 		order.setPrice(tutor.getFacePrice());
 		order.setProcedures(tutor.getFacePrice()*0.03);
 		order.setqCustomer(customer);
@@ -232,6 +308,7 @@ public class OrderData {
 		order.setTopicContent(topicContent);
 		order.setUpdateTime(new Date());
 		order.setPayTime(new Date());
+		order.setqTutorTime(time);
 		
 		System.out.println("保存数据!");
 		

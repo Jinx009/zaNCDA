@@ -186,8 +186,7 @@ function saveInfo(){
 				birth+"&classPrice="+classPrice+"&trade1="+trade1+"&trade2="+trade2+"&trade3="+trade3+"&area1="+area1+"&area2="+
 				area2+"&area3="+area3+"&isOnline="+isOnline+"&bankAccount="+bankAccount+"&bankName="+bankName+"&idCard="+idCard+
 				"&email="+email+"&workYears="+workYears+"&qq="+qq+"&mobileStatus="+mobileStatus+"&faceStatus="+faceStatus+"&videoStatus="+
-				videoStatus+"&personalIntroduction="+personalIntroduction+"&topicId="+topicId+"&realname="+realname+"&pwd="+pwd+"&faceStatus="+faceStatus;
-	alert(params)
+				videoStatus+"&personalIntroduction="+personalIntroduction+"&topicId="+topicId+"&realname="+realname+"&pwd="+pwd+"&facePrice="+facePrice;
 	if(bankAccount!=bankAccount1){
 		alert("银行卡号确认信息不一致!");
 	}else{
@@ -232,6 +231,8 @@ function saveInfo(){
 			    <a href="/admin/page/customer.html" class="list-group-item">顾客管理</a>
 			  <a href="/admin/page/order.html" class="list-group-item">约谈管理</a>
 			  <a href="/admin/page/util.html" class="list-group-item">资料管理</a>
+			  <a href="/admin/page/pay.html" class="list-group-item">兑付管理</a>
+			  <a href="/admin/loginOut.html" class="list-group-item">登出</a>
 			</div>
 		</div>
 		<div class="col-md-10 index-col-md-10" >
@@ -328,12 +329,12 @@ function saveInfo(){
 					<tr>
 						<th>工作年限：</th>
 						<td>  <input class="form-control" value="1" id="workYears" ></td>
-						<th>邮箱：</th>
+						<th>qq：</th>
 						<td>  <input type="text" id="qq" value="" class="form-control"  ></td>
 					</tr>
 					<tr>
 						<th>约谈价格</th>
-						<td> <input type="text" id="faceStatus"  value="0" class="form-control"  ></td>
+						<td> <input type="text" id="facePrice"  value="0" class="form-control"  ></td>
 						<th>openid：</th>
 						<td>  <input type="text" id="openid" readonly="readonly" value="" class="form-control"  ></td>
 					</tr>

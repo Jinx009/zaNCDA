@@ -64,6 +64,8 @@ function getData(){
 			  <a href="/admin/page/customer.html" class="list-group-item">顾客管理</a>
 			  <a href="/admin/page/order.html" class="list-group-item">约谈管理</a>
 			  <a href="/admin/page/util.html" class="list-group-item active">资料管理</a>
+			   <a href="/admin/page/pay.html" class="list-group-item  ">兑付管理</a>
+			  <a href="/admin/loginOut.html" class="list-group-item">登出</a>
 			</div>
 		</div>
 		<div class="col-md-10 index-col-md-10" >

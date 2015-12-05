@@ -53,4 +53,35 @@ public class OrderDaoImpl extends BaseDaoImpl<Order> implements OrderDao{
 		return null;
 	}
 
+	public PageDataList<Order> findPagePayList(Order order, int pageNum) {
+		QueryParam param = QueryParam.getInstance().addPage(pageNum,ConstantUtil.PAGE_SIZE);
+		if (StringUtil.isNotBlank(order.getqTutor().getRealName())){
+			param.addParam("qTutor.realName",Operators.LIKE,order.getqTutor().getRealName());
+		}
+		if (StringUtil.isNotBlank(order.getqTutor().getMobilePhone())){
+			param.addParam("qTutor.mobilePhone",Operators.LIKE,order.getqTutor().getMobilePhone());
+		}
+		if(StringUtil.isNotBlank(order.getqCustomer().getRealName())){
+			param.addParam("qCustomer.realName",Operators.LIKE,order.getqCustomer().getRealName());
+		}
+		if(StringUtil.isNotBlank(order.getqCustomer().getMobilePhone())){
+			param.addParam("qCustomer.mobilePhone",Operators.LIKE,order.getqCustomer().getMobilePhone());
+		}
+		if(StringUtil.isNotBlank(order.getqCustomer().getMobilePhone())){
+			param.addParam("qCustomer.mobilePhone",Operators.LIKE,order.getqCustomer().getMobilePhone());
+		}
+		if(-1!=order.getPayStatus()){
+			param.addParam("payStatus",order.getPayStatus());
+		}
+		if (null!=order.getAddTime()) {
+			param.addParam("addTime", Operators.GTE,order.getAddTime());
+		}
+		if (null!=order.getUpdateTime()) {
+			param.addParam("addTime", Operators.LTE,order.getAddTime());
+		}
+		PageDataList<Order> pageDataList = super.findPageList(param);
+		
+		return pageDataList;
+	}
+
 }

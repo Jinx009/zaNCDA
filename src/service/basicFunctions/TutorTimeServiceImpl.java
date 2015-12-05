@@ -92,4 +92,8 @@ public class TutorTimeServiceImpl implements TutorTimeService {
 		this.buffer = buffer;
 	}
 
+	public TutorTime getById(Integer timeId) {
+		return tutorTimeDao.find(timeId);
+	}
+
 }

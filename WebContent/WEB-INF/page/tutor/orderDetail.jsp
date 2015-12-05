@@ -26,7 +26,7 @@ $(function(){
 			replyStatus = getReplyStatus(res.errmsg.order.status,res.errmsg.order.qTutorTime.realDate);
 			
 			var htmlStr = "";
-			htmlStr += "<h3>["+res.errmsg.order.qCustomer.realName+"]</h3>";
+			htmlStr += "<h3>["+isNull(res.errmsg.order.qCustomer.realName)+"]</h3>";
 			htmlStr += "<p>约谈主题:</p>"
 			htmlStr += "<textarea readonly='readonly' >"+res.errmsg.order.topicContent+"</textarea>";
 			htmlStr += "<p>约谈时间:<font>"+jsDateTimeOnly(res.errmsg.order.qTutorTime.realDate)+"("+res.errmsg.order.qTutorTime.realTime+")</font></p>";

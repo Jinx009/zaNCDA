@@ -12,4 +12,6 @@ public interface OrderDao extends BaseDao<Order>{
 
 	public List<Order> getByHql(String hql);
 
+	public PageDataList<Order> findPagePayList(Order order, int pageNum);
+
 }

@@ -27,6 +27,6 @@ public class MD5Util {
     }  
       
     public static void main(String[] args){  
-         System.out.println(toMD5("admin123"));  
+         System.out.println(toMD5("pwd123456"));  
     }  
 }

@@ -276,6 +276,92 @@ public class ExcelData {
 		return null;
 	}
 	
+	
+	/**
+	 * 下载顾客信息
+	 * @param request
+	 * @param response
+	 * @throws IOException
+	 */
+	@SuppressWarnings("deprecation")
+	@RequestMapping(value = "/excel/pay",method = RequestMethod.GET)
+	public void payExcel(HttpServletRequest request,HttpServletResponse response) throws IOException{
+		data = new HashMap<String, Object>();
+		long currentTime = Calendar.getInstance().getTimeInMillis();
+        String path = request.getSession().getServletContext().getRealPath("/sp/excel/pay/");  
+		List<Order> list = orderService.findAll();
+		
+		HSSFWorkbook wb = new HSSFWorkbook();
+		HSSFSheet sheet = wb.createSheet("兑付表");
+		HSSFRow row = sheet.createRow((int) 0);
+		HSSFCellStyle style = wb.createCellStyle();
+		sheet.setDefaultColumnWidth(100);
+		style.setAlignment(HSSFCellStyle.ALIGN_CENTER);
+
+		HSSFCell cell = row.createCell((short) 0);
+		cell.setCellValue("顾客姓名");
+		cell.setCellStyle(style);
+		cell = row.createCell((short) 1);
+		cell.setCellValue("导师姓名");
+		cell.setCellStyle(style);
+		cell = row.createCell((short) 2);
+		cell.setCellValue("兑付状态");
+		cell.setCellStyle(style);
+		cell = row.createCell((short) 3);
+		cell.setCellValue("订单金额");
+		cell.setCellStyle(style);
+		cell = row.createCell((short) 4);
+		cell.setCellValue("实际金额");
+		cell.setCellStyle(style);
+		cell = row.createCell((short) 5);
+		cell.setCellValue("手续比例");
+		cell.setCellStyle(style);
+		cell = row.createCell((short) 6);
+		cell.setCellValue("银行卡号");
+		cell.setCellStyle(style);
+		
+		for (int i = 0; i < list.size(); i++) {
+			row = sheet.createRow((int) i + 1);
+			Order order = list.get(i);
+			row.createCell((short) 0).setCellValue(order.getqCustomer().getRealName());
+			row.createCell((short) 1).setCellValue(order.getqTutor().getRealName());
+			if(1==order.getPayStatus()){
+				row.createCell((short) 2).setCellValue("已兑付");
+			}else{
+				row.createCell((short) 2).setCellValue("未兑付");
+			}
+			row.createCell((short) 3).setCellValue(checkDouble(order.getPrice()));
+			row.createCell((short) 4).setCellValue(checkDouble(order.getPayMoney()));
+			row.createCell((short) 5).setCellValue(checkDouble(order.getProcedures()));
+			row.createCell((short) 6).setCellValue(checkString(order.getBankName()));
+		}
+		
+		FileOutputStream fout = new FileOutputStream(path+"/"+currentTime+".xls");
+		wb.write(fout);
+		fout.close();
+		
+		data.put(ConstantUtil.RESULT,ConstantUtil.SUCCESS);
+		data.put(ConstantUtil.ERROR_MSG,currentTime+".xls");
+		
+		HttpWebIOHelper._printWebJson(data, response);
+	}
+
+	public String checkDouble(Double data){
+		if(null!=data){
+			return String.valueOf(data);
+		}
+		return "";
+	}
+	
+	public String checkString(String data){
+		if(null!=data){
+			return String.valueOf(data);
+		}
+		return "";
+	}
+
+
+	
 	public void setData(Map<String, Object> data) {
 		this.data = data;
 	}

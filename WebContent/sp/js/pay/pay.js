@@ -127,7 +127,7 @@ function callPlay(){
         	   var tutorId = $("#tutorId").val();
         	   var topicId = $("#topicId").val();
         	   var timeId = $("#time").val();
-        	   var topicContent = $("#topicContent").html();
+        	   var topicContent = $("#topicContent").val();
         	   var params = "tutorId="+tutorId+"&topicId="+topicId+"&timeId="+timeId+"&topicContent="+topicContent;
         	   $.ajax({
         		   url:"/tutor/data/saveOrder.html",
@@ -150,7 +150,7 @@ function callPlay(){
  */
 function pay(){
 	var order_id = "NCDA"+$("#orderId").val();    
-	var total_fee = parseInt($("#fee").val());   
+	var total_fee = parseFloat($("#fee").val())*100;   
 	var openId = $("#openId").val();
 	var nonceStr = getNonceStr();
 	var str = "appid=wx08411a74145eb7dc"+
@@ -164,7 +164,6 @@ function pay(){
 			   "&total_fee="+total_fee+
 			   "&trade_type=JSAPI"+
 			   "&key=jinxjinxjinxjinxjinxjinxjinxjinx";
-	
 	var md5 = CryptoJS.MD5(str).toString();
 	
 	var params = "sign="+md5+"&openId="+openId+"&fee="+total_fee+"&nonce_str="+nonceStr+"&client_ip=127.0.0.1&order_id="+order_id;

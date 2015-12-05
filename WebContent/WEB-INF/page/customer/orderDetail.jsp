@@ -88,7 +88,20 @@ function saveScore(){
  */
 function goComments(){
 	var orderId = $("#orderId").val();
-	location.href = "/customer/page/comments.html?orderId="+orderId;
+	var params = "id="+orderId;
+	$.ajax({
+		url:"/score/data/score.html",
+		type:"POST",
+		data:params,
+		dataType:"json",
+		success:function(res){
+			if(null!=res.errMsg&&res.errMsg.length>0){
+				location.href = "/customer/page/comments.html?orderId="+orderId;
+			}else{
+				alert("评论之后才可以查看小结!");
+			}
+		}
+	})
 }
 
 /**

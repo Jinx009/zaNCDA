@@ -76,6 +76,15 @@ public class Order {
 	@Column(name = "bank")
 	private String bank;
 	
+	@Column(name = "bank_name")
+	private String bankName;
+	
+	@Column(name = "pay_money")
+	private Double payMoney;
+	
+	@Column(name = "reason")
+	private String reason;
+	
 
 	public Integer getId() {
 		return id;
@@ -95,6 +104,14 @@ public class Order {
 
 	public Customer getqCustomer() {
 		return qCustomer;
+	}
+
+	public String getReason() {
+		return reason;
+	}
+
+	public void setReason(String reason) {
+		this.reason = reason;
 	}
 
 	public void setqCustomer(Customer qCustomer) {
@@ -187,6 +204,22 @@ public class Order {
 
 	public void setBank(String bank) {
 		this.bank = bank;
+	}
+
+	public String getBankName() {
+		return bankName;
+	}
+
+	public void setBankName(String bankName) {
+		this.bankName = bankName;
+	}
+
+	public Double getPayMoney() {
+		return payMoney;
+	}
+
+	public void setPayMoney(Double payMoney) {
+		this.payMoney = payMoney;
 	}
 	
 	

@@ -6,6 +6,8 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import common.helper.ConstantUtil;
+
 
 @Controller
 public class AdminPage {
@@ -18,6 +20,28 @@ public class AdminPage {
     public String login(){  
         return "/admin/login";  
     }
+	
+	/**
+	 * 跳转后台登陆页面
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/admin/loginOut") 
+    public String loginOut(HttpServletRequest request){  
+		request.getSession().setAttribute(ConstantUtil.ADMIN_SESSION,null);
+        return "/admin/login";  
+    }
+	
+	/**
+	 * 跳转后台兑付
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/admin/page/pay") 
+    public String pay(){  
+        return "/admin/order/pay";  
+    }
+	
 	
 	/**
 	 * 跳转后台订单页面

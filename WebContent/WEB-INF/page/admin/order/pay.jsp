@@ -19,11 +19,12 @@ $(function(){
 })
 
 function getData(pageNum){
-	var tutorName = $("#tutorName").val(),tutorPhone = $("#tutorPhone").val(),customerName = $("#customerName").val(),customerPhone = $("#customerPhone").val();
-	var params = "pageNum="+pageNum+"&tutorName="+tutorName+"&tutorPhone="+tutorPhone+"&customerName="+customerName+"&customerPhone="+customerPhone;
+	var tutorName=$("#tutorName").val(),tutorPhone = $("#tutorPhone").val(),customerName = $("#customerName").val(),customerPhone = $("#customerPhone").val(),payStatus=$("#payStatus").val();
+	var params = "pageNum="+pageNum+"&tutorName="+tutorName+"&tutorPhone="+tutorPhone+"&customerName="+customerName+"&customerPhone="+customerPhone+
+	"&payStatus="+payStatus;
 	
 	$.ajax({
-		url:"/admin/data/order.html?time="+getRandom(),
+		url:"/admin/data/orderPay.html?time="+getRandom(),
 		type:"POST",
 		data:params,
 		dataType:"json",
@@ -34,18 +35,25 @@ function getData(pageNum){
 				for(var i = 1;i<=parseInt(res.data.page.pages);i++){
 					menuHtml += "<li  id=page"+i+" ><a href=javascript:getData('"+i+"')>"+i+"</a></li>";
 				}
-				
+		
 				for(var i = 0;i<res.data.list.length;i++){
 					htmlStr += "<tr>";
 					htmlStr += "<td>"+res.data.list[i].id+"</td>";
 					htmlStr += "<td>"+isNull(res.data.list[i].qTutor.realName)+"</td>";
 					htmlStr += "<td>"+isNull(res.data.list[i].qCustomer.realName)+"</td>";
-					htmlStr += "<td>"+jsDateTimeOnly(res.data.list[i].qTutorTime.realDate)+"</td>";
-					htmlStr += "<td>"+res.data.list[i].qTutorTime.realTime+"</td>";
-					htmlStr += "<td>"+getOrderStatus(res.data.list[i].status)+"</td>";
+					htmlStr += "<td>"+res.data.list[i].price+"</td>";
+					htmlStr += "<td>"+isNull(res.data.list[i].procedures)+"</td>";
+					htmlStr += "<td>"+isNull(res.data.list[i].payMoney)+"</td>";
+					htmlStr += "<td>"+isNull(res.data.list[i].bank)+"</td>";
+					htmlStr += "<td>"+isNull(res.data.list[i].bankName)+"</td>";
+					htmlStr += "<td>"+isNull(res.data.list[i].reason)+"</td>";
 					htmlStr += "<td>";
-					htmlStr += "<a class='btn btn-default' onclick=openLook('"+i+"','comments') >查看导师评论</a>";
-					htmlStr += "<a class='btn btn-default' onclick=openLook('"+i+"','score') >查看顾客评论</a>";
+					if(1==res.data.list[i].payStatus){
+						htmlStr += "已兑付";
+					}else{
+						htmlStr += "<a class='btn btn-default' onclick=openLook('"+res.data.list[i].id+"') >确认兑付</a>";
+					}
+					
 					htmlStr += "</td></tr>";
 				}
 			}
@@ -55,99 +63,47 @@ function getData(pageNum){
 		}
 	})
 }
-
-function openLook(index,type){
-	if("comments"==type){
-		getComments(index);
-	}else{
-		getScore(index);
-	}
+var orderId;
+function openLook(id){
+	orderId = id;
+	showAlert('lookDiv');
 }
 
-/**
- * 获取顾客评分
- */
-function getScore(index){
-	var id = data[parseInt(index)].id;
+
+function savePay(){
+	var procedures = $("#procedures").val();
+	var reason = $("#reason").val();
+	var payMoney = $("#payMoney").val();
+	var bankName = $("#bankName").val();
+	var bank = $("#bank").val();
+	var id = orderId;
+	
+	var params = "procedures="+procedures+"&reason="+reason+"&payMoney="+payMoney+"&bank="+bank+"&bankName="+bankName+"&id="+id;
 	
 	$.ajax({
-		url:"/score/data/score.html",
-		data:"id="+id,
+		url:"/order/data/update.html",
+		data:params,
 		dataType:"json",
 		type:"POST",
 		success:function(res){
 			if("success"==res.result){
-				var htmlStr = "";
-				
-				for(var i = 0;i<res.errmsg.length;i++){
-					htmlStr += "<tr>";
-					htmlStr += "<td>"+jsDateTimeOnly(res.errmsg[i].addTime)+"</td>";
-					htmlStr += "<td>"+res.errmsg[i].oneScore+"</td>";
-					htmlStr += "<td>"+res.errmsg[i].twoScore+"</td>";
-					htmlStr += "<td>"+res.errmsg[i].threeScore+"</td>";
-					htmlStr += "<td>"+res.errmsg[i].fourScore+"</td>";
-					htmlStr += "<td>"+res.errmsg[i].content+"</td>";
-					htmlStr += "</tr>";
-				}
-				$("#scoreData").html(htmlStr);
+				alert("保存成功!");
+				location.reload();
 			}
 		}
 	})
-	$("#scoreDiv").show();
-	$("#commentsDiv").hide();
-	
-	showAlert("lookDiv");	
-}
-
-/**
- * 获取导师评语
- */
-function getComments(index){
-	var id = data[parseInt(index)].id;
-	
-	$.ajax({
-		url:"/comments/data/comments.html",
-		data:"id="+id,
-		dataType:"json",
-		type:"POST",
-		success:function(res){
-			if("success"==res.result){
-				var htmlStr = "";
-				
-				for(var i = 0;i<res.errmsg.length;i++){
-					htmlStr += "<tr><th>编号:"+res.errmsg[i].id+"添加时间:"+jsDateTimeOnly(res.errmsg[i].addTime)+"</th></tr>";
-					htmlStr += "<tr><td>诉求一:"+res.errmsg[i].appealOne+"</td></tr>";
-					htmlStr += "<tr><td>诉求二:"+res.errmsg[i].appealTwo+"</td></tr>";
-					htmlStr += "<tr><td>诉求三:"+res.errmsg[i].appealThree+"</td></tr>";
-					htmlStr += "<tr><td>主要问题:"+res.errmsg[i].question+"</td></tr>";
-					htmlStr += "<tr><td>辅导策略（问题解决情况）:"+res.errmsg[i].solveStatus+"</td></tr>";
-					htmlStr += "<tr><td>辅导策略（主要辅导工具）:"+res.errmsg[i].solveTool+"</td></tr>";
-					htmlStr += "<tr><td>发展建议一:"+res.errmsg[i].adviceOne+"</td></tr>";
-					htmlStr += "<tr><td>发展建议二:"+res.errmsg[i].adviceTwo+"</td></tr>";
-					htmlStr += "<tr><td>发展建议三:"+res.errmsg[i].adviceThree+"</td></tr>";
-					htmlStr += "<tr><td>辅导成效（问题解决情况）:"+res.errmsg[i].solveResult+"</td></tr>";
-					htmlStr += "<tr><td>辅导成效（自我评估）:"+res.errmsg[i].solveAssess+"</td></tr>";
-				}
-				$("#commentsData").html(htmlStr);
-			}
-		}
-	})
-	$("#scoreDiv").hide();
-	$("#commentsDiv").show();
-	
-	showAlert("lookDiv");	
 }
 /**
  * 下载Excel
  */
 function getExcel(){
 	$.ajax({
-		url:"/excel/order.html?time="+getRandom(),
+		url:"/excel/pay.html?time="+getRandom(),
 		type:"GET",
 		dataType:"json",
 		success:function(res){
 			if("success"==res.result){
-				window.open("/sp/excel/order/"+res.errmsg);
+				window.open("/sp/excel/pay/"+res.errmsg);
 			}
 		}
 	})
@@ -161,9 +117,9 @@ function getExcel(){
 			<div class="list-group">
 			  <a href="/admin/page/tutor.html" class="list-group-item ">导师管理</a>
 			  <a href="/admin/page/customer.html" class="list-group-item">顾客管理</a>
-			  <a href="/admin/page/order.html" class="list-group-item active">约谈管理</a>
+			  <a href="/admin/page/order.html" class="list-group-item">约谈管理</a>
 			  <a href="/admin/page/util.html" class="list-group-item">资料管理</a>
-			  <a href="/admin/page/pay.html" class="list-group-item">兑付管理</a>
+			  <a href="/admin/page/pay.html" class="list-group-item  active">兑付管理</a>
 			  <a href="/admin/loginOut.html" class="list-group-item">登出</a>
 			</div>
 		</div>
@@ -204,6 +160,20 @@ function getExcel(){
 					     <label class="col-sm-4 control-label"></label>
 					  </div>
 				  </form>
+				  <form class="form-horizontal">
+					  <div class="form-group">
+					    <label class="col-sm-4 control-label">兑付状态:</label>
+					    <div class="col-sm-4">
+					      <select id="payStatus" class="form-control" >
+								<option value="-1" >全部</option>
+								<option value="0" >未兑付</option>
+								<option value="1" >已兑付</option>
+					      </select>
+					      <label class="col-sm-4 control-label"></label>
+					    </div>
+					  </div>
+					  <div class="form-group"></div>
+				  </form>
 				</div>
 				<div class="col-md-4" >
 					<div class="space-div-3 " ></div>
@@ -217,12 +187,15 @@ function getExcel(){
 			<table class="table" >
 				<thead>
 					<tr>
-						<td>编号</td>
+						<td>订单编号</td>
 						<td>导师姓名</td>
 						<td>顾客姓名</td>
-						<td>约谈日期</td>
-						<td>约谈时间</td>
-						<td>订单状态</td>
+						<td>约谈金额</td>
+						<td>手续比</td>
+						<td>实际兑付金额</td>
+						<td>银行卡号</td>
+						<td>银行卡号</td>
+						<td>备注/原因</td>
 						<td>操作</td>
 					</tr>
 				</thead>
@@ -242,29 +215,41 @@ function getExcel(){
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="hideAlert('lookDiv')" >&times;</button>
-				<h4 class="modal-title" id="myriskLabel">所有评论</h4>
+				<h4 class="modal-title" id="myriskLabel">确认兑付</h4>
 			</div>
 			<div class="modal-body height400">
 				    <div class="col-sm-12">
 				    	<table class="table table-bordered" id="scoreDiv" >
 				    		<thead>
 				    			<tr>
-				    				<th>添加时间</th>
-				    				<th>第一维度</th>
-				    				<th>第二维度</th>
-				    				<th>第三维度</th>
-				    				<th>第四维度</th>
-				    				<th>评语</th>
+				    				<th>实际兑付金额</th>
+				    				<th><input type="text" class="form-control" id="payMoney" ></th>
+				    			</tr>
+				    			<tr>
+				    				<th>手续费</th>
+				    				<th><input type="text" class="form-control" id="procedures" value="0.01" ></th>
+				    			</tr>
+				    			<tr>
+				    				<th>理由/备注</th>
+				    				<th><input type="text" class="form-control" id="reason"  ></th>
+				    			</tr>
+				    			<tr>
+				    				<th>银行名称</th>
+				    				<th><input type="text" class="form-control" id="bankName"  ></th>
+				    			</tr>
+				    			<tr>
+				    				<th>银行卡号</th>
+				    				<th><input type="text" class="form-control" id="bank"  ></th>
+				    			</tr>
+				    			<tr>
+				    				<td colspan="2" >
+				    					<a class="btn btn-info" onclick="savePay()"  >保存</a>
+				    				</td>
 				    			</tr>
 				    		</thead>
-				    		<tbody id="scoreData" ></tbody>
 				    	</table>
 				    </div>
-				      <div class="col-sm-12">
-				    	<table class="table table-bordered" id="commentsDiv" >
-				    		<tbody id="commentsData" ></tbody>
-				    	</table>
-				    </div>
+				      <div class="col-sm-12"></div>
 			  	</div>
 			</div>
 			<div class="space-div-2" ></div>

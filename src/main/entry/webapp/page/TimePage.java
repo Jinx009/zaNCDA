@@ -11,6 +11,7 @@ import common.helper.ConstantUtil;
 import common.helper.tool.util.AgentUtil;
 import database.models.Customer;
 import database.models.Tutor;
+import service.basicFunctions.CustomerService;
 import service.basicFunctions.TutorService;
 import service.basicFunctions.TutorTimeService;
 
@@ -21,6 +22,8 @@ public class TimePage {
 	private TutorTimeService tutorTimeService;
 	@Autowired
 	private TutorService tutorService;
+	@Autowired
+	private CustomerService customerService;
 	
 	/**
 	 * 顾客选择导师时间
@@ -34,6 +37,7 @@ public class TimePage {
 		request.setAttribute("topicId",request.getParameter("topicId"));
 		Tutor tutor = tutorService.find(Integer.valueOf(request.getParameter("tutorId")));
 		Customer customer = (Customer) request.getSession().getAttribute(ConstantUtil.CUSTOMER_SESSION);
+		customer = customerService.getById(customer.getId());
 		if(AgentUtil.judgeAgent(request)){
 			request.setAttribute("openid",customer.getOpenid());
 		}else{
@@ -54,5 +58,4 @@ public class TimePage {
 	public String index(HttpServletRequest request,HttpServletResponse response){
 		return "/tutor/time";
 	}
-	
 }
