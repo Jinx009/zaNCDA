@@ -114,7 +114,7 @@ function cacleOrder(){
 </script>
 </head>
 <body>
-<div class="nav-title">约谈详情<span class="close" onclick="openUrl('/customer/page/manager.html')" >&Chi;</span></div>
+<div class="nav-title">约谈详情<span class="close" onclick="openUrl('/customer/page/manage.html')" >&Chi;</span></div>
 <input type="hidden" id="orderId" value="${order.id }" >
 <div class="interviewDetails-top">
 	<div class="interviewDetails-top-left">
