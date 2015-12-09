@@ -26,9 +26,10 @@ $(function(){
 					htmlStr += '<img src="/sp/images/headPortrait.png" />';
 					htmlStr += '</div>';
 					htmlStr += '<div class="tutor-text">';
-					htmlStr += '<p class="tutor-name">'+res.errmsg[i].topicContent+'</p>';
-					htmlStr += '<p class="tutor-desc">约谈导师：<span class="tutor-span">'+res.errmsg[i].qTutor.realName+'</span></p>';
-					htmlStr += '<p class="tutor-desc">约谈时间：<span class="tutor-span">'+jsDateTimeOnly(res.errmsg[i].qTutorTime.realDate)+'('+res.errmsg[i].qTutorTime.realTime+')</span></p>';
+					htmlStr += '<p class="tutor-desc">'+res.errmsg[i].topicContent+'</p>';
+					htmlStr += '<p class="tutor-desc">约谈导师：<span class="tutor-span">'+res.errmsg[i].tName+'</span></p>';
+					htmlStr += '<p class="tutor-desc">约谈日期：<span class="tutor-span">'+jsDateTimeOnly(res.errmsg[i].qTutorTime.realDate)+'</span></p>';
+					htmlStr += '<p class="tutor-desc">约谈时间：<span class="tutor-span">'+res.errmsg[i].qTutorTime.realTime+'</span></p>';
 					htmlStr += '<p class="tutor-desc">约谈状态：<span class="tutor-state-ing">'+getOrderStatus(res.errmsg[i].status)+'</span></p>';
 					htmlStr += '</div>';
 					htmlStr += '</div>';
@@ -49,7 +50,7 @@ function goDetail(id){
 </script>
 </head>
 <body>
-<a href="#"><div class="nav-title"><span class="close" onclick="openUrl('/customer/page/index.html')" >&lt;</span>约谈管理</div></a>
+<div class="nav-title">约谈管理<span class="close" onclick="openUrl('/customer/page/index.html')" >&Chi;</span></div>
 <div id="dataList" ></div>
 </body>
 </html>

@@ -68,7 +68,7 @@ public class OrderServiceImpl implements OrderService {
 		buffer.append(" WHERE ");
 		buffer.append(" qCustomer.id = ");
 		buffer.append(customer.getId());
-		buffer.append(" AND status <=4   ");
+		buffer.append(" AND status <=5   ");
 		buffer.append(" ORDER BY addTime DESC ,status DESC ");
 		
 		return orderDao.getByHql(buffer.toString());

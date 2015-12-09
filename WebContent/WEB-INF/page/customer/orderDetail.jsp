@@ -54,7 +54,7 @@ $(function(){
 function changeStar(index,scoreValue){
 	score[parseInt(index)] = scoreValue;
 	
-	for(var i = 1;i<=5;i++){
+	for(var i = 1;i<=6;i++){
 		$("#"+index+i).attr("src","/sp/images/evaluate.png");
 	}
 	for(var i = 1;i<=parseInt(scoreValue);i++){
@@ -95,7 +95,7 @@ function goComments(){
 		data:params,
 		dataType:"json",
 		success:function(res){
-			if(null!=res.errMsg&&res.errMsg.length>0){
+			if(null!=res.errmsg){
 				location.href = "/customer/page/comments.html?orderId="+orderId;
 			}else{
 				alert("评论之后才可以查看小结!");
@@ -114,7 +114,7 @@ function cacleOrder(){
 </script>
 </head>
 <body>
-<a href="#"><div class="nav-title"><span class="close" onclick="openUrl('/customer/page/manager.html')" >&lt;</span>约谈详情</div></a>
+<div class="nav-title">约谈详情<span class="close" onclick="openUrl('/customer/page/manager.html')" >&Chi;</span></div>
 <input type="hidden" id="orderId" value="${order.id }" >
 <div class="interviewDetails-top">
 	<div class="interviewDetails-top-left">
@@ -155,46 +155,50 @@ function cacleOrder(){
 </div>
 <div class="evaluate">
 	<div>
-		<span>维度(一)：</span>
+		<span>这次辅导完全达到了我的期望</span>
 		<ul>
 			<li><img id="11" onclick="changeStar('1','1')" src="/sp/images/evaluate.png"/></li>
 			<li><img id="12" onclick="changeStar('1','2')" src="/sp/images/evaluate.png"/></li>
 			<li><img id="13" onclick="changeStar('1','3')" src="/sp/images/evaluate.png"/></li>
 			<li><img id="14" onclick="changeStar('1','4')" src="/sp/images/evaluate.png"/></li>
 			<li><img id="15" onclick="changeStar('1','5')" src="/sp/images/evaluate.png"/></li>
+			<li><img id="16" onclick="changeStar('1','6')" src="/sp/images/evaluate.png"/></li>
 		</ul>
 	</div>
 	
 	<div>
-		<span>维度(二)：</span>
+		<span>这次辅导是完整而系统的</span>
 		<ul>
 			<li><img id="21" onclick="changeStar('2','1')" src="/sp/images/evaluate.png"/></li>
 			<li><img id="22" onclick="changeStar('2','2')" src="/sp/images/evaluate.png"/></li>
 			<li><img id="23" onclick="changeStar('2','3')" src="/sp/images/evaluate.png"/></li>
 			<li><img id="24" onclick="changeStar('2','4')" src="/sp/images/evaluate.png"/></li>
 			<li><img id="25" onclick="changeStar('2','5')" src="/sp/images/evaluate.png"/></li>
+			<li><img id="26" onclick="changeStar('2','6')" src="/sp/images/evaluate.png"/></li>
 		</ul>
 	</div>
 	
 	<div>
-		<span>维度(三)：</span>
+		<span>导师给了我非常有价值的职场建议</span>
 		<ul>
 			<li><img id="31" onclick="changeStar('3','1')" src="/sp/images/evaluate.png"/></li>
 			<li><img id="32" onclick="changeStar('3','2')" src="/sp/images/evaluate.png"/></li>
 			<li><img id="33" onclick="changeStar('3','3')" src="/sp/images/evaluate.png"/></li>
 			<li><img id="34" onclick="changeStar('3','4')" src="/sp/images/evaluate.png"/></li>
 			<li><img id="35" onclick="changeStar('3','5')" src="/sp/images/evaluate.png"/></li>
+			<li><img id="36" onclick="changeStar('3','6')" src="/sp/images/evaluate.png"/></li>
 		</ul>
 	</div>
 	
 	<div>
-		<span>维度(四)：</span>
+		<span>我愿意推荐这个导师给我的朋友们</span>
 		<ul>
 			<li><img id="41" onclick="changeStar('4','1')" src="/sp/images/evaluate.png"/></li>
 			<li><img id="42" onclick="changeStar('4','2')" src="/sp/images/evaluate.png"/></li>
 			<li><img id="43" onclick="changeStar('4','3')" src="/sp/images/evaluate.png"/></li>
 			<li><img id="44" onclick="changeStar('4','4')" src="/sp/images/evaluate.png"/></li>
 			<li><img id="45" onclick="changeStar('4','5')" src="/sp/images/evaluate.png"/></li>
+			<li><img id="46" onclick="changeStar('4','6')" src="/sp/images/evaluate.png"/></li>
 		</ul>
 	</div>
 	

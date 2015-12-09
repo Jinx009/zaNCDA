@@ -38,7 +38,7 @@ $(function(){
 </script>
 </head>
 <body class="tutor-bg">
-	<div class="nav-title">约谈列表<div class="close" onclick="openUrl('/tutor/page/index.html')" >&Chi;</div></div>
+	<div class="nav-title"><div class="close" onclick="openUrl('/tutor/page/index.html')" >&Chi;</div>约谈列表</div>
 	<div id="dataInfo" ></div>
 </body>
 </html>

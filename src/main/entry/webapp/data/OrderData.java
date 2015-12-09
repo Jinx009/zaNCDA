@@ -31,6 +31,7 @@ import database.common.PageDataList;
 import database.models.Comments;
 import database.models.Customer;
 import database.models.Order;
+import database.models.OrderModel;
 import database.models.Score;
 import database.models.Topic;
 import database.models.Tutor;
@@ -96,7 +97,26 @@ public class OrderData {
 		order.setUpdateTime(endDate);
 		
 		PageDataList<Order> list = orderService.findPageList(order,pageNum);
-		data.put("data",list);
+		PageDataList<OrderModel> result = null;
+		List<OrderModel> model = null;
+		if(null!=list){
+			result = new PageDataList<OrderModel>();
+			result.setPage(list.getPage());
+			model = new ArrayList<OrderModel>();
+			if(null!=list.getList()){
+				for(int i = 0;i<list.getList().size();i++){
+					OrderModel orderModel = new OrderModel();
+					orderModel = OrderModel.instance(list.getList().get(i));
+					orderModel.settName(list.getList().get(i).getqTutor().getRealName());
+					orderModel.setcName(list.getList().get(i).getqCustomer().getRealName());
+					orderModel.setqName(list.getList().get(i).getTopic().getName());
+					
+					model.add(orderModel);
+				}
+			}
+		}
+		result.setList(model);
+		data.put("data",result);
 		
 		HttpWebIOHelper._printWebJson(data, response);
 		
@@ -180,15 +200,21 @@ public class OrderData {
 		data = new HashMap<String,Object>();
 		Integer orderId = Integer.valueOf(request.getParameter("orderId"));
 		String bank = request.getParameter("bank");
-		order.setProcedures(Double.valueOf(request.getParameter("procedures")));
+		
 		order = orderService.getById(orderId);
+		order.setReason(request.getParameter("reason"));
 		order.setStatus(5);
 		order.setBank(bank);
-		
-		orderService.doUpdate(order);
-		
-		data.put(ConstantUtil.RESULT,ConstantUtil.SUCCESS);
-		data.put(ConstantUtil.ERROR_MSG,"取消成功!");
+		if(4==order.getStatus()){
+			data.put(ConstantUtil.RESULT,ConstantUtil.FAILURE);
+			data.put(ConstantUtil.ERROR_MSG,"已互评订单不能取消!");
+		}else{
+			orderService.doUpdate(order);
+			
+			data.put(ConstantUtil.RESULT,ConstantUtil.SUCCESS);
+			data.put(ConstantUtil.ERROR_MSG,"取消成功!");
+			
+		}
 		
 		HttpWebIOHelper._printWebJson(data, response);
 		
@@ -228,13 +254,18 @@ public class OrderData {
 		data = new HashMap<String, Object>();
 		
 		customer = (Customer) request.getSession().getAttribute(ConstantUtil.CUSTOMER_SESSION);
-		List<Order> orderList = new ArrayList<Order>();
+		List<OrderModel> orderList = new ArrayList<OrderModel>();
 		List<Order> list = orderService.findCustomerList(customer);
 		if(null!=list&&!list.isEmpty()){
 			for(int i = 0;i<list.size();i++){
 				order = list.get(i);
 				order.setTopicContent(list.get(i).getTopic().getName());
-				orderList.add(order);
+				OrderModel orderModel = new OrderModel();
+				orderModel =  OrderModel.instance(order);
+				orderModel.settName(order.getqTutor().getRealName());
+				orderModel.setcName(order.getqCustomer().getRealName());
+				orderModel.setqName(order.getTopic().getName());
+				orderList.add(orderModel);
 			}
 		}
 		

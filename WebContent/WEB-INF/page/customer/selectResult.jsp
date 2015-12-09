@@ -138,7 +138,7 @@ function goBack(){
 <input type="hidden" value="${type }" id="type" >
 <input type="hidden" value="${workYears }" id="workYears" >
 <input type="hidden" value="${id }" id="id" >
-<a ><div class="nav-title"><span class="nav-back" onclick="goBack();" >&lt;</span>我们推荐的导师</div></a>
+<a ><div class="nav-title">我们推荐的导师</div><span class="nav-back" onclick="goBack();" >&Chi;</span></a>
 <!--匹配成功-->
 <div class="tutor-tip" id="tutor-tip-success">
 	<p>恭喜!</p>

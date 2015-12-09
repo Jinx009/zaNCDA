@@ -25,6 +25,7 @@ function saveData(){
 		success:function(res){
 			if("success"==res.result){
 				alert("保存完成!");
+				location.href = "/tutor/page/index.html";
 			}
 		}
 	})

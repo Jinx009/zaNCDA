@@ -1,7 +1,5 @@
 package service.basicFunctions;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +29,6 @@ public class TutorTimeServiceImpl implements TutorTimeService {
 	}
 
 	public List<TutorTime> getByTutorId(Integer id) {
-		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd"); 
 		
 		buffer = new StringBuffer();
 		
@@ -39,14 +36,7 @@ public class TutorTimeServiceImpl implements TutorTimeService {
 		buffer.append(" WHERE ");
 		buffer.append(" qTutor.id =  ");
 		buffer.append(id);
-		buffer.append(" AND ");
-		buffer.append(" status = 0 ");
-		buffer.append(" AND ");
-		buffer.append(" realDate > '");
-		buffer.append(format.format(new Date()));
-		buffer.append("'  ");
 		
-		System.out.println("---------------"+buffer.toString());
 		
 		return tutorTimeDao.getByHql(buffer.toString());
 	}

@@ -137,6 +137,7 @@ function callPlay(){
         		   success:function(data){
         			   if("success"==data.result){
         				   alert("支付成功,订单已保存!");
+        				   location.href = "/customer/page/manager.html";
         			   }
         		   }
         	   })

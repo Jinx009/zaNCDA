@@ -34,7 +34,7 @@ function saveCacle(){
 </script>
 </head>
 <body>
-<input type="hidden" value="orderId" id="orderId" >
+<input type="hidden" value="${orderId}" id="orderId" >
   <div class="mask"></div>
 	<div class="big-boxWrap">
 		<div class="cancel-box">
@@ -46,7 +46,7 @@ function saveCacle(){
 			<input placeholder="请填写您的银行卡号" id="bank"  />
 			<input placeholder="请填写您的帐号" id="username" />
 			<div class="cancel-tip">
-				<img src="../img/tip.png"/>
+				<img src="/sp/images/tip.png"/>
 				<p>手续费：10%&nbsp;&nbsp;&nbsp;1-5个工作日内到账</p>
 			</div>
 			<div class="clear"></div>
