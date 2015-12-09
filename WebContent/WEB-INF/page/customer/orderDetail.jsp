@@ -155,8 +155,9 @@ function cacleOrder(){
 </div>
 <div class="evaluate">
 	<div>
-		<span>这次辅导完全达到了我的期望</span>
-		<ul>
+		<span style="width: 100%" >这次辅导完全达到了我的期望</span>
+		<br>
+		<ul style="width: 80%;margin-left: 10%;text-align: center;" >
 			<li><img id="11" onclick="changeStar('1','1')" src="/sp/images/evaluate.png"/></li>
 			<li><img id="12" onclick="changeStar('1','2')" src="/sp/images/evaluate.png"/></li>
 			<li><img id="13" onclick="changeStar('1','3')" src="/sp/images/evaluate.png"/></li>
@@ -167,8 +168,9 @@ function cacleOrder(){
 	</div>
 	
 	<div>
-		<span>这次辅导是完整而系统的</span>
-		<ul>
+		<span style="width: 100%" >这次辅导是完整而系统的</span>
+		<br>
+		<ul style="width: 80%;margin-left: 10%;text-align: center;" >
 			<li><img id="21" onclick="changeStar('2','1')" src="/sp/images/evaluate.png"/></li>
 			<li><img id="22" onclick="changeStar('2','2')" src="/sp/images/evaluate.png"/></li>
 			<li><img id="23" onclick="changeStar('2','3')" src="/sp/images/evaluate.png"/></li>
@@ -179,8 +181,8 @@ function cacleOrder(){
 	</div>
 	
 	<div>
-		<span>导师给了我非常有价值的职场建议</span>
-		<ul>
+		<span style="width: 100%" >导师给了我非常有价值的职场建议</span>
+		<ul style="width: 80%;margin-left: 10%;text-align: center;" >
 			<li><img id="31" onclick="changeStar('3','1')" src="/sp/images/evaluate.png"/></li>
 			<li><img id="32" onclick="changeStar('3','2')" src="/sp/images/evaluate.png"/></li>
 			<li><img id="33" onclick="changeStar('3','3')" src="/sp/images/evaluate.png"/></li>
@@ -191,8 +193,8 @@ function cacleOrder(){
 	</div>
 	
 	<div>
-		<span>我愿意推荐这个导师给我的朋友们</span>
-		<ul>
+		<span style="width: 100%" >我愿意推荐这个导师给我的朋友们</span>
+		<ul style="width: 80%;margin-left: 10%;text-align: center;" >
 			<li><img id="41" onclick="changeStar('4','1')" src="/sp/images/evaluate.png"/></li>
 			<li><img id="42" onclick="changeStar('4','2')" src="/sp/images/evaluate.png"/></li>
 			<li><img id="43" onclick="changeStar('4','3')" src="/sp/images/evaluate.png"/></li>
