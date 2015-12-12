@@ -107,6 +107,17 @@ public class CustomerPage {
 		return "/customer/index";
 	}
 	
+	
+	/**
+	 * 顾客成长信息
+	 * @return
+	 */
+	@RequestMapping(value = "/customer/page/growpInfo")
+	public String growpInfo(HttpServletRequest request,HttpServletResponse response){
+		return "/customer/growpInfo";
+	}
+	
+	
 	/**
 	 * 成功案例详情
 	 * @return

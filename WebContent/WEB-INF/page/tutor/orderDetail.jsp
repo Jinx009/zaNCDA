@@ -55,7 +55,7 @@ function sendComments(){
 </head>
 <body>
 	<input type="hidden" value="${orderId }" id="id" >
-	<div class="nav-title">约谈详情<div class="close"onclick="openUrl('/tutor/page/index.html')"  >&Chi;</div></div>
+	<div class="nav-title"><span class="nav-back" onclick="openUrl('/tutor/page/order.html')" >&lt;</span>约谈详情<div class="close"onclick="openUrl('/tutor/page/index.html')"  >&Chi;</div></div>
 	<div class="main-list"></div>
 	<div class="tutor-search">
 		<div class="tutor-search-btn btn-orange-bg" onclick="sendComments()" >查看并提交约谈小结</div>

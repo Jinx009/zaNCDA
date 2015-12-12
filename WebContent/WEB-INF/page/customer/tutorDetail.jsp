@@ -21,7 +21,7 @@ $(function(){
  * 返回
  */
 function goBack(){
-	location.href = "/customer/page/new.html";
+	window.history.back();
 }
 
 function goNext(){
@@ -33,7 +33,7 @@ function goNext(){
 <input type="hidden" value="${tutorId }" id="tutorId" />
 <input type="hidden" value="${topicId }" id="topicId" >
 <div class="main">
-<a href="#"><div class="nav-title"><span class="nav-back" onclick="goBack()" >&lt;</span>导师介绍详情页</div></a>
+<a href="#"><div class="nav-title"><span class="nav-back" onclick="goBack()" >&lt;</span>导师介绍详情页<span class="close" onclick="openUrl('/customer/page/new.html')" >&Chi;</span></div></a>
 	
 	<div class="tutorDetails">
 		<div class="tutorDetails-bg">

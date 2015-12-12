@@ -35,6 +35,7 @@ function saveCacle(){
 </head>
 <body>
 <input type="hidden" value="${orderId}" id="orderId" >
+<div class="nav-title">取消订单<span class="close" onclick="openUrl('/customer/page/index.html')" >&Chi;</span></div>
   <div class="mask"></div>
 	<div class="big-boxWrap">
 		<div class="cancel-box">

@@ -109,6 +109,7 @@ function saveInf(){
 		success:function(res){
 			if("success"==res.result){
 				alert("保存成功!");
+				location.href = "/customer/page/growpInfo.html";
 			}
 		}
 	})
@@ -116,7 +117,7 @@ function saveInf(){
 </script>
 </head>
 <body>
-<a href="#"><div class="nav-title"><span class="close" onclick="openUrl('/customer/page/index.html')" >&lt;</span>个人信息</div></a>
+<a href="#"><div class="nav-title">个人信息<span class="close" onclick="openUrl('/customer/page/index.html')" >&Chi;</span></div></a>
 <div class="register-inp register-inp-top">
 	<span class="register-inp-text">姓名</span>
 	<input  value="${customer.realName }" id="realName" class="register-inp-long"/>

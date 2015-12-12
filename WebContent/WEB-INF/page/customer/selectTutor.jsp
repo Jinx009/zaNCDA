@@ -58,7 +58,7 @@ function changeTrade(){
 </head>
 <body>
 <input type="hidden" value="${id }" id="id" >
-<a><div class="nav-title"><span class="nav-back" onclick="openUrl('/customer/page/new.html')" >&lt;</span>新建辅导</div></a>
+<a><div class="nav-title"><span class="nav-back" onclick="openUrl('/customer/page/new.html')" >&lt;</span>筛选导师<span class="close" onclick="openUrl('/customer/page/index.html')" >&Chi;</span></div></a>
 <div class="choice-title"><h1>请选择您心仪导师的属性</h1></div>
 <div class="register-inp register-inp-top">
 	<span class="register-inp-text">专注行业<b>*</b></span>

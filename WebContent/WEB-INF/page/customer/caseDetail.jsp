@@ -13,7 +13,7 @@
 
 </head>
 <body>
-<a href="#"><div class="nav-title"><span class="nav-back" onclick="openUrl('/customer/page/index.html')" >&lt;</span>案例详情</div></a>
+<a href="#"><div class="nav-title"><span class="nav-back" onclick="openUrl('/customer/page/index.html')" >&lt;</span>案例详情<span class="close" onclick="openUrl('/customer/page/index.html')" >&Chi;</span></div></a>
 <div class="caseDetails">
 	<div class="caseDetails-wrap">
 		<h1>成功案例-标题部分</h1>

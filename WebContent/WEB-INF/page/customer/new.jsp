@@ -12,7 +12,7 @@
 <title>新建约谈</title>
 </head>
 <body>
-<a href="#"><div class="nav-title"><span class="close" onclick="openUrl('/customer/page/index.html')" >&lt;</span>场景选择</div></a>
+<a href="#"><div class="nav-title">场景选择<span class="close" onclick="openUrl('/customer/page/index.html')" >&Chi;</span></div></a>
 <div class="scene-main">
 	<div class="scene-box scene-choice" onclick="openUrl('/customer/page/qOne.html')" >
 		<h1><span>职业选择</span></h1>
