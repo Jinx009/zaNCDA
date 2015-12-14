@@ -33,7 +33,7 @@ function getData(pageNum){
 		success:function(res){
 			dataJson = res.data.list;
 			var menuHtml = "",htmlStr = "";
-			if(null!=res.data){
+			if(null!=res.data&&res.data.list.length>0){
 				for(var i = 1;i<=parseInt(res.data.page.pages);i++){
 					menuHtml += "<li  id=page"+i+" ><a href=javascript:getData('"+i+"')>"+i+"</a></li>";
 				}
@@ -51,7 +51,7 @@ function getData(pageNum){
 					htmlStr += "</td>";
 				}
 			}else{
-				htmlStr += "<tr><td colspan='7' >查询条件暂无数据，请尝试更换条件查询</td></tr>";
+				htmlStr += "<tr><td class='center red' colspan='7' >查询条件暂无数据，请尝试更换条件查询</td></tr>";
 			}
 			$("#pageMenu").html(menuHtml);
 			$("#page"+pageNum).addClass("active");

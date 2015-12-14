@@ -58,7 +58,7 @@ function getData(pageNum){
 					htmlStr += "</td></tr>";
 				}
 			}else{
-				htmlStr += "<tr><td colspan='10' >查询条件暂无数据，请尝试更换条件查询</td></tr>";
+				htmlStr += "<tr><td colspan='10' class='center red' >查询条件暂无数据，请尝试更换条件查询</td></tr>";
 			}
 			$("#pageMenu").html(menuHtml);
 			$("#page"+pageNum).addClass("active");
