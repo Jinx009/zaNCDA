@@ -45,12 +45,12 @@ public class TutorDaoImpl extends BaseDaoImpl<Tutor> implements TutorDao{
 	@SuppressWarnings("unchecked")
 	public List<Tutor> getBySql(String sql) {
 		Query query =  em.createNativeQuery(sql);
-		List<Object[]> list = query.getResultList();
+		List<Integer> list = query.getResultList();
 		List<Tutor> result = null;
 		if(null!=list&&!list.isEmpty()){
 			result = new ArrayList<Tutor>();
 			for(int i = 0;i<list.size();i++){
-				Tutor tutor = find((Integer)list.get(i)[0]);
+				Tutor tutor = find(list.get(i));
 				result.add(tutor);
 			}
 		}
