@@ -38,6 +38,18 @@ $(function(){
 	
 	var trade = $("#tradeValue").val();
 	var area = $("#jobValue").val();
+	var sex = $("#sexValue").val();
+	if(""!=sex&&null!=sex){
+		var element1 = document.getElementById("sex");   
+        
+        for(i=0;i<element1.length;i++)
+        {
+          if(sex==element1.options[i].value)
+          {  
+              element1.options[i].selected=true; 
+          }  
+        }  
+	}
 	
 	var element1 = document.getElementById("trade");   
     if(""!=trade){
@@ -124,12 +136,16 @@ function saveInf(){
 </div>
 <div class="register-inp register-inp-top">
 	<span class="register-inp-text">性别</span>
-	<input  value="${customer.sex }" id="sex" class="register-inp-long"/>
+	<input  value="${customer.sex }" id="sexValue" type="hidden" class="register-inp-long"/>
+	<select  class="register-select-long" id="sex" >
+			<option value="女" >女</option>
+			<option value="男" >男</option>
+		</select>
 </div>
 <div class="register-inp register-inp-top">
 	<span class="register-inp-text">生日</span>
 	<input type="hidden" id="birth" value="${customer.birthday }" >
-	<input  value="" id="birthday" onClick="WdatePicker()"  class="register-inp-long"/>
+	<input  value="${customer.birthday }" id="birthday" onClick="WdatePicker()"  class="register-inp-long"/>
 </div>
 <div class="register-inp register-inp-top">
 	<input type="hidden" value="${tradeId }" id="tradeValue" >

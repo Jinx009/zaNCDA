@@ -156,7 +156,22 @@ public class OrderData {
 		order.setPayStatus(payStatus);
 		
 		PageDataList<Order> list = orderService.findPagePayList(order,pageNum);
-		data.put("data",list);
+		PageDataList<OrderModel>  result = null;
+		List<OrderModel> model = null;
+		if(null!=list){
+			model = new ArrayList<OrderModel>();
+			result = new PageDataList<OrderModel>();
+			result.setPage(list.getPage());
+			for(int i = 0;i<list.getList().size();i++){
+				OrderModel orderModel = new OrderModel();
+				orderModel = OrderModel.instance(list.getList().get(i));
+				orderModel.setqName(list.getList().get(i).getqTutor().getRealName());
+				orderModel.setcName(list.getList().get(i).getqCustomer().getRealName());
+				model.add(orderModel);
+			}
+		}
+		result.setList(model);
+		data.put("data",result);
 		
 		HttpWebIOHelper._printWebJson(data, response);
 		
@@ -234,9 +249,20 @@ public class OrderData {
 		
 		tutor = (Tutor) request.getSession().getAttribute(ConstantUtil.TUTOR_SESSION);
 		List<Order> list = orderService.findTutorList(tutor);
+		List<OrderModel> result = null;
+		if(null!=list){
+			result = new ArrayList<OrderModel>();
+			for(int i = 0;i<list.size();i++){
+				OrderModel orderModel = new OrderModel();
+				orderModel = OrderModel.instance(list.get(i));
+				orderModel.setcName(list.get(i).getqCustomer().getRealName());
+				orderModel.settName(list.get(i).getTopic().getName());
+				result.add(orderModel);
+			}
+		}
 		
 		data.put(ConstantUtil.RESULT,ConstantUtil.SUCCESS);
-		data.put(ConstantUtil.ERROR_MSG,list);
+		data.put(ConstantUtil.ERROR_MSG,result);
 		
 		HttpWebIOHelper._printWebJson(data, response);
 		
@@ -268,7 +294,6 @@ public class OrderData {
 				orderList.add(orderModel);
 			}
 		}
-		
 		data.put(ConstantUtil.RESULT,ConstantUtil.SUCCESS);
 		data.put(ConstantUtil.ERROR_MSG,orderList);
 		

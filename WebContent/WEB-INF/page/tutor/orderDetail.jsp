@@ -27,7 +27,7 @@ $(function(){
 			
 			var htmlStr = "";
 			htmlStr += "<h3>["+isNull(res.errmsg.order.qCustomer.realName)+"]</h3>";
-			htmlStr += "<p>约谈主题:</p>"
+			htmlStr += "<p>约谈详情:</p>"
 			htmlStr += "<textarea readonly='readonly' >"+res.errmsg.order.topicContent+"</textarea>";
 			htmlStr += "<p>约谈时间:<font>"+jsDateTimeOnly(res.errmsg.order.qTutorTime.realDate)+"("+res.errmsg.order.qTutorTime.realTime+")</font></p>";
 			htmlStr += "<p>约谈状态:<font class='tutor-state-has'>"+getOrderStatus(res.errmsg.order.status)+"</font></p>";

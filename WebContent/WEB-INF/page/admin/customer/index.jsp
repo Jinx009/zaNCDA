@@ -50,6 +50,8 @@ function getData(pageNum){
 					htmlStr += "<a class='btn btn-default' onclick=moreDiv('"+i+"')  >查看</a>";
 					htmlStr += "</td>";
 				}
+			}else{
+				htmlStr += "<tr><td colspan='7' >查询条件暂无数据，请尝试更换条件查询</td></tr>";
 			}
 			$("#pageMenu").html(menuHtml);
 			$("#page"+pageNum).addClass("active");

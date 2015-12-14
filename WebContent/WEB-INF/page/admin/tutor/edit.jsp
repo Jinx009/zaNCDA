@@ -37,6 +37,19 @@ $(function(){
 		$("#videoStatus").attr("checked",true);
 		$("#videoStatus").attr("checked","checked");
 	}
+	
+	var sex = $("#genderValue").val();
+	if(""!=sex&&null!=sex){
+		var element1 = document.getElementById("sex");   
+        
+        for(i=0;i<element1.length;i++)
+        {
+          if(sex==element1.options[i].value)
+          {  
+              element1.options[i].selected=true; 
+          }  
+        }  
+	}
 })
 
 /**
@@ -344,7 +357,10 @@ function saveInfo(){
 						<th>性别：</th>
 						<td>
 							 <input type="hidden" id="genderValue" value="${tutor.sex }" >
-					     	 <input type="text" class="form-control"  id="sex" value="${tutor.sex }" >
+					     	  <select class="form-control" id="sex"   >
+							  		<option value="女" >女</option>
+									<option value="男" >男</option>
+							  </select>
 					    </td>
 						<td colspan="2" >
 							<form action="/uploadImg.html" method="post" id="form" enctype="multipart/form-data"  >

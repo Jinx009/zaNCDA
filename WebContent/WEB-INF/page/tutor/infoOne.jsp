@@ -18,6 +18,18 @@ $(function(){
 			$(this).attr("readOnly","readOnly");
 		}
 	})
+	var sex = $("#sexValue").val();
+	if(""!=sex&&null!=sex){
+		var element1 = document.getElementById("sex");   
+        
+        for(i=0;i<element1.length;i++)
+        {
+          if(sex==element1.options[i].value)
+          {  
+              element1.options[i].selected=true; 
+          }  
+        }  
+	}
 	$.ajax({
 		url:"/trade/data/list.html?time="+getRandom(),
 		type:"GET",
@@ -93,7 +105,11 @@ function saveInfoOne(){
 	</div>
 	<div class="register-inp register-inp-top">
 		<span class="register-inp-text">性别</span>
-		<input  value="${tutor.sex }" id="sex" class="register-inp-long"/>
+		<input  value="${tutor.sex }" id="sexValue" type="hidden" class="register-inp-long"/>
+		<select  class="register-select-long" id="sex" >
+			<option value="女" >女</option>
+			<option value="男" >男</option>
+		</select>
 	</div>
 	<div class="register-inp register-inp-top">
 		<span class="register-inp-text">生日</span>

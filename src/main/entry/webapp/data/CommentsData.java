@@ -85,7 +85,8 @@ public class CommentsData {
 		order = orderService.getById(id);
 		if(2==order.getStatus()){
 			order.setStatus(4);
-		}else{
+		}
+		if(order.getStatus()<4&&2!=order.getStatus()){
 			order.setStatus(3);
 		}
 		orderService.doUpdate(order);

@@ -39,8 +39,9 @@ function getData(pageNum){
 				for(var i = 0;i<res.data.list.length;i++){
 					htmlStr += "<tr>";
 					htmlStr += "<td>"+res.data.list[i].id+"</td>";
-					htmlStr += "<td>"+isNull(res.data.list[i].qTutor.realName)+"</td>";
-					htmlStr += "<td>"+isNull(res.data.list[i].qCustomer.realName)+"</td>";
+					htmlStr += "<td>"+isNull(res.data.list[i].qName)+"</td>";
+					htmlStr += "<td>"+isNull(res.data.list[i].cName)+"</td>";
+					htmlStr += "<td>"+getOrderStatus(res.data.list[i].status)+"</td>";
 					htmlStr += "<td>"+res.data.list[i].price+"</td>";
 					htmlStr += "<td>"+isNull(res.data.list[i].procedures)+"</td>";
 					htmlStr += "<td>"+isNull(res.data.list[i].payMoney)+"</td>";
@@ -56,6 +57,8 @@ function getData(pageNum){
 					
 					htmlStr += "</td></tr>";
 				}
+			}else{
+				htmlStr += "<tr><td colspan='10' >查询条件暂无数据，请尝试更换条件查询</td></tr>";
 			}
 			$("#pageMenu").html(menuHtml);
 			$("#page"+pageNum).addClass("active");
@@ -190,6 +193,7 @@ function getExcel(){
 						<td>订单编号</td>
 						<td>导师姓名</td>
 						<td>顾客姓名</td>
+						<td>订单状态</td>
 						<td>约谈金额</td>
 						<td>手续比</td>
 						<td>实际兑付金额</td>

@@ -59,6 +59,7 @@ function getDate(){
 				changeTime();
 			}else{
 				alert("很抱歉，该导师暂时没有可预约时间!");
+				window.history.back();
 			}
 		}
 	})

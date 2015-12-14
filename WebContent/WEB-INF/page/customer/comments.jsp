@@ -62,19 +62,19 @@ function goBack(){
 			<li>
 				<span>1</span>
 				<div class="summaryDetails-sel-right">
-					<textarea placeholder="诉求一（文本框）-具体描述" id="appeal_one" ></textarea>
+					<textarea readonly="readonly" placeholder="诉求一（文本框）-具体描述" id="appeal_one" ></textarea>
 				</div>
 			</li>
 			<li>
 				<span>2</span>
 				<div class="summaryDetails-sel-right">
-					<textarea placeholder="诉求二（文本框）-具体描述" id="appeal_two" ></textarea>
+					<textarea readonly="readonly"  placeholder="诉求二（文本框）-具体描述" id="appeal_two" ></textarea>
 				</div>
 			</li>
 			<li>
 				<span>3</span>
 				<div class="summaryDetails-sel-right">
-					<textarea placeholder="诉求三（文本框）-具体描述" id="appeal_three" ></textarea>
+					<textarea readonly="readonly"  placeholder="诉求三（文本框）-具体描述" id="appeal_three" ></textarea>
 				</div>
 			</li>
 		</ul>
@@ -84,7 +84,7 @@ function goBack(){
 		<p>二、主要问题及案例分析</p>
 	</div>
 	<div class="summaryDetails-sel">
-		<textarea placeholder="内容-文本框" id="question"></textarea>
+		<textarea readonly="readonly"  placeholder="内容-文本框" id="question"></textarea>
 	</div>
 	
 	<div class="summaryDetails-title">
@@ -92,11 +92,11 @@ function goBack(){
 	</div>
 	<div class="summaryDetails-sel">
 		<p>问题解决情况</p>
-		<textarea placeholder="内容-文本框" id="solve_status"></textarea>
+		<textarea readonly="readonly"  placeholder="内容-文本框" id="solve_status"></textarea>
 	</div>
 	<div class="summaryDetails-sel">
 		<p>主要运用辅导技术和工具</p>
-		<textarea placeholder="内容-文本框" id="solve_tool"></textarea>
+		<textarea readonly="readonly"  placeholder="内容-文本框" id="solve_tool"></textarea>
 	</div>
 	
 	<div class="summaryDetails-title">
@@ -107,19 +107,19 @@ function goBack(){
 			<li>
 				<span>1</span>
 				<div class="summaryDetails-sel-right">
-					<textarea placeholder="发展建议一" id="advice_one" ></textarea>
+					<textarea readonly="readonly"  placeholder="发展建议一" id="advice_one" ></textarea>
 				</div>
 			</li>
 			<li>
 				<span>2</span>
 				<div class="summaryDetails-sel-right">
-					<textarea placeholder="发展建议二" id="advice_two" ></textarea>
+					<textarea readonly="readonly"  placeholder="发展建议二" id="advice_two" ></textarea>
 				</div>
 			</li>
 			<li>
 				<span>3</span>
 				<div class="summaryDetails-sel-right">
-					<textarea placeholder="发展建议三" id="advice_three" ></textarea>
+					<textarea readonly="readonly"  placeholder="发展建议三" id="advice_three" ></textarea>
 				</div>
 			</li>
 		</ul>
@@ -130,11 +130,11 @@ function goBack(){
 	</div>
 	<div class="summaryDetails-sel">
 		<p>问题解决情况</p>
-		<textarea placeholder="内容-文本框" id="solve_result" ></textarea>
+		<textarea readonly="readonly"  placeholder="内容-文本框" id="solve_result" ></textarea>
 	</div>
 	<div class="summaryDetails-sel">
 		<p>咨询能效自我评估</p>
-		<textarea placeholder="内容-文本框" id="solve_assess" ></textarea>
+		<textarea readonly="readonly"  placeholder="内容-文本框" id="solve_assess" ></textarea>
 	</div>
 	
 	<div class="tutor-search">

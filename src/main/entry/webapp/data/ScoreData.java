@@ -83,7 +83,8 @@ public class ScoreData {
 		
 		if(3==order.getStatus()){
 			order.setStatus(4);
-		}else{
+		}
+		if(3!=order.getStatus()&&order.getStatus()<4){
 			order.setStatus(2);
 		}
 		orderService.doUpdate(order);

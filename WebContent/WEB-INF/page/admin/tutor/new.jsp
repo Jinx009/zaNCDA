@@ -259,7 +259,10 @@ function saveInfo(){
 						<th>性别：</th>
 						<td>
 							 <input type="hidden" id="genderValue" value="" >
-					     	 <input type="text" class="form-control"  id="sex" value="" >
+							  <select class="form-control" id="sex"   >
+							  		<option value="女" >女</option>
+									<option value="男" >男</option>
+							  </select>
 					    </td>
 						<td colspan="2" >
 							<form action="/uploadImg.html" method="post" id="form" enctype="multipart/form-data"  >

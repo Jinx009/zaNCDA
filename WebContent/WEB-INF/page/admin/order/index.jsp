@@ -49,6 +49,8 @@ function getData(pageNum){
 					htmlStr += "<a class='btn btn-default' onclick=openLook('"+i+"','score') >查看顾客评论</a>";
 					htmlStr += "</td></tr>";
 				}
+			}else{
+				htmlStr += "<tr><td colspan='8' >查询条件暂无数据，请尝试更换条件查询</td></tr>";
 			}
 			$("#pageMenu").html(menuHtml);
 			$("#page"+pageNum).addClass("active");

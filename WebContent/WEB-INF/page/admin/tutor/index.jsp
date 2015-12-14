@@ -53,6 +53,9 @@ function getList(pageNum){
 					htmlStr += "</td>";
 				}
 			}
+			else{
+				htmlStr += "<tr><td colspan='6' >查询条件暂无数据，请尝试更换条件查询</td></tr>";
+			}
 			$("#pageMenu").html(menuHtml);
 			$("#page"+pageNum).addClass("active");
 			$("#dataList").html(htmlStr);
