@@ -58,8 +58,8 @@ function getDate(){
 				$("#date").html(htmlStr);
 				changeTime();
 			}else{
-				alert("很抱歉，该导师暂时没有可预约时间!");
-				window.history.back();
+				alert("很抱歉，该导师暂时没有可预约时间.点击确定重新选择导师!");
+				location.href = "/customer/page/new.html";
 			}
 		}
 	})

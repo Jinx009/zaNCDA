@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import common.helper.ConstantUtil;
 import common.helper.HttpWebIOHelper;
+import service.basicFunctions.TutorService;
 import service.basicFunctions.TutorTimeService;
 import database.models.Tutor;
 import database.models.TutorTime;
@@ -28,6 +29,8 @@ public class TutorTimeData {
 	
 	@Autowired
 	private TutorTimeService tutorTimeService;
+	@Autowired
+	private TutorService tutorService;
 	
 	/**
 	 * 所选导师可选时间
@@ -67,6 +70,25 @@ public class TutorTimeData {
 	}
 	
 	/**
+	 * 后台导师时间
+	 * @param request
+	 * @param response
+	 * @throws IOException
+	 */
+	@RequestMapping(value = "/admin/data/time",method = RequestMethod.GET)
+	public void getAdminTime(HttpServletRequest request,HttpServletResponse response) throws IOException{
+		Integer id = Integer.valueOf(request.getParameter("id"));
+		List<TutorTime> list = tutorTimeService.getByTutorId(id);
+		
+		data = new HashMap<String, Object>();
+		data.put(ConstantUtil.RESULT,ConstantUtil.SUCCESS);
+		data.put(ConstantUtil.ERROR_MSG,list);
+		
+		HttpWebIOHelper._printWebJson(data, response);
+	}
+	
+	
+	/**
 	 * 删除时间
 	 * @param request
 	 * @param response
@@ -87,6 +109,30 @@ public class TutorTimeData {
 	@RequestMapping(value = "/tutor/data/addTime",method = RequestMethod.POST)
 	public void addTime(HttpServletResponse response,HttpServletRequest request) throws ParseException, IOException{
 		Tutor tutor = (Tutor) request.getSession().getAttribute(ConstantUtil.TUTOR_SESSION);
+		String date = request.getParameter("date");
+		String time = request.getParameter("time");
+		
+		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+		
+		TutorTime tutorTime = new TutorTime();
+		tutorTime.setqTutor(tutor);
+		tutorTime.setRealDate(sdf.parse(date));
+		tutorTime.setRealTime(time);
+		tutorTime.setStatus(0);
+		
+		tutorTimeService.save(tutorTime);
+		
+		data = new HashMap<String, Object>();
+		data.put(ConstantUtil.RESULT,ConstantUtil.SUCCESS);
+		data.put(ConstantUtil.ERROR_MSG,"保存成功!");
+		
+		HttpWebIOHelper._printWebJson(date, response);
+	}
+	
+	@RequestMapping(value = "/admin/data/addTime",method = RequestMethod.POST)
+	public void addAdminTime(HttpServletResponse response,HttpServletRequest request) throws ParseException, IOException{
+		Integer id = Integer.valueOf(request.getParameter("id"));
+		Tutor tutor = tutorService.find(id);
 		String date = request.getParameter("date");
 		String time = request.getParameter("time");
 		

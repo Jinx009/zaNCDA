@@ -49,6 +49,7 @@ function getList(pageNum){
 					htmlStr += "<div class='btn-toolbar' role='toolbar' aria-label='...'>";
 					htmlStr += "<button type='button' class='btn btn-defaul' onclick=openEdit('"+i+"') >编辑</button>";
 					htmlStr += "<button type='button' class='btn btn-defaul' onclick=deleteDiv('"+i+"')  >删除</button>";
+					htmlStr += "<button type='button' class='btn btn-defaul' onclick=openUrl('/admin/page/time.html?id="+res.data.list[i].id+"')  >时间</button>";
 					htmlStr += "</div>";
 					htmlStr += "</td>";
 				}

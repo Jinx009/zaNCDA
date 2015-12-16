@@ -54,6 +54,17 @@ public class AdminPage {
     }
 	
 	/**
+	 * 导师时间
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/admin/page/time") 
+    public String tutorTime(HttpServletRequest req){  
+		req.setAttribute("id",req.getParameter("id"));
+        return "/admin/tutor/time";  
+    }
+	
+	/**
 	 * 跳转后台顾客管理
 	 * @return
 	 * @throws Exception
