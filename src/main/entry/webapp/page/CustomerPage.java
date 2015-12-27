@@ -1,6 +1,10 @@
 package main.entry.webapp.page;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -11,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import common.helper.ConstantUtil;
+import common.helper.HttpWebIOHelper;
 import common.helper.StringUtil;
 import common.wechat.WechatData;
 import common.wechat.WechatUtil;
@@ -22,6 +27,7 @@ import database.models.Customer;
 public class CustomerPage {
 	
 	private Customer customer;
+	private Map<String,Object> data;
 	
 	@Autowired
 	private CustomerService customerService;
@@ -46,6 +52,21 @@ public class CustomerPage {
 	}
 	
 	/**
+	 * 登出
+	 * @throws IOException 
+	 */
+	@RequestMapping(value = "/customer/loginOut")
+	public void loginOut(HttpServletRequest request,HttpServletResponse response) throws IOException{
+		request.getSession().setAttribute(ConstantUtil.CUSTOMER_SESSION,null);
+		
+		data = new HashMap<String,Object>();
+		data.put(ConstantUtil.RESULT,ConstantUtil.SUCCESS);
+		data.put(ConstantUtil.ERROR_MSG,"登出成功!");
+		
+		HttpWebIOHelper._printWebJson(data, response);
+	}
+	
+	/**
 	 * 个人信息
 	 * @return
 	 */
@@ -61,6 +82,12 @@ public class CustomerPage {
 			req.setAttribute("jobId",customer.getJob().getId());
 		}else{
 			req.setAttribute("jobId","");
+		}
+		SimpleDateFormat df=new SimpleDateFormat("yyyy-MM-dd");
+		if(null!=customer.getBirthday()){
+			req.setAttribute("birthday",df.format(customer.getBirthday()));
+		}else{
+			req.setAttribute("birthday",df.format(new Date()));
 		}
 		req.setAttribute("customer",customer);
 		return "/customer/info";
@@ -222,4 +249,9 @@ public class CustomerPage {
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
 	}
+
+	public void setData(Map<String, Object> data) {
+		this.data = data;
+	}
+	
 }

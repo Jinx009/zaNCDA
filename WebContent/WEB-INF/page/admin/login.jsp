@@ -60,20 +60,20 @@ function getCode(){
 		 <div class="col-sm-4">
 			<form class="form-horizontal">
 			  <div class="form-group">
-			    <label class="col-sm-2 control-label">账号</label>
-			    <div class="col-sm-10">
+			    <label class="col-sm-3 control-label">账号</label>
+			    <div class="col-sm-7">
 			      <input type="text" class="form-control" id="userName" placeholder="账户">
 			    </div>
 			  </div>
 			  <div class="form-group">
-			    <label  class="col-sm-2 control-label">密码</label>
-			    <div class="col-sm-10">
+			    <label  class="col-sm-3 control-label">密码</label>
+			    <div class="col-sm-7">
 			      <input type="password" class="form-control" id="pwd" placeholder="密码">
 			    </div>
 			  </div>
 			  <div class="form-group">
-			    <label  class="col-sm-2 control-label">验证码</label>
-			    <div class="col-sm-6">
+			    <label  class="col-sm-3 control-label">验证码</label>
+			    <div class="col-sm-5">
 			      <input type="text" class="form-control" id="code" placeholder="验证码">
 			    </div>
 			    <label  class="col-sm-4 control-label" onclick="getCode()" id="codeText" ></label>

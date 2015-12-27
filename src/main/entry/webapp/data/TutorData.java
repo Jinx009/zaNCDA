@@ -402,6 +402,9 @@ public class TutorData {
 		topic = topicService.find(Integer.valueOf(req.getParameter("topicId")));
 		
 		tutor = tutorService.find(Integer.valueOf(req.getParameter("id")));
+		if(StringUtil.isNotBlank(req.getParameter("pwd"))){
+			tutor.setPwd(MD5Util.toMD5(req.getParameter("pwd")));
+		}
 		tutor.setFacePrice(Double.parseDouble(req.getParameter("facePrice")));
 		tutor.setVideoPrice(Double.parseDouble(req.getParameter("facePrice")));
 		tutor.setMobilePrice(Double.parseDouble(req.getParameter("facePrice")));

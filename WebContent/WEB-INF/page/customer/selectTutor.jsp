@@ -73,7 +73,7 @@ function changeTrade(){
 	</select>
 </div>
 <div class="register-inp register-inp-top">
-	<span class="register-inp-text">从业年限</span>
+	<span class="register-inp-text">从业年限<b>*</b></span>
 	<select class="register-select-long" id="workYears" >
 		<option value="1" selected="selected">1年以内</option>
 		<option value="2" >1-3年</option>
@@ -87,8 +87,8 @@ function changeTrade(){
 	<span class="register-inp-text">沟通方式</span>
 	<select class="register-select-long" id="type" >
 		<option value="1" selected="selected">当面约谈</option>
-		<option value="2" >视频约谈</option>
-		<option value="3" >电话约谈</option>
+		<option value="2" >视频约谈(60min)</option>
+		<option value="3" >电话约谈(60min)</option>
 	</select>
 </div>
 

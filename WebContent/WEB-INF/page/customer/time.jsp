@@ -50,6 +50,7 @@ function getDate(){
 		data:params,
 		dataType:"json",
 		success:function(res){
+			console.log(res)
 			if(null!=res.errmsg){
 				var htmlStr = "";
 				for(var i = 0;i<res.errmsg.length;i++){
@@ -59,7 +60,7 @@ function getDate(){
 				changeTime();
 			}else{
 				alert("很抱歉，该导师暂时没有可预约时间.点击确定重新选择导师!");
-				location.href = "/customer/page/new.html";
+				window.history.back();
 			}
 		}
 	})
@@ -117,10 +118,7 @@ function goBack(){
 		<p></p>
 	</div>
 	
-	<div class="personal-tip">
-	</div>
-	
-	<div class="btn-position">
+	<div class="btn-position" style="margin-top: 0px;">
 		<div class="two-btn">
 			<button id="appoint" onclick="pay()">付款约谈</button>
 		</div>

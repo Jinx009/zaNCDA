@@ -2,6 +2,20 @@
 .tutor-bg{
 	background: #ededed;
 }
+.tutor-search--default{
+	width: 84%;
+	margin: 0 auto;
+	height: 50px;
+	line-height:50px;
+	text-align: center;
+	font-size: 1.3em;
+	color: black;
+	background: #c0c0c0;
+	border-radius: 4px;
+}
+.space-15{
+	height: 15px;
+}
 .white-bg{
 	background: #FFFFFF;
 	width: 100%;
@@ -1091,7 +1105,7 @@
 }
 .evaluate div ul li img{
 	vertical-align: middle;
-	width: 100%;
+	width: 80%;
 }
 .personal-wrap{
 	width: 94%;
@@ -1279,8 +1293,8 @@
 	white-space: normal;
 	text-align:justify;
 	text-justify:inter-ideograph;
-	line-height: 24px;
-	font-size: 1.0em;
+	line-height: 18px;
+	font-size: 12px;
 	margin-bottom: 10px;
 }
 .right-cancel{

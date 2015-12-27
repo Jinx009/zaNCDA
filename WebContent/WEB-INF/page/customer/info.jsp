@@ -113,18 +113,57 @@ function saveInf(){
 
 	var params = "realName="+realName+"&qq="+qq+"&email="+email+"&sex="+sex+"&birthday="+birthday+
 				"&famillyNumber="+famillyNumber+"&wechatName="+wechatName+"&trade="+trade+"&job="+job;
+	if(!checkEmail(email)){
+		alert(errorMsg);
+	}else{
+		$.ajax({
+			url:"/customer/data/saveInfo.html",
+			type:"POST",
+			data:params,
+			dataType:"json",
+			success:function(res){
+				if("success"==res.result){
+					alert("保存成功!");
+					location.href = "/customer/page/growpInfo.html";
+				}
+			}
+		})
+	}
+}
+
+function loginOut(){
 	$.ajax({
-		url:"/customer/data/saveInfo.html",
+		url:"/customer/loginOut.html",
 		type:"POST",
-		data:params,
 		dataType:"json",
 		success:function(res){
 			if("success"==res.result){
-				alert("保存成功!");
-				location.href = "/customer/page/growpInfo.html";
+				location.href = "/customer/login.html";
 			}
 		}
 	})
+}
+var errorMsg = "";
+var myreg = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1}))+\d{8})$/; 
+function checkTel(phone){
+	if(!myreg.test(phone)) 
+	{ 
+		errorMsg = '请输入有效的手机号码！';
+	    return false; 
+	} 
+	if(phone.length!=11) 
+    { 
+		errorMsg = '请输入有效的手机号码！';
+        return false; 
+    } 
+}
+function checkEmail(email){
+   var myreg = /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;
+   if(!myreg.test(email))
+   {
+	   errorMsg = '请输入有效的邮箱地址！';
+       return false;
+   }
 }
 </script>
 </head>
@@ -145,7 +184,7 @@ function saveInf(){
 <div class="register-inp register-inp-top">
 	<span class="register-inp-text">生日</span>
 	<input type="hidden" id="birth" value="${customer.birthday }" >
-	<input  value="${customer.birthday }" id="birthday" onClick="WdatePicker()"  class="register-inp-long"/>
+	<input  value="${birthday }" id="birthday" onClick="WdatePicker()"  class="register-inp-long"/>
 </div>
 <div class="register-inp register-inp-top">
 	<input type="hidden" value="${tradeId }" id="tradeValue" >
@@ -185,6 +224,8 @@ function saveInf(){
 </div>
 <div class="sure-btn">
 	<div class="tutor-search-btn" id="sure" onclick="saveInf()" >提交</div>
+	<div class="space-15" ></div>
+	<div class="tutor-search--default" id="out" onclick="loginOut()" >登出</div>
 </div>
 <!--蒙版-->
 <div class="mask"></div>

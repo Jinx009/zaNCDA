@@ -34,6 +34,11 @@ $(function(){
 		success:function(res){
 			if(null!=res.errmsg&&res.errmsg.length>0){
 				var htmlStr = '';
+				htmlStr += '<p>恭喜!</p>';
+				htmlStr += '<p>根据你的期望，我们已经为你推荐匹配的导师们。</p>';
+				htmlStr += '<p>开始选择吧！</p>';
+				$('#tutor-tip-success').html(htmlStr);
+				htmlStr = '';
 				for(var i = 0;i<res.errmsg.length;i++){
 					htmlStr += '<div class="tutor-list">';
 					htmlStr += '<div class="tutor-wrap">';
@@ -64,9 +69,10 @@ $(function(){
 				$('#dataDiv').html(htmlStr);
 			}else{
 				var htmlStr = '';
-				htmlStr += '<p>很抱歉，没有匹配的导师！</p>';
-				htmlStr += '<p>你可以重新筛选条件。</p>';
-				htmlStr += '<p>系统为你推荐了可能合适的导师</p>';
+				htmlStr += '<p>很抱歉，没有完全匹配的导师！</p>';
+				htmlStr += '<p>您可以重新设定筛选条件。</p>';
+				htmlStr += '<p>您也可以浏览以下导师介绍</p>';
+				htmlStr += '<p>选择合适的导师</p>';
 				$('#tutor-tip-success').html(htmlStr);
 				
 				$.ajax({
@@ -141,9 +147,9 @@ function goBack(){
 <a ><div class="nav-title"><span class="nav-back" onclick="goBack();" >&lt;</span>我们推荐的导师<span class="close" onclick="openUrl('/customer/page/new.html')" >&Chi;</span></div></a>
 <!--匹配成功-->
 <div class="tutor-tip" id="tutor-tip-success">
-	<p>恭喜!</p>
-	<p>根据你的期望，我们已经为你推荐匹配的导师们。</p>
-	<p>开始选择吧！</p>
+	<p></p>
+	<p></p>
+	<p></p>
 </div>
 <div id="dataDiv" ></div>
 <div class="tutor-search">

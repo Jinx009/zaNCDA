@@ -52,7 +52,7 @@ function doRegister(){
 			success:function(res){
 				if("success"==res.result){
 					alert("注册成功！");
-					location.href = "/customer/page/index.html";
+					location.href = "/customer/page/info.html";
 				}else{
 					alert(res.errmsg);
 				}

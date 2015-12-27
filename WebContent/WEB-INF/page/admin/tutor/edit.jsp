@@ -263,6 +263,8 @@ function saveInfo(){
 	var workYears = $("#workYears").val();
 	var qq = $("#qq").val();
 	var facePrice = $("#facePrice").val();
+	var pwd = $("#pwd").val();
+	var repwd = $("#repwd").val();
 	var mobileStatus = 0,videoStatus = 0,faceStatus = 0;
 	if("checked"==$("#mobileStatus").is(":checked")||true==$("#mobileStatus").is(":checked")){
 		mobileStatus = 1;
@@ -281,9 +283,11 @@ function saveInfo(){
 				birth+"&classPrice="+classPrice+"&trade1="+trade1+"&trade2="+trade2+"&trade3="+trade3+"&area1="+area1+"&area2="+
 				area2+"&area3="+area3+"&isOnline="+isOnline+"&bankAccount="+bankAccount+"&bankName="+bankName+"&idCard="+idCard+
 				"&email="+email+"&workYears="+workYears+"&qq="+qq+"&mobileStatus="+mobileStatus+"&faceStatus="+faceStatus+"&videoStatus="+
-				videoStatus+"&personalIntroduction="+personalIntroduction+"&id="+id+"&topicId="+topicId+"&facePrice="+facePrice;
+				videoStatus+"&personalIntroduction="+personalIntroduction+"&id="+id+"&topicId="+topicId+"&facePrice="+facePrice+"&pwd="+pwd;
 	if(bankAccount!=bankAccount1){
 		alert("银行卡号确认信息不一致!");
+	}else if(repwd!=pwd){
+		alert("重置密码不一致!");
 	}else{
 		$.ajax({
 			url:"/tutor/data/update.html",
@@ -481,6 +485,12 @@ function saveInfo(){
 					<tr>
 						<th>导师专长自我介绍:</th>
 						<td colspan="3" ><textarea class="form-control" id="personalIntroduction" >${tutor.personalIntroduction }</textarea></td>
+					</tr>
+						<tr>
+						<th>重置密码:</th>
+						<td><input type="password" value="" id="pwd" placeholder="不填代表不重置" > </td>
+						<th>确认密码</th>
+						<td><input type="password" value="" id="repwd" > </td>
 					</tr>
 					<tr>
 						<td colspan="4" >

@@ -13,7 +13,7 @@ public class ResultUtil {
 		}else if(2==type){
 			return "mobile_status";
 		}else{
-			return "vedio_status";
+			return "video_status";
 		}
 	}
 	
