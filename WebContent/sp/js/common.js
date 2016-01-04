@@ -123,20 +123,16 @@ function getNowDate()
     Month= day.getMonth()+1;
     Day = day.getDate();
     CurrentDate += Year + "-";
-    if (Month >= 10 )
-    {
+    if (Month >= 10 ){
         CurrentDate += Month + "-";
     }
-    else
-    {
+    else{
         CurrentDate += "0" + Month + "-";
     }
-    if (Day >= 10 )
-    {
+    if (Day >= 10 ){
         CurrentDate += Day ;
     }
-    else
-    {
+    else{
         CurrentDate += "0" + Day ;
     }
     return CurrentDate;
@@ -147,18 +143,14 @@ var myreg = /^(((13[0-9]{1})|(15[0-9]{1})|(16[0-9]{1})|(14[0-9]{1})|(17[0-9]{1})
  * 手机号码校验
  * @param mobile
  */
-function validateTel(mobile)
-{
-    if(mobile.length==0)
-    {
+function validateTel(mobile){
+    if(mobile.length==0){
        return "请输入手机号码!";
     }    
-    if(mobile.length!=11)
-    {
+    if(mobile.length!=11){
         return "请输入有效的手机号码";
     }
-    if(!myreg.test(mobile))
-    {
+    if(!myreg.test(mobile)){
         return "请输入有效的手机号码";
     }
     return "success";

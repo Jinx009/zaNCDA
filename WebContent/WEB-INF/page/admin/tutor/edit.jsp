@@ -488,9 +488,9 @@ function saveInfo(){
 					</tr>
 						<tr>
 						<th>重置密码:</th>
-						<td><input type="password" value="" id="pwd" placeholder="不填代表不重置" > </td>
+						<td><input type="password" value="" id="pwd" placeholder="不填代表不重置"  class="form-control" > </td>
 						<th>确认密码</th>
-						<td><input type="password" value="" id="repwd" > </td>
+						<td><input type="password" value="" id="repwd"  class="form-control" > </td>
 					</tr>
 					<tr>
 						<td colspan="4" >

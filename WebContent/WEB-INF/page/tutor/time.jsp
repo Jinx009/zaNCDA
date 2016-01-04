@@ -47,7 +47,12 @@ function getDate(){
 				for(var i = 0;i<res.errmsg.length;i++){
 					htmlStr += "<div class='appoint-inp'>";
 					htmlStr += "<input readOnly='readOnly'  value="+jsDateTimeOnly(res.errmsg[i].realDate)+"&nbsp;&nbsp;"+res.errmsg[i].realTime+" class='appoint-inp-short'/>";
-					htmlStr += "<div class='appoint-inp-btn' onclick=deleteTime('"+res.errmsg[i].id+"') >删除</div>";
+					if("1"==res.errmsg[i].status){
+						htmlStr += "<div class='appoint-inp-btn' >已使用</div>";
+					}else{
+						htmlStr += "<div class='appoint-inp-btn' onclick=deleteTime('"+res.errmsg[i].id+"') >删除</div>";
+					}
+					
 					htmlStr += "</div>";
 				}
 			}

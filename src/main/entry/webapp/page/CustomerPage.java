@@ -36,6 +36,17 @@ public class CustomerPage {
 	private TutorService tutorService;
 
 	/**
+	 * 忘记密码
+	 * @param request
+	 * @param response
+	 * @return
+	 */
+	@RequestMapping(value = "/customer/forget")
+	public String forget(HttpServletRequest request,HttpServletResponse response){
+		return "/customer/forget";
+	}
+	
+	/**
 	 * 微信支付页面
 	 * @param request
 	 * @param response

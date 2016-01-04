@@ -20,6 +20,7 @@ import service.basicFunctions.TradeService;
 import common.helper.ConstantUtil;
 import common.helper.HttpWebIOHelper;
 import common.helper.MD5Util;
+import common.helper.tool.message.MsgUtil;
 import database.common.PageDataList;
 import database.models.Customer;
 import database.models.Trade;
@@ -51,6 +52,70 @@ public class CustomerData {
 		request.getSession().setAttribute(ConstantUtil.CUSTOMER_CODE,code);
 		HttpWebIOHelper._printWebJson(data, response);
     }
+	
+	/**
+	 * 忘记密码数字验证码
+	 * @param request
+	 * @param response
+	 * @throws IOException
+	 */
+	@RequestMapping(value = "/customer/data/codeForget",method = RequestMethod.GET)
+	public void getDCode(HttpServletRequest request,HttpServletResponse response) throws IOException{
+		data = new HashMap<String,Object>();
+		int code = (int) (Math.random() * 9000 + 1000);
+		data.put("customer_code_forget",code);
+		request.getSession().setAttribute("customer_code_forget",code);
+		HttpWebIOHelper._printWebJson(data, response);
+	}
+	
+	/**
+	 * 忘记密码手机验证码
+	 * @param request
+	 * @param response
+	 * @throws IOException
+	 */
+	@RequestMapping(value = "/customer/data/getForgetCode")
+	public void getForgetCode(HttpServletRequest request,HttpServletResponse response) throws IOException{
+		data = new HashMap<String, Object>();
+		int code = (int) (Math.random()*900000+100000);
+		String mobilePhone = request.getParameter("mobilePhone");
+		String dCode = request.getParameter("customer_code_forget");
+		if(dCode.equals(request.getSession().getAttribute("customer_code_forget").toString())){
+			data.put(ConstantUtil.RESULT,ConstantUtil.SUCCESS);
+			MsgUtil.sendMsg(mobilePhone,"您的手机验证码是:"+code);
+			request.getSession().setAttribute("customer_forget_code_"+mobilePhone,code);
+		}else{
+			data.put(ConstantUtil.RESULT,ConstantUtil.FAILURE);
+			data.put(ConstantUtil.ERROR_MSG,"验证码错误  ");
+		}
+		HttpWebIOHelper._printWebJson(data, response);
+	}
+	
+	@RequestMapping(value = "/customer/data/doForget")
+	public void doForget(HttpServletRequest request,HttpServletResponse response) throws IOException{
+		String mobileCode = request.getParameter("mobileCode");
+		String mobilePhone = request.getParameter("mobilePhone");
+		String pwd = request.getParameter("pwd");
+		data = new HashMap<String, Object>();
+		System.out.println(request.getSession().getAttribute("customer_forget_code_"+mobilePhone).toString());
+		if(!mobileCode.equals(request.getSession().getAttribute("customer_forget_code_"+mobilePhone).toString())){
+			data.put(ConstantUtil.RESULT,ConstantUtil.FAILURE); 
+			data.put(ConstantUtil.ERROR_MSG,"手机验证码不正确!");
+		}else{
+			
+			customer = customerService.getByUserName(mobilePhone);
+			if(null!=customer){
+				data.put(ConstantUtil.RESULT,ConstantUtil.SUCCESS); 
+				data.put(ConstantUtil.ERROR_MSG,"操作成功!");
+				customer.setPwd(MD5Util.toMD5(pwd));
+				customerService.doUpdate(customer);
+			}else{
+				data.put(ConstantUtil.RESULT,ConstantUtil.FAILURE); 
+				data.put(ConstantUtil.ERROR_MSG,"账号不存在!");
+			}
+		}
+		HttpWebIOHelper._printWebJson(data, response);
+	}
 	
 	/**
 	 * 保存个人信息

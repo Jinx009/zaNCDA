@@ -95,6 +95,6 @@ function changeCode(){
 	<div class="tutor-search">
 		<div class="tutor-search-btn" onclick="doLogin()" >登录</div>
 	</div>
-	<div class="register-tip"><a href="/customer/register.html">立即注册</a></div>
+	<div class="register-tip"><a href="/customer/register.html">立即注册</a>&nbsp;&nbsp;<a href="/customer/forget.html">忘记密码</a></div>
 </body>
 </html>

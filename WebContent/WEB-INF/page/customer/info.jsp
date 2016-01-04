@@ -225,7 +225,6 @@ function checkEmail(email){
 <div class="sure-btn">
 	<div class="tutor-search-btn" id="sure" onclick="saveInf()" >提交</div>
 	<div class="space-15" ></div>
-	<div class="tutor-search--default" id="out" onclick="loginOut()" >登出</div>
 </div>
 <!--蒙版-->
 <div class="mask"></div>

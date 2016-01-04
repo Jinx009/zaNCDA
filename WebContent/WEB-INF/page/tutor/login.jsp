@@ -74,7 +74,7 @@ function changeCode(){
 	<span class="none" id="codeText" ></span>
 	<div class="nav-title">登录</div>
 	<div class="logo">
-		<img src="/sp/images/logo.png"/>
+		<img src="/sp/images/logo.jpg"/>
 	</div>
 	<div class="register-inp login-inp-top">
 		<span class="register-inp-text">手机号</span>
