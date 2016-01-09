@@ -113,7 +113,7 @@ function saveInfoOne(){
 	</div>
 	<div class="register-inp register-inp-top">
 		<span class="register-inp-text">生日</span>
-		<input value="${tutor.birthday }" id="birthday"  onClick="WdatePicker()" class="register-inp-long"/>
+		<input value="${birthday }" id="birthday"  onClick="WdatePicker()" class="register-inp-long"/>
 	</div>
 	<div class="register-inp register-inp-top">
 		<input type="hidden" id="tradeValue" value="${trade}" >

@@ -123,6 +123,13 @@ public class OrderData {
 		
 	}
 	
+	/**
+	 * 兑付管理数据
+	 * @param response
+	 * @param request
+	 * @throws IOException
+	 * @throws ParseException
+	 */
 	@RequestMapping(value = "/admin/data/orderPay")
 	public void orderPayList(HttpServletResponse response,HttpServletRequest request) throws IOException, ParseException{
 		data = new HashMap<String,Object>();
@@ -194,6 +201,7 @@ public class OrderData {
 		order.setBankName(request.getParameter("bankName"));
 		order.setPayStatus(1);
 		order.setProcedures(Double.valueOf(request.getParameter("procedures")));
+		order.setPayOkDate(new Date());
 		
 		orderService.doUpdate(order);
 		
@@ -219,6 +227,7 @@ public class OrderData {
 		order = orderService.getById(orderId);
 		order.setReason(request.getParameter("reason"));
 		order.setStatus(5);
+		order.setCacleDate(new Date());
 		order.setBank(bank);
 		if(4==order.getStatus()){
 			data.put(ConstantUtil.RESULT,ConstantUtil.FAILURE);
@@ -291,6 +300,7 @@ public class OrderData {
 				orderModel.settName(order.getqTutor().getRealName());
 				orderModel.setcName(order.getqCustomer().getRealName());
 				orderModel.setqName(order.getTopic().getName());
+				orderModel.setPhotoPath(order.getqTutor().getPhotoPath());
 				orderList.add(orderModel);
 			}
 		}

@@ -46,7 +46,7 @@ public class WechatPay {
 				"<xml>"+
 				   "<appid>"+WechatData.APP_ID+"</appid>"+
 				   "<body>NCDA</body>"+
-				   "<mch_id>1280820801</mch_id>"+
+				   "<mch_id>1304560401</mch_id>"+
 				   "<nonce_str>"+nonce_str+"</nonce_str>"+
 				   "<notify_url>http://t03.0angel.com/pay/callBack.html</notify_url>"+
 				   "<openid>"+openId+"</openid>"+

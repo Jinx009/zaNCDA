@@ -80,6 +80,9 @@ public class Customer {
 	
 	@Column(name = "id_number")
 	private String idNumber;
+	
+	@Column(name = "growp_status")
+	private Integer growpStatus;
 
 	public Integer getId() {
 		return id;
@@ -224,6 +227,14 @@ public class Customer {
 
 	public void setIdNumber(String idNumber) {
 		this.idNumber = idNumber;
+	}
+
+	public Integer getGrowpStatus() {
+		return growpStatus;
+	}
+
+	public void setGrowpStatus(Integer growpStatus) {
+		this.growpStatus = growpStatus;
 	}
 	
 	

@@ -47,6 +47,36 @@ public class TutorData {
 	private TopicService topicService;
 	
 	/**
+	 * 更改密码
+	 * @param request
+	 * @param response
+	 * @throws IOException
+	 */
+	@RequestMapping(value = "/tutor/data/changePwd",method = RequestMethod.POST)
+	public void checkPwd(HttpServletRequest request,HttpServletResponse response) throws IOException{
+		data = new HashMap<String, Object>();
+		data.put(ConstantUtil.RESULT,ConstantUtil.FAILURE);
+		
+		String mobilePhone = request.getParameter("mobilePhone");
+		String pwd = request.getParameter("pwd");
+		String newPwd = request.getParameter("newPwd");
+		tutor = new Tutor();
+		tutor.setUserName(mobilePhone);
+		tutor.setPwd(pwd);
+		tutor = tutorService.doLogin(tutor);
+		if(null!=tutor){
+			tutor.setPwd(MD5Util.toMD5(newPwd));
+			tutorService.update(tutor);
+			data.put(ConstantUtil.RESULT,ConstantUtil.SUCCESS);
+			data.put(ConstantUtil.ERROR_MSG,"操作成功!");
+		}else{
+			data.put(ConstantUtil.ERROR_MSG,"账号不存在或密码错误！");
+		}
+		
+		HttpWebIOHelper._printWebJson(data, response);
+	}
+	
+	/**
 	 * 删除导师
 	 * @param request
 	 * @param response

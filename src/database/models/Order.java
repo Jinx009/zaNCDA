@@ -69,6 +69,14 @@ public class Order {
 	@Column(name = "update_time")
 	private Date updateTime;
 	
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "cacle_date")
+	private Date CacleDate;
+	
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "pay_ok_date")
+	private Date payOkDate;
+	
 	@OneToOne
 	@JoinColumn(name = "topic")
 	private Topic topic;
@@ -220,6 +228,22 @@ public class Order {
 
 	public void setPayMoney(Double payMoney) {
 		this.payMoney = payMoney;
+	}
+
+	public Date getCacleDate() {
+		return CacleDate;
+	}
+
+	public void setCacleDate(Date cacleDate) {
+		CacleDate = cacleDate;
+	}
+
+	public Date getPayOkDate() {
+		return payOkDate;
+	}
+
+	public void setPayOkDate(Date payOkDate) {
+		this.payOkDate = payOkDate;
 	}
 	
 	

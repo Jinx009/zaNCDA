@@ -48,6 +48,21 @@ function getData(pageNum){
 					htmlStr += "<td>"+isNull(res.data.list[i].bank)+"</td>";
 					htmlStr += "<td>"+isNull(res.data.list[i].bankName)+"</td>";
 					htmlStr += "<td>"+isNull(res.data.list[i].reason)+"</td>";
+					if(null!=res.data.list[i].payOkDate){
+						htmlStr += "<td>"+jsDateTimeOnly(res.data.list[i].payOkDate)+"</td>";
+					}else{
+						htmlStr += "<td></td>";
+					}
+					if(null!=res.data.list[i].addTime){
+						htmlStr += "<td>"+jsDateTimeOnly(res.data.list[i].addTime)+"</td>";
+					}else{
+						htmlStr += "<td></td>";
+					}
+					if(null!=res.data.list[i].cacleDate){
+						htmlStr += "<td>"+jsDateTimeOnly(res.data.list[i].cacleDate)+"</td>";
+					}else{
+						htmlStr += "<td></td>";
+					}
 					htmlStr += "<td>";
 					if(1==res.data.list[i].payStatus){
 						htmlStr += "已兑付";
@@ -58,7 +73,7 @@ function getData(pageNum){
 					htmlStr += "</td></tr>";
 				}
 			}else{
-				htmlStr += "<tr><td colspan='10' class='center red' >查询条件暂无数据，请尝试更换条件查询</td></tr>";
+				htmlStr += "<tr><td colspan='13' class='center red' >查询条件暂无数据，请尝试更换条件查询</td></tr>";
 			}
 			$("#pageMenu").html(menuHtml);
 			$("#page"+pageNum).addClass("active");
@@ -200,6 +215,9 @@ function getExcel(){
 						<td>银行卡号</td>
 						<td>银行卡号</td>
 						<td>备注/原因</td>
+						<td>兑付时间</td>
+						<td>下单时间</td>
+						<td>取消时间</td>
 						<td>操作</td>
 					</tr>
 				</thead>

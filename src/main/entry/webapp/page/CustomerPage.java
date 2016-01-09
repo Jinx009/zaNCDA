@@ -152,6 +152,9 @@ public class CustomerPage {
 	 */
 	@RequestMapping(value = "/customer/page/growpInfo")
 	public String growpInfo(HttpServletRequest request,HttpServletResponse response){
+		customer = (Customer) request.getSession().getAttribute(ConstantUtil.CUSTOMER_SESSION);
+		customer = customerService.getById(customer.getId());
+		request.setAttribute("status",customer.getGrowpStatus());
 		return "/customer/growpInfo";
 	}
 	
@@ -162,6 +165,7 @@ public class CustomerPage {
 	 */
 	@RequestMapping(value = "/customer/page/caseDetail")
 	public String detail(HttpServletRequest request,HttpServletResponse response){
+		request.setAttribute("id", request.getParameter("id"));
 		return "/customer/caseDetail";
 	}
 	

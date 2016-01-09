@@ -23,7 +23,11 @@ $(function(){
 					htmlStr += "<div class='tutor-list'  onclick=goDetail('"+res.errmsg[i].id+"') >";
 					htmlStr += "<div class='tutor-wrap'>";
 					htmlStr += '<div class="tutor-img">';
-					htmlStr += '<img src="/sp/images/headPortrait.png" />';
+					if(null!=res.errmsg[i].photoPath&&""!=res.errmsg[i].photoPath){
+						htmlStr += '<img src='+res.errmsg[i].photoPath+' />';
+					}else{
+						htmlStr += '<img src="/sp/images/headPortrait.png" />';
+					}
 					htmlStr += '</div>';
 					htmlStr += '<div class="tutor-text">';
 					htmlStr += '<p class="tutor-desc">'+res.errmsg[i].topicContent+'</p>';

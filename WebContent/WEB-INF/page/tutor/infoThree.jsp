@@ -207,6 +207,12 @@ function changeTrade(id){
 }
 
 function saveData(){
+	$("#trade1").attr("disabled",false);
+	$("#trade2").attr("disabled",false);
+	$("#trade3").attr("disabled",false);
+	$("#area1").attr("disabled",false);
+	$("#area2").attr("disabled",false);
+	$("#area3").attr("disabled",false);
 	var trade1 = $("#trade1").val();
 	var trade2 = $("#trade2").val();
 	var trade3 = $("#trade3").val();
@@ -244,51 +250,51 @@ function saveData(){
 	<div class="choice-title"><p>请填写您最擅长的主题</p></div>
 	<div class="register-inp register-inp-top">
 		<span class="register-inp-text">选择场景</span>
-		<select class="register-select-long"  id="s1" onchange="changeData('1')"  >
+		<select class="register-select-long"  id="s1"   >
 			<option  selected="selected"  value="1" >职业选择</option>
 			<option value="2">职场能力</option>
 			<option value="3">职业发展</option>
 		</select>
 	</div>
 	<ul class="choice-question select-answer">
-		<li id="to4" onclick="getTopic('4')"  >自我测评和岗位/行业评估<span>&radic;</span></li>
-		<li id="to5"  onclick="getTopic('5')" >找到正确的求职渠道</li>
-		<li id="to6" onclick="getTopic('6')"  >如何制作和投递完美的简历</li>
-		<li id="to7"  onclick="getTopic('7')" >面试模拟舱：看到真实的自己</li>
+		<li id="to4"  >自我测评和岗位/行业评估<span>&radic;</span></li>
+		<li id="to5"  >找到正确的求职渠道</li>
+		<li id="to6"  >如何制作和投递完美的简历</li>
+		<li id="to7"  >面试模拟舱：看到真实的自己</li>
 	</ul>
 </div>
 <div class="information-question none"  style="display: none;"  id="topicDiv2" >
 	<div class="choice-title"><p>请填写您最擅长的主题</p></div>
 	<div class="register-inp register-inp-top">
 		<span class="register-inp-text">选择场景</span>
-		<select class="register-select-long"  id="s2" onchange="changeData('2')" >
+		<select class="register-select-long"  id="s2" disabled="disabled" >
 			<option value="1" >职业选择</option>
 			<option  selected="selected" value="2">职场能力</option>
 			<option value="3">职业发展</option>
 		</select>
 	</div>
 	<ul class="choice-question select-answer">
-		<li id="to8" onclick="getTopic('8')" class="choice-question-select">如何快速理解角色和融入团队</li>
-		<li id="to9" onclick="getTopic('9')"  >管理老板和关键决策人的关系</li>
-		<li id="to10" onclick="getTopic('10')"  >如何处理冲突和提升人机沟通</li>
-		<li id="to11" onclick="getTopic('11')"  >压力的管理和纾解</li>
+		<li id="to8" class="choice-question-select">如何快速理解角色和融入团队</li>
+		<li id="to9"  >管理老板和关键决策人的关系</li>
+		<li id="to10"  >如何处理冲突和提升人机沟通</li>
+		<li id="to11"   >压力的管理和纾解</li>
 	</ul>
 </div>
 <div class="information-question none"  style="display: none;"  id="topicDiv3" >
 	<div class="choice-title"><p>请填写您最擅长的主题</p></div>
 	<div class="register-inp register-inp-top">
 		<span class="register-inp-text">选择场景</span>
-		<select class="register-select-long" id="s3" onchange="changeData('3')" >
+		<select class="register-select-long" id="s3" >
 			<option value="1" >职业选择</option>
 			<option value="2">职场能力</option>
 			<option value="3" selected="selected">职业发展</option>
 		</select>
 	</div>
 	<ul class="choice-question select-answer">
-		<li id="to12" onclick="getTopic('12')"   class="choice-question-select">了解公司的架构和晋级之路<span>&radic;</span></li>
-		<li id="to13" onclick="getTopic('13')"  >快速建立短期目标并积累经验和人脉</li>
-		<li id="to14" onclick="getTopic('14')"  >如何在职场提升关键技术和管理能力</li>
-		<li id="to15" onclick="getTopic('15')"  >为自己的市场价值添分的诀窍</li>
+		<li id="to12"   class="choice-question-select">了解公司的架构和晋级之路<span>&radic;</span></li>
+		<li id="to13"   >快速建立短期目标并积累经验和人脉</li>
+		<li id="to14"   >如何在职场提升关键技术和管理能力</li>
+		<li id="to15"   >为自己的市场价值添分的诀窍</li>
 	</ul>
 </div>
 <div class="information-question">
@@ -296,19 +302,19 @@ function saveData(){
 	<input type="hidden" value="" >
 	<div class="register-inp register-inp-top">
 		<span class="register-inp-text">擅长行业1</span>
-		<select class="register-select-long" id="trade1" onclick="changeTrade('1')" >
+		<select class="register-select-long" id="trade1" disabled="disabled" >
 			<option value="" selected="selected"></option>
 		</select>
 	</div>
 	<div class="register-inp register-inp-top">
 		<span class="register-inp-text">擅长行业2</span>
-		<select class="register-select-long"  id="trade2" onclick="changeTrade('2')">
+		<select class="register-select-long"  id="trade2" disabled="disabled">
 			<option value="" selected="selected"></option>
 		</select>
 	</div>
 	<div class="register-inp register-inp-top">
 		<span class="register-inp-text">擅长行业3</span>
-		<select class="register-select-long"  id="trade3" onclick="changeTrade('3')">
+		<select class="register-select-long"  id="trade3" disabled="disabled">
 			<option value="" selected="selected"></option>
 		</select>
 	</div>
@@ -317,19 +323,19 @@ function saveData(){
 	<div class="choice-title"><p>擅长领域</p></div>
 	<div class="register-inp register-inp-top">
 		<span class="register-inp-text">擅长领域1</span>
-		<select class="register-select-long" id="area1">
+		<select class="register-select-long" id="area1" disabled="disabled">
 			<option value="" selected="selected"></option>
 		</select>
 	</div>
 	<div class="register-inp register-inp-top">
 		<span class="register-inp-text">擅长领域2</span>
-		<select class="register-select-long" id="area2">
+		<select class="register-select-long" id="area2" disabled="disabled">
 			<option value="" selected="selected"></option>
 		</select>
 	</div>
 	<div class="register-inp register-inp-top">
 		<span class="register-inp-text">擅长领域3</span>
-		<select class="register-select-long" id="area3">
+		<select class="register-select-long" id="area3" disabled="disabled">
 			<option value="" selected="selected"></option>
 		</select>
 	</div>

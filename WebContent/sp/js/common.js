@@ -34,16 +34,13 @@ function showAlert(id){
  * @param unixtime
  * @returns
  */
-function jsDateTimeOnly(unixtime)  
-{  
+function jsDateTimeOnly(unixtime)  {  
 	 var date = new Date(unixtime);
 	 
 	 return  date.format("yyyy-MM-dd"); 
 } 
-Date.prototype.format = function(format)
-{
-	var o = 
-	{
+Date.prototype.format = function(format){
+	var o = {
 	"M+" : this.getMonth()+1, 
 	"d+" : this.getDate(), 
 	"h+" : this.getHours(),
@@ -53,15 +50,12 @@ Date.prototype.format = function(format)
 	"S" : this.getMilliseconds() 
 	}
 
-	if(/(y+)/.test(format)) 
-	{
+	if(/(y+)/.test(format)) {
 		format = format.replace(RegExp.$1, (this.getFullYear()+"").substr(4 - RegExp.$1.length));
 	}
 
-	for(var k in o) 
-	{
-		if(new RegExp("("+ k +")").test(format))
-		{
+	for(var k in o) {
+		if(new RegExp("("+ k +")").test(format)){
 			format = format.replace(RegExp.$1, RegExp.$1.length==1 ? o[k] : ("00"+ o[k]).substr((""+ o[k]).length));
 		}
 	}
@@ -77,11 +71,11 @@ function getOrderStatus(status){
 	}else if(1==status){
 		return "已支付";
 	}else if(2==status){
-		return "导师已评价";
-	}else if(2==status){
-		return "导师已评价";
-	}else if(3==status){
 		return "顾客已评价";
+	}else if(2==status){
+		return "顾客已评价";
+	}else if(3==status){
+		return "导师已评价";
 	}else if(4==status){
 		return "双方已互评";
 	}else if(5==status){
@@ -111,8 +105,7 @@ function getReplyStatus(status,time){
  * 获取当前时间
  * @returns {String}
  */
-function getNowDate()
-{
+function getNowDate(){
     var day = new Date();
     var Year = 0;
     var Month = 0;

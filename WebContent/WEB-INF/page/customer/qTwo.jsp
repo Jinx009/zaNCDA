@@ -11,7 +11,7 @@
 <script type="text/javascript" src="/sp/dist/jquery.js" ></script>
 <script type="text/javascript" src="/sp/js/common.js" ></script>
 <script type="text/javascript">
-var array = ['如何快速理解角色和融入团队','管理老板和关键决策人的关系','如何处理冲突和提升人机沟通','压力的管理和纾解'];
+var array = ['遇到难懂的上司，如何才能抓住老板的心？','空降兵苦恼：怎样破冰，快速开展工作？','我的能力很强，但是不被认可，该怎么办？','面对复杂的职场关系，如何提升自己的情商？'];
 var idArray = ['8','9','10','11'];
 var index = "8";
 
@@ -39,12 +39,12 @@ function goNext(){
 </head>
 <body>
 <a href="#"><div class="nav-title"><span class="nav-back" onclick="openUrl('/customer/page/new.html')" >&lt;</span>选择题</div></a>
-<div class="choice-title"><h1>职场能力</h1></div>
+<div class="choice-title"><h1>职场关系</h1></div>
 <ul class="choice-question">
-	<li id="0" onclick="changeText('0')" class="choice-question-select">如何快速理解角色和融入团队<span>&radic;</span></li>
-	<li id="1" onclick="changeText('1')" >管理老板和关键决策人的关系</li>
-	<li id="2" onclick="changeText('2')" >如何处理冲突和提升人机沟通</li>
-	<li id="3" onclick="changeText('3')" >压力的管理和纾解</li>
+	<li id="0" onclick="changeText('0')" class="choice-question-select">遇到难懂的上司，如何才能抓住老板的心？<span>&radic;</span></li>
+	<li id="1" onclick="changeText('1')" >空降兵苦恼：怎样破冰，快速开展工作？</li>
+	<li id="2" onclick="changeText('2')" >我的能力很强，但是不被认可，该怎么办？</li>
+	<li id="3" onclick="changeText('3')" >面对复杂的职场关系，如何提升自己的情商？</li>
 	<li class="choice-question-no" onclick="openUrl('/customer/page/new.html')" >没有找到您的描述，去其他场景找找看<span>&gt;</span></li>
 </ul>
 <div class="clear"></div>

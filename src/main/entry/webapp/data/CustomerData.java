@@ -38,6 +38,27 @@ public class CustomerData {
 	private TradeService tradeService;
 	
 	/**
+	 * 保存成长经历
+	 * @param request
+	 * @param response
+	 * @throws IOException
+	 */
+	@RequestMapping(value = "/customer/data/saveGrowp",method = RequestMethod.POST)
+	public void saveGrowp(HttpServletRequest request,HttpServletResponse response) throws IOException{
+		Integer status = Integer.valueOf(request.getParameter("status"));
+		customer = (Customer) request.getSession().getAttribute(ConstantUtil.CUSTOMER_SESSION);
+		if(0!=status){
+			customer.setGrowpStatus(status);
+			customerService.doUpdate(customer);
+		}
+		data = new HashMap<String, Object>();
+		data.put(ConstantUtil.RESULT,ConstantUtil.SUCCESS);
+		data.put(ConstantUtil.ERROR_MSG,"保存成功!");
+		
+		HttpWebIOHelper._printWebJson(data, response);
+	}
+	
+	/**
 	 * 获取验证码
 	 * @param request
 	 * @param response

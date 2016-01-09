@@ -13,6 +13,7 @@ public class OrderModel extends Order{
 	private String tName;
 	private String cName;
 	private String qName;
+	private String photoPath;
 	
 	public String gettName() {
 		return tName;
@@ -31,6 +32,12 @@ public class OrderModel extends Order{
 	}
 	public void setqName(String qName) {
 		this.qName = qName;
+	}
+	public String getPhotoPath() {
+		return photoPath;
+	}
+	public void setPhotoPath(String photoPath) {
+		this.photoPath = photoPath;
 	}
 	
 	

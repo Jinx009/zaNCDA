@@ -1,6 +1,8 @@
 package main.entry.webapp.page;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -25,6 +27,15 @@ public class TutorPage {
 	
 	@Autowired
 	private TutorService tutorService;
+	
+	/**
+	 * 导师端更改密码
+	 * @return
+	 */
+	@RequestMapping(value = "/tutor/changePwd")
+	public String changePwd(){
+		return "/tutor/changePwd";
+	}
 	
 	/**
 	 * 导师登陆页面
@@ -85,10 +96,16 @@ public class TutorPage {
 		}else{
 			request.setAttribute("trade","");
 		}
+		SimpleDateFormat df=new SimpleDateFormat("yyyy-MM-dd");
+		if(null!=tutor.getBirthday()){
+			request.setAttribute("birthday",df.format(tutor.getBirthday()));
+		}else{
+			request.setAttribute("birthday",df.format(new Date()));
+		}
 		request.setAttribute("tutor",tutor);
 		return "/tutor/infoOne";
 	}
-	
+
 	/**
 	 * 完善信息二
 	 * @return
@@ -100,7 +117,6 @@ public class TutorPage {
 		request.setAttribute("tutor",tutor);
 		return "/tutor/infoTwo";
 	}
-
 	/**
 	 * 完善信息三
 	 * @return

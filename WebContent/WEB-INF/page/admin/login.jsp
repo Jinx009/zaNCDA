@@ -73,10 +73,10 @@ function getCode(){
 			  </div>
 			  <div class="form-group">
 			    <label  class="col-sm-3 control-label">验证码</label>
-			    <div class="col-sm-5">
+			    <div class="col-sm-4">
 			      <input type="text" class="form-control" id="code" placeholder="验证码">
 			    </div>
-			    <label  class="col-sm-4 control-label" onclick="getCode()" id="codeText" ></label>
+			    <label  class="col-sm-3 control-label" onclick="getCode()" id="codeText" ></label>
 			  </div>
 			  <div class="form-group">
 			    <div class="col-sm-offset-2 col-sm-10"></div>

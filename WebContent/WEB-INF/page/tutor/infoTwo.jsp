@@ -70,6 +70,7 @@ function getColor(id){
 }
 
 function saveInfoTwo(){
+	$("#workYears").attr("disabled",false);
 	var face = type.face.status;
 	var mobile = type.mobile.status;
 	var video = type.video.status;
@@ -98,7 +99,7 @@ function saveInfoTwo(){
 	<input type="hidden" value="${tutor.faceStatus }" id="faceStatus" >
 	<input type="hidden" value="${tutor.videoStatus }" id="videoStatus" >
 	<input type="hidden" value="${tutor.mobileStatus }" id="mobileStatus" >
-	<select class="register-select-long" id="workYears" >
+	<select class="register-select-long" disabled="disabled" id="workYears" >
 		<option value="1" selected="selected">1年以内</option>
 		<option value="2" >1-3年</option>
 		<option value="3" >3-5年</option>
@@ -108,9 +109,9 @@ function saveInfoTwo(){
 </div>
 <h3 class="select-title">辅导方式</h3>
 <ul class="choice-question select-answer">
-	<li class="choice-question-select" id="face" onclick="changeColor('face')" >当面约谈<span>&radic;</span></li>
-	<li id="video"  onclick="changeColor('video')"  >视频约谈</li>
-	<li id="mobile"  onclick="changeColor('mobile')" >电话约谈</li>
+	<li class="choice-question-select" id="face" >当面约谈<span>&radic;</span></li>
+	<li id="video"  >视频约谈</li>
+	<li id="mobile"  >电话约谈</li>
 </ul>
 <div class="btn-position">
 	<div class="teacher-two-btn">

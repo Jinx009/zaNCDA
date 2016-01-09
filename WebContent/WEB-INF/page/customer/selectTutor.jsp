@@ -54,11 +54,14 @@ function changeTrade(){
 	}
 	$("#area").html(htmlStr);
 }
+function goBack(){
+	window.history.back();
+}
 </script>
 </head>
 <body>
 <input type="hidden" value="${id }" id="id" >
-<a><div class="nav-title"><span class="nav-back" onclick="openUrl('/customer/page/new.html')" >&lt;</span>筛选导师<span class="close" onclick="openUrl('/customer/page/index.html')" >&Chi;</span></div></a>
+<a><div class="nav-title"><span class="nav-back" onclick="goBack()" >&lt;</span>筛选导师<span class="close" onclick="openUrl('/customer/page/index.html')" >&Chi;</span></div></a>
 <div class="choice-title"><h1>请选择您心仪导师的属性</h1></div>
 <div class="register-inp register-inp-top">
 	<span class="register-inp-text">专注行业<b>*</b></span>
@@ -94,7 +97,7 @@ function changeTrade(){
 
 <div class="btn-position">
 	<div class="two-btn">
-		<button onclick="openUrl('/customer/page/new.html')" >上一步</button>
+		<button onclick="goBack()" >上一步</button>
 		<button onclick="goNext()" >下一步</button>
 	</div>
 </div>

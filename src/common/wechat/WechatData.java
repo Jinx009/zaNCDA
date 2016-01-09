@@ -4,7 +4,7 @@ import java.io.UnsupportedEncodingException;
 
 public class WechatData {
 	
-	public static final String APP_ID = "wx08411a74145eb7dc";
+	public static final String APP_ID = "wxad7987ba40989a97";
 	
 	public static final String APP_SECRET = "852e83b7030c1723271ffce48540d4a8";
 	

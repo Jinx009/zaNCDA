@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<title>顾客注册</title>
+<title>学员注册</title>
 <link rel="stylesheet" href="/sp/css/base.css" />
 <link rel="stylesheet" href="/sp/css/ncda.css" />
 

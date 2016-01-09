@@ -48,7 +48,7 @@ var oldPackageString;
  * @returns {String}
  */
 function getAppId(){
-    return "wx08411a74145eb7dc";
+    return "wxad7987ba40989a97";
 }
 
 
@@ -99,7 +99,7 @@ var sign;
 function getSign(){
 	 time = getTimeStamp();
 	 nonce = getNonceStr();
-     var params = "appId=wx08411a74145eb7dc&nonceStr="+nonce+"&package=prepay_id="+pay_id+"&signType=MD5&timeStamp="+time+"&key=jinxjinxjinxjinxjinxjinxjinxjinx";
+     var params = "appId=wxad7987ba40989a97&nonceStr="+nonce+"&package=prepay_id="+pay_id+"&signType=MD5&timeStamp="+time+"&key=jinxjinxjinxjinxjinxjinxjinxjinx";
     // alert(params);
      sign = CryptoJS.MD5(params).toString().toUpperCase();
      
@@ -114,7 +114,7 @@ var pay_id;
 function callPlay(){
    sign = getSign();
    WeixinJSBridge.invoke('getBrandWCPayRequest', {
-           "appId":"wx08411a74145eb7dc",    
+           "appId":"wxad7987ba40989a97",    
            "timeStamp":time,        
            "nonceStr":nonce, 
            "package":"prepay_id="+pay_id,     
@@ -154,9 +154,9 @@ function pay(){
 	var total_fee = parseFloat($("#fee").val())*100;   
 	var openId = $("#openId").val();
 	var nonceStr = getNonceStr();
-	var str = "appid=wx08411a74145eb7dc"+
+	var str = "appid=wxad7987ba40989a97"+
 			   "&body=NCDA"+
-			   "&mch_id=1280820801"+
+			   "&mch_id=1304560401"+
 			   "&nonce_str="+nonceStr+
 			   "&notify_url=http://t03.0angel.com/pay/callBack.html"+
 			   "&openid="+openId+

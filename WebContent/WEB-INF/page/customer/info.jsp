@@ -114,8 +114,15 @@ function saveInf(){
 	var params = "realName="+realName+"&qq="+qq+"&email="+email+"&sex="+sex+"&birthday="+birthday+
 				"&famillyNumber="+famillyNumber+"&wechatName="+wechatName+"&trade="+trade+"&job="+job;
 	if(!checkEmail(email)){
-		alert(errorMsg);
-	}else{
+		alert("邮箱格式不正确");
+	}else if(""==qq){
+		alert("qq未填写!");
+	}else if(""==wechatName){
+		alert("微信号未填写！");
+	}else if(""==realName){
+		alert("用户姓名未填写!");
+	}
+	else{
 		$.ajax({
 			url:"/customer/data/saveInfo.html",
 			type:"POST",
@@ -164,6 +171,7 @@ function checkEmail(email){
 	   errorMsg = '请输入有效的邮箱地址！';
        return false;
    }
+   return true;
 }
 </script>
 </head>

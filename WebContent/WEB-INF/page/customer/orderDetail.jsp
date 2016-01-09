@@ -118,7 +118,7 @@ function cacleOrder(){
 <input type="hidden" id="orderId" value="${order.id }" >
 <div class="interviewDetails-top">
 	<div class="interviewDetails-top-left">
-		<img src="/sp/images/headIcon_middle.png"/>
+		<img src="${order.qTutor.photoPath }"/>
 	</div>
 	<div class="interviewDetails-top-right">
 		<p class="interview-title">${order.topicContent }</p>
@@ -148,8 +148,8 @@ function cacleOrder(){
 </div>
 
 <div class="evaluate-text">
-	<ul>
-		<li>不同意</li>
+	<ul style="width: 100%;" >
+		<li >不同意</li>
 		<li>完全同意</li>
 	</ul>
 </div>

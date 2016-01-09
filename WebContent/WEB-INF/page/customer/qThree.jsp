@@ -11,7 +11,7 @@
 <script type="text/javascript" src="/sp/dist/jquery.js" ></script>
 <script type="text/javascript" src="/sp/js/common.js" ></script>
 <script type="text/javascript">
-var array = ['了解公司的架构和晋级之路','快速建立短期目标并积累经验和人脉','如何在职场提升关键技术和管理能力','为自己的市场价值添分的诀窍'];
+var array = ['如何能够了解职业发展道路上的不同能力要求？','现任岗位上，提升哪些能力能让我有更突出的表现？','职业转型期需要的关键能力有哪些？','如何处理越来越大的职场压力？'];
 var idArray = ['12','13','14','15'];
 var index = "12";
 
@@ -41,10 +41,10 @@ function goNext(){
 <a href="#"><div class="nav-title"><span class="nav-back"  onclick="openUrl('/customer/page/new.html')" >&lt;</span>选择题</div></a>
 <div class="choice-title"><h1>职业发展</h1></div>
 <ul class="choice-question">
-	<li id="0" onclick="changeText('0')" class="choice-question-select">了解公司的架构和晋级之路<span>&radic;</span></li>
-	<li id="1" onclick="changeText('1')" >快速建立短期目标并积累经验和人脉</li>
-	<li id="2" onclick="changeText('2')" >如何在职场提升关键技术和管理能力</li>
-	<li id="3" onclick="changeText('3')" >为自己的市场价值添分的诀窍</li>
+	<li id="0" onclick="changeText('0')" class="choice-question-select">如何能够了解职业发展道路上的不同能力要求？<span>&radic;</span></li>
+	<li id="1" onclick="changeText('1')" >现任岗位上，提升哪些能力能让我有更突出的表现？</li>
+	<li id="2" onclick="changeText('2')" >职业转型期需要的关键能力有哪些？</li>
+	<li id="3" onclick="changeText('3')" >如何处理越来越大的职场压力？</li>
 	<li class="choice-question-no" onclick="openUrl('/customer/page/new.html')" >没有找到您的描述，去其他场景找找看<span>&gt;</span></li>
 </ul>
 <div class="clear"></div>

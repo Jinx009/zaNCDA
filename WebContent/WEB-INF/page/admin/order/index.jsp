@@ -44,13 +44,19 @@ function getData(pageNum){
 					htmlStr += "<td>"+jsDateTimeOnly(res.data.list[i].qTutorTime.realDate)+"</td>";
 					htmlStr += "<td>"+res.data.list[i].qTutorTime.realTime+"</td>";
 					htmlStr += "<td>"+getOrderStatus(res.data.list[i].status)+"</td>";
+					htmlStr += "<td>"+jsDateTimeOnly(res.data.list[i].addTime)+"</td>";
+					if(null!=res.data.list[i].cacleDate){
+						htmlStr += "<td>"+jsDateTimeOnly(res.data.list[i].cacleDate)+"</td>";
+					}else{
+						htmlStr += "<td></td>";
+					}
 					htmlStr += "<td>";
 					htmlStr += "<a class='btn btn-default' onclick=openLook('"+i+"','comments') >查看导师评论</a>";
 					htmlStr += "<a class='btn btn-default' onclick=openLook('"+i+"','score') >查看顾客评论</a>";
 					htmlStr += "</td></tr>";
 				}
 			}else{
-				htmlStr += "<tr><td colspan='8' class='center red'>查询条件暂无数据，请尝试更换条件查询</td></tr>";
+				htmlStr += "<tr><td colspan='10' class='center red'>查询条件暂无数据，请尝试更换条件查询</td></tr>";
 			}
 			$("#pageMenu").html(menuHtml);
 			$("#page"+pageNum).addClass("active");
@@ -227,6 +233,8 @@ function getExcel(){
 						<td>约谈日期</td>
 						<td>约谈时间</td>
 						<td>订单状态</td>
+						<td>下单时间</td>
+						<td>取消时间</td>
 						<td>操作</td>
 					</tr>
 				</thead>

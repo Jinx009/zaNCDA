@@ -11,9 +11,9 @@
 <script type="text/javascript" src="/sp/dist/jquery.js" ></script>
 <script type="text/javascript" src="/sp/js/common.js" ></script>
 <script type="text/javascript">
-var array = ['自我测评和岗位/行业评估','找到正确的求职渠道','如何制作和投递完美的简历','面试模拟舱：看到真实的自己'];
-var idArray = ['4','5','6','7'];
-var index = "4";
+var array = ['兴趣还是专业，我该如何选择职业方向？','有一个看似美好的机会摆在面前，走还是留？','管理路线、专业路线，哪一个更加适合我？','感受到了职场瓶颈，下一步该怎么办？','我是否适合创业？'];
+var idArray = ['4','5','6','7','16'];
+var index = "5";
 
 /**
  * 更换内容
@@ -39,12 +39,13 @@ function goNext(){
 </head>
 <body>
 <a href="#"><div class="nav-title"><span class="nav-back" onclick="openUrl('/customer/page/new.html')" >&lt;</span>选择题</div></a>
-<div class="choice-title"><h1>职场关系</h1></div>
+<div class="choice-title"><h1>职业选择</h1></div>
 <ul class="choice-question">
-	<li id="0" onclick="changeText('0')" class="choice-question-select">自我测评和岗位/行业评估<span>&radic;</span></li>
-	<li id="1" onclick="changeText('1')" >找到正确的求职渠道</li>
-	<li id="2" onclick="changeText('2')" >如何制作和投递完美的简历</li>
-	<li id="3" onclick="changeText('3')" >面试模拟舱：看到真实的自己</li>
+	<li id="0" onclick="changeText('0')" class="choice-question-select">兴趣还是专业，我该如何选择职业方向？<span>&radic;</span></li>
+	<li id="1" onclick="changeText('1')" >有一个看似美好的机会摆在面前，走还是留？</li>
+	<li id="2" onclick="changeText('2')" >管理路线、专业路线，哪一个更加适合我？</li>
+	<li id="3" onclick="changeText('3')" >感受到了职场瓶颈，下一步该怎么办？</li>
+	<li id="4" onclick="changeText('4')" >我是否适合创业？</li>
 	<li class="choice-question-no" onclick="openUrl('/customer/page/new.html')" >没有找到您的描述，去其他场景找找看<span>&gt;</span></li>
 </ul>
 <div class="clear"></div>

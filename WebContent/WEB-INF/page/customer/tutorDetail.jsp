@@ -37,7 +37,7 @@ function goNext(){
 	
 	<div class="tutorDetails">
 		<div class="tutorDetails-bg">
-			<img src="/sp/images/tutorDetail_icon.png"/>
+			<img src="${tutor.photoPath }"/>
 		</div>
 		<div class="tutor-details-name">${tutor.realName }教师<img src="/sp/images/male.png"/></div>
 		
@@ -65,7 +65,7 @@ function goNext(){
 			<li><img src="/sp/images/small_bottom.png"/></li>
 		</ul>
 		<div class="tutor-content">
-			<ul class="tutor-content-li-business">
+			<ul class="tutor-content-li-like">
 				<li>${tutor.tradeOne.tradeName }</li>
 				<li>${tutor.tradeTwo.tradeName }</li>
 				<li>${tutor.tradeThree.tradeName }</li>

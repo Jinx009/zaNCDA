@@ -26,53 +26,53 @@
 		</div>
 	</div>
 	
-	<div class="index-box"  onclick="openUrl('/customer/page/caseDetail.html')" >
+	<div class="index-box"  onclick="openUrl('/customer/page/caseDetail.html?id=3')" >
 		<div class="index-img">
 			<img src="/sp/images/caseDetail_bg.png" class="index-big"/>
-			<img src="/sp/images/index-label-recommend.png" class="index-small"/>
+			<img src="/sp/images/zyfz.png" class="index-small"/>
 		</div>
 		<div class="index-content">
-			<h3>张三，强生中国，2014届管理培训生</h3>
+			<h3>张小丽，英语培训公司，企业销售经理</h3>
 			<div class="qa">	
 				<img src="/sp/images/qa_left.png" class="qa_left"/>
-				<p>如何快速融入充满挑战的企业职场？</p>
+				<p>职场情商</p>
 				<img src="/sp/images/qa_right.png" class="qa_right"/>
 			</div>	
 		</div>
 		
 	</div>
 	
-	<div class="index-box" onclick="openUrl('/customer/page/caseDetail.html')" >
+	<div class="index-box" onclick="openUrl('/customer/page/caseDetail.html?id=1')" >
 		<div class="index-img">
 			<img src="/sp/images/caseDetail_bg.png" class="index-big"/>
-			<img src="/sp/images/index-label-hot.png" class="index-small"/>
+			<img src="/sp/images/zyxz.png" class="index-small"/>
 		</div>
 		<div class="index-content">
-			<h3>李斯，联合利华，研发部门经理</h3>
+			<h3>陈美，全球知名4A广告公司，媒体策划经理</h3>
 			<div class="qa">
 				<img src="/sp/images/qa_left.png" class="qa_left"/>
-				<p>如何突破职业生涯瓶颈</p>
+				<p>自我定位和职业发展</p>
 				<img src="/sp/images/qa_right.png" class="qa_right"/>
 			</div>
 				
 		</div>
 	</div>
 	
-	<div class="index-box"  onclick="openUrl('/customer/page/caseDetail.html')" >
+	<div class="index-box"  onclick="openUrl('/customer/page/caseDetail.html?id=2')" >
 		<div class="index-img">
 			<img src="/sp/images/caseDetail_bg.png" class="index-big"/>
-			<img src="/sp/images/index-label-only.png" class="index-small"/>
+			<img src="/sp/images/zcgx.png" class="index-small"/>
 		</div>
 		<div class="index-content">
-			<h3>陈梅，埃森哲中国，咨询顾问</h3>
+			<h3>张磊，欧洲大型工业企业，招聘经理</h3>
 			<div class="qa">
 				<img src="/sp/images/qa_left.png" class="qa_left"/>
-				<p>如何在复杂的项目中提升自己的咨询能力</p>
+				<p>职业发展下一站——转型</p>
 				<img src="/sp/images/qa_right.png" class="qa_right"/>
 			</div>
 		</div>
 	</div>
-	<div class="index-nav">
+	<div class="index-nav" style="position:fixed;bottom: 0px;left: 0px;width: 100%;height: 50px;z-index: 9999;" >
 		<div><a href="/customer/page/new.html">新建辅导</a></div>
 		<div><a href="/customer/page/manage.html">约谈管理</a></div>
 	</div>

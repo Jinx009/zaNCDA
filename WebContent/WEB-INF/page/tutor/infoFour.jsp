@@ -37,12 +37,12 @@ function saveData(){
 
 <div class="information-content">
 	<p>导师认证资质</p>
-	<textarea placeholder="200字，导师认证资质"  id="aptitude" class="big-textarea">${tutor.aptitude }</textarea>
+	<textarea placeholder="200字，导师认证资质" readonly="readonly"  id="aptitude" class="big-textarea">${tutor.aptitude }</textarea>
 </div>
 
 <div class="information-content">
 	<p>导师个人简介</p>
-	<textarea placeholder="200字，导师个人简介" id="personalIntroduction" class="big-textarea">${tutor.personalIntroduction }</textarea>
+	<textarea placeholder="200字，导师个人简介" readonly="readonly" id="personalIntroduction" class="big-textarea">${tutor.personalIntroduction }</textarea>
 </div>
 <div class="teacher-two-btn">
 	<button class="teacher-orange-btn" onclick="openUrl('/tutor/page/infoThree.html')" >上一步</button>
