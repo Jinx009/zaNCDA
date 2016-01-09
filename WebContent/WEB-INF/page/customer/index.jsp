@@ -73,7 +73,7 @@
 		</div>
 	</div>
 	<div class="index-nav" style="position:fixed;bottom: 0px;left: 0px;width: 100%;height: 50px;z-index: 9999;" >
-		<div><a href="/customer/page/new.html">新建辅导</a></div>
+		<div><a href="/customer/page/new.html">开始预约</a></div>
 		<div><a href="/customer/page/manage.html">约谈管理</a></div>
 	</div>
 </div>

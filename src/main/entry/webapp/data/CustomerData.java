@@ -112,6 +112,23 @@ public class CustomerData {
 		HttpWebIOHelper._printWebJson(data, response);
 	}
 	
+	/**
+	 * 注册手机验证码
+	 * @param request
+	 * @param response
+	 * @throws IOException
+	 */
+	@RequestMapping(value = "/customer/data/getRegisterCode")
+	public void getRegCode(HttpServletRequest request,HttpServletResponse response) throws IOException{
+		data = new HashMap<String, Object>();
+		int code = (int) (Math.random()*900000+100000);
+		String mobilePhone = request.getParameter("mobilePhone");
+		MsgUtil.sendMsg(mobilePhone,"欢迎您注册才知道，您的手机验证码是:"+code);
+		request.getSession().setAttribute("register_code_"+mobilePhone,code);
+		data.put(ConstantUtil.RESULT,ConstantUtil.SUCCESS);
+		HttpWebIOHelper._printWebJson(data, response);
+	}
+	
 	@RequestMapping(value = "/customer/data/doForget")
 	public void doForget(HttpServletRequest request,HttpServletResponse response) throws IOException{
 		String mobileCode = request.getParameter("mobileCode");
@@ -192,6 +209,7 @@ public class CustomerData {
 		String mobile = request.getParameter("mobile");
 		String pwd = request.getParameter("pwd");
 		String code = request.getParameter("code");
+		String mobileCode = request.getParameter("mobileCode");
 		
 		customer = customerService.getByUserName(mobile);
 		
@@ -200,7 +218,10 @@ public class CustomerData {
 		
 		if(!request.getSession().getAttribute(ConstantUtil.CUSTOMER_REGISTER_CODE).toString().equals(code)){
 			data.put(ConstantUtil.ERROR_MSG,"验证码错误!");
-		}else if(null!=customer){
+		}else if(!mobileCode.equals(request.getSession().getAttribute("register_code_"+mobile).toString())){
+			data.put(ConstantUtil.ERROR_MSG,"手机验证码错误!");
+		}
+		else if(null!=customer){
 			data.put(ConstantUtil.ERROR_MSG,"账户已存在!");
 		}else{
 			customer = new Customer();

@@ -30,6 +30,54 @@ function getRegisterCode(){
 }
 
 /**
+ * 获取手机验证码
+ */
+function getCode(){
+	var mobilePhone = $("#mobilePhone").val();
+	var params = "mobilePhone="+mobilePhone;
+	var result = validateTel(mobilePhone);
+	if("success"!=result){
+		alert(result);
+	}else{
+		$.ajax({
+			url:"/customer/data/getRegisterCode.html",
+			type:"POST",
+			data:params,
+			dataType:"json",
+			success:function(res){
+				if("success"==res.result){
+					changeGetCodeBtn();
+				}else{
+					alert(res.errmsg);
+				}
+			}
+		})
+	}
+}
+
+/**
+ * 验证码状态
+ */
+function changeGetCodeBtn(){
+	var time=60;
+	
+	var timeFun=setInterval(function(){
+		time--;
+		
+		if(time>0){
+			$("#codeMobileText").html(time+"秒后重发").attr("onclick","");
+		}
+		else{
+			time=60;
+				
+			$("#codeMobileText").html("获取验证码").attr("onclick","getCode");
+				
+			clearInterval(timeFun);
+		}
+	},1000)
+}
+
+/**
  * 执行注册
  */
 function doRegister(){
@@ -37,7 +85,8 @@ function doRegister(){
 	var pwd = $("#pwd").val();
 	var repwd = $("#repwd").val();
 	var code = $("#code").val();
-	var params = "mobile="+mobile+"&pwd="+pwd+"&code="+code;
+	var mobileCode = $("#mobileCode").val();
+	var params = "mobile="+mobile+"&pwd="+pwd+"&code="+code+"&mobileCode="+mobileCode;
 	
 	if("success"!=validateTel(mobile)){
 		alert(validateTel(mobile));
@@ -86,6 +135,11 @@ function doRegister(){
 		<span class="register-inp-text">验证码</span>
 		<input value="" id="code" class="register-inp-short"/>
 		<div class="register-inp-btn" id="codeText" onclick="getRegisterCode();" ></div>
+	</div>
+	<div class="register-inp login-inp-top">
+		<span class="register-inp-text">验证码</span>
+		<input type="text"  value="" id="mobileCode" class="register-inp-short"/>
+		<div class="register-inp-btn" id="codeMobileText" onclick="getCode()" >获取验证码</div>
 	</div>
 	<div class="clear"></div>
 	
