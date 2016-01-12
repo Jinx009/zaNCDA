@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -38,19 +38,24 @@ function goNext(){
 </script>
 </head>
 <body>
-<a href="#"><div class="nav-title"><span class="nav-back"  onclick="openUrl('/customer/page/new.html')" >&lt;</span>选择题</div></a>
-<div class="choice-title"><h1>职业发展</h1></div>
+<a href="#"><div class="nav-title"><span class="nav-back"  onclick="openUrl('/customer/page/new.html')" >&lt;</span>职业能力发展</div></a>
+<div class="choice-title" style="height:130px;" ><h1></h1>
+<div style="height:10px;" ></div>
+<p style="text-indent:2em;line-height:18px;font-size:14px;" >“如何让自己保持职场竞争力？”“怎样不断增加我的市场价值？”了解行业或者职业领域发展趋势，明确目标，快速提升自身专业与职业能力，你可以在这里得到专业导师的辅导，解决困惑。</p>
+<div style="height:10px;" ></div>
+<p style="line-height:18px;font-size:14px;"><b>以下是可供选择的具体场景或者挑战（单选）</b></p>
+</div>
 <ul class="choice-question">
 	<li id="0" onclick="changeText('0')" class="choice-question-select">如何能够了解职业发展道路上的不同能力要求？<span>&radic;</span></li>
 	<li id="1" onclick="changeText('1')" >现任岗位上，提升哪些能力能让我有更突出的表现？</li>
 	<li id="2" onclick="changeText('2')" >职业转型期需要的关键能力有哪些？</li>
 	<li id="3" onclick="changeText('3')" >如何处理越来越大的职场压力？</li>
-	<li class="choice-question-no" onclick="openUrl('/customer/page/new.html')" >没有找到您的描述，去其他场景找找看<span>&gt;</span></li>
+	<li class="choice-question-no" onclick="openUrl('/customer/page/new.html')" >没有找到符合您的描述？ 去其他场景找找看<span>&gt;</span></li>
 </ul>
 <div class="clear"></div>
 <div class="choice-text">
-	<p>我想自己书写我的职场困惑场景</p>
-	<textarea placeholder="输入您的职场困惑"></textarea>
+	<p  style="font-size:14px;"><b>您有个性化问题？请写在这里吧：</b></p>
+	<textarea placeholder="(限150字以内)" maxlength="150"></textarea>
 </div>
 <div class="sure-btn">
 	<div class="tutor-search-btn" onclick="goNext()" >下一步</div>

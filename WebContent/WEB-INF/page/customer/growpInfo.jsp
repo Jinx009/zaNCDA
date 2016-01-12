@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -35,6 +35,7 @@ function saveGrowp(){
 		success:function(res){
 			if("success"==res.result){
 				alert("保存成功!");
+location.href = "/customer/page/index.html";
 			}
 		}
 	})
@@ -64,7 +65,7 @@ function changeStatus(index){
 </head>
 <body>
 <input type="hidden" value="${status }" id="status" >
-<a href="#"><div class="nav-title"><span class="nav-back" onclick="openUrl('/customer/page/info.html')" >&lt;</span>个人信息成长录入<span class="close" onclick="openUrl('/customer/page/index.html')" >&Chi;</span></div></a>
+<a href="#"><div class="nav-title"><span class="nav-back" onclick="openUrl('/customer/page/info.html')" >&lt;</span>个人成长信息录入<span class="close" onclick="openUrl('/customer/page/index.html')" >&Chi;</span></div></a>
 	<div class="personal-inp-content">
 		<img src="/sp/images/personal_input.png"/>
 		<div><h1>选择您所属的阶段</h1></div>

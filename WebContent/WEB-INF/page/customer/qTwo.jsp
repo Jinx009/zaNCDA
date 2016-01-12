@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -38,19 +38,23 @@ function goNext(){
 </script>
 </head>
 <body>
-<a href="#"><div class="nav-title"><span class="nav-back" onclick="openUrl('/customer/page/new.html')" >&lt;</span>选择题</div></a>
-<div class="choice-title"><h1>职场关系</h1></div>
+<a href="#"><div class="nav-title"><span class="nav-back" onclick="openUrl('/customer/page/new.html')" >&lt;</span>职场关系</div></a>
+<div class="choice-title" style="height:150px;" ><h1></h1>
+<div style="height:10px;" ></div>
+<p style="text-indent:2em;line-height:18px;font-size:14px;" >“我们公司的同事都很难相处。”“我老板很奇怪，搞不懂他想要怎样”。世上最难懂的是人心，把握好职场中的关系，可以让工作成就事半功倍。你也许对纷繁复杂的人际关系感觉难以应对，在这里可以得到专业导师的咨询与建议，更加高效地管理职场人际。</p>
+<div style="height:10px;" ></div>
+<p style="line-height:18px;font-size:14px;"><b>以下是可供选择的具体场景或者挑战（单选）</b></p></div>
 <ul class="choice-question">
 	<li id="0" onclick="changeText('0')" class="choice-question-select">遇到难懂的上司，如何才能抓住老板的心？<span>&radic;</span></li>
 	<li id="1" onclick="changeText('1')" >空降兵苦恼：怎样破冰，快速开展工作？</li>
 	<li id="2" onclick="changeText('2')" >我的能力很强，但是不被认可，该怎么办？</li>
 	<li id="3" onclick="changeText('3')" >面对复杂的职场关系，如何提升自己的情商？</li>
-	<li class="choice-question-no" onclick="openUrl('/customer/page/new.html')" >没有找到您的描述，去其他场景找找看<span>&gt;</span></li>
+	<li class="choice-question-no" onclick="openUrl('/customer/page/new.html')" >没有找到符合您的描述？ 去其他场景找找看<span>&gt;</span></li>
 </ul>
 <div class="clear"></div>
 <div class="choice-text">
-	<p>我想自己书写我的职场困惑场景</p>
-	<textarea placeholder="输入您的职场困惑" ></textarea>
+	<p  style="font-size:14px;"><b>您有个性化问题？请写在这里吧：</b></p>
+	<textarea placeholder="(限150字以内)" maxlength="150" ></textarea>
 </div>
 <div class="sure-btn">
 	<div class="tutor-search-btn" onclick="goNext()" >下一步</div>

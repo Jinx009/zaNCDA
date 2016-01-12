@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -38,20 +38,26 @@ function goNext(){
 </script>
 </head>
 <body>
-<a href="#"><div class="nav-title"><span class="nav-back" onclick="openUrl('/customer/page/new.html')" >&lt;</span>选择题</div></a>
-<div class="choice-title"><h1>职业选择</h1></div>
+<a href="#"><div class="nav-title"><span class="nav-back" onclick="openUrl('/customer/page/new.html')" >&lt;</span>职业选择</div></a>
+<div class="choice-title" style="height:130px;" ><h1></h1>
+<div style="height:10px;" ></div>
+<p style="text-indent:2em;line-height:18px;font-size:14px;" >寻求职业发展的过程中，我们常常面临很多选择。不论是要追求“心中的梦想”，还是因为感觉“怀才不遇”。在这些场景里面，都需要有专业的导师在你身边，帮你找准定位，做出正确的选择。</p>
+<div style="height:10px;" ></div>
+<p style="line-height:18px;font-size:14px;"><b>以下是可供选择的具体场景或者挑战（单选）</b></p>
+</div>
+
 <ul class="choice-question">
 	<li id="0" onclick="changeText('0')" class="choice-question-select">兴趣还是专业，我该如何选择职业方向？<span>&radic;</span></li>
 	<li id="1" onclick="changeText('1')" >有一个看似美好的机会摆在面前，走还是留？</li>
 	<li id="2" onclick="changeText('2')" >管理路线、专业路线，哪一个更加适合我？</li>
 	<li id="3" onclick="changeText('3')" >感受到了职场瓶颈，下一步该怎么办？</li>
 	<li id="4" onclick="changeText('4')" >我是否适合创业？</li>
-	<li class="choice-question-no" onclick="openUrl('/customer/page/new.html')" >没有找到您的描述，去其他场景找找看<span>&gt;</span></li>
+	<li class="choice-question-no" onclick="openUrl('/customer/page/new.html')" >没有找到符合您的描述？ 去其他场景找找看<span>&gt;</span></li>
 </ul>
 <div class="clear"></div>
 <div class="choice-text">
-	<p>我想自己书写我的职场困惑场景</p>
-	<textarea placeholder="输入您的职场困惑"></textarea>
+	<p style="font-size:14px;"><b>您有个性化问题？请写在这里吧：</b></p>
+	<textarea placeholder="(限150字以内)" maxlength="150" ></textarea>
 </div>
 <div class="sure-btn">
 	<div class="tutor-search-btn" onclick="goNext()" >下一步</div>

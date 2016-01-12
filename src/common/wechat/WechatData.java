@@ -6,7 +6,7 @@ public class WechatData {
 	
 	public static final String APP_ID = "wxad7987ba40989a97";
 	
-	public static final String APP_SECRET = "852e83b7030c1723271ffce48540d4a8";
+	public static final String APP_SECRET = "b3937255dcc5e4953798146c547a4e92";
 	
 	public static final String TOKEN = "test";
 	
