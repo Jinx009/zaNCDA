@@ -36,13 +36,13 @@ function getData(){
 				var htmlStr1 = "",htmlStr2 = "",htmlStr3 = "";
 				for(var i = 0;i<res.errmsg.length;i++){
 					if("1"==res.errmsg[i].parentId){
-						htmlStr1 += "<div><input type='radio' id=radio"+res.errmsg[i].id+" name='topicId' value="+res.errmsg[i].id+" />"+res.errmsg[i].name+"</div>";
+						htmlStr1 += "<div><input type='checkbox' id=radio"+res.errmsg[i].id+" name='topicId' value="+res.errmsg[i].id+" />"+res.errmsg[i].name+"</div>";
 					}
 					if("2"==res.errmsg[i].parentId){
-						htmlStr2 += "<div><input type='radio' id=radio"+res.errmsg[i].id+"  name='topicId' value="+res.errmsg[i].id+" />"+res.errmsg[i].name+"</div>";
+						htmlStr2 += "<div><input type='checkbox' id=radio"+res.errmsg[i].id+"  name='topicId' value="+res.errmsg[i].id+" />"+res.errmsg[i].name+"</div>";
 					}
 					if("3"==res.errmsg[i].parentId){
-						htmlStr3 += "<div><input type='radio' id=radio"+res.errmsg[i].id+"  name='topicId' value="+res.errmsg[i].id+" />"+res.errmsg[i].name+"</div>";
+						htmlStr3 += "<div><input type='checkbox' id=radio"+res.errmsg[i].id+"  name='topicId' value="+res.errmsg[i].id+" />"+res.errmsg[i].name+"</div>";
 					}
 				}
 				$("#topicDiv1").html(htmlStr1);
@@ -179,7 +179,12 @@ function saveInfo(){
 	if("checked"==$("#faceStatus").is(":checked")||true==$("#faceStatus").is(":checked")){
 		faceStatus = 1;
 	}
-	var topicId = $('input[name="topicId"]:checked').val();
+	var topicId = "";
+	$('input[name="topicId"]').each(function(){
+		if("checked"==$(this).is(":checked")||true==$(this).is(":checked")){
+			topicId += $(this).val()+"str";
+		}
+	})
 	var personalIntroduction = $("#personalIntroduction").val();
 
 	var params = "username="+username+"&photoPath="+photoPath+"&sex="+sex+"&mobilePhone="+mobilePhone+"&aptitude="+aptitude+"&birth="+
@@ -187,10 +192,8 @@ function saveInfo(){
 				area2+"&area3="+area3+"&isOnline="+isOnline+"&bankAccount="+bankAccount+"&bankName="+bankName+"&idCard="+idCard+
 				"&email="+email+"&workYears="+workYears+"&qq="+qq+"&mobileStatus="+mobileStatus+"&faceStatus="+faceStatus+"&videoStatus="+
 				videoStatus+"&personalIntroduction="+personalIntroduction+"&topicId="+topicId+"&realname="+realname+"&pwd="+pwd+"&facePrice="+facePrice;
-	if(bankAccount!=bankAccount1){
-		alert("银行卡号确认信息不一致!");
-	}else{
-		$.ajax({
+	
+	 	$.ajax({
 			url:"/tutor/data/save.html",
 			type:"POST",
 			data:params,
@@ -200,8 +203,7 @@ function saveInfo(){
 					alert("操作成功!");
 				}
 			}
-		})
-	}
+		}) 
 }
 </script>
 
@@ -308,8 +310,8 @@ function saveInfo(){
 					<tr>
 						<th>行业3：</th>
 						<td> <select class="form-control" id="trade3" onchange="changeTrade('3')" ></select></td>
-						<th>银行卡号：</th>
-						<td><input type="text" class="form-control" value="" id="bankAccount1"  ></td>
+						<th>openId：</th>
+						<td> <input type="text" id="openid" readonly="readonly" value="" class="form-control"  ></td>
 					</tr>
 					<tr>
 						<th>擅长领域1：</th>
@@ -338,8 +340,8 @@ function saveInfo(){
 					<tr>
 						<th>约谈价格</th>
 						<td> <input type="text" id="facePrice"  value="0" class="form-control"  ></td>
-						<th>openid：</th>
-						<td>  <input type="text" id="openid" readonly="readonly" value="" class="form-control"  ></td>
+						<th></th>
+						<td> </td>
 					</tr>
 					<tr>
 						<th colspan="4" >辅助方式：</th>

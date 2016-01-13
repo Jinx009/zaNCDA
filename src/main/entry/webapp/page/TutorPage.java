@@ -200,6 +200,72 @@ public class TutorPage {
 		}else{
 			request.setAttribute("topicId","");
 		}
+		if(null!=tutor.getTopic2()){
+			request.setAttribute("topicId2",tutor.getTopic2().getId());
+		}else{
+			request.setAttribute("topicId2","");
+		}
+		if(null!=tutor.getTopic3()){
+			request.setAttribute("topicId3",tutor.getTopic3().getId());
+		}else{
+			request.setAttribute("topicId3","");
+		}
+		if(null!=tutor.getTopic4()){
+			request.setAttribute("topicId4",tutor.getTopic4().getId());
+		}else{
+			request.setAttribute("topicId4","");
+		}
+		if(null!=tutor.getTopic5()){
+			request.setAttribute("topicId5",tutor.getTopic5().getId());
+		}else{
+			request.setAttribute("topicId5","");
+		}
+		if(null!=tutor.getTopic6()){
+			request.setAttribute("topicId6",tutor.getTopic6().getId());
+		}else{
+			request.setAttribute("topicId6","");
+		}
+		if(null!=tutor.getTopic7()){
+			request.setAttribute("topicId7",tutor.getTopic7().getId());
+		}else{
+			request.setAttribute("topicId7","");
+		}
+		if(null!=tutor.getTopic8()){
+			request.setAttribute("topicId8",tutor.getTopic8().getId());
+		}else{
+			request.setAttribute("topicId8","");
+		}
+		if(null!=tutor.getTopic9()){
+			request.setAttribute("topicId9",tutor.getTopic9().getId());
+		}else{
+			request.setAttribute("topicId9","");
+		}
+		if(null!=tutor.getTopic10()){
+			request.setAttribute("topicId10",tutor.getTopic10().getId());
+		}else{
+			request.setAttribute("topicId10","");
+		}
+		if(null!=tutor.getTopic11()){
+			request.setAttribute("topicId11",tutor.getTopic11().getId());
+		}else{
+			request.setAttribute("topicId11","");
+		}
+		if(null!=tutor.getTopic12()){
+			request.setAttribute("topicId12",tutor.getTopic12().getId());
+		}else{
+			request.setAttribute("topicId12","");
+		}
+		if(null!=tutor.getTopic13()){
+			request.setAttribute("topicId13",tutor.getTopic13().getId());
+		}else{
+			request.setAttribute("topicId13","");
+		}
+		if(null!=tutor.getTopic14()){
+			request.setAttribute("topicId14",tutor.getTopic14().getId());
+		}else{
+			request.setAttribute("topicId14","");
+		}
+		
 		if(null!=tutor.getTradeOne()){
 			request.setAttribute("trade1",tutor.getTradeOne().getId());
 		}else{

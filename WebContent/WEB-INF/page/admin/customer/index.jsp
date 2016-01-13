@@ -46,6 +46,7 @@ function getData(pageNum){
 					htmlStr += "<td>"+isNull(res.data.list[i].qq)+"</td>";
 					htmlStr += "<td>"+isNull(res.data.list[i].email)+"</td>";
 					htmlStr += "<td>"+isNull(res.data.list[i].wechatName)+"</td>";
+					htmlStr += "<td>"+getGrowp(res.data.list[i].growpStatus)+"</td>";
 					htmlStr += "<td>";
 					htmlStr += "<a class='btn btn-default' onclick=moreDiv('"+i+"')  >查看</a>";
 					htmlStr += "</td>";
@@ -102,6 +103,22 @@ function getExcel(){
 		}
 	})
 }
+
+function getGrowp(status){
+	if(null!=status&&""!=status){
+		if("1"==status){
+			return "A 探索阶段 15-25岁";
+		}else if("2"==status){
+			return "B 建立阶段 25-35岁";
+		}else if("3"==status){
+			return "C 成熟阶段 35-55岁";
+		}else{
+			return "D成熟阶段 55岁+";
+		}
+	}else{
+		return "未选择";
+	}
+}
 </script>
 
 </head>
@@ -157,6 +174,7 @@ function getExcel(){
 						<td>QQ</td>
 						<td>邮箱</td>
 						<td>微信</td>
+						<td>所处阶段</td>
 						<td>操作</td>
 					</tr>
 				</thead>

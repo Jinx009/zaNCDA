@@ -347,6 +347,27 @@ public class TutorData {
 		HttpWebIOHelper._printWebJson(data, response);
 	}
 	
+	public static Integer[] getIds(String idsString) {
+		System.out.println(idsString);
+		Integer[] ids = null;
+
+		if (!"".equals(idsString) && null != idsString) {
+			String[] strArray = idsString.split("str");
+
+			if (null != strArray && strArray.length > 0) {
+				ids = new Integer[strArray.length];
+
+				for (int i = 0; i < strArray.length; i++) {
+					if (!"".equals(strArray[i]) && null != strArray[i]) {
+						System.out.println(strArray[i]);
+						ids[i] = Integer.valueOf(strArray[i]);
+					}
+				}
+			}
+		}
+		return ids;
+	}
+	
 	/**
 	 * 新建导师
 	 * @param req
@@ -363,9 +384,62 @@ public class TutorData {
 		Trade area1 = tradeService.find(Integer.valueOf(req.getParameter("area1")));
 		Trade area2 = tradeService.find(Integer.valueOf(req.getParameter("area2")));
 		Trade area3 = tradeService.find(Integer.valueOf(req.getParameter("area3")));
-		topic = topicService.find(Integer.valueOf(req.getParameter("topicId")));
-		
+		String topidId = req.getParameter("topicId");
 		tutor = new Tutor();
+		Integer[] topics = getIds(topidId);
+		if(null!=topics){
+			if(1==topics.length){
+				topic = topicService.find(Integer.valueOf(topics[0]));
+				tutor.setqTopic(topic);
+			}else{
+				topic = topicService.find(Integer.valueOf(topics[0]));
+				tutor.setqTopic(topic);
+				for(int i =1;i<topics.length;i++){
+					topic = topicService.find(Integer.valueOf(topics[i]));
+					if(1==i){
+						tutor.setTopic2(topic);
+					}
+					if(2==i){
+						tutor.setTopic3(topic);
+					}
+					if(3==i){
+						tutor.setTopic4(topic);
+					}
+					if(4==i){
+						tutor.setTopic5(topic);
+					}
+					if(5==i){
+						tutor.setTopic6(topic);
+					}
+					if(6==i){
+						tutor.setTopic7(topic);
+					}
+					if(7==i){
+						tutor.setTopic8(topic);
+					}
+					if(8==i){
+						tutor.setTopic9(topic);
+					}
+					if(9==i){
+						tutor.setTopic10(topic);
+					}
+					if(10==i){
+						tutor.setTopic11(topic);
+					}
+					if(11==i){
+						tutor.setTopic12(topic);
+					}
+					if(12==i){
+						tutor.setTopic13(topic);
+					}
+					if(13==i){
+						tutor.setTopic14(topic);
+					}
+				}
+			}
+		}
+		
+		
 		tutor.setUserName(req.getParameter("username"));
 		tutor.setRealName(req.getParameter("realname"));
 		tutor.setPwd(MD5Util.toMD5(req.getParameter("pwd")));
@@ -402,7 +476,6 @@ public class TutorData {
 		tutor.setAreaOne(area1);
 		tutor.setAreaTwo(area2);
 		tutor.setAreaThree(area3);
-		tutor.setqTopic(topic);
 		
 		tutorService.saveTutor(tutor);
 		
@@ -429,9 +502,76 @@ public class TutorData {
 		Trade area1 = tradeService.find(Integer.valueOf(req.getParameter("area1")));
 		Trade area2 = tradeService.find(Integer.valueOf(req.getParameter("area2")));
 		Trade area3 = tradeService.find(Integer.valueOf(req.getParameter("area3")));
-		topic = topicService.find(Integer.valueOf(req.getParameter("topicId")));
-		
 		tutor = tutorService.find(Integer.valueOf(req.getParameter("id")));
+		tutor.setqTopic(null);
+		tutor.setTopic2(null);
+		tutor.setTopic3(null);
+		tutor.setTopic4(null);
+		tutor.setTopic5(null);
+		tutor.setTopic6(null);
+		tutor.setTopic7(null);
+		tutor.setTopic8(null);
+		tutor.setTopic9(null);
+		tutor.setTopic10(null);
+		tutor.setTopic11(null);
+		tutor.setTopic12(null);
+		tutor.setTopic13(null);
+		tutor.setTopic14(null);
+		String topidId = req.getParameter("topicId");
+		Integer[] topics = getIds(topidId);
+		if(null!=topics){
+			if(1==topics.length){
+				topic = topicService.find(Integer.valueOf(topics[0]));
+				tutor.setqTopic(topic);
+			}else{
+				topic = topicService.find(Integer.valueOf(topics[0]));
+				tutor.setqTopic(topic);
+				for(int i =1;i<topics.length;i++){
+					topic = topicService.find(Integer.valueOf(topics[i]));
+					if(1==i){
+						tutor.setTopic2(topic);
+					}
+					if(2==i){
+						tutor.setTopic3(topic);
+					}
+					if(3==i){
+						tutor.setTopic4(topic);
+					}
+					if(4==i){
+						tutor.setTopic5(topic);
+					}
+					if(5==i){
+						tutor.setTopic6(topic);
+					}
+					if(6==i){
+						tutor.setTopic7(topic);
+					}
+					if(7==i){
+						tutor.setTopic8(topic);
+					}
+					if(8==i){
+						tutor.setTopic9(topic);
+					}
+					if(9==i){
+						tutor.setTopic10(topic);
+					}
+					if(10==i){
+						tutor.setTopic11(topic);
+					}
+					if(11==i){
+						tutor.setTopic12(topic);
+					}
+					if(12==i){
+						tutor.setTopic13(topic);
+					}
+					if(13==i){
+						tutor.setTopic14(topic);
+					}
+				}
+			}
+		}
+		
+		
 		if(StringUtil.isNotBlank(req.getParameter("pwd"))){
 			tutor.setPwd(MD5Util.toMD5(req.getParameter("pwd")));
 		}
@@ -463,7 +603,6 @@ public class TutorData {
 		tutor.setAreaOne(area1);
 		tutor.setAreaTwo(area2);
 		tutor.setAreaThree(area3);
-		tutor.setqTopic(topic);
 		
 		tutorService.update(tutor);
 		

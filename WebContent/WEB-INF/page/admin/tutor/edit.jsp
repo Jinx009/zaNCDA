@@ -66,13 +66,13 @@ function getData(){
 				var htmlStr1 = "",htmlStr2 = "",htmlStr3 = "";
 				for(var i = 0;i<res.errmsg.length;i++){
 					if("1"==res.errmsg[i].parentId){
-						htmlStr1 += "<div><input type='radio' id=radio"+res.errmsg[i].id+" name='topicId' value="+res.errmsg[i].id+" />"+res.errmsg[i].name+"</div>";
+						htmlStr1 += "<div><input type='checkbox' id=radio"+res.errmsg[i].id+" name='topicId' value="+res.errmsg[i].id+" />"+res.errmsg[i].name+"</div>";
 					}
 					if("2"==res.errmsg[i].parentId){
-						htmlStr2 += "<div><input type='radio' id=radio"+res.errmsg[i].id+"  name='topicId' value="+res.errmsg[i].id+" />"+res.errmsg[i].name+"</div>";
+						htmlStr2 += "<div><input type='checkbox' id=radio"+res.errmsg[i].id+"  name='topicId' value="+res.errmsg[i].id+" />"+res.errmsg[i].name+"</div>";
 					}
 					if("3"==res.errmsg[i].parentId){
-						htmlStr3 += "<div><input type='radio' id=radio"+res.errmsg[i].id+"  name='topicId' value="+res.errmsg[i].id+" />"+res.errmsg[i].name+"</div>";
+						htmlStr3 += "<div><input type='checkbox' id=radio"+res.errmsg[i].id+"  name='topicId' value="+res.errmsg[i].id+" />"+res.errmsg[i].name+"</div>";
 					}
 				}
 				$("#topicDiv1").html(htmlStr1);
@@ -84,6 +84,72 @@ function getData(){
 				 $("#radio"+topicId).attr("checked","checked");
 				 $("#radio"+topicId).attr("checked",true);
 			}
+			topicId = $("#topicId2").val();
+			if(null!=topicId&&""!=topicId){
+				 $("#radio"+topicId).attr("checked","checked");
+				 $("#radio"+topicId).attr("checked",true);
+			}
+			topicId = $("#topicId3").val();
+			if(null!=topicId&&""!=topicId){
+				 $("#radio"+topicId).attr("checked","checked");
+				 $("#radio"+topicId).attr("checked",true);
+			}
+			topicId = $("#topicId4").val();
+			if(null!=topicId&&""!=topicId){
+				 $("#radio"+topicId).attr("checked","checked");
+				 $("#radio"+topicId).attr("checked",true);
+			}
+			topicId = $("#topicId5").val();
+			if(null!=topicId&&""!=topicId){
+				 $("#radio"+topicId).attr("checked","checked");
+				 $("#radio"+topicId).attr("checked",true);
+			}
+			topicId = $("#topicId6").val();
+			if(null!=topicId&&""!=topicId){
+				 $("#radio"+topicId).attr("checked","checked");
+				 $("#radio"+topicId).attr("checked",true);
+			}
+			topicId = $("#topicId7").val();
+			if(null!=topicId&&""!=topicId){
+				 $("#radio"+topicId).attr("checked","checked");
+				 $("#radio"+topicId).attr("checked",true);
+			}
+			topicId = $("#topicId8").val();
+			if(null!=topicId&&""!=topicId){
+				 $("#radio"+topicId).attr("checked","checked");
+				 $("#radio"+topicId).attr("checked",true);
+			}
+			topicId = $("#topicId9").val();
+			if(null!=topicId&&""!=topicId){
+				 $("#radio"+topicId).attr("checked","checked");
+				 $("#radio"+topicId).attr("checked",true);
+			}
+			topicId = $("#topicId10").val();
+			if(null!=topicId&&""!=topicId){
+				 $("#radio"+topicId).attr("checked","checked");
+				 $("#radio"+topicId).attr("checked",true);
+			}
+			topicId = $("#topicId11").val();
+			if(null!=topicId&&""!=topicId){
+				 $("#radio"+topicId).attr("checked","checked");
+				 $("#radio"+topicId).attr("checked",true);
+			}
+			topicId = $("#topicId12").val();
+			if(null!=topicId&&""!=topicId){
+				 $("#radio"+topicId).attr("checked","checked");
+				 $("#radio"+topicId).attr("checked",true);
+			}
+			topicId = $("#topicId13").val();
+			if(null!=topicId&&""!=topicId){
+				 $("#radio"+topicId).attr("checked","checked");
+				 $("#radio"+topicId).attr("checked",true);
+			}
+			topicId = $("#topicId14").val();
+			if(null!=topicId&&""!=topicId){
+				 $("#radio"+topicId).attr("checked","checked");
+				 $("#radio"+topicId).attr("checked",true);
+			}
+			
 		}
 	})
 }
@@ -256,7 +322,7 @@ function saveInfo(){
 	var area3 = $("#area3").val();
 	var isOnline = $("#isOnline").val();
 	var bankAccount = $("#bankAccount").val();
-	var bankAccount1 = $("#bankAccount1").val();
+	//var bankAccount1 = $("#bankAccount1").val();
 	var bankName = $("#bankName").val();
 	var idCard = $("#idCard").val();
 	var email = $("#email").val();
@@ -275,8 +341,12 @@ function saveInfo(){
 	if("checked"==$("#faceStatus").is(":checked")||true==$("#faceStatus").is(":checked")){
 		faceStatus = 1;
 	}
-	var topicId = $('input[name="topicId"]:checked').val();
-	console.log(topicId)
+	var topicId = "";
+	$('input[name="topicId"]').each(function(){
+		if("checked"==$(this).is(":checked")||true==$(this).is(":checked")){
+			topicId += $(this).val()+"str";
+		}
+	})
 	var personalIntroduction = $("#personalIntroduction").val();
 
 	var params = "username="+username+"&photoPath="+photoPath+"&sex="+sex+"&mobilePhone="+mobilePhone+"&aptitude="+aptitude+"&birth="+
@@ -284,9 +354,7 @@ function saveInfo(){
 				area2+"&area3="+area3+"&isOnline="+isOnline+"&bankAccount="+bankAccount+"&bankName="+bankName+"&idCard="+idCard+
 				"&email="+email+"&workYears="+workYears+"&qq="+qq+"&mobileStatus="+mobileStatus+"&faceStatus="+faceStatus+"&videoStatus="+
 				videoStatus+"&personalIntroduction="+personalIntroduction+"&id="+id+"&topicId="+topicId+"&facePrice="+facePrice+"&pwd="+pwd;
-	if(bankAccount!=bankAccount1){
-		alert("银行卡号确认信息不一致!");
-	}else if(repwd!=pwd){
+	if(repwd!=pwd){
 		alert("重置密码不一致!");
 	}else{
 		$.ajax({
@@ -342,6 +410,19 @@ function saveInfo(){
 			</div>
 			<input type="hidden" value="${errmsg}" id="editId" >
 			<input type="hidden" value="${topicId }" id="topicId" >
+			<input type="hidden" value="${topicId2 }" id="topicId2" >
+			<input type="hidden" value="${topicId3 }" id="topicId3" >
+			<input type="hidden" value="${topicId4 }" id="topicId4" >
+			<input type="hidden" value="${topicId5 }" id="topicId5" >
+			<input type="hidden" value="${topicId6 }" id="topicId6" >
+			<input type="hidden" value="${topicId7 }" id="topicId7" >
+			<input type="hidden" value="${topicId8 }" id="topicId8" >
+			<input type="hidden" value="${topicId9 }" id="topicId9" >
+			<input type="hidden" value="${topicId10 }" id="topicId10" >
+			<input type="hidden" value="${topicId11 }" id="topicId11" >
+			<input type="hidden" value="${topicId12 }" id="topicId12" >
+			<input type="hidden" value="${topicId13 }" id="topicId13" >
+			<input type="hidden" value="${topicId14 }" id="topicId14" >
 			<input type="hidden" value="${trade1 }" id="trade1Value" >
 			<input type="hidden" value="${trade2 }" id="trade2Value" >
 			<input type="hidden" value="${trade3 }" id="trade3Value" >
@@ -410,8 +491,8 @@ function saveInfo(){
 					<tr>
 						<th>行业3：</th>
 						<td> <select class="form-control" id="trade3" onchange="changeTrade('3')" ></select></td>
-						<th>银行卡号：</th>
-						<td><input type="text" class="form-control" value="${tutor.bankCard }" id="bankAccount1"  ></td>
+						<th>openId:</th>
+						<td><input type="text" id="openid" readonly="readonly" value="${tutor.openid }" class="form-control"  ></td>
 					</tr>
 					<tr>
 						<th>擅长领域1：</th>
@@ -440,8 +521,8 @@ function saveInfo(){
 					<tr>
 						<th>约谈价格：</th>
 						<td><input type="text" id="facePrice" class="form-control" value="${tutor.facePrice }" ></td>
-						<th>openid：</th>
-						<td>  <input type="text" id="openid" readonly="readonly" value="${tutor.openid }" class="form-control"  ></td>
+						<th></th>
+						<td></td>
 					</tr>
 					<tr>
 						<th colspan="4" >辅助方式：</th>

@@ -227,6 +227,46 @@ public class Tutor {
 	@Column(name = "photo_path")
 	private String photoPath;
 
+	@OneToOne
+	@JoinColumn(name="topic2")
+	private Topic topic2;
+	@OneToOne
+	@JoinColumn(name="topic3")
+	private Topic topic3;
+	@OneToOne
+	@JoinColumn(name="topic4")
+	private Topic topic4;
+	@OneToOne
+	@JoinColumn(name="topic5")
+	private Topic topic5;
+	@OneToOne
+	@JoinColumn(name="topic6")
+	private Topic topic6;
+	@OneToOne
+	@JoinColumn(name="topic7")
+	private Topic topic7;
+	@OneToOne
+	@JoinColumn(name="topic8")
+	private Topic topic8;
+	@OneToOne
+	@JoinColumn(name="topic9")
+	private Topic topic9;
+	@OneToOne
+	@JoinColumn(name="topic10")
+	private Topic topic10;
+	@OneToOne
+	@JoinColumn(name="topic11")
+	private Topic topic11;
+	@OneToOne
+	@JoinColumn(name="topic12")
+	private Topic topic12;
+	@OneToOne
+	@JoinColumn(name="topic13")
+	private Topic topic13;
+	@OneToOne
+	@JoinColumn(name="topic14")
+	private Topic topic14;
+	
 	public Integer getId() {
 		return id;
 	}
@@ -547,6 +587,110 @@ public class Tutor {
 
 	public void setStatus(Integer status) {
 		this.status = status;
+	}
+
+	public Topic getTopic2() {
+		return topic2;
+	}
+
+	public void setTopic2(Topic topic2) {
+		this.topic2 = topic2;
+	}
+
+	public Topic getTopic3() {
+		return topic3;
+	}
+
+	public void setTopic3(Topic topic3) {
+		this.topic3 = topic3;
+	}
+
+	public Topic getTopic4() {
+		return topic4;
+	}
+
+	public void setTopic4(Topic topic4) {
+		this.topic4 = topic4;
+	}
+
+	public Topic getTopic5() {
+		return topic5;
+	}
+
+	public void setTopic5(Topic topic5) {
+		this.topic5 = topic5;
+	}
+
+	public Topic getTopic6() {
+		return topic6;
+	}
+
+	public void setTopic6(Topic topic6) {
+		this.topic6 = topic6;
+	}
+
+	public Topic getTopic7() {
+		return topic7;
+	}
+
+	public void setTopic7(Topic topic7) {
+		this.topic7 = topic7;
+	}
+
+	public Topic getTopic8() {
+		return topic8;
+	}
+
+	public void setTopic8(Topic topic8) {
+		this.topic8 = topic8;
+	}
+
+	public Topic getTopic9() {
+		return topic9;
+	}
+
+	public void setTopic9(Topic topic9) {
+		this.topic9 = topic9;
+	}
+
+	public Topic getTopic10() {
+		return topic10;
+	}
+
+	public void setTopic10(Topic topic10) {
+		this.topic10 = topic10;
+	}
+
+	public Topic getTopic11() {
+		return topic11;
+	}
+
+	public void setTopic11(Topic topic11) {
+		this.topic11 = topic11;
+	}
+
+	public Topic getTopic12() {
+		return topic12;
+	}
+
+	public void setTopic12(Topic topic12) {
+		this.topic12 = topic12;
+	}
+
+	public Topic getTopic13() {
+		return topic13;
+	}
+
+	public void setTopic13(Topic topic13) {
+		this.topic13 = topic13;
+	}
+
+	public Topic getTopic14() {
+		return topic14;
+	}
+
+	public void setTopic14(Topic topic14) {
+		this.topic14 = topic14;
 	}
 	
 	
