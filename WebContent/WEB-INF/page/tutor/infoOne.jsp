@@ -30,6 +30,9 @@ $(function(){
           }  
         }  
 	}
+	$("#bankCard").attr("readonly",false);
+	$("#reBankCard").attr("readonly",false);
+	$("#bankName").attr("readonly",false);
 	$.ajax({
 		url:"/trade/data/list.html?time="+getRandom(),
 		type:"GET",

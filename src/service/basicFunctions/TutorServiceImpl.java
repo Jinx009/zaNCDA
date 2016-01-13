@@ -2,6 +2,7 @@ package service.basicFunctions;
 
 import java.util.List;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -106,6 +107,36 @@ public class TutorServiceImpl implements TutorService{
 		buffer.append(") AND ");
 		buffer.append(typeResult);
 		buffer.append("  =  1 ");
+		buffer.append(" AND (");
+		buffer.append(" good_topic =");
+		buffer.append(tutor.getqTopic().getId());
+		buffer.append(" OR topic2 =");
+		buffer.append(tutor.getqTopic().getId());
+		buffer.append(" OR topic3 =");
+		buffer.append(tutor.getqTopic().getId());
+		buffer.append(" OR topic4 =");
+		buffer.append(tutor.getqTopic().getId());
+		buffer.append(" OR topic5 =");
+		buffer.append(tutor.getqTopic().getId());
+		buffer.append(" OR topic6 =");
+		buffer.append(tutor.getqTopic().getId());
+		buffer.append(" OR topic7 =");
+		buffer.append(tutor.getqTopic().getId());
+		buffer.append(" OR topic8 =");
+		buffer.append(tutor.getqTopic().getId());
+		buffer.append(" OR topic9 =");
+		buffer.append(tutor.getqTopic().getId());
+		buffer.append(" OR topic10 =");
+		buffer.append(tutor.getqTopic().getId());
+		buffer.append(" OR topic11 =");
+		buffer.append(tutor.getqTopic().getId());
+		buffer.append(" OR topic12 =");
+		buffer.append(tutor.getqTopic().getId());
+		buffer.append(" OR topic13 =");
+		buffer.append(tutor.getqTopic().getId());
+		buffer.append(" OR topic14 =");
+		buffer.append(tutor.getqTopic().getId());
+		buffer.append(" ) ");
 		
 		System.out.println(buffer.toString());
 		
