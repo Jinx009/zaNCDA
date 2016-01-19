@@ -130,6 +130,68 @@ public class TutorPage {
 		}else{
 			request.setAttribute("topicId",0);
 		}
+		if(null!=tutor.getTopic2()){
+			request.setAttribute("topic2",tutor.getTopic2().getId());
+		}else{
+			request.setAttribute("topic2",0);
+		}
+		if(null!=tutor.getTopic3()){
+			request.setAttribute("topic3",tutor.getTopic3().getId());
+		}else{
+			request.setAttribute("topic3",0);
+		}
+		if(null!=tutor.getTopic4()){
+			request.setAttribute("topic4",tutor.getTopic4().getId());
+		}else{
+			request.setAttribute("topic4",0);
+		}
+		if(null!=tutor.getTopic5()){
+			request.setAttribute("topic5",tutor.getTopic5().getId());
+		}else{
+			request.setAttribute("topic5",0);
+		}
+		if(null!=tutor.getTopic6()){
+			request.setAttribute("topic6",tutor.getTopic6().getId());
+		}else{
+			request.setAttribute("topic6",0);
+		}
+		if(null!=tutor.getTopic7()){
+			request.setAttribute("topic7",tutor.getTopic7().getId());
+		}else{
+			request.setAttribute("topic7",0);
+		}
+		if(null!=tutor.getTopic8()){
+			request.setAttribute("topic8",tutor.getTopic8().getId());
+		}else{
+			request.setAttribute("topic8",0);
+		}
+		if(null!=tutor.getTopic9()){
+			request.setAttribute("topic9",tutor.getTopic9().getId());
+		}else{
+			request.setAttribute("topic9",0);
+		}
+		if(null!=tutor.getTopic10()){
+			request.setAttribute("topic10",tutor.getTopic10().getId());
+		}else{
+			request.setAttribute("topic10",0);
+		}
+		if(null!=tutor.getTopic11()){
+			request.setAttribute("topic11",tutor.getTopic11().getId());
+		}else{
+			request.setAttribute("topic11",0);
+		}
+		if(null!=tutor.getTopic12()){
+			request.setAttribute("topic12",tutor.getTopic12().getId());
+		}else{
+			request.setAttribute("topic12",0);
+		}
+		if(null!=tutor.getTopic13()){
+			request.setAttribute("topic13",tutor.getTopic13().getId());
+		}else{
+			request.setAttribute("topic13",0);
+		}
+		
+		
 		if(null!=tutor.getTradeOne()){
 			request.setAttribute("t1",tutor.getTradeOne().getId());
 		}else{

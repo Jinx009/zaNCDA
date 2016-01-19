@@ -15,7 +15,6 @@
 $(function(){
 	$("input").each(function(){
 		if(""!=$(this).val()&&null!=$(this).val()){
-			$(this).attr("readOnly","readOnly");
 		}
 	})
 	var sex = $("#sexValue").val();
@@ -30,44 +29,16 @@ $(function(){
           }  
         }  
 	}
-	$("#bankCard").attr("readonly",false);
-	$("#reBankCard").attr("readonly",false);
-	$("#bankName").attr("readonly",false);
-	$.ajax({
-		url:"/trade/data/list.html?time="+getRandom(),
-		type:"GET",
-		dataType:"json",
-		success:function(res){
-			var htmlStr = "";
-			for(var i = 0;i<res.errmsg.length;i++){
-				if("0"==res.errmsg[i].parentId){
-					htmlStr += "<option value='"+res.errmsg[i].id+"' >"+res.errmsg[i].tradeName+"</option>";
-				}
-			}
-			$("#trade").html(htmlStr);
-			
-			var tradeId = $("#tradeValue").val();
-			var element1 = document.getElementById("trade");   
-	           
-	        for(i=0;i<element1.length;i++)
-	        {
-	          if(tradeId==element1.options[i].value)
-	          {  
-	              element1.options[i].selected=true; 
-	          }  
-	        }  
-		}
-	})
 })
 
 /**
  * 保存第一页信息
  */
 function saveInfoOne(){
+	$("#sex").attr("disabled",false);
 	var realName = $("#realName").val();
 	var sex = $("#sex").val();
 	var birthday = $("#birthday").val();
-	var trade = $("#trade").val();
 	var email = $("#email").val();
 	var qq = $("#qq").val();
 	var wechatName = $("#wechatName").val();
@@ -76,8 +47,9 @@ function saveInfoOne(){
 	var reBankCard = $("#reBankCard").val();
 	var bankName = $("#bankName").val();
 	var classPrice = $("#classPrice").val();
+	var bankAccount = $("#bankAccount").val();
 	
-	var params = "realName="+realName+"&sex="+sex+"&birthday="+birthday+"&trade="+trade+
+	var params = "realName="+realName+"&sex="+sex+"&birthday="+birthday+"&bankAccount="+bankAcount+
 				 "&email="+email+"&qq="+qq+"&wechatName="+wechatName+"&idNumber="+idNumber+
 				 "&bankCard="+bankCard+"&bankName="+bankName+"&classPrice="+classPrice;
 	
@@ -104,12 +76,12 @@ function saveInfoOne(){
 <div class="nav-title">个人信息（一）<div class="close" onclick="openUrl('/tutor/page/index.html')" >&Chi;</div></div>
 	<div class="register-inp register-inp-top">
 		<span class="register-inp-text">姓名</span>
-		<input  value="${tutor.realName}" id="realName" class="register-inp-long"/>
+		<input  value="${tutor.realName}" readonly="readonly" id="realName" class="register-inp-long"/>
 	</div>
 	<div class="register-inp register-inp-top">
 		<span class="register-inp-text">性别</span>
 		<input  value="${tutor.sex }" id="sexValue" type="hidden" class="register-inp-long"/>
-		<select  class="register-select-long" id="sex" >
+		<select  class="register-select-long" id="sex" disabled="disabled" >
 			<option value="女" >女</option>
 			<option value="男" >男</option>
 		</select>
@@ -119,11 +91,8 @@ function saveInfoOne(){
 		<input value="${birthday }" id="birthday"  onClick="WdatePicker()" class="register-inp-long"/>
 	</div>
 	<div class="register-inp register-inp-top">
-		<input type="hidden" id="tradeValue" value="${trade}" >
-		<span class="register-inp-text">行业</span>
-		<select class="register-select-long" id="trade" >
-			<option selected="selected" >请选择行业</option>
-		</select>
+		<span class="register-inp-text">辅导价格</span>
+		<input  value="${tutor.classPrice }" readonly="readonly" id="classPrice" class="register-inp-long"/>
 	</div>
 	<div class="register-inp register-inp-top">
 		<span class="register-inp-text">E-mail</span>
@@ -134,10 +103,6 @@ function saveInfoOne(){
 		<input  value="${tutor.qq }"  id="qq" class="register-inp-long"/>
 	</div>
 	<div class="register-inp register-inp-top">
-		<span class="register-inp-text">授课价格</span>
-		<input  value="${tutor.classPrice }"  id="classPrice" class="register-inp-long"/>
-	</div>
-	<div class="register-inp register-inp-top">
 		<span class="register-inp-text">微信号</span>
 		<input  value="${tutor.wechatName }" id="wechatName" class="register-inp-long"/>
 	</div>
@@ -146,16 +111,20 @@ function saveInfoOne(){
 		<input  value="${tutor.idNumber }" id="idNumber" class="register-inp-long"/>
 	</div>
 	<div class="register-inp register-inp-top">
+		<span class="register-inp-text">银行名称</span>
+		<input  value="${tutor.bankName }" id="bankName" class="register-inp-long"/>
+	</div>
+	<div class="register-inp register-inp-top">
+		<span class="register-inp-text">账户名称</span>
+		<input  value="${tutor.bankAccount }" id="bankAccount" class="register-inp-long"/>
+	</div>
+	<div class="register-inp register-inp-top">
 		<span class="register-inp-text">银行账号</span>
 		<input  value="${tutor.bankCard }" id="bankCard" class="register-inp-long"/>
 	</div>
 	<div class="register-inp register-inp-top">
 		<span class="register-inp-text">确认账号</span>
 		<input  value="${tutor.bankCard }" id="reBankCard" class="register-inp-long"/>
-	</div>
-	<div class="register-inp register-inp-top">
-		<span class="register-inp-text">银行名称</span>
-		<input  value="${tutor.bankName }" id="bankName" class="register-inp-long"/>
 	</div>
 	<div class="sure-btn">
 		<div class="tutor-search-btn btn-orange-bg" onclick="saveInfoOne()" >下一步</div>

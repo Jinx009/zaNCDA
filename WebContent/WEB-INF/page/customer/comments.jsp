@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<title>导师小结</title>
+<title>导师辅导小结</title>
 <link rel="stylesheet" href="/sp/css/base.css" />
 <link rel="stylesheet" href="/sp/css/ncda.css" />
 
@@ -52,7 +52,7 @@ function goBack(){
 <input type="hidden" value="${order.id }" id="id" >
 <input type="hidden" value="${order.status }" id="status">
 <input type="hidden" value="${order.qTutorTime.realTime }" id="time" >
-<div class="nav-title">约谈小结提示页<div class="close"  onclick="openUrl('/customer/page/index.html')" >&Chi;</div></div>
+<div class="nav-title">辅导小结具体内容<div class="close"  onclick="openUrl('/customer/page/index.html')" >&Chi;</div></div>
 	
 	<div class="summaryDetails-title">
 		<p>一、用户的主要诉求</p>
@@ -62,19 +62,19 @@ function goBack(){
 			<li>
 				<span>1</span>
 				<div class="summaryDetails-sel-right">
-					<textarea readonly="readonly" placeholder="诉求一（文本框）-具体描述" id="appeal_one" ></textarea>
+					<textarea readonly="readonly" placeholder="请具体描述" id="appeal_one" ></textarea>
 				</div>
 			</li>
 			<li>
 				<span>2</span>
 				<div class="summaryDetails-sel-right">
-					<textarea readonly="readonly"  placeholder="诉求二（文本框）-具体描述" id="appeal_two" ></textarea>
+					<textarea readonly="readonly"  placeholder="请具体描述" id="appeal_two" ></textarea>
 				</div>
 			</li>
 			<li>
 				<span>3</span>
 				<div class="summaryDetails-sel-right">
-					<textarea readonly="readonly"  placeholder="诉求三（文本框）-具体描述" id="appeal_three" ></textarea>
+					<textarea readonly="readonly"  placeholder="请具体描述" id="appeal_three" ></textarea>
 				</div>
 			</li>
 		</ul>
@@ -84,23 +84,23 @@ function goBack(){
 		<p>二、主要问题及案例分析</p>
 	</div>
 	<div class="summaryDetails-sel">
-		<textarea readonly="readonly"  placeholder="内容-文本框" id="question"></textarea>
+		<textarea readonly="readonly"  placeholder="请具体描述" id="question"></textarea>
 	</div>
-	
+	<div style="display: none;" >
+		<div class="summaryDetails-title">
+			<p>三、辅导策略</p>
+		</div>
+		<div class="summaryDetails-sel">
+			<p>问题解决情况</p>
+			<textarea readonly="readonly"  placeholder="请具体描述" id="solve_status"></textarea>
+		</div>
+		<div class="summaryDetails-sel">
+			<p>主要运用辅导技术和工具</p>
+			<textarea readonly="readonly"  placeholder="请具体描述" id="solve_tool"></textarea>
+		</div>
+	</div>
 	<div class="summaryDetails-title">
-		<p>三、辅导策略</p>
-	</div>
-	<div class="summaryDetails-sel">
-		<p>问题解决情况</p>
-		<textarea readonly="readonly"  placeholder="内容-文本框" id="solve_status"></textarea>
-	</div>
-	<div class="summaryDetails-sel">
-		<p>主要运用辅导技术和工具</p>
-		<textarea readonly="readonly"  placeholder="内容-文本框" id="solve_tool"></textarea>
-	</div>
-	
-	<div class="summaryDetails-title">
-		<p>四、对学员的后续发展建议</p>
+		<p>三、对学员的后续发展建议</p>
 	</div>
 	<div class="summaryDetails-sel">
 		<ul>
@@ -124,19 +124,19 @@ function goBack(){
 			</li>
 		</ul>
 	</div>
-	
-	<div class="summaryDetails-title">
-		<p>五、辅导成效评估与反思</p>
+	<div style="display: none;" >
+		<div class="summaryDetails-title">
+			<p>五、辅导成效评估与反思</p>
+		</div>
+		<div class="summaryDetails-sel">
+			<p>问题解决情况</p>
+			<textarea readonly="readonly"  placeholder="内容-文本框" id="solve_result" ></textarea>
+		</div>
+		<div class="summaryDetails-sel">
+			<p>咨询能效自我评估</p>
+			<textarea readonly="readonly"  placeholder="内容-文本框" id="solve_assess" ></textarea>
+		</div>
 	</div>
-	<div class="summaryDetails-sel">
-		<p>问题解决情况</p>
-		<textarea readonly="readonly"  placeholder="内容-文本框" id="solve_result" ></textarea>
-	</div>
-	<div class="summaryDetails-sel">
-		<p>咨询能效自我评估</p>
-		<textarea readonly="readonly"  placeholder="内容-文本框" id="solve_assess" ></textarea>
-	</div>
-	
 	<div class="tutor-search">
 		<a href="#"><p class="right-cancel"  onclick="goBack();" >返回</p></a>
 	</div>

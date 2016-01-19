@@ -19,15 +19,17 @@ $(function(){
 		dataType:'json',
 		success:function(res){
 			areaData = res.errmsg;
-			var htmlStr = '';
+			var htmlStr = '';var htmlStr1 = "";
 			for(var i = 0;i<res.errmsg.length;i++){
 				if('0'==res.errmsg[i].parentId){
 					htmlStr += '<option value='+res.errmsg[i].id+' >'+res.errmsg[i].tradeName+'</option>';
 				}
+				if('1'==res.errmsg[i].parentId){
+					htmlStr1 += '<option value='+res.errmsg[i].id+' >'+res.errmsg[i].tradeName+'</option>';
+				}
 			}
 			$('#trade').html(htmlStr);
-			
-			changeTrade();
+			$('#area').html(htmlStr)
 		}
 	})
 })
@@ -44,7 +46,7 @@ function goNext(){
 	location.href = "/customer/page/selectResult.html?type="+type+"&trade="+trade+"&area="+area+"&workYears="+workYears+"&id="+id;
 }
 
-function changeTrade(){
+/* function changeTrade(){
 	var trade = $("#trade").val();
 	var htmlStr = "";
 	for(var i = 0;i<areaData.length;i++){
@@ -53,7 +55,7 @@ function changeTrade(){
 		}
 	}
 	$("#area").html(htmlStr);
-}
+} */
 function goBack(){
 	window.history.back();
 }
@@ -65,17 +67,17 @@ function goBack(){
 <div class="choice-title"><h1>请选择您心仪导师的属性</h1></div>
 <div class="register-inp register-inp-top">
 	<span class="register-inp-text">专注行业<b>*</b></span>
-	<select class="register-select-long" id="trade" onchange="changeTrade()" >
+	<select class="register-select-long" id="trade" >
 		<option value="" selected="selected"></option>
 	</select>
 </div>
 <div class="register-inp register-inp-top">
-	<span class="register-inp-text">擅长领域<b>*</b></span>
+	<span class="register-inp-text">擅长职能<b>*</b></span>
 	<select class="register-select-long" id="area" >
 		<option value="" selected="selected"></option>
 	</select>
 </div>
-<div class="register-inp register-inp-top">
+<div class="register-inp register-inp-top" style="display: none;" >
 	<span class="register-inp-text">从业年限<b>*</b></span>
 	<select class="register-select-long" id="workYears" >
 		<option value="1" selected="selected">1年以内</option>
@@ -87,11 +89,11 @@ function goBack(){
 </div>
 
 <div class="register-inp register-inp-top">
-	<span class="register-inp-text">沟通方式</span>
+	<span class="register-inp-text">辅导方式</span>
 	<select class="register-select-long" id="type" >
-		<option value="1" selected="selected">当面约谈</option>
-		<option value="2" >视频约谈(60min)</option>
-		<option value="3" >电话约谈(60min)</option>
+		<option value="1" selected="selected">当面约谈（60分钟）</option>
+		<option value="2" >视频约谈（60分钟）</option>
+		<option value="3" >电话约谈（60分钟）</option>
 	</select>
 </div>
 

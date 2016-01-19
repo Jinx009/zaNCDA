@@ -1,6 +1,8 @@
 package main.entry.webapp.page;
 
 
+import java.text.SimpleDateFormat;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -82,6 +84,13 @@ public class OrderPage {
 		Integer orderId = Integer.valueOf(request.getParameter("orderId"));
 		order = orderService.getById(orderId);
 		request.setAttribute("order",order);
+		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+		request.setAttribute("orderDate",sdf.format(order.getqTutorTime().getRealDate()));
+		if(null!=order.getTopic()){
+			request.setAttribute("mytopic",order.getTopic().getName());
+		}else{
+			request.setAttribute("mytopic",order.getTopicContent());
+		}
 		return "/customer/orderDetail";
 	}
 	

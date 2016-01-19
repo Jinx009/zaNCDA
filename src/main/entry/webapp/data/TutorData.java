@@ -28,6 +28,7 @@ import database.common.PageDataList;
 import database.models.Topic;
 import database.models.Trade;
 import database.models.Tutor;
+import database.models.TutorModel;
 
 @Controller
 public class TutorData {
@@ -124,8 +125,6 @@ public class TutorData {
 		data = new HashMap<String, Object>();
 		
 		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
-		Integer tradeId = Integer.valueOf(request.getParameter("trade"));
-		trade = tradeService.find(tradeId);
 		
 		tutor = (Tutor) request.getSession().getAttribute(ConstantUtil.TUTOR_SESSION);
 		tutor.setBankCard(request.getParameter("bankCard"));
@@ -133,12 +132,12 @@ public class TutorData {
 		tutor.setBirthday(sdf.parse(request.getParameter("birthday")));
 		tutor.setEmail(request.getParameter("email"));
 		tutor.setSex(request.getParameter("sex"));
-		tutor.setqTrade(trade);
 		tutor.setQq(request.getParameter("qq"));
 		tutor.setWechatName(request.getParameter("wechatName"));
 		tutor.setIdNumber(request.getParameter("idNumber"));
 		tutor.setClassPrice(request.getParameter("classPrice"));
 		tutor.setRealName(request.getParameter("realName"));
+		tutor.setBankAccount(request.getParameter("bankAccount"));
 
 		tutorService.update(tutor);
 		
@@ -640,14 +639,20 @@ public class TutorData {
 		
 		
 		List<Tutor> list = tutorService.findSelectList(tutor,type,workYears);
-		List<Tutor> result = null;
+		List<TutorModel> result = null;
 		if(null!=list&&!list.isEmpty()){
-			result = new ArrayList<Tutor>();
+			result = new ArrayList<TutorModel>();
 			for(int i = 0;i<list.size();i++){
 				tutor = list.get(i);
-				tutor.setBankName(tutor.getTradeOne().getTradeName());
-				tutor.setBankCard(tutor.getAreaOne().getTradeName());
-				result.add(tutor);
+				TutorModel tutorModel = new TutorModel();
+				tutorModel = TutorModel.instance(tutor);
+				tutorModel.setT1(tutor.getTradeOne().getTradeName());
+				tutorModel.setT2(tutor.getTradeTwo().getTradeName());
+				tutorModel.setT3(tutor.getTradeThree().getTradeName());
+				tutorModel.setA1(tutor.getAreaOne().getTradeName());
+				tutorModel.setA2(tutor.getAreaTwo().getTradeName());
+				tutorModel.setA3(tutor.getAreaThree().getTradeName());
+				result.add(tutorModel);
 			}
 		}
 		

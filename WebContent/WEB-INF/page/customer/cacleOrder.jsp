@@ -14,8 +14,9 @@ function saveCacle(){
 	var orderId = $("#orderId").val();
 	var bank = $("#bank").val();
 	var reason = $("#reason").val();
+	var bankAccount = $("#bankAccount").val();
 	
-	var params = "orderId="+orderId+"&bank="+bank+"&reason="+reason;
+	var params = "orderId="+orderId+"&bank="+bank+"&reason="+reason+"&bankAccount="+bankAccount;
 	
 	$.ajax({
 		url:"/customer/data/cacleOrder.html",
@@ -44,8 +45,9 @@ function saveCacle(){
 				<dd>正在取消</dd>
 			</dl>
 			<h3>请填写您的收款信息</h3>
-			<input placeholder="请填写您的银行卡号" id="bank"  />
-			<input placeholder="请填写您的帐号" id="username" />
+			<input placeholder="请填写您的银行名称" id="bank"  />
+			<input placeholder="请填写您的账户名称" id="username" />
+			<input placeholder="请填写您的银行帐号" id="bankAccount" />
 			<div class="cancel-tip">
 				<img src="/sp/images/tip.png"/>
 				<p>手续费：10%&nbsp;&nbsp;&nbsp;1-5个工作日内到账</p>

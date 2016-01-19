@@ -93,6 +93,9 @@ public class Order {
 	@Column(name = "reason")
 	private String reason;
 	
+	@Column(name = "bankAccount")
+	private String bankAccount;
+	
 
 	public Integer getId() {
 		return id;
@@ -244,6 +247,14 @@ public class Order {
 
 	public void setPayOkDate(Date payOkDate) {
 		this.payOkDate = payOkDate;
+	}
+
+	public String getBankAccount() {
+		return bankAccount;
+	}
+
+	public void setBankAccount(String bankAccount) {
+		this.bankAccount = bankAccount;
 	}
 	
 	

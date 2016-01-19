@@ -12,38 +12,67 @@
 <script type="text/javascript" src="/sp/js/common.js" ></script>
 <script type="text/javascript">
 var topicId = "";
+var topic2 = "";
+var topic3 = "";
+var topic4 = "";
+var topic5 = "";
+var topic6 = "";
+var topic7 = "";
+var topic8 = "";
+var topic9 = "";
+var topic10 = "";
+var topic11 = "";
+var topic12 = "";
+var topic13 = "";
 var tradeData;
 var topicArray = new Array();
 $(function(){
-	topicArray[4]="自我测评和岗位/行业评估";
-	topicArray[5]="找到正确的求职渠道";
-	topicArray[6]="如何制作和投递完美的简历";
-	topicArray[7]="面试模拟舱：看到真实的自己";
-	topicArray[8]="如何快速理解角色和融入团队";
-	topicArray[9]="管理老板和关键决策人的关系";
-	topicArray[10]="如何处理冲突和提升人机沟通";
-	topicArray[11]="压力的管理和纾解";
-	topicArray[12]="了解公司的架构和晋级之路";
-	topicArray[13]="快速建立短期目标并积累经验和人脉";
-	topicArray[14]="如何在职场提升关键技术和管理能力";
-	topicArray[15]="为自己的市场价值添分的诀窍";
+	topicArray[4]="兴趣还是专业，我该如何选择职业方向？";
+	topicArray[5]="有一个看似美好的机会摆在面前，走还是留？";
+	topicArray[6]="管理路线、专业路线，哪一个更加适合我？";
+	topicArray[7]="感受到了职场瓶颈，下一步该怎么办？";
+	topicArray[8]="遇到难懂的上司，如何才能抓住老板的心？";
+	topicArray[9]="空降兵苦恼：怎样破冰，快速开展工作？";
+	topicArray[10]="我的能力很强，但是不被认可，该怎么办？";
+	topicArray[11]="面对复杂的职场关系，如何提升自己的情商？";
+	topicArray[12]="如何能够了解职业发展道路上的不同能力要求？";
+	topicArray[13]="现任岗位上，提升哪些能力能让我有更突出的表现？";
+	topicArray[14]="职业转型期需要的关键能力有哪些？";
+	topicArray[15]="如何处理越来越大的职场压力？";
+	topicArray[16]="我是否适合创业？";
 	
-	topicId = $("#topicValue").val();
-	topicId = parseInt(topicId);
-	if(topicId>=4&&topicId<=7){
-		$("#topicDiv1").css("display","block");
-		$("#to"+topicId).addClass("choice-question-select");
-		$("#to"+topicId).html(topicArray[parseInt(topicId)]+"<span>&radic;</span>");
-	}else if(topicId>=8&&topicId<=11){
-		$("#topicDiv2").css("display","block");
-		$("#to"+topicId).addClass("choice-question-select");
-		$("#to"+topicId).html(topicArray[parseInt(topicId)]+"<span>&radic;</span>");
-	}else if(topicId>=12&&topicId<=15){
-		$("#topicDiv3").css("display","block");
-		$("#to"+topicId).addClass("choice-question-select");
-		$("#to"+topicId).html(topicArray[parseInt(topicId)]+"<span>&radic;</span>");
-	}else{
-		changeData('1');
+	topic2 = $("#topic2").val();
+	topic2 = parseInt(topic2);
+	for(var i = 1;i<14;i++){
+		if(0==i){
+			topicId = $("#topicValue").val();
+			topicId = parseInt(topicId);
+			if((topicId>=4&&topicId<=7)||16==topicId){
+				$("#to"+topicId).addClass("choice-question-select");
+				$("#to"+topicId).html(topicArray[parseInt(topicId)]+"<span>&radic;</span>");
+			}else if(topicId>=8&&topicId<=11){
+				$("#to"+topicId).addClass("choice-question-select");
+				$("#to"+topicId).html(topicArray[parseInt(topicId)]+"<span>&radic;</span>");
+			}else if(topicId>=12&&topicId<=15){
+				$("#to"+topicId).addClass("choice-question-select");
+				$("#to"+topicId).html(topicArray[parseInt(topicId)]+"<span>&radic;</span>");
+			}
+			$("#topicDiv1").css("display","block");
+		}else{
+			topicId = $("#topic"+i).val();
+			topicId = parseInt(topicId);
+			if((topicId>=4&&topicId<=7)||16==topicId){
+				$("#to"+topicId).addClass("choice-question-select");
+				$("#to"+topicId).html(topicArray[parseInt(topicId)]+"<span>&radic;</span>");
+			}else if(topicId>=8&&topicId<=11){
+				$("#to"+topicId).addClass("choice-question-select");
+				$("#to"+topicId).html(topicArray[parseInt(topicId)]+"<span>&radic;</span>");
+			}else if(topicId>=12&&topicId<=15){
+				$("#to"+topicId).addClass("choice-question-select");
+				$("#to"+topicId).html(topicArray[parseInt(topicId)]+"<span>&radic;</span>");
+			}
+			$("#topicDiv1").css("display","block");
+		}
 	}
 	
 	$.ajax({
@@ -57,10 +86,16 @@ $(function(){
 				if("0"==res.errmsg[i].parentId){
 					htmlStr += "<option value="+res.errmsg[i].id+" >"+res.errmsg[i].tradeName+"</option>";
 				}
+				if("1"==res.errmsg[i].parentId){
+					htmlStr += "<option value="+res.errmsg[i].id+" >"+res.errmsg[i].tradeName+"</option>";
+				}
 			}
 			$("#trade1").html(htmlStr);
 			$("#trade2").html(htmlStr);
 			$("#trade3").html(htmlStr);
+			$("#area1").html(htmlStr);
+			$("#area2").html(htmlStr);
+			$("#area3").html(htmlStr);
 			
 			changeBaseTrade();
 		}
@@ -81,90 +116,57 @@ function changeBaseTrade(){
 	if("0"!=t1){
 		var element1 = document.getElementById("trade1");   
         
-        for(i=0;i<element1.length;i++)
-        {
-          if(t1==element1.options[i].value)
-          {  
+        for(i=0;i<element1.length;i++){
+          if(t1==element1.options[i].value){  
               element1.options[i].selected=true; 
           }  
         }  
-        var htmlStr = "";
-        for(var i = 0;i<tradeData.length;i++){
-        	if(t1==tradeData[i].parentId){
-        		htmlStr += "<option value="+tradeData[i].id+" >"+tradeData[i].tradeName+"<option>";
-        	}
-        	$("#area1").html(htmlStr);
-        }
-        if("0"!=a1){
-        	var element1 = document.getElementById("a1");   
-            
-            for(i=0;i<element1.length;i++)
-            {
-              if(a1==element1.options[i].value)
-              {  
-                  element1.options[i].selected=true; 
-              }  
-            }  
-        }
 	}
+	 if("0"!=a1){
+     	var element1 = document.getElementById("a1");   
+         
+         for(i=0;i<element1.length;i++){
+           if(a1==element1.options[i].value){  
+               element1.options[i].selected=true; 
+           }  
+         }  
+     }
 	if("0"!=t2){
 		var element1 = document.getElementById("trade2");   
         
-        for(i=0;i<element1.length;i++)
-        {
-          if(t2==element1.options[i].value)
-          {  
+        for(i=0;i<element1.length;i++){
+          if(t2==element1.options[i].value){  
               element1.options[i].selected=true; 
           }  
         }  
-        var htmlStr = "";
-        for(var i = 0;i<tradeData.length;i++){
-        	if(t2==tradeData[i].parentId){
-        		htmlStr += "<option value="+tradeData[i].id+" >"+tradeData[i].tradeName+"<option>";
-        	}
-        	$("#area2").html(htmlStr);
-        }
-        if("0"!=a2){
-        	var element1 = document.getElementById("a2");   
-            
-            for(i=0;i<element1.length;i++)
-            {
-              if(a2==element1.options[i].value)
-              {  
-                  element1.options[i].selected=true; 
-              }  
-            }  
-        }
 	}
+   if("0"!=a2){
+     	var element1 = document.getElementById("a2");   
+         
+         for(i=0;i<element1.length;i++){
+           if(a2==element1.options[i].value){  
+               element1.options[i].selected=true; 
+           }  
+         }  
+     }
 	if("0"!=t3){
 		var element1 = document.getElementById("trade3");   
         
-        for(i=0;i<element1.length;i++)
-        {
-          if(t3==element1.options[i].value)
-          {  
+        for(i=0;i<element1.length;i++){
+          if(t3==element1.options[i].value){  
               element1.options[i].selected=true; 
           }  
         }  
-        var htmlStr = "";
-        for(var i = 0;i<tradeData.length;i++){
-        	if(t3==tradeData[i].parentId){
-        		htmlStr += "<option value="+tradeData[i].id+" >"+tradeData[i].tradeName+"<option>";
-        	}
-        	$("#area3").html(htmlStr);
-        }
-        if("0"!=a3){
-        	var element1 = document.getElementById("a3");   
-            
-            for(i=0;i<element1.length;i++)
-            {
-              if(a3==element1.options[i].value)
-              {  
-                  element1.options[i].selected=true; 
-              }  
-            }  
-        }
 	}
+   if("0"!=a3){
+      	var element1 = document.getElementById("a3");   
+          
+          for(i=0;i<element1.length;i++){
+            if(a3==element1.options[i].value){  
+                element1.options[i].selected=true; 
+            }  
+          }  
+      }
 }
 
 /**
@@ -240,6 +242,19 @@ function saveData(){
 <body class="tutor-bg">
 <div class="nav-title">个人信息（三）<div class="close" onclick="openUrl('/tutor/page/index.html')" >&Chi;</div></div>
 <input type="hidden" id="topicValue" value="${topicId }" >
+<input type="hidden" id="topic2" value="${topic2 }" >
+<input type="hidden" id="topic3" value="${topic3 }" >
+<input type="hidden" id="topic4" value="${topic4 }" >
+<input type="hidden" id="topic5" value="${topic5 }" >
+<input type="hidden" id="topic6" value="${topic6 }" >
+<input type="hidden" id="topic7" value="${topic7 }" >
+<input type="hidden" id="topic8" value="${topic8 }" >
+<input type="hidden" id="topic9" value="${topic9 }" >
+<input type="hidden" id="topic10" value="${topic10 }" >
+<input type="hidden" id="topic11" value="${topic11 }" >
+<input type="hidden" id="topic12" value="${topic12 }" >
+<input type="hidden" id="topic13" value="${topic13 }" >
+
 <input type="hidden" id="t1" value="${t1 }" >
 <input type="hidden" id="t2" value="${t2 }" >
 <input type="hidden" id="t3" value="${t3 }" >
@@ -247,7 +262,7 @@ function saveData(){
 <input type="hidden" id="a2" value="${a2 }" >
 <input type="hidden" id="a3" value="${a3 }" >
 <div class="information-question none" style="display: none;" id="topicDiv1" >
-	<div class="choice-title"><p>请填写您最擅长的主题</p></div>
+	<div class="choice-title"><p>擅长的辅导场景和主题</p></div>
 	<div class="register-inp register-inp-top">
 		<span class="register-inp-text">选择场景</span>
 		<select class="register-select-long"  id="s1"   >
@@ -274,7 +289,7 @@ function saveData(){
 		</select>
 	</div>
 	<ul class="choice-question select-answer">
-		<li id="to8" class="choice-question-select">如何快速理解角色和融入团队</li>
+		<li id="to8" >如何快速理解角色和融入团队</li>
 		<li id="to9"  >管理老板和关键决策人的关系</li>
 		<li id="to10"  >如何处理冲突和提升人机沟通</li>
 		<li id="to11"   >压力的管理和纾解</li>
@@ -291,7 +306,7 @@ function saveData(){
 		</select>
 	</div>
 	<ul class="choice-question select-answer">
-		<li id="to12"   class="choice-question-select">了解公司的架构和晋级之路<span>&radic;</span></li>
+		<li id="to12"   >了解公司的架构和晋级之路<span>&radic;</span></li>
 		<li id="to13"   >快速建立短期目标并积累经验和人脉</li>
 		<li id="to14"   >如何在职场提升关键技术和管理能力</li>
 		<li id="to15"   >为自己的市场价值添分的诀窍</li>
@@ -322,19 +337,19 @@ function saveData(){
 <div class="information-question">
 	<div class="choice-title"><p>擅长领域</p></div>
 	<div class="register-inp register-inp-top">
-		<span class="register-inp-text">擅长领域1</span>
+		<span class="register-inp-text">擅长职能1</span>
 		<select class="register-select-long" id="area1" disabled="disabled">
 			<option value="" selected="selected"></option>
 		</select>
 	</div>
 	<div class="register-inp register-inp-top">
-		<span class="register-inp-text">擅长领域2</span>
+		<span class="register-inp-text">擅长职能2</span>
 		<select class="register-select-long" id="area2" disabled="disabled">
 			<option value="" selected="selected"></option>
 		</select>
 	</div>
 	<div class="register-inp register-inp-top">
-		<span class="register-inp-text">擅长领域3</span>
+		<span class="register-inp-text">擅长职能3</span>
 		<select class="register-select-long" id="area3" disabled="disabled">
 			<option value="" selected="selected"></option>
 		</select>

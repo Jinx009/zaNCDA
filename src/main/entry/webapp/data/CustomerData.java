@@ -103,7 +103,7 @@ public class CustomerData {
 		String dCode = request.getParameter("customer_code_forget");
 		if(dCode.equals(request.getSession().getAttribute("customer_code_forget").toString())){
 			data.put(ConstantUtil.RESULT,ConstantUtil.SUCCESS);
-			MsgUtil.sendMsg(mobilePhone,"您的手机验证码是:"+code);
+			MsgUtil.sendMsg(mobilePhone,"又一位好学上进的小伙伴来报到啦，你好！你的注册验证码是:"+code+"请在5分钟内完成注册哦~~谢谢！");
 			request.getSession().setAttribute("customer_forget_code_"+mobilePhone,code);
 		}else{
 			data.put(ConstantUtil.RESULT,ConstantUtil.FAILURE);

@@ -15,6 +15,6 @@ public class MsgUtil {
 	}
 	
 	public static void main(String[] args) {
-		sendMsg("15238677147","起床 吃饭了!");
+		sendMsg("15238677147","起床尿尿了");
 	}
 }

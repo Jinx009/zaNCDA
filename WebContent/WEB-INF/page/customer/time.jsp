@@ -102,20 +102,18 @@ function goBack(){
 <div class="main">
 	<a href="#"><div class="nav-title"><span class="nav-back" onclick="goBack()" >&lt;</span>导师时间<span class="close" onclick="openUrl('/customer/page/new.html')" >&Chi;</span></div></a>
 	<div class="personal-wrap">
-		<p>一句话概括您想约谈的主题内容(限80字内)</p>
-		<textarea placeholder="输入您想约谈的内容……" id="topicContent" maxlength="80" ></textarea>
-		<div class="checked">
-			<img src="/sp/images/check.png"/>
-			<span>已阅读并同意我们的条约</span>
-		</div>
-	</div>
-	
-	<div class="personal-wrap">
 		<p>选择您希望约谈的日期：</p>
 		<select class="interview-sel center" id="date" onchange="changeTime()" ></select>
 		<p>选择您希望约谈的具体时间：</p>
 		<select class="interview-sel center" id="time"  ></select>
 		<p></p>
+	</div>
+	
+	<div class="personal-wrap">
+		<div class="checked">
+			<img src="/sp/images/check.png"/>
+			<span>已阅读并同意我们的条约</span>
+		</div>
 	</div>
 	
 	<div class="btn-position" style="margin-top: 0px;">

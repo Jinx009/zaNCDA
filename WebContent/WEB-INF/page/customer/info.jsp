@@ -23,10 +23,11 @@ $(function(){
 		success:function(res){
 			var htmlStr = "",htmlStr1 = "";
 			for(var i = 0;i<res.errmsg.length;i++){
-				if("0"==res.errmsg[i].parentId){
+				if("2"==res.errmsg[i].parentId){
 					htmlStr += "<option value="+res.errmsg[i].id+" >"+res.errmsg[i].tradeName+"</option>";
 					tradeData.push(res.errmsg[i]);
-				}else{
+				}
+				if("3"==res.errmsg[i].parentId){
 					htmlStr1 += "<option value="+res.errmsg[i].id+" >"+res.errmsg[i].tradeName+"</option>";
 					areaData.push(res.errmsg[i]);
 				}
@@ -42,10 +43,8 @@ $(function(){
 	if(""!=sex&&null!=sex){
 		var element1 = document.getElementById("sex");   
         
-        for(i=0;i<element1.length;i++)
-        {
-          if(sex==element1.options[i].value)
-          {  
+        for(i=0;i<element1.length;i++){
+          if(sex==element1.options[i].value){  
               element1.options[i].selected=true; 
           }  
         }  
@@ -53,10 +52,8 @@ $(function(){
 	
 	var element1 = document.getElementById("trade");   
     if(""!=trade){
-   	 	for(i=0;i<element1.length;i++)
-   	    {
-   	      if(trade==element1.options[i].value)
-   	      {  
+   	 	for(i=0;i<element1.length;i++){
+   	      if(trade==element1.options[i].value){  
    	          element1.options[i].selected=true; 
    	      }  
    	    }  
@@ -64,10 +61,8 @@ $(function(){
     
 	var element2 = document.getElementById("job");   
     if(""!=area){
-   	 	for(i=0;i<element2.length;i++)
-   	    {
-   	      if(area==element2.options[i].value)
-   	      {  
+   	 	for(i=0;i<element2.length;i++){
+   	      if(area==element2.options[i].value){  
    	          element2.options[i].selected=true; 
    	      }  
    	    } 
@@ -76,17 +71,15 @@ $(function(){
     var familly = $("#familly").val();
     if(null!=familly&&""!=familly){
     	var element3 = document.getElementById("famillyNumber");  
-   	 	for(i=0;i<element3.length;i++)
-   	    {
-   	      if(familly==element3.options[i].value)
-   	      {  
+   	 	for(i=0;i<element3.length;i++){
+   	      if(familly==element3.options[i].value){  
    	          element3.options[i].selected=true; 
    	      }  
    	    } 
     }
 })
 
-
+/* 
 function changeTrade(){
 	var trade = $("#trade").val();
 	var htmlStr = "";
@@ -96,7 +89,7 @@ function changeTrade(){
 		}
 	}
 	$("#job").html(htmlStr);
-}
+} */
 /**
  * 保存个人信息
  */
@@ -165,7 +158,7 @@ function checkTel(phone){
     } 
 }
 function checkEmail(email){
-   var myreg = /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;
+   var myreg = /^([a-zA-Z0-9]+[_|\_|\._|\-]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;
    if(!myreg.test(email))
    {
 	   errorMsg = '请输入有效的邮箱地址！';
@@ -197,24 +190,21 @@ function checkEmail(email){
 <div class="register-inp register-inp-top">
 	<input type="hidden" value="${tradeId }" id="tradeValue" >
 	<span class="register-inp-text"  >行业</span>
-	<select class="register-select-long" id="trade" onclick="changeTrade()"></select>
+	<select class="register-select-long" id="trade" ></select>
 </div>
 <div class="register-inp register-inp-top">
-	<span class="register-inp-text">职位</span>
+	<span class="register-inp-text">职能</span>
 	<input type="hidden" value="${jobId }" id="jobValue" >
 	<select class="register-select-long" id="job" ></select>
 </div>
 <div class="register-inp register-inp-top">
-	<span class="register-inp-text">家庭成员</span>
+	<span class="register-inp-text">工作年限</span>
 	<select class="register-select-long" id="famillyNumber" >
-		<option value="1" >1</option>
-		<option value="2" >2</option>
-		<option value="3" >3</option>
-		<option value="4" >4</option>
-		<option value="5" >5</option>
-		<option value="6" >6</option>
-		<option value="7" >7</option>
-		<option value="8" >8</option>
+		<option value="1" >在读/兼职</option>
+		<option value="2" >1-3年</option>
+		<option value="3" >3-5年</option>
+		<option value="4" >5-10年</option>
+		<option value="5" >10年以上</option>
 	</select>
 	<input  value="${customer.famillyNumber }" type="hidden" id="familly" class="register-inp-long"/>
 </div>

@@ -21,11 +21,13 @@ $(function(){
 			var htmlStr = "";
 			for(var i = 0;i<res.errmsg.length;i++){
 				htmlStr += "<div class='main-list' onclick=javascript:openUrl('/tutor/page/orderDetail.html?orderId="+res.errmsg[i].id+"') >";
-				htmlStr += "<h3>【客户名称:"+isNull(res.errmsg[i].cName)+"】</h3>";
-				htmlStr += "<p>约谈主题</p>";
+				htmlStr += "<h3>【客户姓名："+isNull(res.errmsg[i].cName)+"】</h3>";
+				htmlStr += "<p>约谈日期：<font>"+jsDateTimeOnly(res.errmsg[i].qTutorTime.realDate)+"</font></p>";
+				htmlStr += "<p>约谈时间：<font>"+res.errmsg[i].qTutorTime.realTime+"</font></p>";
+				htmlStr += "<p>辅导主题：</p>";
 				htmlStr += "<textarea  readonly='readonly' >"+res.errmsg[i].tName+"</textarea>";
-				htmlStr += "<p>约谈时间:<font>"+jsDateTimeOnly(res.errmsg[i].qTutorTime.realDate)+"("+res.errmsg[i].qTutorTime.realTime+")</font></p>";
-				htmlStr += "<p>约谈状态:<font class='tutor-state-has'>"+getOrderStatus(res.errmsg[i].status)+"</font></p>";
+				htmlStr += "<p>辅导方式：<font>当面约谈（60分钟）</font></p>";
+				htmlStr += "<p>约谈状态：<font class='tutor-state-has'>"+getOrderStatus(res.errmsg[i].status)+"</font></p>";
 				htmlStr += "</div>";
 				htmlStr += "<hr>";
 			}

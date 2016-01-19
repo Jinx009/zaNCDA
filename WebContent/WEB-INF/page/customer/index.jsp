@@ -21,11 +21,15 @@
 			<div class="qa">
 			<!-- 	<img src="/sp/images/qa_left.png" class="qa_left"/> -->
 <div style="height:15px;" ></div>
-				<p class="index-content_p" style="text-indent:2em;" >职业困惑咨询平台？任选主题和导师？都不稀奇。</p>
-				<p class="index-content_p" style="text-indent:2em;" >“才知道”为什么牛？<span style="color:rgb(0,112,192)" >国内最专业的权威认证导师汇集在此！</span></p>
-				<p class="index-content_p" style="text-indent:2em;" >你不是来找朋友闲聊吐嘈的。抱怨完你还要走进职场。你要的是专业导师精准诊脉、戳中软肋，豁然开朗后继续前行！</p>
-				<p class="index-content_p" style="text-indent:2em;" >你不是来听职场大咖讲成功故事的。TA的辉煌谁要复制？你的职业追求才是重点！特别的你应该规划属于自己的精彩职业生涯。</p>
-				<p class="index-content_p" style="text-indent:2em;" >不清楚怎么选择辅导场景？没关系，下面三个经典场景的案例分享会让你获得启发。</p>
+				<p class="index-content_p"  >职业困惑咨询平台？任选主题和导师？都不稀奇。</p>
+				<div style="height: 10px;" ></div>
+				<p class="index-content_p" >“才知道”为什么牛？<span style="color:rgb(0,112,192)" >国内最专业的权威认证导师汇集在此！</span></p>
+				<div style="height: 10px;" ></div>
+				<p class="index-content_p" >你不是来找朋友闲聊吐嘈的。抱怨完你还要走进职场。你要的是专业导师精准诊脉、戳中软肋，豁然开朗后继续前行！</p>
+				<div style="height: 10px;" ></div>
+				<p class="index-content_p"  >你不是来听职场大咖讲成功故事的。TA的辉煌谁要复制？你的职业追求才是重点！特别的你应该规划属于自己的精彩职业生涯。</p>
+				<div style="height: 10px;" ></div>
+				<p class="index-content_p" >不清楚怎么选择辅导场景？没关系，下面三个经典场景的案例分享会让你获得启发。</p>
 			<!-- 	<img src="/sp/images/qa_right.png" class="qa_right"/> -->
 			</div>	
 		</div>

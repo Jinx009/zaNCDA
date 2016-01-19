@@ -16,6 +16,6 @@
 	<div class="index-list index-list-bg-one" onclick="openUrl('/tutor/page/order.html')" >我的约谈</div>
 	<div class="index-list index-list-bg-two" onclick="openUrl('/tutor/page/infoOne.html')" >我的信息</div>
 	<div class="index-list index-list-bg-three" onclick="openUrl('/tutor/page/time.html')" >提交我的时间</div>
-	<div class="index-list index-list-bg-one" onclick="openUrl('/tutor/login.html')" >登出</div>
+	<div class="index-list index-list-bg-one" onclick="openUrl('/tutor/login.html')" >退出登录</div>
 </body>
 </html>

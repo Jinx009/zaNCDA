@@ -42,14 +42,19 @@ $(function(){
 	if(""!=sex&&null!=sex){
 		var element1 = document.getElementById("sex");   
         
-        for(i=0;i<element1.length;i++)
-        {
-          if(sex==element1.options[i].value)
-          {  
+        for(i=0;i<element1.length;i++){
+          if(sex==element1.options[i].value){  
               element1.options[i].selected=true; 
           }  
         }  
 	}
+	var workYears = $("#workYearsValue").val();
+	var element2 = document.getElementById("workYears");  
+	 	for(i=0;i<element2.length;i++){
+	      if(workYears==element2.options[i].value){  
+	          element2.options[i].selected=true; 
+	      }  
+	 } 
 })
 
 /**
@@ -171,12 +176,21 @@ function getTrade(){
 			for(var i = 0;i<res.errmsg.length;i++){
 				if("0"==res.errmsg[i].parentId){
 					tradeData.push(res.errmsg[i]);
-					htmlStr += "<option value="+res.errmsg[i].id+" >";
+					if("不选择"==res.errmsg[i].tradeName){
+						htmlStr += "<option value="+res.errmsg[i].id+" selected='selected' >";
+					}else{
+						htmlStr += "<option value="+res.errmsg[i].id+" >";
+					}
 					htmlStr += res.errmsg[i].tradeName;
 					htmlStr += "</option>";
-				}else{
+				}
+				if("1"==res.errmsg[i].parentId){
 					areaData.push(res.errmsg[i]);
-					htmlStr1 += "<option value="+res.errmsg[i].id+" >";
+					if("不选择"==res.errmsg[i].tradeName){
+						htmlStr1 += "<option value="+res.errmsg[i].id+" selected='selected' >";
+					}else{
+						htmlStr1 += "<option value="+res.errmsg[i].id+" >";
+					}
 					htmlStr1 += res.errmsg[i].tradeName;
 					htmlStr1 += "</option>";
 				}
@@ -195,35 +209,29 @@ function getTrade(){
 			
 			if(""!=trade1){
 				var element = document.getElementById("trade1");  
-		   	 	for(i=0;i<element.length;i++)
-		   	    {
-		   	      if(trade1==element.options[i].value)
-		   	      {  
+		   	 	for(i=0;i<element.length;i++){
+		   	      if(trade1==element.options[i].value){  
 		   	          element.options[i].selected=true; 
 		   	      }  
 		   	    } 
 			}
 			if(""!=trade2){
 				var element = document.getElementById("trade2");  
-		   	 	for(i=0;i<element.length;i++)
-		   	    {
-		   	      if(trade2==element.options[i].value)
-		   	      {  
+		   	 	for(i=0;i<element.length;i++){
+		   	      if(trade2==element.options[i].value){  
 		   	          element.options[i].selected=true; 
 		   	      }  
 		   	    } 
 			}
 			if(""!=trade3){
 				var element = document.getElementById("trade3");  
-		   	 	for(i=0;i<element.length;i++)
-		   	    {
-		   	      if(trade3==element.options[i].value)
-		   	      {  
+		   	 	for(i=0;i<element.length;i++){
+		   	      if(trade3==element.options[i].value){  
 		   	          element.options[i].selected=true; 
 		   	      }  
 		   	    } 
 			}
-			var trade1Value = $("#trade1").val();
+/* 			var trade1Value = $("#trade1").val();
 			var trade2Value = $("#trade2").val();
 			var trade3Value = $("#trade3").val();
 			
@@ -238,32 +246,26 @@ function getTrade(){
 				if(trade3Value==areaData[i].parentId){
 					areaHtml3  += "<option value="+areaData[i].id+" >"+areaData[i].tradeName+"</option>";
 				}
-			}
-			$("#area1").html(areaHtml1);
-			$("#area2").html(areaHtml2);
-			$("#area3").html(areaHtml3);
+			} */
+			$("#area1").html(htmlStr1);
+			$("#area2").html(htmlStr1);
+			$("#area3").html(htmlStr1);
 			
 			var element1 = document.getElementById("area1");  
-	   	 	for(i=0;i<element1.length;i++)
-	   	    {
-	   	      if(area1==element1.options[i].value)
-	   	      {  
+	   	 	for(i=0;i<element1.length;i++){
+	   	      if(area1==element1.options[i].value){  
 	   	          element1.options[i].selected=true; 
 	   	      }  
 	   	    } 
-	   		var element2 = document.getElementById("area1");  
-	   	 	for(i=0;i<element2.length;i++)
-	   	    {
-	   	      if(area2==element2.options[i].value)
-	   	      {  
+	   		var element2 = document.getElementById("area2");  
+	   	 	for(i=0;i<element2.length;i++){
+	   	      if(area2==element2.options[i].value){  
 	   	          element2.options[i].selected=true; 
 	   	      }  
 	   	    } 
-	   		var element3 = document.getElementById("area1");  
-	   	 	for(i=0;i<element3.length;i++)
-	   	    {
-	   	      if(area3==element3.options[i].value)
-	   	      {  
+	   		var element3 = document.getElementById("area3");  
+	   	 	for(i=0;i<element3.length;i++){
+	   	      if(area3==element3.options[i].value){  
 	   	          element3.options[i].selected=true; 
 	   	      }  
 	   	    } 
@@ -348,12 +350,13 @@ function saveInfo(){
 		}
 	})
 	var personalIntroduction = $("#personalIntroduction").val();
+	var bankAccount = $("#bankAccount").val();
 
 	var params = "username="+username+"&photoPath="+photoPath+"&sex="+sex+"&mobilePhone="+mobilePhone+"&aptitude="+aptitude+"&birth="+
 				birth+"&classPrice="+classPrice+"&trade1="+trade1+"&trade2="+trade2+"&trade3="+trade3+"&area1="+area1+"&area2="+
 				area2+"&area3="+area3+"&isOnline="+isOnline+"&bankAccount="+bankAccount+"&bankName="+bankName+"&idCard="+idCard+
 				"&email="+email+"&workYears="+workYears+"&qq="+qq+"&mobileStatus="+mobileStatus+"&faceStatus="+faceStatus+"&videoStatus="+
-				videoStatus+"&personalIntroduction="+personalIntroduction+"&id="+id+"&topicId="+topicId+"&facePrice="+facePrice+"&pwd="+pwd;
+				videoStatus+"&personalIntroduction="+personalIntroduction+"&id="+id+"&topicId="+topicId+"&facePrice="+facePrice+"&pwd="+pwd+"&bankAccount="+bankAccount;
 	if(repwd!=pwd){
 		alert("重置密码不一致!");
 	}else{
@@ -400,13 +403,13 @@ function saveInfo(){
 			  <a href="/admin/page/order.html" class="list-group-item">约谈管理</a>
 			  <a href="/admin/page/util.html" class="list-group-item">资料管理</a>
 			  <a href="/admin/page/pay.html" class="list-group-item">兑付管理</a>
-			  <a href="/admin/loginOut.html" class="list-group-item">登出</a>
+			  <a href="/admin/loginOut.html" class="list-group-item">退出登录</a>
 			</div>
 		</div>
 		<div class="col-md-10 index-col-md-10" >
 			<div class="btn-group" role="group" aria-label="...">
 			  <button type="button" class="btn btn-default" onclick="openUrl('/admin/page/tutor.html')" >返回首页</button>
-			  <button type="button" class="btn btn-info" >教师编辑</button>
+			  <button type="button" class="btn btn-info" >导师编辑</button>
 			</div>
 			<input type="hidden" value="${errmsg}" id="editId" >
 			<input type="hidden" value="${topicId }" id="topicId" >
@@ -495,37 +498,45 @@ function saveInfo(){
 						<td><input type="text" id="openid" readonly="readonly" value="${tutor.openid }" class="form-control"  ></td>
 					</tr>
 					<tr>
-						<th>擅长领域1：</th>
+						<th>擅长职能1：</th>
 						<td> <select class="form-control" id="area1" name="area1" ></select></td>
 						<th>银行名称：</th>
 						<td><input type="text" id="bankName" class="form-control" value="${tutor.bankName}" /></td>
 					</tr>
 					<tr>
-						<th>擅长领域2：</th>
+						<th>擅长职能2：</th>
 						<td> <select class="form-control" id="area2" name="area2" ></select></td>
 						<th>身份证号：</th>
 						<td> <input type="text" id="idCard" value="${tutor.idNumber }" class="form-control"  ></td>
 					</tr>
 					<tr>
-						<th>擅长领域3：</th>
+						<th>擅长职能3：</th>
 						<td> <select class="form-control" id="area3" name="area3" ></select></td>
 						<th>邮箱：</th>
 						<td> <input type="text" id="email" value="${tutor.email }" class="form-control"  ></td>
 					</tr>
 					<tr>
 						<th>工作年限：</th>
-						<td>  <input class="form-control" value="${tutor.workYears }" id="workYears" ></td>
-						<th>邮箱：</th>
+						<td> 
+							<select class="form-control" id="workYears" >
+								<option value="1" selected="selected">1年以内</option>
+								<option value="2" >1-3年</option>
+								<option value="3" >3-5年</option>
+								<option value="4" >5-7年</option>
+								<option value="5" >7年以上</option>
+							</select>
+						 <input type="hidden" value="${tutor.workYears }" id="workYearsValue" ></td>
+						<th>qq：</th>
 						<td>  <input type="text" id="qq" value="${tutor.qq }" class="form-control"  ></td>
 					</tr>
 					<tr>
 						<th>约谈价格：</th>
 						<td><input type="text" id="facePrice" class="form-control" value="${tutor.facePrice }" ></td>
-						<th></th>
-						<td></td>
+						<th>账户名称：</th>
+						<td><input type="text" id="bankAcccount" > </td>
 					</tr>
 					<tr>
-						<th colspan="4" >辅助方式：</th>
+						<th colspan="4" >辅导方式：</th>
 					</tr>
 					<tr>
 						<td>电话约谈</td>
@@ -560,7 +571,7 @@ function saveInfo(){
 						<td colspan="3" ><div id="topicDiv2" ></div></td>
 					</tr>
 					<tr>
-						<td>职业发展</td>
+						<td>职业能力发展</td>
 						<td colspan="3" ><div id="topicDiv3" ></div></td>
 					</tr>
 					<tr>

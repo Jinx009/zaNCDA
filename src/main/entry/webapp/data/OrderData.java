@@ -265,7 +265,12 @@ public class OrderData {
 				OrderModel orderModel = new OrderModel();
 				orderModel = OrderModel.instance(list.get(i));
 				orderModel.setcName(list.get(i).getqCustomer().getRealName());
-				orderModel.settName(list.get(i).getTopic().getName());
+				orderModel.settName(list.get(i).getqTutor().getRealName());
+				if(null!=list.get(i).getTopic().getName()){
+					orderModel.setTopicContent(list.get(i).getTopic().getName());
+				}else{
+					orderModel.setTopicContent(list.get(i).getTopicContent());
+				}
 				result.add(orderModel);
 			}
 		}
@@ -329,6 +334,21 @@ public class OrderData {
 		List<Score> scoreList = scoreService.getByAttr(id);
 		List<Comments> commentsList = commentService.getByOrderId(id);
  		
+		if(null!=order.getqCustomer().getTrade()){
+			map.put("tradeName",order.getqCustomer().getTrade().getTradeName());
+		}else{
+			map.put("tradeName","");
+		}
+		if(null!=order.getqCustomer().getJob()){
+			map.put("jobName",order.getqCustomer().getJob().getTradeName());
+		}else{
+			map.put("jobName","");
+		}
+		if(null!=order.getTopic()){
+			order.setTopicContent(order.getTopic().getName());
+		}else{
+			order.setTopicContent(order.getTopicContent());
+		}
 		map.put("order",order);
 		map.put("score",scoreList);
 		map.put("comments",commentsList);

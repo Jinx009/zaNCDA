@@ -15,8 +15,9 @@
 <a href="#"><div class="nav-title">开始预约<span class="close" onclick="openUrl('/customer/page/index.html')" >&Chi;</span></div></a>
 <div class="scene-main">
 <div style="height:10px;" ></div>
-	<p style="margin-left:4%;width:92%;line-height:18px;text-indent:2em;">职业选择、职场关系和职业能力发展是职场常见的三种困惑。这三类困惑又可以因人而异地细分为多个具体场景。要解决这些困惑，除了给出直接的建议之外，还需要诊断职业驱动力和兴趣，由内而外地找准自我定位，很多挑战便迎刃而解。
-</p><p style="margin-left:4%;width:92%;line-height:18px;text-indent:2em;">首先，请在以下三个场景中，选择一个您想要约谈的主题场景，点击进入后再选择具体话题。</p>	
+	<p style="margin-left:4%;width:92%;line-height:18px;">职业选择、职场关系和职业能力发展是职场常见的三种困惑。这三类困惑又可以因人而异地细分为多个具体场景。要解决这些困惑，除了给出直接的建议之外，还需要诊断职业驱动力和兴趣，由内而外地找准自我定位，很多挑战便迎刃而解。
+</p><div style="height: 10px;" ></div>
+<p style="margin-left:4%;width:92%;line-height:18px;">首先，请在以下三个场景中，选择一个您想要约谈的主题场景，点击进入后再选择具体话题。</p>	
 
 	<div class="scene-box scene-choice" onclick="openUrl('/customer/page/qOne.html')" >
 		<h1><span>职业选择</span></h1>

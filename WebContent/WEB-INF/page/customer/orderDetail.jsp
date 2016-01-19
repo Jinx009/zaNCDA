@@ -121,29 +121,47 @@ function cacleOrder(){
 		<img src="${order.qTutor.photoPath }"/>
 	</div>
 	<div class="interviewDetails-top-right">
-		<p class="interview-title">${order.topicContent }</p>
-		<p class="interview-teacher"><span>约谈导师：</span>${order.qTutor.realName }</p>
 	</div>
 </div>
 
 <div class="interviewDetails-case">
 	<div>
+		<span>约谈导师：</span>
+		<label>${order.qTutor.realName }</label>
+	</div>
+	<div>
 		<input type="hidden" value="${order.qTutorTime.realDate }" id="timeValue" >
-		<span>时间：</span>
-		<label>2015年11月12日</label>
+		<span>约谈日期：</span>
+		<label>${orderDate }</label>
 	</div>
 	<div>
-		<span>方式：</span>
-		<label>见面授课</label>
+		<span>约谈时间：</span>
+		<label>${order.qTutorTime.realTime }</label>
 	</div>
 	<div>
-		<span>课程费用:</span>
-		<label>${order.qTutor.classPrice }</label>
+		<span>辅导主题：</span>
+		<label></label>
 	</div>
 	<div>
-		<span>支付:</span>
-		<label class="money-percent">100%</label>
+		<span></span>
+		<label>${mytopic }</label>
+	</div>
+	<div>
+		<span>辅导方式：</span>
+		<label>当面约谈（60分钟）</label>
+	</div>
+	<div>
+		<span>辅导费用:</span>
+		<label>1500元/60分钟</label>
+	</div>
+	<div>
+		<span></span>
+		<label class="money-percent"></label>
 		<button class="cancel-small-btn" onclick="cacleOrder()" >申请取消</button>
+	</div>
+	<div>
+		<span>请对这次辅导做出评价：</span>
+		<label></label>
 	</div>
 </div>
 
@@ -207,11 +225,11 @@ function cacleOrder(){
 </div>
 
 <div class="interview-textarea">
-	<textarea placeholder="对老师的评语" id="content" ></textarea>
+	<textarea placeholder="请对辅导或导师做出评价，谢谢！" id="content" ></textarea>
 </div>
 
 <div class="sure-btn">
-	<div class="tutor-search-btn btn-bottom" onclick="saveScore()" >提交评语</div>
+	<div class="tutor-search-btn btn-bottom" onclick="saveScore()" >提交评价</div>
 	<div class="tutor-search-btn btn-orange-bg" onclick="goComments()" >查看来自导师的辅导小结</div>
 </div>
 </body>

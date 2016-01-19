@@ -266,6 +266,8 @@ public class Tutor {
 	@OneToOne
 	@JoinColumn(name="topic14")
 	private Topic topic14;
+	@Column(name = "bank_account")
+	private String bankAccount;
 	
 	public Integer getId() {
 		return id;
@@ -691,6 +693,14 @@ public class Tutor {
 
 	public void setTopic14(Topic topic14) {
 		this.topic14 = topic14;
+	}
+
+	public String getBankAccount() {
+		return bankAccount;
+	}
+
+	public void setBankAccount(String bankAccount) {
+		this.bankAccount = bankAccount;
 	}
 	
 	

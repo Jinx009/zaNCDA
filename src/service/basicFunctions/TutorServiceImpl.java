@@ -2,7 +2,6 @@ package service.basicFunctions;
 
 import java.util.List;
 
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -101,9 +100,6 @@ public class TutorServiceImpl implements TutorService{
 		buffer.append(" good_area_three = ");
 		buffer.append(tutor.getAreaOne().getId());
 		buffer.append(" ) ");
-		buffer.append(" AND ");
-		buffer.append("( work_years = ");
-		buffer.append(workYears);
 		buffer.append(") AND ");
 		buffer.append(typeResult);
 		buffer.append("  =  1 ");

@@ -3,8 +3,7 @@ package database.models;
 import org.springframework.beans.BeanUtils;
 
 public class OrderModel extends Order{
-	public static OrderModel instance(Order order)
-	{
+	public static OrderModel instance(Order order){
 		OrderModel model = new OrderModel();
 		BeanUtils.copyProperties(order, model);
 		return model;

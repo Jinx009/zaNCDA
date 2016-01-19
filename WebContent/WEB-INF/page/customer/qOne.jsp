@@ -13,27 +13,37 @@
 <script type="text/javascript">
 var array = ['兴趣还是专业，我该如何选择职业方向？','有一个看似美好的机会摆在面前，走还是留？','管理路线、专业路线，哪一个更加适合我？','感受到了职场瓶颈，下一步该怎么办？','我是否适合创业？'];
 var idArray = ['4','5','6','7','16'];
-var index = "5";
+var index = "0";
 
 /**
  * 更换内容
  */
 function changeText(id){
-	index = idArray[parseInt(id)];
 	
 	$(".choice-question li").each(function(){
 		$(this).removeClass("choice-question-select");
 		$(this).html(array[parseInt($(this).attr("id"))]);
 	})
-	$("#"+id).html($("#"+id).html()+"<span>&radic;</span>");
-	$("#"+id).addClass("choice-question-select");
+	if(index!=idArray[parseInt(id)]){
+		$("#"+id).html($("#"+id).html()+"<span>&radic;</span>");
+		$("#"+id).addClass("choice-question-select");
+	}
+	index = idArray[parseInt(id)];
 }
 
 /**
  * 跳转下一页
  */
 function goNext(){
-	location.href = "/customer/page/selectTutor.html?id="+index;
+	var topicContent = $("#topicContent").val();
+	if("0"!=index){
+		location.href = "/customer/page/selectTutor.html?id="+index;
+	}else{
+		if(""!=topicContent){
+			var storage = window.sessionStorage;
+			storage.setItem("localTopic",topicContent);
+		}
+	}
 }
 </script>
 </head>
@@ -41,7 +51,7 @@ function goNext(){
 <a href="#"><div class="nav-title"><span class="nav-back" onclick="openUrl('/customer/page/new.html')" >&lt;</span>职业选择</div></a>
 <div class="choice-title" style="height:130px;" ><h1></h1>
 <div style="height:10px;" ></div>
-<p style="text-indent:2em;line-height:18px;font-size:14px;" >寻求职业发展的过程中，我们常常面临很多选择。不论是要追求“心中的梦想”，还是因为感觉“怀才不遇”。在这些场景里面，都需要有专业的导师在你身边，帮你找准定位，做出正确的选择。</p>
+<p style="line-height:18px;font-size:14px;" >寻求职业发展的过程中，我们常常面临很多选择。不论是要追求“心中的梦想”，还是因为感觉“怀才不遇”。在这些场景里面，都需要有专业的导师在你身边，帮你找准定位，做出正确的选择。</p>
 <div style="height:10px;" ></div>
 <p style="line-height:18px;font-size:14px;"><b>以下是可供选择的具体场景或者挑战（单选）</b></p>
 </div>
@@ -57,7 +67,7 @@ function goNext(){
 <div class="clear"></div>
 <div class="choice-text">
 	<p style="font-size:14px;"><b>您有个性化问题？请写在这里吧：</b></p>
-	<textarea placeholder="(限150字以内)" maxlength="150" ></textarea>
+	<textarea placeholder="(限80字以内)" maxlength="80" id="topicContent"  ></textarea>
 </div>
 <div class="sure-btn">
 	<div class="tutor-search-btn" onclick="goNext()" >下一步</div>

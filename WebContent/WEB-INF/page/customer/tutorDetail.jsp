@@ -39,7 +39,7 @@ function goNext(){
 		<div class="tutorDetails-bg">
 			<img src="${tutor.photoPath }"/>
 		</div>
-		<div class="tutor-details-name">${tutor.realName }教师<img src="/sp/images/male.png"/></div>
+		<div class="tutor-details-name">${tutor.realName }导师<img src="/sp/images/male.png"/></div>
 		
 		<ul class="tutor-title">
 			<li><img src="/sp/images/small_bottom.png"/></li>
@@ -75,7 +75,7 @@ function goNext(){
 		
 		<ul class="tutor-title">
 			<li><img src="/sp/images/small_bottom.png"/></li>
-			<li>擅长领域</li>
+			<li>擅长职能</li>
 			<li><img src="/sp/images/small_bottom.png"/></li>
 		</ul>
 		<div class="tutor-content">
@@ -89,7 +89,7 @@ function goNext(){
 		
 		<ul class="tutor-title">
 			<li><img src="/sp/images/small_bottom.png"/></li>
-			<li>课程价格</li>
+			<li>辅导价格</li>
 			<li><img src="/sp/images/small_bottom.png"/></li>
 		</ul>
 		<div class="tutor-content">

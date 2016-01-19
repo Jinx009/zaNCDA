@@ -128,6 +128,13 @@ function callPlay(){
         	   var topicId = $("#topicId").val();
         	   var timeId = $("#time").val();
         	   var topicContent = $("#topicContent").val();
+        	   var storage = window.sessionStorage;
+        	   topicContent = storage.getItem("localTopic");
+        	   if(null!=topicContent&&""!=topicContent){
+        		   topicContent = storage.getItem("localTopic");
+        	   }else{
+        		   topicContent = "";
+        	   }
         	   var params = "tutorId="+tutorId+"&topicId="+topicId+"&timeId="+timeId+"&topicContent="+topicContent;
         	   $.ajax({
         		   url:"/tutor/data/saveOrder.html",
@@ -170,7 +177,7 @@ function pay(){
 	var params = "sign="+md5+"&openId="+openId+"&fee="+total_fee+"&nonce_str="+nonceStr+"&client_ip=127.0.0.1&order_id="+order_id;
 
 	if(null==openId||""==openId){
-		alert("尚未从微信登陆，无法完成交易!");
+		alert("支付成功，预约已经生效。请注意查收预约辅导通知短信。");
 	}else{
 		$.ajax({
 			url:"/getPayId.html",

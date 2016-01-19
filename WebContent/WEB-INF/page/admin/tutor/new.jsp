@@ -71,12 +71,21 @@ function getTrade(){
 			for(var i = 0;i<res.errmsg.length;i++){
 				if("0"==res.errmsg[i].parentId){
 					tradeData.push(res.errmsg[i]);
-					htmlStr += "<option value="+res.errmsg[i].id+" >";
+					if("不选择"==res.errmsg[i].tradeName){
+						htmlStr += "<option value="+res.errmsg[i].id+" selected='selected' >";
+					}else{
+						htmlStr += "<option value="+res.errmsg[i].id+" >";
+					}
 					htmlStr += res.errmsg[i].tradeName;
 					htmlStr += "</option>";
-				}else{
+				}
+				if("1"==res.errmsg[i].parentId){
 					areaData.push(res.errmsg[i]);
-					htmlStr1 += "<option value="+res.errmsg[i].id+" >";
+					if("不选择"==res.errmsg[i].tradeName){
+						htmlStr1 += "<option value="+res.errmsg[i].id+" selected='selected' >";
+					}else{
+						htmlStr1 += "<option value="+res.errmsg[i].id+" >";
+					}
 					htmlStr1 += res.errmsg[i].tradeName;
 					htmlStr1 += "</option>";
 				}
@@ -86,7 +95,7 @@ function getTrade(){
 			$("#trade2").html(htmlStr);
 			$("#trade3").html(htmlStr);
 			
-			var trade1Value = $("#trade1").val();
+		/* 	var trade1Value = $("#trade1").val();
 			var trade2Value = $("#trade2").val();
 			var trade3Value = $("#trade3").val();
 			
@@ -101,10 +110,10 @@ function getTrade(){
 				if(trade3Value==areaData[i].parentId){
 					areaHtml3  += "<option value="+areaData[i].id+" >"+areaData[i].tradeName+"</option>";
 				}
-			}
-			$("#area1").html(areaHtml1);
-			$("#area2").html(areaHtml2);
-			$("#area3").html(areaHtml3);
+			} */
+			$("#area1").html(htmlStr1);
+			$("#area2").html(htmlStr1);
+			$("#area3").html(htmlStr1);
 			
 		}
 	})
@@ -186,12 +195,13 @@ function saveInfo(){
 		}
 	})
 	var personalIntroduction = $("#personalIntroduction").val();
+	var bankAccount = $("#bankAccount").val();
 
 	var params = "username="+username+"&photoPath="+photoPath+"&sex="+sex+"&mobilePhone="+mobilePhone+"&aptitude="+aptitude+"&birth="+
 				birth+"&classPrice="+classPrice+"&trade1="+trade1+"&trade2="+trade2+"&trade3="+trade3+"&area1="+area1+"&area2="+
 				area2+"&area3="+area3+"&isOnline="+isOnline+"&bankAccount="+bankAccount+"&bankName="+bankName+"&idCard="+idCard+
 				"&email="+email+"&workYears="+workYears+"&qq="+qq+"&mobileStatus="+mobileStatus+"&faceStatus="+faceStatus+"&videoStatus="+
-				videoStatus+"&personalIntroduction="+personalIntroduction+"&topicId="+topicId+"&realname="+realname+"&pwd="+pwd+"&facePrice="+facePrice;
+				videoStatus+"&personalIntroduction="+personalIntroduction+"&topicId="+topicId+"&realname="+realname+"&pwd="+pwd+"&facePrice="+facePrice+"&bankAccount="+bankAccount;
 	
 	 	$.ajax({
 			url:"/tutor/data/save.html",
@@ -234,7 +244,7 @@ function saveInfo(){
 			  <a href="/admin/page/order.html" class="list-group-item">约谈管理</a>
 			  <a href="/admin/page/util.html" class="list-group-item">资料管理</a>
 			  <a href="/admin/page/pay.html" class="list-group-item">兑付管理</a>
-			  <a href="/admin/loginOut.html" class="list-group-item">登出</a>
+			  <a href="/admin/loginOut.html" class="list-group-item">退出登录</a>
 			</div>
 		</div>
 		<div class="col-md-10 index-col-md-10" >
@@ -292,7 +302,7 @@ function saveInfo(){
 					</tr>
 					<tr>
 						<th>行业1：</th>
-						<td> <select class="form-control" id="trade1"  onchange="changeTrade('1')"  ></select></td>
+						<td> <select class="form-control" id="trade1"   ></select></td>
 						<th>有效：</th>
 						<td>
 							<select class="form-control" id="isOnline" >
@@ -303,48 +313,56 @@ function saveInfo(){
 					</tr>
 					<tr>
 						<th>行业2：</th>
-						<td> <select class="form-control" id="trade2" onchange="changeTrade('2')"   ></select></td>
+						<td> <select class="form-control" id="trade2"   ></select></td>
 						<th>银行卡号：</th>
 						<td><input type="text" class="form-control" value="" id="bankAccount"  ></td>
 					</tr>
 					<tr>
 						<th>行业3：</th>
-						<td> <select class="form-control" id="trade3" onchange="changeTrade('3')" ></select></td>
+						<td> <select class="form-control" id="trade3"  ></select></td>
 						<th>openId：</th>
 						<td> <input type="text" id="openid" readonly="readonly" value="" class="form-control"  ></td>
 					</tr>
 					<tr>
-						<th>擅长领域1：</th>
+						<th>擅长职能1：</th>
 						<td> <select class="form-control" id="area1" name="area1" ></select></td>
 						<th>银行名称：</th>
 						<td><input type="text" id="bankName" class="form-control" value="" /></td>
 					</tr>
 					<tr>
-						<th>擅长领域2：</th>
+						<th>擅长职能2：</th>
 						<td> <select class="form-control" id="area2" name="area2" ></select></td>
 						<th>身份证号：</th>
 						<td> <input type="text" id="idCard" value="" class="form-control"  ></td>
 					</tr>
 					<tr>
-						<th>擅长领域3：</th>
+						<th>擅长职能3：</th>
 						<td> <select class="form-control" id="area3" name="area3" ></select></td>
 						<th>邮箱：</th>
 						<td> <input type="text" id="email" value="" class="form-control"  ></td>
 					</tr>
 					<tr>
 						<th>工作年限：</th>
-						<td>  <input class="form-control" value="1" id="workYears" ></td>
+						<td>  
+							<select class="form-control" id="workYears" >
+								<option value="1" selected="selected">1年以内</option>
+								<option value="2" >1-3年</option>
+								<option value="3" >3-5年</option>
+								<option value="4" >5-7年</option>
+								<option value="5" >7年以上</option>
+							</select>
+						</td>
 						<th>qq：</th>
 						<td>  <input type="text" id="qq" value="" class="form-control"  ></td>
 					</tr>
 					<tr>
 						<th>约谈价格</th>
 						<td> <input type="text" id="facePrice"  value="0" class="form-control"  ></td>
-						<th></th>
-						<td> </td>
+						<th>账户名称：</th>
+						<td><input type="text" id="bankAccount"  > </td>
 					</tr>
 					<tr>
-						<th colspan="4" >辅助方式：</th>
+						<th colspan="4" >辅导方式：</th>
 					</tr>
 					<tr>
 						<td>电话约谈</td>
@@ -371,7 +389,7 @@ function saveInfo(){
 						<th colspan="4" >特色管理：<input type="hidden" value="" > </th>
 					</tr>
 					<tr>
-						<td>职业选择</td>
+						<td>职业能力选择</td>
 						<td colspan="3" ><div id="topicDiv1" ></div></td>
 					</tr>
 					<tr>

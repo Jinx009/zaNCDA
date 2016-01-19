@@ -30,7 +30,7 @@ $(function(){
 					}
 					htmlStr += '</div>';
 					htmlStr += '<div class="tutor-text">';
-					htmlStr += '<p class="tutor-desc">'+res.errmsg[i].topicContent+'</p>';
+					htmlStr += '<p class="tutor-desc" style="line-height:18px;height:50px" >'+res.errmsg[i].topicContent+'</p>';
 					htmlStr += '<p class="tutor-desc">约谈导师：<span class="tutor-span">'+res.errmsg[i].tName+'</span></p>';
 					htmlStr += '<p class="tutor-desc">约谈日期：<span class="tutor-span">'+jsDateTimeOnly(res.errmsg[i].qTutorTime.realDate)+'</span></p>';
 					htmlStr += '<p class="tutor-desc">约谈时间：<span class="tutor-span">'+res.errmsg[i].qTutorTime.realTime+'</span></p>';
