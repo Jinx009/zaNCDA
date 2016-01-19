@@ -43,6 +43,7 @@ function goNext(){
 			var storage = window.sessionStorage;
 			storage.setItem("localTopic",topicContent);
 		}
+		location.href = "/customer/page/selectTutor.html?id="+index;
 	}
 }
 </script>
@@ -56,7 +57,7 @@ function goNext(){
 <p style="line-height:18px;font-size:14px;"><b>以下是可供选择的具体场景或者挑战（单选）</b></p>
 </div>
 <ul class="choice-question">
-	<li id="0" onclick="changeText('0')"  >如何能够了解职业发展道路上的不同能力要求？<span>&radic;</span></li>
+	<li id="0" onclick="changeText('0')"  >如何能够了解职业发展道路上的不同能力要求？</li>
 	<li id="1" onclick="changeText('1')" >现任岗位上，提升哪些能力能让我有更突出的表现？</li>
 	<li id="2" onclick="changeText('2')" >职业转型期需要的关键能力有哪些？</li>
 	<li id="3" onclick="changeText('3')" >如何处理越来越大的职场压力？</li>

@@ -43,6 +43,7 @@ function goNext(){
 			var storage = window.sessionStorage;
 			storage.setItem("localTopic",topicContent);
 		}
+		location.href = "/customer/page/selectTutor.html?id="+index;
 	}
 }
 </script>
@@ -57,7 +58,7 @@ function goNext(){
 </div>
 
 <ul class="choice-question">
-	<li id="0" onclick="changeText('0')" class="choice-question-select">兴趣还是专业，我该如何选择职业方向？<span>&radic;</span></li>
+	<li id="0" onclick="changeText('0')" >兴趣还是专业，我该如何选择职业方向？</li>
 	<li id="1" onclick="changeText('1')" >有一个看似美好的机会摆在面前，走还是留？</li>
 	<li id="2" onclick="changeText('2')" >管理路线、专业路线，哪一个更加适合我？</li>
 	<li id="3" onclick="changeText('3')" >感受到了职场瓶颈，下一步该怎么办？</li>

@@ -49,7 +49,7 @@ function saveInfoOne(){
 	var classPrice = $("#classPrice").val();
 	var bankAccount = $("#bankAccount").val();
 	
-	var params = "realName="+realName+"&sex="+sex+"&birthday="+birthday+"&bankAccount="+bankAcount+
+	var params = "realName="+realName+"&sex="+sex+"&birthday="+birthday+"&bankAccount="+bankAccount+
 				 "&email="+email+"&qq="+qq+"&wechatName="+wechatName+"&idNumber="+idNumber+
 				 "&bankCard="+bankCard+"&bankName="+bankName+"&classPrice="+classPrice;
 	

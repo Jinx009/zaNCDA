@@ -43,6 +43,7 @@ function goNext(){
 			var storage = window.sessionStorage;
 			storage.setItem("localTopic",topicContent);
 		}
+		location.href = "/customer/page/selectTutor.html?id="+index;
 	}
 }
 </script>
@@ -55,7 +56,7 @@ function goNext(){
 <div style="height:10px;" ></div>
 <p style="line-height:18px;font-size:14px;"><b>以下是可供选择的具体场景或者挑战（单选）</b></p></div>
 <ul class="choice-question">
-	<li id="0" onclick="changeText('0')" >遇到难懂的上司，如何才能抓住老板的心？<span>&radic;</span></li>
+	<li id="0" onclick="changeText('0')" >遇到难懂的上司，如何才能抓住老板的心？</li>
 	<li id="1" onclick="changeText('1')" >空降兵苦恼：怎样破冰，快速开展工作？</li>
 	<li id="2" onclick="changeText('2')" >我的能力很强，但是不被认可，该怎么办？</li>
 	<li id="3" onclick="changeText('3')" >面对复杂的职场关系，如何提升自己的情商？</li>

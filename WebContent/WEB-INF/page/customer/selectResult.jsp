@@ -1,4 +1,4 @@
-﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
+﻿         <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -139,18 +139,54 @@ $(function(){
 							htmlStr += '</div>';
 							htmlStr += '<div class="tutor-text">';
 							htmlStr += '<p class="tutor-name">'+res.errmsg[i].realName+'</p>';
-							htmlStr += '<div class="tutor-desc">';
-							htmlStr += '<h3>行业：</h3>';
-							htmlStr += '<ul>';
-							htmlStr += '<li>'+res.errmsg[i].bankName+'</li>';
-							htmlStr += '</ul>';
-							htmlStr += '</div>';
-							htmlStr += '<div class="tutor-like">';
-							htmlStr += '<h3>擅长领域：</h3>';
-							htmlStr += '<ul>';
-							htmlStr += '<li>'+res.errmsg[i].bankCard+'</li>';
-							htmlStr += '</ul>';
-							htmlStr += '</div>';
+							if("不选择"!=res.errmsg[i].t1){
+								htmlStr += '<div class="tutor-desc">';
+								htmlStr += '<h3>擅长行业：</h3>';
+								htmlStr += '<ul>';
+								htmlStr += '<li>'+res.errmsg[i].t1+'</li>';
+								htmlStr += '</ul>';
+								htmlStr += '</div>';
+							}
+							if("不选择"!=res.errmsg[i].t2){
+								htmlStr += '<div class="tutor-desc">';
+								htmlStr += '<h3>擅长行业：</h3>';
+								htmlStr += '<ul>';
+								htmlStr += '<li>'+res.errmsg[i].t2+'</li>';
+								htmlStr += '</ul>';
+								htmlStr += '</div>';
+							}
+							if("不选择"!=res.errmsg[i].t3){
+								htmlStr += '<div class="tutor-desc">';
+								htmlStr += '<h3>擅长行业：</h3>';
+								htmlStr += '<ul>';
+								htmlStr += '<li>'+res.errmsg[i].t3+'</li>';
+								htmlStr += '</ul>';
+								htmlStr += '</div>';
+							}
+							if("不选择"!=res.errmsg[i].a1){
+								htmlStr += '<div class="tutor-like">';
+								htmlStr += '<h3>擅长职能：</h3>';
+								htmlStr += '<ul>';
+								htmlStr += '<li>'+res.errmsg[i].a1+'</li>';
+								htmlStr += '</ul>';
+								htmlStr += '</div>';
+							}
+							if("不选择"!=res.errmsg[i].a2){
+								htmlStr += '<div class="tutor-like">';
+								htmlStr += '<h3>擅长职能：</h3>';
+								htmlStr += '<ul>';
+								htmlStr += '<li>'+res.errmsg[i].a2+'</li>';
+								htmlStr += '</ul>';
+								htmlStr += '</div>';
+							}
+							if("不选择"!=res.errmsg[i].a3){
+								htmlStr += '<div class="tutor-like">';
+								htmlStr += '<h3>擅长职能：</h3>';
+								htmlStr += '<ul>';
+								htmlStr += '<li>'+res.errmsg[i].a3+'</li>';
+								htmlStr += '</ul>';
+								htmlStr += '</div>';
+							}
 							htmlStr += '</div>';
 							htmlStr += '</div>';
 							htmlStr += '<div class="tutor-bottom">';

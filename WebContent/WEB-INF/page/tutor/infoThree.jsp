@@ -123,7 +123,7 @@ function changeBaseTrade(){
         }  
 	}
 	 if("0"!=a1){
-     	var element1 = document.getElementById("a1");   
+     	var element1 = document.getElementById("area1");   
          
          for(i=0;i<element1.length;i++){
            if(a1==element1.options[i].value){  
@@ -141,7 +141,7 @@ function changeBaseTrade(){
         }  
 	}
    if("0"!=a2){
-     	var element1 = document.getElementById("a2");   
+     	var element1 = document.getElementById("area2");   
          
          for(i=0;i<element1.length;i++){
            if(a2==element1.options[i].value){  
@@ -159,7 +159,7 @@ function changeBaseTrade(){
         }  
 	}
    if("0"!=a3){
-      	var element1 = document.getElementById("a3");   
+      	var element1 = document.getElementById("area3");   
           
           for(i=0;i<element1.length;i++){
             if(a3==element1.options[i].value){  
@@ -265,24 +265,24 @@ function saveData(){
 	<div class="choice-title"><p>擅长的辅导场景和主题</p></div>
 	<div class="register-inp register-inp-top">
 		<span class="register-inp-text">选择场景</span>
-		<select class="register-select-long"  id="s1"   >
+		<select class="register-select-long"  onchange="changeData('1')"   id="s1"   >
 			<option  selected="selected"  value="1" >职业选择</option>
 			<option value="2">职场能力</option>
 			<option value="3">职业发展</option>
 		</select>
 	</div>
 	<ul class="choice-question select-answer">
-		<li id="to4"  >自我测评和岗位/行业评估<span>&radic;</span></li>
+		<li id="to4"  >自我测评和岗位/行业评估</li>
 		<li id="to5"  >找到正确的求职渠道</li>
 		<li id="to6"  >如何制作和投递完美的简历</li>
 		<li id="to7"  >面试模拟舱：看到真实的自己</li>
 	</ul>
 </div>
-<div class="information-question none"  style="display: none;"  id="topicDiv2" >
+<div class="information-question none"  style="display: none;"   id="topicDiv2" >
 	<div class="choice-title"><p>请填写您最擅长的主题</p></div>
 	<div class="register-inp register-inp-top">
 		<span class="register-inp-text">选择场景</span>
-		<select class="register-select-long"  id="s2" disabled="disabled" >
+		<select class="register-select-long"  onchange="changeData('2')"   id="s2"  >
 			<option value="1" >职业选择</option>
 			<option  selected="selected" value="2">职场能力</option>
 			<option value="3">职业发展</option>
@@ -299,7 +299,7 @@ function saveData(){
 	<div class="choice-title"><p>请填写您最擅长的主题</p></div>
 	<div class="register-inp register-inp-top">
 		<span class="register-inp-text">选择场景</span>
-		<select class="register-select-long" id="s3" >
+		<select class="register-select-long"   onchange="changeData('3')"  id="s3" >
 			<option value="1" >职业选择</option>
 			<option value="2">职场能力</option>
 			<option value="3" selected="selected">职业发展</option>

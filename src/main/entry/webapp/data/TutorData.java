@@ -329,14 +329,20 @@ public class TutorData {
 	public void getCommonList(HttpServletRequest request,HttpServletResponse response) throws IOException{
 		data = new HashMap<String,Object>();
 		List<Tutor> list = tutorService.findAll();
-		List<Tutor> result = null;
+		List<TutorModel> result = null;
 		if(null!=list&&!list.isEmpty()){
-			result = new ArrayList<Tutor>();
+			result = new ArrayList<TutorModel>();
 			for(int i = 0;i<list.size();i++){
 				tutor = list.get(i);
-				tutor.setBankName(tutor.getTradeOne().getTradeName());
-				tutor.setBankCard(tutor.getAreaOne().getTradeName());
-				result.add(tutor);
+				TutorModel tutorModel = new TutorModel();
+				tutorModel = TutorModel.instance(tutor);
+				tutorModel.setT1(tutor.getTradeOne().getTradeName());
+				tutorModel.setT2(tutor.getTradeTwo().getTradeName());
+				tutorModel.setT3(tutor.getTradeThree().getTradeName());
+				tutorModel.setA1(tutor.getAreaOne().getTradeName());
+				tutorModel.setA2(tutor.getAreaTwo().getTradeName());
+				tutorModel.setA3(tutor.getAreaThree().getTradeName());
+				result.add(tutorModel);
 			}
 		}
 		
@@ -630,7 +636,11 @@ public class TutorData {
 		
 		trade = tradeService.find(tradeId);
 		trade2 = tradeService.find(areaId);
-		topic =topicService.find(topicId);
+		if(0!=topicId){
+			topic =topicService.find(topicId);
+		}else{
+			topic = null;
+		}
 		
 		tutor = new Tutor();
 		tutor.setAreaOne(trade2);

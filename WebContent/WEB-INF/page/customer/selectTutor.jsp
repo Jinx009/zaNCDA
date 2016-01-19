@@ -29,7 +29,7 @@ $(function(){
 				}
 			}
 			$('#trade').html(htmlStr);
-			$('#area').html(htmlStr)
+			$('#area').html(htmlStr1)
 		}
 	})
 })
