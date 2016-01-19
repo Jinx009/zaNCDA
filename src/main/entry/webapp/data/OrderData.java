@@ -299,7 +299,11 @@ public class OrderData {
 		if(null!=list&&!list.isEmpty()){
 			for(int i = 0;i<list.size();i++){
 				order = list.get(i);
-				order.setTopicContent(list.get(i).getTopic().getName());
+				if(null!=list.get(i).getTopic()){
+					order.setTopicContent(list.get(i).getTopic().getName());
+				}else{
+					order.setTopicContent(list.get(i).getTopicContent());
+				}
 				OrderModel orderModel = new OrderModel();
 				orderModel =  OrderModel.instance(order);
 				orderModel.settName(order.getqTutor().getRealName());
