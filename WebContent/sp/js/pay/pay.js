@@ -162,7 +162,7 @@ function pay(){
 	var openId = $("#openId").val();
 	var nonceStr = getNonceStr();
 	var str = "appid=wxad7987ba40989a97"+
-			   "&body=NCDA"+
+			   "&body=职业生涯规划辅导"+
 			   "&mch_id=1304560401"+
 			   "&nonce_str="+nonceStr+
 			   "&notify_url=http://t03.0angel.com/pay/callBack.html"+
@@ -175,7 +175,6 @@ function pay(){
 	var md5 = CryptoJS.MD5(str).toString();
 	
 	var params = "sign="+md5+"&openId="+openId+"&fee="+total_fee+"&nonce_str="+nonceStr+"&client_ip=127.0.0.1&order_id="+order_id;
-
 	if(null==openId||""==openId){
 		alert("支付成功，预约已经生效。请注意查收预约辅导通知短信。");
 	}else{

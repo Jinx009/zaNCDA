@@ -45,7 +45,7 @@ public class WechatPay {
 		String xml = 
 				"<xml>"+
 				   "<appid>"+WechatData.APP_ID+"</appid>"+
-				   "<body>CareerPlanningGuidance</body>"+
+				   "<body>职业生涯规划辅导</body>"+
 				   "<mch_id>1304560401</mch_id>"+
 				   "<nonce_str>"+nonce_str+"</nonce_str>"+
 				   "<notify_url>http://t03.0angel.com/pay/callBack.html</notify_url>"+
