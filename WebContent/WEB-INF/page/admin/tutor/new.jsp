@@ -359,7 +359,7 @@ function saveInfo(){
 						<th>约谈价格</th>
 						<td> <input type="text" id="facePrice"  value="0" class="form-control"  ></td>
 						<th>账户名称：</th>
-						<td><input type="text" id="bankAccount"  > </td>
+						<td><input type="text"  class="form-control" id="bankAccount"  > </td>
 					</tr>
 					<tr>
 						<th colspan="4" >辅导方式：</th>
