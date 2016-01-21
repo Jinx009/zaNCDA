@@ -26,5 +26,13 @@ public interface OrderService {
 	public List<Order> findCustomerList(Customer customer);
 
 	public PageDataList<Order> findPagePayList(Order order, int pageNum);
+
+	public void checkOne();
+
+	public void checkTwo();
+
+	public void checkThree();
+
+	public void checkFour();
 	
 }
