@@ -36,19 +36,27 @@ function changeText(id){
  */
 function goNext(){
 	var topicContent = $("#topicContent").val();
+	console.log(topicContent)
 	if("0"!=index){
 		location.href = "/customer/page/selectTutor.html?id="+index;
 	}else{
 		if(""!=topicContent){
 			var storage = window.sessionStorage;
 			storage.setItem("localTopic",topicContent);
+			location.href = "/customer/page/selectTutor.html?id="+index;
+		}else{
+			$("#myAlertH").html("约谈主题不能为空!");
+			showNewAlert();
 		}
-		location.href = "/customer/page/selectTutor.html?id="+index;
 	}
 }
 </script>
 </head>
 <body>
+<div id="newAlert">
+		<h3  id="myAlertH" ></h3>
+		<a id="newAlertBtn" onclick="hideNewAlert()" >确定</a>
+	</div>
 <a href="#"><div class="nav-title"><span class="nav-back" onclick="openUrl('/customer/page/new.html')" >&lt;</span>职业选择</div></a>
 <div class="choice-title" style="height:130px;" ><h1></h1>
 <div style="height:10px;" ></div>

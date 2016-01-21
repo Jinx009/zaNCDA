@@ -67,11 +67,17 @@ function doSendComments(){
 		data:params,
 		success:function(res){
 			if("success"==res.result){
-				alert("提交成功!");
-				location.reload();
+				 $("#myAlertH").html("提交成功!");
+					$("#newAlertBtn").attr("onclick","goReload()");
+					showNewAlert();
+			/* 	alert("提交成功!");
+				location.reload(); */
 			}
 		}
 	})
+}
+function goReload(){
+	location.reload();
 }
 
 /**
@@ -85,12 +91,18 @@ function sendComments(){
 	if(replyStatus){
 		doSendComments();
 	}else{
-		alert("未支付和未到时间的约谈不能提交小结！");
+		 $("#myAlertH").html("未支付和未到时间的约谈不能提交小结！");
+			showNewAlert();
+		/* alert("未支付和未到时间的约谈不能提交小结！"); */
 	}
 }
 </script>
 </head>
 <body>
+<div id="newAlert">
+		<h3  id="myAlertH" ></h3>
+		<a id="newAlertBtn" onclick="hideNewAlert()" >确定</a>
+	</div>
 <input type="hidden" value="${order.id }" id="id" >
 <input type="hidden" value="${order.status }" id="status">
 <input type="hidden" value="${order.qTutorTime.realTime }" id="time" >

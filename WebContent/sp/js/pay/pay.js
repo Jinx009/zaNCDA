@@ -143,8 +143,11 @@ function callPlay(){
         		   data:params,
         		   success:function(data){
         			   if("success"==data.result){
-        				   alert("支付成功,订单已保存!");
-        				   location.href = "/customer/page/manage.html";
+        				   $("#myAlertH").html("支付成功，预约已经生效。请注意查收预约辅导通知短信。");
+        					$("#newAlertBtn").attr("onclick","openMyUrl('/customer/page/manage.html')");
+        					showNewAlert();
+        				  /* alert("支付成功，预约已经生效。请注意查收预约辅导通知短信。");
+        				   location.href = "/customer/page/manage.html";*/
         			   }
         		   }
         	   })
@@ -176,7 +179,8 @@ function pay(){
 	
 	var params = "sign="+md5+"&openId="+openId+"&fee="+total_fee+"&nonce_str="+nonceStr+"&client_ip=127.0.0.1&order_id="+order_id;
 	if(null==openId||""==openId){
-		alert("支付成功，预约已经生效。请注意查收预约辅导通知短信。");
+		$("#myAlertH").html("请在微信登录后再预约!");
+		showNewAlert();
 	}else{
 		$.ajax({
 			url:"/getPayId.html",

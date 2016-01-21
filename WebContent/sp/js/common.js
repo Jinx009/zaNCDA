@@ -1,3 +1,13 @@
+
+function showNewAlert(){
+	$("#newAlert").show();
+}
+function hideNewAlert(){
+	$("#newAlert").hide();
+}
+function openMyUrl(url){
+	location.href = url;
+}
 /**
  * 打开连接
  * @param url

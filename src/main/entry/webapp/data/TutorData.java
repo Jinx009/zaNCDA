@@ -24,6 +24,7 @@ import common.helper.ConstantUtil;
 import common.helper.HttpWebIOHelper;
 import common.helper.MD5Util;
 import common.helper.StringUtil;
+import common.helper.tool.message.MsgUtil;
 import database.common.PageDataList;
 import database.models.Topic;
 import database.models.Trade;
@@ -283,7 +284,11 @@ public class TutorData {
 	    		data.put(ConstantUtil.ERROR_MSG,"账号处于锁定状态!");
 	    	}else{
 	    		request.getSession().setAttribute(ConstantUtil.TUTOR_SESSION,tutor);
-	    		
+	    		if(null==tutor.getLoginTimes()||0==tutor.getLoginTimes()){
+	    			MsgUtil.sendMsg(tutor.getUserName(),"尊敬的导师，您好！祝贺您成为才知道平台官方认证导师！登录后请您查看并完善个人资料，如果对所列信息有疑义，请联系客服进行修改。谢谢！");
+	    			tutor.setLoginTimes(1);
+	    			tutorService.update(tutor);
+	    		}
 	    		data.put(ConstantUtil.RESULT,ConstantUtil.SUCCESS);
 		    	data.put(ConstantUtil.ERROR_MSG,"登陆成功!");
 	    		if(StringUtil.isNotBlank(openid)){

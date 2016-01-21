@@ -59,13 +59,18 @@ function getDate(){
 				$("#date").html(htmlStr);
 				changeTime();
 			}else{
-				alert("很抱歉，该导师暂时没有可预约时间.点击确定重新选择导师!");
-				window.history.back();
+				$("#myAlertH").html("很抱歉，该导师暂时没有可预约时间.点击确定重新选择导师!");
+				$("#newAlertBtn").attr("onclick","myGoBack()");
+				showNewAlert();
+				/* alert("很抱歉，该导师暂时没有可预约时间.点击确定重新选择导师!");
+				window.history.back(); */
 			}
 		}
 	})
 }
-
+function myGoBack(){
+	window.history.back();
+}
 function changeTime(){
 	var date = $("#date").val();
 	var tutorId = $("#tutorId").val();
@@ -94,6 +99,10 @@ function goBack(){
 </script>
 </head>
 <body>
+	<div id="newAlert">
+		<h3  id="myAlertH" ></h3>
+		<a id="newAlertBtn" onclick="hideNewAlert()" >确定</a>
+	</div>
 <input type="hidden" value="${tutorId }" id="tutorId" />
 <input type="hidden" value="${topicId }" id="topicId" >
 <input type="hidden" value="" id="orderId" >
@@ -121,9 +130,9 @@ function goBack(){
 			<button id="appoint" onclick="pay()">付款约谈</button>
 		</div>
 	</div>
-	<!--蒙版-->
-	<div class="mask"></div>
-	<!--悬浮框	start-->
+	<!--蒙版
+	<div class="mask"></div>-->
+	<!--悬浮框	start
 	<div class="personal-boxWrap">
 		<div class="personal-box">
 			<h3>客户须知</h3>
@@ -137,7 +146,7 @@ function goBack(){
 			</div>
 		</div>
 	</div>
-</div>
+</div>-->
 
 <!--蒙版-->
 <div class="mask"></div>

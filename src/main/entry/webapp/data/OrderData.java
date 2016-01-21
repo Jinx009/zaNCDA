@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import common.helper.ConstantUtil;
 import common.helper.HttpWebIOHelper;
 import common.helper.StringUtil;
+import common.helper.tool.message.MsgUtil;
 import service.basicFunctions.CommentsService;
 import service.basicFunctions.OrderService;
 import service.basicFunctions.ScoreService;
@@ -234,7 +235,31 @@ public class OrderData {
 			data.put(ConstantUtil.ERROR_MSG,"已互评订单不能取消!");
 		}else{
 			orderService.doUpdate(order);
-			
+			SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+			order = orderService.save(order);
+			StringBuffer buffer = new StringBuffer();
+			buffer.append(tutor.getRealName());
+			buffer.append("导师，您好！很抱歉地通知您，才知道平台上的一位学员刚刚取消了您的辅导。");
+			buffer.append("预约单号：");
+			buffer.append(order.getId());
+			buffer.append("，学员姓名：");
+			buffer.append(customer.getRealName());
+			buffer.append("，手机号码：");
+			buffer.append(customer.getUserName());
+			buffer.append("，微信号：");
+			buffer.append(customer.getWechatName());
+			buffer.append("，辅导日期：");
+			buffer.append(sdf.format(order.getqTutorTime().getRealDate()));
+			buffer.append("，辅导时间");
+			buffer.append(order.getqTutorTime().getRealTime());
+			buffer.append("，场景主题：");
+			if(null!=order.getTopic()){
+				buffer.append(order.getTopic().getName());
+			}else{
+				buffer.append(order.getTopicContent());
+			}
+			buffer.append("您还可以登录才知道导师页面了解具体详情。");
+			MsgUtil.sendMsg(tutor.getUserName(),buffer.toString());
 			data.put(ConstantUtil.RESULT,ConstantUtil.SUCCESS);
 			data.put(ConstantUtil.ERROR_MSG,"取消成功!");
 			
@@ -308,7 +333,6 @@ public class OrderData {
 				orderModel =  OrderModel.instance(order);
 				orderModel.settName(order.getqTutor().getRealName());
 				orderModel.setcName(order.getqCustomer().getRealName());
-				orderModel.setqName(order.getTopic().getName());
 				orderModel.setPhotoPath(order.getqTutor().getPhotoPath());
 				orderList.add(orderModel);
 			}
@@ -401,9 +425,31 @@ public class OrderData {
 		order.setqTutorTime(time);
 		
 		System.out.println("保存数据!");
-		
-		orderService.save(order);
-		
+		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+		order = orderService.save(order);
+		StringBuffer buffer = new StringBuffer();
+		buffer.append(tutor.getRealName());
+		buffer.append("导师，您好！才知道平台上的一位学员刚刚预约了您的辅导，并且已经完成支付。");
+		buffer.append("预约单号：");
+		buffer.append(order.getId());
+		buffer.append("，学员姓名：");
+		buffer.append(customer.getRealName());
+		buffer.append("，手机号码：");
+		buffer.append(customer.getUserName());
+		buffer.append("，微信号：");
+		buffer.append(customer.getWechatName());
+		buffer.append("，辅导日期：");
+		buffer.append(sdf.format(time.getRealDate()));
+		buffer.append("，辅导时间");
+		buffer.append(time.getRealTime());
+		buffer.append("，场景主题：");
+		if(null!=topic){
+			buffer.append(topic.getName());
+		}else{
+			buffer.append(topicContent);
+		}
+		buffer.append("您还可以登录才知道导师页面了解具体详情。");
+		MsgUtil.sendMsg(tutor.getUserName(),buffer.toString());
 		data = new HashMap<String,Object>();
 		data.put(ConstantUtil.RESULT,ConstantUtil.SUCCESS);
 		data.put(ConstantUtil.ERROR_MSG,order);

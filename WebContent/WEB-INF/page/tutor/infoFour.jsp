@@ -24,8 +24,11 @@ function saveData(){
 		data:params,
 		success:function(res){
 			if("success"==res.result){
-				alert("保存完成!");
-				location.href = "/tutor/page/index.html";
+				$("#myAlertH").html("保存完成!");
+				$("#newAlertBtn").attr("onclick","openMyUrl('/tutor/page/index.html')");
+				showNewAlert();
+				/* alert("保存完成!");
+				location.href = "/tutor/page/index.html"; */
 			}
 		}
 	})
@@ -33,6 +36,10 @@ function saveData(){
 </script>
 </head>
 <body class="tutor-bg">
+	<div id="newAlert">
+		<h3  id="myAlertH" ></h3>
+		<a id="newAlertBtn" onclick="hideNewAlert()" >确定</a>
+	</div>
 <div class="nav-title">个人信息（四）<div class="close" onclick="openUrl('/tutor/page/index.html')" >&Chi;</div></div>
 
 <div class="information-content">

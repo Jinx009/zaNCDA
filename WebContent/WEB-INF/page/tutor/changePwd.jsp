@@ -25,7 +25,9 @@ function doChange(){
 	if("success"!=result){
 		alert(result);
 	}else if(newPwd!=rePwd){
-		alert("两次密码不一致！");
+		$("#myAlertH").html("两次密码不一致！");
+			showNewAlert();
+		/* alert("两次密码不一致！"); */
 	}else{
 		$.ajax({
 			url:"/tutor/data/changePwd.html",
@@ -34,10 +36,15 @@ function doChange(){
 			dataType:"json",
 			success:function(res){
 				if("success"==res.result){
-					alert("操作成功!");
-					location.href = "/tutor/login.html";
+					 $("#myAlertH").html("操作成功!");
+ 					$("#newAlertBtn").attr("onclick","openMyUrl('/tutor/login.html')");
+ 					showNewAlert();
+				/* 	alert("操作成功!");
+					location.href = "/tutor/login.html"; */
 				}else{
-					alert(res.errmsg);
+					$("#myAlertH").html(res.errmsg);
+ 					showNewAlert();
+				/* 	alert(res.errmsg); */
 				}	
 			}
 		})
@@ -46,6 +53,10 @@ function doChange(){
 </script>
 </head>
 <body>
+	<div id="newAlert">
+		<h3  id="myAlertH" ></h3>
+		<a id="newAlertBtn" onclick="hideNewAlert()" >确定</a>
+	</div>
 	<div class="nav-title">修改密码<div class="close" onclick="openUrl('/tutor/login.html')" >&Chi;</div></div>
 	<div class="logo">
 		<img src="/sp/images/logo.jpg"/>

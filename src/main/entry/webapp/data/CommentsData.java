@@ -1,6 +1,7 @@
 package main.entry.webapp.data;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -18,6 +19,7 @@ import service.basicFunctions.CommentsService;
 import service.basicFunctions.OrderService;
 import common.helper.ConstantUtil;
 import common.helper.HttpWebIOHelper;
+import common.helper.tool.message.MsgUtil;
 import database.models.Comments;
 import database.models.Order;
 
@@ -89,6 +91,32 @@ public class CommentsData {
 		if(order.getStatus()<4&&2!=order.getStatus()){
 			order.setStatus(3);
 		}
+		StringBuffer buffer = new StringBuffer();
+		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+		buffer.append(order.getqCustomer().getRealName());
+		buffer.append("同学，您好！");
+		buffer.append("才知道特别提醒，");
+		buffer.append(order.getqTutor().getRealName());
+		buffer.append("导师已经提交你的辅导报告。你可以随时登录预约辅导页面，点击约谈管理了解详情。谢谢！");
+		buffer.append("预约单号：");
+		buffer.append(order.getId());
+		buffer.append("导师姓名：");
+		buffer.append(order.getqTutor().getRealName());
+		buffer.append("，手机号码：");
+		buffer.append(order.getqTutor().getUserName());
+		buffer.append("，微信号：");
+		buffer.append(order.getqTutor().getWechatName());
+		buffer.append("，辅导日期：");
+		buffer.append(sdf.format(order.getqTutorTime().getRealDate()));
+		buffer.append("，辅导时间");
+		buffer.append(order.getqTutorTime().getRealTime());
+		buffer.append("，场景主题：");
+		if(null!=order.getTopic()){
+			buffer.append(order.getTopic().getName());
+		}else{
+			buffer.append(order.getTopicContent());
+		}
+		MsgUtil.sendMsg(order.getqCustomer().getUserName(),buffer.toString());
 		orderService.doUpdate(order);
 		
 		data = new HashMap<String, Object>();

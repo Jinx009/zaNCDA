@@ -48,7 +48,9 @@ function getCode(){
 				if("success"==res.result){
 					changeGetCodeBtn();
 				}else{
-					alert(res.errmsg);
+					$("#myAlertH").html(res.errmsg);
+					showNewAlert();
+					//alert(res.errmsg);
 				}
 			}
 		})
@@ -89,9 +91,13 @@ function doRegister(){
 	var params = "mobile="+mobile+"&pwd="+pwd+"&code="+code+"&mobileCode="+mobileCode;
 	
 	if("success"!=validateTel(mobile)){
-		alert(validateTel(mobile));
+		$("#myAlertH").html(validateTel(mobile));
+		showNewAlert();
+		//alert(validateTel(mobile));
 	}else if(pwd!=repwd){
-		alert("两次密码不一致!");
+		$("#myAlertH").html("两次密码不一致!");
+		showNewAlert();
+		//alert("两次密码不一致!");
 	}else{
 		$.ajax({
 			url:"/customer/data/doRegister.html",
@@ -100,10 +106,15 @@ function doRegister(){
 			dataType:"json",
 			success:function(res){
 				if("success"==res.result){
-					alert("注册成功！");
-					location.href = "/customer/page/info.html";
+					$("#myAlertH").html("注册成功！");
+					$("#newAlertBtn").attr("onclick","openMyUrl('/customer/page/info.html')");
+					showNewAlert();
+				/* 	alert("注册成功！");
+					location.href = "/customer/page/info.html"; */
 				}else{
-					alert(res.errmsg);
+					$("#myAlertH").html(res.errmsg);
+					showNewAlert();
+					//alert(res.errmsg);
 				}
 			}
 		})
@@ -112,6 +123,10 @@ function doRegister(){
 </script>
 </head>
 <body>
+	<div id="newAlert">
+		<h3  id="myAlertH" ></h3>
+		<a id="newAlertBtn" onclick="hideNewAlert()" >确定</a>
+	</div>
 <a href="#"><div class="nav-title"><span class="close"  onclick="openUrl('/customer/login.html')" >&lt;</span>注册</div></a>
 	
 	<div class="register-inp register-inp-top">

@@ -77,7 +77,9 @@ function saveScore(){
 		dataType:"json",
 		success:function(res){
 			if("success"==res.result){
-				alert("保存成功!");
+				$("#myAlertH").html("保存成功!");
+				showNewAlert();
+				//alert("保存成功!");
 			}
 		}
 	})
@@ -98,7 +100,9 @@ function goComments(){
 			if(null!=res.errmsg){
 				location.href = "/customer/page/comments.html?orderId="+orderId;
 			}else{
-				alert("评论之后才可以查看小结!");
+				$("#myAlertH").html("评论之后才可以查看小结!");
+				showNewAlert();
+			/* 	alert("评论之后才可以查看小结!"); */
 			}
 		}
 	})
@@ -114,6 +118,10 @@ function cacleOrder(){
 </script>
 </head>
 <body>
+	<div id="newAlert">
+		<h3  id="myAlertH" ></h3>
+		<a id="newAlertBtn" onclick="hideNewAlert()" >确定</a>
+	</div>
 <div class="nav-title"><span class="nav-back" onclick="openUrl('/customer/page/manage.html')" >&lt;</span>约谈详情<span class="close" onclick="openUrl('/customer/page/index.html')" >&Chi;</span></div>
 <input type="hidden" id="orderId" value="${order.id }" >
 <div class="interviewDetails-top">

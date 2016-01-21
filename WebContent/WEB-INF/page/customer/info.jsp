@@ -123,8 +123,11 @@ function saveInf(){
 			dataType:"json",
 			success:function(res){
 				if("success"==res.result){
-					alert("保存成功!");
-					location.href = "/customer/page/growpInfo.html";
+					$("#myAlertH").html("保存成功!");
+					$("#newAlertBtn").attr("onclick","openMyUrl('/customer/page/growpInfo.html')");
+					showNewAlert();
+					/* alert("保存成功!");
+					location.href = "/customer/page/growpInfo.html"; */
 				}
 			}
 		})
@@ -169,6 +172,10 @@ function checkEmail(email){
 </script>
 </head>
 <body>
+<div id="newAlert">
+		<h3  id="myAlertH" ></h3>
+		<a id="newAlertBtn" onclick="hideNewAlert()" >确定</a>
+	</div>
 <a href="#"><div class="nav-title">个人信息<span class="close" onclick="openUrl('/customer/page/index.html')" >&Chi;</span></div></a>
 <div class="register-inp register-inp-top">
 	<span class="register-inp-text">姓名</span>

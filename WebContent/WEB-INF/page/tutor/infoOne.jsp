@@ -21,10 +21,8 @@ $(function(){
 	if(""!=sex&&null!=sex){
 		var element1 = document.getElementById("sex");   
         
-        for(i=0;i<element1.length;i++)
-        {
-          if(sex==element1.options[i].value)
-          {  
+        for(i=0;i<element1.length;i++){
+          if(sex==element1.options[i].value){  
               element1.options[i].selected=true; 
           }  
         }  
@@ -54,7 +52,9 @@ function saveInfoOne(){
 				 "&bankCard="+bankCard+"&bankName="+bankName+"&classPrice="+classPrice;
 	
 	if(reBankCard!=bankCard){
-		alert("银行卡号不一致!");
+		$("#myAlertH").html("银行卡号不一致!");
+		showNewAlert();
+	/* 	alert("银行卡号不一致!"); */
 	}else{
 		$.ajax({
 			url:"/tutor/data/saveInfoOne.html",
@@ -72,6 +72,10 @@ function saveInfoOne(){
 </script>
 </head>
 <body class="tutor-bg">
+<div id="newAlert">
+		<h3  id="myAlertH" ></h3>
+		<a id="newAlertBtn" onclick="hideNewAlert()" >确定</a>
+	</div>
 <div class="main">
 <div class="nav-title">个人信息（一）<div class="close" onclick="openUrl('/tutor/page/index.html')" >&Chi;</div></div>
 	<div class="register-inp register-inp-top">

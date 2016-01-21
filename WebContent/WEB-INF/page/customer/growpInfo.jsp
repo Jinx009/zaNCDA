@@ -34,8 +34,11 @@ function saveGrowp(){
 		dataType:"json",
 		success:function(res){
 			if("success"==res.result){
-				alert("保存成功!");
-location.href = "/customer/page/index.html";
+				$("#myAlertH").html("保存成功!");
+				$("#newAlertBtn").attr("onclick","openMyUrl('/customer/page/index.html')");
+				showNewAlert();
+	/* 			alert("保存成功!");
+location.href = "/customer/page/index.html"; */
 			}
 		}
 	})
@@ -64,6 +67,10 @@ function changeStatus(index){
 </style>
 </head>
 <body>
+<div id="newAlert">
+		<h3  id="myAlertH" ></h3>
+		<a id="newAlertBtn" onclick="hideNewAlert()" >确定</a>
+	</div>
 <input type="hidden" value="${status }" id="status" >
 <a href="#"><div class="nav-title"><span class="nav-back" onclick="openUrl('/customer/page/info.html')" >&lt;</span>个人职业生涯成长阶段<span class="close" onclick="openUrl('/customer/page/index.html')" >&Chi;</span></div></a>
 	<div class="personal-inp-content">

@@ -267,15 +267,16 @@ function saveData(){
 		<span class="register-inp-text">选择场景</span>
 		<select class="register-select-long"  onchange="changeData('1')"   id="s1"   >
 			<option  selected="selected"  value="1" >职业选择</option>
-			<option value="2">职场能力</option>
-			<option value="3">职业发展</option>
+			<option value="2">职场关系</option>
+			<option value="3">职业能力发展</option>
 		</select>
 	</div>
 	<ul class="choice-question select-answer">
-		<li id="to4"  >自我测评和岗位/行业评估</li>
-		<li id="to5"  >找到正确的求职渠道</li>
-		<li id="to6"  >如何制作和投递完美的简历</li>
-		<li id="to7"  >面试模拟舱：看到真实的自己</li>
+		<li id="to4" style="padding-top:9px;;padding-bottom: 20px;" >兴趣还是专业，我该如何选择职业方向？</li>
+		<li id="to5" style="padding-top:9px;;padding-bottom: 20px;" >有一个看似美好的机会摆在面前，走还是留？</li>
+		<li id="to6" style="padding-top:9px;;padding-bottom: 20px;" >管理路线、专业路线，哪一个更加适合我？</li>
+		<li id="to7" style="padding-top:9px;;padding-bottom: 20px;" >感受到了职场瓶颈，下一步该怎么办？</li>
+		<li id="to16" style="padding-top:9px;;padding-bottom: 20px;" >我是否适合创业？</li>
 	</ul>
 </div>
 <div class="information-question none"  style="display: none;"   id="topicDiv2" >
@@ -284,15 +285,15 @@ function saveData(){
 		<span class="register-inp-text">选择场景</span>
 		<select class="register-select-long"  onchange="changeData('2')"   id="s2"  >
 			<option value="1" >职业选择</option>
-			<option  selected="selected" value="2">职场能力</option>
-			<option value="3">职业发展</option>
+			<option  selected="selected" value="2">职场关系</option>
+			<option value="3">职业能力发展</option>
 		</select>
 	</div>
 	<ul class="choice-question select-answer">
-		<li id="to8" >如何快速理解角色和融入团队</li>
-		<li id="to9"  >管理老板和关键决策人的关系</li>
-		<li id="to10"  >如何处理冲突和提升人机沟通</li>
-		<li id="to11"   >压力的管理和纾解</li>
+		<li id="to8" style="padding-top:9px;;padding-bottom: 20px;" >遇到难懂的上司，如何才能抓住老板的心？</li>
+		<li id="to9" style="padding-top:9px;;padding-bottom: 20px;" >空降兵苦恼：怎样破冰，快速开展工作？</li>
+		<li id="to10" style="padding-top:9px;;padding-bottom: 20px;" >我的能力很强，但是不被认可，该怎么办？</li>
+		<li id="to11" style="padding-top:9px;;padding-bottom: 20px;"  >面对复杂的职场关系，如何提升自己的情商？</li>
 	</ul>
 </div>
 <div class="information-question none"  style="display: none;"  id="topicDiv3" >
@@ -301,15 +302,15 @@ function saveData(){
 		<span class="register-inp-text">选择场景</span>
 		<select class="register-select-long"   onchange="changeData('3')"  id="s3" >
 			<option value="1" >职业选择</option>
-			<option value="2">职场能力</option>
+			<option value="2">职场关系</option>
 			<option value="3" selected="selected">职业发展</option>
 		</select>
 	</div>
 	<ul class="choice-question select-answer">
-		<li id="to12"   >了解公司的架构和晋级之路<span>&radic;</span></li>
-		<li id="to13"   >快速建立短期目标并积累经验和人脉</li>
-		<li id="to14"   >如何在职场提升关键技术和管理能力</li>
-		<li id="to15"   >为自己的市场价值添分的诀窍</li>
+		<li id="to12" style="padding-top:9px;;padding-bottom: 20px;"  >如何能够了解职业发展道路上的不同能力要求？<span>&radic;</span></li>
+		<li id="to13" style="padding-top:9px;;padding-bottom: 20px;"  >现任岗位上，提升哪些能力能让我有更突出的表现？</li>
+		<li id="to14" style="padding-top:9px;;padding-bottom: 20px;"  >职业转型期需要的关键能力有哪些？</li>
+		<li id="to15" style="padding-top:9px;;padding-bottom: 20px;"  >如何处理越来越大的职场压力？</li>
 	</ul>
 </div>
 <div class="information-question">
@@ -335,7 +336,7 @@ function saveData(){
 	</div>
 </div>
 <div class="information-question">
-	<div class="choice-title"><p>擅长领域</p></div>
+	<div class="choice-title"><p>擅长职能</p></div>
 	<div class="register-inp register-inp-top">
 		<span class="register-inp-text">擅长职能1</span>
 		<select class="register-select-long" id="area1" disabled="disabled">

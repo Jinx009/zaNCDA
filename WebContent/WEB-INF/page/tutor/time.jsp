@@ -74,8 +74,11 @@ function deleteTime(id){
 		dataType:"json",
 		success:function(res){
 			if("success"==res.result){
-				alert("删除成功!");
-				getDate();
+				$("#myAlertH").html("删除成功!");
+				$("#newAlertBtn").attr("onclick","getDate()");
+				showNewAlert();
+			/* 	alert("删除成功!") */;
+			/* 	getDate(); */
 			}
 		}
 	})
@@ -112,6 +115,10 @@ function hideDiv(){
 </script>
 </head>
 <body class="tutor-bg">
+<div id="newAlert">
+		<h3  id="myAlertH" ></h3>
+		<a id="newAlertBtn" onclick="hideNewAlert()" >确定</a>
+	</div>
 <div class="main">
 	<div class="nav-title">提交可约的时间<div class="close" onclick="openUrl('/tutor/page/index.html')" >&Chi;</div></div>
 	<div class="appoint-list">

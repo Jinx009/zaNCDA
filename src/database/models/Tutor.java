@@ -269,6 +269,9 @@ public class Tutor {
 	@Column(name = "bank_account")
 	private String bankAccount;
 	
+	@Column(name = "loginTimes")
+	private Integer loginTimes;
+	
 	public Integer getId() {
 		return id;
 	}
@@ -441,6 +444,14 @@ public class Tutor {
 
 	public Integer getMobileStatus() {
 		return mobileStatus;
+	}
+	
+	public Integer getLoginTimes() {
+		return loginTimes;
+	}
+
+	public void setLoginTimes(Integer loginTimes) {
+		this.loginTimes = loginTimes;
 	}
 
 	public void setMobileStatus(Integer mobileStatus) {

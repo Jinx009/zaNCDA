@@ -45,7 +45,9 @@ function doLogin(){
 			if("success"==res.result){
 				location.href = "/tutor/page/index.html";
 			}else{
-				alert(res.errmsg);
+				$("#myAlertH").html(res.errmsg);
+				showNewAlert();
+				/* alert(res.errmsg); */
 			}	
 		}
 	})
@@ -67,6 +69,10 @@ function changeCode(){
 </script>
 </head>
 <body>
+	<div id="newAlert">
+		<h3  id="myAlertH" ></h3>
+		<a id="newAlertBtn" onclick="hideNewAlert()" >确定</a>
+	</div>
 	<input type="hidden" value="${openid }" id="openid" >
 	<input type="hidden" value="${status }" id="status" >
 	<input type="hidden" value="${url }" id="url" >

@@ -25,8 +25,11 @@ function saveCacle(){
 		dataType:"json",
 		success:function(res){
 			if("success"==res.result){
-				alert("取消已提交，等待审核!");
-				location.href = "/customer/page/manage.html";
+				$("#myAlertH").html("取消已提交，等待审核!");
+				$("#newAlertBtn").attr("onclick","openMyUrl('/customer/page/manage.html')");
+				showNewAlert();
+				/* alert("取消已提交，等待审核!");
+				location.href = "/customer/page/manage.html"; */
 			}
 		}
 	})
@@ -35,6 +38,10 @@ function saveCacle(){
 </script>
 </head>
 <body>
+	<div id="newAlert">
+		<h3  id="myAlertH" ></h3>
+		<a id="newAlertBtn" onclick="hideNewAlert()" >确定</a>
+	</div>
 <input type="hidden" value="${orderId}" id="orderId" >
 <div class="nav-title">取消订单<span class="close" onclick="openUrl('/customer/page/index.html')" >&Chi;</span></div>
   <div class="mask"></div>

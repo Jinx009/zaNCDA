@@ -48,7 +48,8 @@ function getCode(){
 				if("success"==res.result){
 					changeGetCodeBtn();
 				}else{
-					alert(res.errmsg);
+					$("#myAlertH").html(res.errmsg);
+					showNewAlert();
 				}
 			}
 		})
@@ -75,10 +76,14 @@ function doForget(){
 			dataType:"json",
 			success:function(res){
 				if("success"==res.result){
-					alert("操作成功!");
-					location.href = "/customer/login.html";
+					$("#myAlertH").html("操作成功!");
+					$("#newAlertBtn").attr("onclick","openMyUrl('/customer/login.html')");
+					showNewAlert();
+				/* 	alert("操作成功!");
+					location.href = "/customer/login.html"; */
 				}else{
-					alert(res.errmsg);
+					$("#myAlertH").html(res.errmsg);
+					showNewAlert();
 				}
 			}
 		})
@@ -109,6 +114,10 @@ function changeGetCodeBtn(){
 </script>
 </head>
 <body>
+<div id="newAlert">
+		<h3  id="myAlertH" ></h3>
+		<a id="newAlertBtn" onclick="hideNewAlert()" >确定</a>
+	</div>
 	<div class="nav-title">登录</div>
 	<div class="logo">
 		<img src="/sp/images/logo.jpg"/>
