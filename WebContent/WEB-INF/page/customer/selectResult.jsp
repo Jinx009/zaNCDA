@@ -44,7 +44,7 @@ $(function(){
 					htmlStr += '<div class="tutor-wrap">';
 					htmlStr += '<div class="tutor-img">';
 					if(null!=res.errmsg[i].photoPath&&""!=res.errmsg[i].photoPath){
-						htmlStr += '<img src='+res.errmsg[i].photoPath+' />';
+						htmlStr += '<img src="'+res.errmsg[i].photoPath+'" />';
 					}else{
 						htmlStr += '<img src="/sp/images/headPortrait.png" />';
 					}
@@ -144,7 +144,7 @@ $(function(){
 							htmlStr += '<div class="tutor-wrap">';
 							htmlStr += '<div class="tutor-img">';
 							if(null!=res.errmsg[i].photoPath&&""!=res.errmsg[i].photoPath){
-						htmlStr += '<img src='+res.errmsg[i].photoPath+' />';
+						htmlStr += '<img src="'+res.errmsg[i].photoPath+'" />';
 					}else{
 						htmlStr += '<img src="/sp/images/headPortrait.png" />';
 					}
