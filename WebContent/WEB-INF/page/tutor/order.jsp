@@ -21,7 +21,7 @@ $(function(){
 			var htmlStr = "";
 			for(var i = 0;i<res.errmsg.length;i++){
 				htmlStr += "<div class='main-list' onclick=javascript:openUrl('/tutor/page/orderDetail.html?orderId="+res.errmsg[i].id+"') >";
-				htmlStr += "<h3>【客户姓名："+isNull(res.errmsg[i].cName)+"】</h3>";
+				htmlStr += "<h3>【学员姓名："+isNull(res.errmsg[i].cName)+"】</h3>";
 				htmlStr += "<p>约谈日期：<font>"+jsDateTimeOnly(res.errmsg[i].qTutorTime.realDate)+"</font></p>";
 				htmlStr += "<p>约谈时间：<font>"+res.errmsg[i].qTutorTime.realTime+"</font></p>";
 				htmlStr += "<p>辅导主题：</p>";
