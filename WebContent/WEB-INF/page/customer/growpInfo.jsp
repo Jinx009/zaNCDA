@@ -97,7 +97,7 @@ function changeStatus(index){
 		
 		<ul id="growp4" onclick="changeStatus('4')"  >
 			<li><span class="personal-inp-content_d">D</span></li>
-			<li>退出</li>
+			<li>退隐阶段</li>
 			<li>60岁+</li>
 		</ul>
 	</div>

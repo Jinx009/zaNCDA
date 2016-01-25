@@ -113,7 +113,7 @@ function getGrowp(status){
 		}else if("3"==status){
 			return "C 成熟阶段 35-55岁";
 		}else{
-			return "D成熟阶段 55岁+";
+			return "D退隐阶段 55岁+";
 		}
 	}else{
 		return "未选择";
