@@ -25,7 +25,7 @@ $(function(){
 				htmlStr += "<p>约谈日期：<font>"+jsDateTimeOnly(res.errmsg[i].qTutorTime.realDate)+"</font></p>";
 				htmlStr += "<p>约谈时间：<font>"+res.errmsg[i].qTutorTime.realTime+"</font></p>";
 				htmlStr += "<p>辅导主题：</p>";
-				htmlStr += "<textarea  readonly='readonly' >"+res.errmsg[i].tName+"</textarea>";
+				htmlStr += "<textarea  readonly='readonly' >"+res.errmsg[i].topicContent+"</textarea>";
 				htmlStr += "<p>辅导方式：<font>当面约谈（60分钟）</font></p>";
 				htmlStr += "<p>约谈状态：<font class='tutor-state-has'>"+getOrderStatus(res.errmsg[i].status)+"</font></p>";
 				htmlStr += "</div>";
