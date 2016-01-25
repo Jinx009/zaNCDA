@@ -476,7 +476,7 @@ function saveInfo(){
 					</tr>
 					<tr>
 						<th>行业1：</th>
-						<td> <select class="form-control" id="trade1"  onchange="changeTrade('1')"  ></select></td>
+						<td> <select class="form-control" id="trade1"  ></select></td>
 						<th>有效：</th>
 						<td>
 							<select class="form-control" id="isOnline" >
@@ -487,13 +487,13 @@ function saveInfo(){
 					</tr>
 					<tr>
 						<th>行业2：</th>
-						<td> <select class="form-control" id="trade2" onchange="changeTrade('2')"   ></select></td>
+						<td> <select class="form-control" id="trade2"  ></select></td>
 						<th>银行卡号：</th>
 						<td><input type="text" class="form-control" value="${tutor.bankCard }" id="bankAccount"  ></td>
 					</tr>
 					<tr>
 						<th>行业3：</th>
-						<td> <select class="form-control" id="trade3" onchange="changeTrade('3')" ></select></td>
+						<td> <select class="form-control" id="trade3" ></select></td>
 						<th>openId:</th>
 						<td><input type="text" id="openid" readonly="readonly" value="${tutor.openid }" class="form-control"  ></td>
 					</tr>
