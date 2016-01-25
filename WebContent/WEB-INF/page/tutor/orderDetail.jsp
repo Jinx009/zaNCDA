@@ -30,7 +30,6 @@ $(function(){
 			htmlStr += "<p>职能：<font>"+isNull(res.errmsg.jobName)+"</font></p>";
 			htmlStr += "<p>工作年限：<font>"+getWorkYears(res.errmsg.order.famillyNumber)+"</font></p>";
 			htmlStr += "<p>成长阶段：<font>"+getGrowpStatus(res.errmsg.order.growpStatus)+"</font></p>";
-			htmlStr += "<p>成长阶段：<font>"+getGrowpStatus(res.errmsg.order.growpStatus)+"</font></p>";
 			htmlStr += "<p>约谈日期：<font>"+jsDateTimeOnly(res.errmsg.order.qTutorTime.realDate)+"</font></p>";
 			htmlStr += "<p>约谈时间：<font>"+res.errmsg.order.qTutorTime.realTime+"</font></p>";
 			htmlStr += "<p>辅导主题:</p>"
