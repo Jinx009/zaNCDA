@@ -114,7 +114,7 @@ $(function(){
 					htmlStr += '</div>';
 					htmlStr += '</div>';
 					htmlStr += '<div class="tutor-bottom">';
-					htmlStr += '<div class="tutor-btn"  onclick="saveOrder('+res.errmsg[i].id+')" >立即约TA</div>';
+					htmlStr += '<div class="tutor-btn"  onclick="saveOrder('+res.errmsg[i].id+')" >查看详情</div>';
 					htmlStr += '</div>';
 					htmlStr += '</div>';
 				}
@@ -214,7 +214,7 @@ $(function(){
 							htmlStr += '</div>';
 							htmlStr += '</div>';
 							htmlStr += '<div class="tutor-bottom">';
-							htmlStr += '<div class="tutor-btn" onclick="saveOrder('+res.errmsg[i].id+')" >立即约TA</div>';
+							htmlStr += '<div class="tutor-btn" onclick="saveOrder('+res.errmsg[i].id+')" >查看详情</div>';
 							htmlStr += '</div>';
 							htmlStr += '</div>';
 						}
