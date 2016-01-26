@@ -134,9 +134,9 @@ $(function(){
 					type:'GET',
 					dataType:'json',
 					success:function(res){
-						var length = 10;
+						var length = 1000;
 						var htmlStr = '';
-						if(10>=res.errmsg.length){
+						if(1000>=res.errmsg.length){
 							length = res.errmsg.length;
 						}
 						for(var i = 0;i<length;i++){
