@@ -604,7 +604,7 @@
 	background: url(../img/tutorDetail_head_bg.png) no-repeat;
 	background-size:100% 100% ;
 	min-height: 147px;
-	max-height: 286px;
+	//max-height: 286px;
 	position: relative;
 	border-top: 1px solid #355d9e;
 }
@@ -620,6 +620,7 @@
 	height: 30px;
 	line-height: 30px;
 	text-align: center;
+	margin-top: 105px;
 }
 .tutor-details-name img{
 	width: 3%;
