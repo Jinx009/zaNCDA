@@ -75,13 +75,17 @@ function deleteTime(id){
 		success:function(res){
 			if("success"==res.result){
 				$("#myAlertH").html("删除成功!");
-				$("#newAlertBtn").attr("onclick","getDate()");
+				$("#newAlertBtn").attr("onclick","goThisReload()");
 				showNewAlert();
 			/* 	alert("删除成功!") */;
 			/* 	getDate(); */
 			}
 		}
 	})
+}
+
+function goThisReload(){
+	location.reload();
 }
 
 /**
