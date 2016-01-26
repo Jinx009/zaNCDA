@@ -450,6 +450,29 @@ public class OrderData {
 		}
 		buffer.append("您还可以登录才知道导师页面了解具体详情。");
 		MsgUtil.sendMsg(tutor.getUserName(),buffer.toString());
+		buffer = new StringBuffer();
+		buffer.append(customer.getRealName());
+		buffer.append("同学，您好！你在才知道微信平台预约的导师一对一定制辅导已经生效，请你主动与导师联络，确定约谈的方式和地点。");
+		buffer.append("预约单号：");
+		buffer.append(order.getId());
+		buffer.append("，导师姓名：");
+		buffer.append(tutor.getRealName());
+		buffer.append("，手机号码：");
+		buffer.append(tutor.getUserName());
+		buffer.append("，微信号：");
+		buffer.append(tutor.getWechatName());
+		buffer.append("，辅导日期：");
+		buffer.append(sdf.format(time.getRealDate()));
+		buffer.append("，辅导时间");
+		buffer.append(time.getRealTime());
+		buffer.append("，场景主题：");
+		if(null!=topic){
+			buffer.append(topic.getName());
+		}else{
+			buffer.append(topicContent);
+		}
+		buffer.append("你还可以登录才知道约谈管理页面了解具体详情。");
+		MsgUtil.sendMsg(customer.getUserName(),buffer.toString());
 		data = new HashMap<String,Object>();
 		data.put(ConstantUtil.RESULT,ConstantUtil.SUCCESS);
 		data.put(ConstantUtil.ERROR_MSG,order);
