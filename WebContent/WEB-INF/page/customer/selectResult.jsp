@@ -32,7 +32,7 @@ $(function(){
 		data:params,
 		dataType:'json',
 		success:function(res){
-			if(null!=res.errmsg&&res.errmsg.length>0){
+			/* if(null!=res.errmsg&&res.errmsg.length>0){
 				var htmlStr = '';
 				htmlStr += '<p>恭喜你！</p>';
 				htmlStr += '<p>你期望的导师就在这里！</p>';
@@ -119,7 +119,7 @@ $(function(){
 					htmlStr += '</div>';
 				}
 				$('#dataDiv').html(htmlStr);
-			}else{
+			}else{ */
 				var htmlStr = '';
 			/* 	htmlStr += '<p>加油！你距离导师又近了一步！</p>';
 				htmlStr += '<p>我们从系统中筛选出与你的要求相关度最高的导师。</p>';
@@ -221,7 +221,7 @@ $(function(){
 						$('#dataDiv').html(htmlStr);
 					}
 				})
-			}
+			/* } */
 		}
 	})
 })
