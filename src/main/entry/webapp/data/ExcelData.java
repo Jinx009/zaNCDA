@@ -168,7 +168,7 @@ public class ExcelData {
 			Customer customer = list.get(i);
 			
 			row.createCell((short) 0).setCellValue(customer.getRealName());
-			row.createCell((short) 1).setCellValue(customer.getMobilePhone());
+			row.createCell((short) 1).setCellValue(customer.getUserName());
 			row.createCell((short) 2).setCellValue(customer.getQq());
 			row.createCell((short) 3).setCellValue(customer.getEmail());
 			row.createCell((short) 4).setCellValue(customer.getWechatName());
