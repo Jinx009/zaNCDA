@@ -238,7 +238,11 @@ public class ExcelData {
 			row.createCell((short) 1).setCellValue(order.getqTutor().getRealName());
 			row.createCell((short) 2).setCellValue(sdf.format(order.getqTutorTime().getRealDate()));
 			row.createCell((short) 3).setCellValue(order.getqTutorTime().getRealTime());
-			row.createCell((short) 4).setCellValue(order.getTopic().getName());
+			if(null!=order.getTopic()){
+				row.createCell((short) 4).setCellValue(order.getTopic().getName());
+			}else{
+				row.createCell((short) 4).setCellValue("");
+			}
 			row.createCell((short) 5).setCellValue(getStatus(order.getStatus()));
 			row.createCell((short) 6).setCellValue(order.getTopicContent());
 		}

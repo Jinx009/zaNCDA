@@ -17,19 +17,23 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import service.basicFunctions.OrderService;
 import service.basicFunctions.TopicService;
 import service.basicFunctions.TradeService;
 import service.basicFunctions.TutorService;
+import service.basicFunctions.TutorTimeService;
 import common.helper.ConstantUtil;
 import common.helper.HttpWebIOHelper;
 import common.helper.MD5Util;
 import common.helper.StringUtil;
 import common.helper.tool.message.MsgUtil;
 import database.common.PageDataList;
+import database.models.Order;
 import database.models.Topic;
 import database.models.Trade;
 import database.models.Tutor;
 import database.models.TutorModel;
+import database.models.TutorTime;
 
 @Controller
 public class TutorData {
@@ -47,6 +51,13 @@ public class TutorData {
 	
 	@Autowired
 	private TopicService topicService;
+	
+	@Autowired
+	private TutorTimeService tutorTimeService;
+	
+	@Autowired
+	private OrderService orderService;
+	
 	
 	/**
 	 * 更改密码
@@ -89,11 +100,26 @@ public class TutorData {
 		data = new HashMap<String, Object>();
 		
 		Integer id = Integer.valueOf(request.getParameter("id"));
+		Tutor tutor = tutorService.find(id);
+		List<Order> orders = orderService.findTutorList(tutor);
+		if(null!=orders&&!orders.isEmpty()){
+			data.put(ConstantUtil.RESULT,ConstantUtil.FAILURE);
+			data.put(ConstantUtil.ERROR_MSG,"有订单存在，不能删除!");
+			
+		}else{
+			List<TutorTime> list = tutorTimeService.getByTutorId(id);
+			if(null!=list&&!list.isEmpty()){
+				for(int i = 0;i<list.size();i++){
+					TutorTime tutorTime = list.get(i);
+					tutorTimeService.delete(tutorTime.getId());
+				}
+			}
+			tutorService.delete(id);
+			data.put(ConstantUtil.RESULT,ConstantUtil.SUCCESS);
+			data.put(ConstantUtil.ERROR_MSG,"删除成功!");
+			
+		}
 		
-		tutorService.delete(id);
-		
-		data.put(ConstantUtil.RESULT,ConstantUtil.SUCCESS);
-		data.put(ConstantUtil.ERROR_MSG,"删除成功!");
 		
 		HttpWebIOHelper._printWebJson(data, response);
 	}

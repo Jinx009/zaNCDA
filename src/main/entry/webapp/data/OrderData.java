@@ -110,7 +110,11 @@ public class OrderData {
 					orderModel = OrderModel.instance(list.getList().get(i));
 					orderModel.settName(list.getList().get(i).getqTutor().getRealName());
 					orderModel.setcName(list.getList().get(i).getqCustomer().getRealName());
-					orderModel.setqName(list.getList().get(i).getTopic().getName());
+					if(null!=list.getList().get(i).getTopic()){
+						orderModel.setqName(list.getList().get(i).getTopic().getName());
+					}else{
+						orderModel.setqName(list.getList().get(i).getTopicContent());
+					}
 					
 					model.add(orderModel);
 				}

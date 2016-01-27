@@ -96,6 +96,8 @@ function doDelete(){
 			if("success"==res.result){
 				getList(1);
 				hideAlert("deleteDiv");
+			}else{
+				alert("有订单存在，不能删除!");
 			}
 		}
 	})
