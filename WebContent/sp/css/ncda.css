@@ -1030,7 +1030,7 @@
 .interviewDetails-case label{
 	float: left;
 	color: #666666;
-	height: 18px;
+	//height: 18px;
 	line-height: 18px;
 }
 .interviewDetails-case .money-percent{
