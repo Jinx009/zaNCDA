@@ -5,6 +5,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -16,13 +17,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import service.basicFunctions.CustomerService;
+import service.basicFunctions.OrderService;
 import service.basicFunctions.TradeService;
+
 import common.helper.ConstantUtil;
 import common.helper.HttpWebIOHelper;
 import common.helper.MD5Util;
 import common.helper.tool.message.MsgUtil;
+
 import database.common.PageDataList;
 import database.models.Customer;
+import database.models.Order;
 import database.models.Trade;
 
 @Controller
@@ -36,6 +41,9 @@ public class CustomerData {
 	
 	@Autowired
 	private TradeService tradeService;
+	
+	@Autowired
+	private OrderService orderService;
 	
 	/**
 	 * 保存成长经历
@@ -316,6 +324,30 @@ public class CustomerData {
 		
 		PageDataList<Customer> list = customerService.findPageList(customer,pageNum);
 		data.put("data",list);
+		
+		HttpWebIOHelper._printWebJson(data, response);
+	}
+
+	
+	/**
+	 * 顾客删除
+	 * @param request
+	 * @param response
+	 * @throws IOException
+	 */
+	@RequestMapping(value = "/admin/customer/delete")
+	public void deleteCustomer(HttpServletRequest request,HttpServletResponse response) throws IOException{
+		data = new HashMap<String,Object>();
+		int id = Integer.valueOf(request.getParameter("id"));
+		Customer customer = customerService.getById(id);
+		List<Order> list = orderService.findCustomerList(customer);
+		if(null!=list){
+			data.put(ConstantUtil.RESULT,ConstantUtil.FAILURE);
+			data.put(ConstantUtil.ERROR_MSG,"已有订单存在，不能删除！");
+		}else{
+			customerService.delete(id);
+			data.put(ConstantUtil.RESULT,ConstantUtil.SUCCESS);
+		}
 		
 		HttpWebIOHelper._printWebJson(data, response);
 	}
