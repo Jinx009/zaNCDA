@@ -44,7 +44,7 @@ $(function(){
 	topic2 = $("#topic2").val();
 	topic2 = parseInt(topic2);
 	for(var i = 1;i<14;i++){
-		if(0==i){
+		if(1==i){
 			topicId = $("#topicValue").val();
 			topicId = parseInt(topicId);
 			if((topicId>=4&&topicId<=7)||16==topicId){
@@ -303,7 +303,7 @@ function saveData(){
 		<select class="register-select-long"   onchange="changeData('3')"  id="s3" >
 			<option value="1" >职业选择</option>
 			<option value="2">职场关系</option>
-			<option value="3" selected="selected">职业发展</option>
+			<option value="3" selected="selected">职业能力发展</option>
 		</select>
 	</div>
 	<ul class="choice-question select-answer">
