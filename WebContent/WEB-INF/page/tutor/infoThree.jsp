@@ -176,8 +176,15 @@ function changeData(id){
 	$("#topicDiv1").css("display","none");
 	$("#topicDiv2").css("display","none");
 	$("#topicDiv3").css("display","none");
-	
+  
 	var value = $("#s"+id).val();
+	var element1 = document.getElementById("s"+id);   
+    
+    for(i=0;i<element1.length;i++){
+      if(value==element1.options[i].value){  
+          element1.options[i].selected=true; 
+      }  
+    }  
 	$("#topicDiv"+value).css("display","block");
 }
 
