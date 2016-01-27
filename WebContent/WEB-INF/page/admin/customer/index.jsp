@@ -42,7 +42,7 @@ function getData(pageNum){
 					htmlStr += "<tr>";
 					htmlStr += "<td>"+res.data.list[i].id+"</td>";
 					htmlStr += "<td>"+isNull(res.data.list[i].realName)+"</td>";
-					htmlStr += "<td>"+isNull(res.data.list[i].mobilePhone)+"</td>";
+					htmlStr += "<td>"+isNull(res.data.list[i].userName)+"</td>";
 					htmlStr += "<td>"+isNull(res.data.list[i].qq)+"</td>";
 					htmlStr += "<td>"+isNull(res.data.list[i].email)+"</td>";
 					htmlStr += "<td>"+isNull(res.data.list[i].wechatName)+"</td>";
