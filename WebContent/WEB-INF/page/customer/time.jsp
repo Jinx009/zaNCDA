@@ -121,7 +121,7 @@ function goBack(){
 	<div class="personal-wrap">
 		<div class="checked">
 			<img src="/sp/images/check.png"/>
-			<span>已阅读并同意我们的条约</span>
+			<span>已阅读并同意我们的条款</span>
 		</div>
 	</div>
 	

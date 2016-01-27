@@ -148,10 +148,8 @@ function cacleOrder(){
 	</div>
 	<div>
 		<span>辅导主题：</span>
-		<label></label>
 	</div>
 	<div>
-		<span></span>
 		<label>${mytopic }</label>
 	</div>
 	<div>
