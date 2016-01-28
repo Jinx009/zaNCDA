@@ -122,6 +122,7 @@ public class CustomerPage {
 		 
 		 if(StringUtil.isNotBlank(code)){
 			 openid = WechatUtil.getOauthOpenId(WechatData.APP_ID,WechatData.APP_SECRET,code);
+			 System.out.println("登陆页面获取openid"+openid);
 			 if(StringUtil.isNotBlank(openid)){
 				 customer = customerService.getByOpenid(openid);
 				 if(null!=customer){

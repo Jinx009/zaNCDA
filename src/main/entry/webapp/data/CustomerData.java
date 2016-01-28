@@ -276,7 +276,7 @@ public class CustomerData {
 		 String pwd = request.getParameter("pwd");
 		 String loginCode = request.getParameter("code");
 		 String openid = request.getParameter("openid");
-		 
+		 System.out.println("------------用户登录---------------"+openid);
 		 data = new HashMap<String, Object>();
 		 data.put(ConstantUtil.RESULT,ConstantUtil.FAILURE);
 		 
@@ -292,13 +292,13 @@ public class CustomerData {
 	    	data.put(ConstantUtil.ERROR_MSG,"账号或密码错误!");
 	     }else {
 	    	 System.out.println("-----------------------------mytestopenid="+openid);
-    		request.getSession().setAttribute(ConstantUtil.CUSTOMER_SESSION,customer);
     		customer = customerService.getById(customer.getId());
     		if(null!=openid&&!"".equals(openid)){
     			customer.setOpenid(openid);
 	    	}
     		customer.setLoginTime(new Date());
     		customerService.doUpdate(customer);
+    		request.getSession().setAttribute(ConstantUtil.CUSTOMER_SESSION,customer);
     		data.put(ConstantUtil.RESULT,ConstantUtil.SUCCESS);
 	    	data.put(ConstantUtil.ERROR_MSG,"登陆成功!");
 	    }
