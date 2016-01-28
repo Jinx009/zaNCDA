@@ -294,7 +294,11 @@ public class CustomerData {
 	    	 System.out.println("-----------------------------mytestopenid="+openid);
     		customer = customerService.getById(customer.getId());
     		if(null!=openid&&!"".equals(openid)){
-    			customer.setOpenid(openid);
+    			if(null!=customer.getOpenid()&&!"".equals(customer.getOpenid())){
+    				
+    			}else{
+    				customer.setOpenid(openid);
+    			}
 	    	}
     		customer.setLoginTime(new Date());
     		customerService.doUpdate(customer);
