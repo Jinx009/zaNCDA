@@ -86,4 +86,23 @@ public class TutorTimeServiceImpl implements TutorTimeService {
 		return tutorTimeDao.find(timeId);
 	}
 
+	public boolean checkByDate(String date, String time) {
+	buffer = new StringBuffer();
+		
+		buffer.append(" FROM TutorTime ");
+		buffer.append(" WHERE ");
+		buffer.append(" realTime =  '");
+		buffer.append(time);
+		buffer.append("' AND ");
+		buffer.append(" realDate =  '");
+		buffer.append(date);
+		buffer.append("'  ");
+		
+		List<TutorTime> list = tutorTimeDao.getByHql(buffer.toString());
+		if(null!=list&&!list.isEmpty()){
+			return true;
+		}
+		return false;
+	}
+
 }

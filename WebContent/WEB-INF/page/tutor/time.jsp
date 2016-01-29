@@ -103,8 +103,14 @@ function addTime(){
 		data:params,
 		dataType:"json",
 		success:function(res){
-			hideDiv();
-			getDate();
+			if("success"==res.result){
+				hideDiv();
+				getDate();
+			}else{
+				$("#myAlertH").html("该时间已经存在!");
+				$("#newAlertBtn").attr("onclick","hideNewAlert()");
+				showNewAlert();
+			}
 		}
 	})
 }

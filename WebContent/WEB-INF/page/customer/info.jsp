@@ -34,49 +34,51 @@ $(function(){
 			}
 			$("#trade").html(htmlStr);
 			$("#job").html(htmlStr1);
+			var trade = $("#tradeValue").val();
+			var area = $("#jobValue").val();
+			var sex = $("#sexValue").val();
+			if(""!=sex&&null!=sex){
+				var element1 = document.getElementById("sex");   
+		        
+		        for(i=0;i<element1.length;i++){
+		          if(sex==element1.options[i].value){  
+		              element1.options[i].selected=true; 
+		          }  
+		        }  
+			}
+			
+
+		    if(""!=trade){
+		    	var element3 = document.getElementById("trade");   
+		   	 	for(i=0;i<element3.length;i++){
+		   	      if(trade==element3.options[i].value){  
+		   	          element3.options[i].selected=true; 
+		   	      }  
+		   	    }  
+		    }
+		    
+			 
+		    if(""!=area){
+		    	var element2 = document.getElementById("job");  
+		   	 	for(i=0;i<element2.length;i++){
+		   	      if(area==element2.options[i].value){  
+		   	          element2.options[i].selected=true; 
+		   	      }  
+		   	    } 
+		    }
+		    
+		    var familly = $("#familly").val();
+		    if(null!=familly&&""!=familly){
+		    	var element3 = document.getElementById("famillyNumber");  
+		   	 	for(i=0;i<element3.length;i++){
+		   	      if(familly==element3.options[i].value){  
+		   	          element3.options[i].selected=true; 
+		   	      }  
+		   	    } 
+		    }
 		}
 	})
 	
-	var trade = $("#tradeValue").val();
-	var area = $("#jobValue").val();
-	var sex = $("#sexValue").val();
-	if(""!=sex&&null!=sex){
-		var element1 = document.getElementById("sex");   
-        
-        for(i=0;i<element1.length;i++){
-          if(sex==element1.options[i].value){  
-              element1.options[i].selected=true; 
-          }  
-        }  
-	}
-	
-	var element1 = document.getElementById("trade");   
-    if(""!=trade){
-   	 	for(i=0;i<element1.length;i++){
-   	      if(trade==element1.options[i].value){  
-   	          element1.options[i].selected=true; 
-   	      }  
-   	    }  
-    }
-    
-	var element2 = document.getElementById("job");   
-    if(""!=area){
-   	 	for(i=0;i<element2.length;i++){
-   	      if(area==element2.options[i].value){  
-   	          element2.options[i].selected=true; 
-   	      }  
-   	    } 
-    }
-    
-    var familly = $("#familly").val();
-    if(null!=familly&&""!=familly){
-    	var element3 = document.getElementById("famillyNumber");  
-   	 	for(i=0;i<element3.length;i++){
-   	      if(familly==element3.options[i].value){  
-   	          element3.options[i].selected=true; 
-   	      }  
-   	    } 
-    }
 })
 
 /* 

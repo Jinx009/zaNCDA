@@ -89,7 +89,7 @@ public class CustomerPage {
 		}else{
 			req.setAttribute("tradeId","");
 		}
-		if(null!=customer.getqArea()){
+		if(null!=customer.getJob()){
 			req.setAttribute("jobId",customer.getJob().getId());
 		}else{
 			req.setAttribute("jobId","");

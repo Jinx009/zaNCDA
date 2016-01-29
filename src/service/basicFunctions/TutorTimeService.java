@@ -19,4 +19,6 @@ public interface TutorTimeService {
 	public List<TutorTime> getTime(Integer id,String realDate);
 
 	public TutorTime getById(Integer timeId);
+
+	public boolean checkByDate(String date, String time);
 }

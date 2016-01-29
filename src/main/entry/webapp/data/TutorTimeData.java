@@ -111,7 +111,7 @@ public class TutorTimeData {
 		Tutor tutor = (Tutor) request.getSession().getAttribute(ConstantUtil.TUTOR_SESSION);
 		String date = request.getParameter("date");
 		String time = request.getParameter("time");
-		
+		data = new HashMap<String, Object>();
 		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
 		
 		TutorTime tutorTime = new TutorTime();
@@ -119,14 +119,34 @@ public class TutorTimeData {
 		tutorTime.setRealDate(sdf.parse(date));
 		tutorTime.setRealTime(time);
 		tutorTime.setStatus(0);
+		boolean status = tutorTimeService.checkByDate(date,time);
+		if(status){
+			data.put(ConstantUtil.RESULT,ConstantUtil.FAILURE);
+		}else{
+			data.put(ConstantUtil.RESULT,ConstantUtil.SUCCESS);
+			tutorTimeService.save(tutorTime);
+		}
 		
-		tutorTimeService.save(tutorTime);
-		
-		data = new HashMap<String, Object>();
-		data.put(ConstantUtil.RESULT,ConstantUtil.SUCCESS);
 		data.put(ConstantUtil.ERROR_MSG,"保存成功!");
 		
-		HttpWebIOHelper._printWebJson(date, response);
+		HttpWebIOHelper._printWebJson(data, response);
+	}
+	
+	/**
+	 * 检查导师时间是否占用
+	 * @param req
+	 * @param response
+	 */
+	@RequestMapping(value = "/customer/data/checkTutorTime",method = RequestMethod.POST)
+	public void checkTime(HttpServletRequest req,HttpServletResponse response){
+		Integer timeId = Integer.valueOf(req.getParameter("time"));
+		TutorTime tutorTime = tutorTimeService.getById(timeId);
+		data = new HashMap<String, Object>();
+		if(1==tutorTime.getStatus()){
+			data.put(ConstantUtil.RESULT,ConstantUtil.FAILURE);
+		}else{
+			data.put(ConstantUtil.RESULT,ConstantUtil.SUCCESS);
+		}
 	}
 	
 	@RequestMapping(value = "/admin/data/addTime",method = RequestMethod.POST)

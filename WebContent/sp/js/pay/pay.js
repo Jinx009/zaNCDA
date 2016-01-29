@@ -160,38 +160,54 @@ function callPlay(){
  * 发起支付
  */
 function pay(){
-	var order_id = "NCDA"+$("#orderId").val();    
-	var total_fee = parseFloat($("#fee").val())*100;   
-	var openId = $("#openId").val();
-	var nonceStr = getNonceStr();
-	var str = "appid=wxad7987ba40989a97"+
-			   "&body=职业生涯规划辅导"+
-			   "&mch_id=1304560401"+
-			   "&nonce_str="+nonceStr+
-			   "&notify_url=http://t03.0angel.com/pay/callBack.html"+
-			   "&openid="+openId+
-			   "&out_trade_no="+order_id+
-			   "&spbill_create_ip=127.0.0.1"+
-			   "&total_fee="+total_fee+
-			   "&trade_type=JSAPI"+
-			   "&key=jinxjinxjinxjinxjinxjinxjinxjinx";
-	var md5 = CryptoJS.MD5(str).toString();
-	
-	var params = "sign="+md5+"&openId="+openId+"&fee="+total_fee+"&nonce_str="+nonceStr+"&client_ip=127.0.0.1&order_id="+order_id;
-	if(null==openId||""==openId){
-		$("#myAlertH").html("请在微信登录后再预约!");
-		showNewAlert();
-	}else{
-		$.ajax({
-			url:"/getPayId.html",
-			type:"POST",
-			data:params,
-			dataType:"json",
-			success:function(res){
-				pay_id = res.errmsg;
-				callPlay();
+	var timeId = $("#time").val();
+	var param = "time="+timeId;
+	$.ajax({
+		url:"/customer/data/checkTutorTime.html",
+		data:param,
+		dataType:"json",
+		type:"POST",
+		success:function(res){
+			if("success"==res.result){
+				var order_id = "NCDA"+$("#orderId").val();    
+				var total_fee = parseFloat($("#fee").val())*100;   
+				var openId = $("#openId").val();
+				var nonceStr = getNonceStr();
+				var str = "appid=wxad7987ba40989a97"+
+						   "&body=职业生涯规划辅导"+
+						   "&mch_id=1304560401"+
+						   "&nonce_str="+nonceStr+
+						   "&notify_url=http://t03.0angel.com/pay/callBack.html"+
+						   "&openid="+openId+
+						   "&out_trade_no="+order_id+
+						   "&spbill_create_ip=127.0.0.1"+
+						   "&total_fee="+total_fee+
+						   "&trade_type=JSAPI"+
+						   "&key=jinxjinxjinxjinxjinxjinxjinxjinx";
+				var md5 = CryptoJS.MD5(str).toString();
+				
+				var params = "sign="+md5+"&openId="+openId+"&fee="+total_fee+"&nonce_str="+nonceStr+"&client_ip=127.0.0.1&order_id="+order_id;
+				if(null==openId||""==openId){
+					$("#myAlertH").html("请在微信登录后再预约!");
+					showNewAlert();
+				}else{
+					$.ajax({
+						url:"/getPayId.html",
+						type:"POST",
+						data:params,
+						dataType:"json",
+						success:function(res){
+							pay_id = res.errmsg;
+							callPlay();
+						}
+					})
+				}
+			}else{
+				$("#myAlertH").html("很可惜，该时间已经被其他学员抢占，请更换预约时间!");
+				$("#newAlertBtn").attr("onclick","hideNewAlert()");
+				showNewAlert();
 			}
-		})
-	}
+		}
+	})
 }
 
