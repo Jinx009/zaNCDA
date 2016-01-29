@@ -295,7 +295,7 @@ public class OrderData {
 				orderModel = OrderModel.instance(list.get(i));
 				orderModel.setcName(list.get(i).getqCustomer().getRealName());
 				orderModel.settName(list.get(i).getqTutor().getRealName());
-				if(null!=list.get(i).getTopic().getName()){
+				if(null!=list.get(i).getTopic()){
 					orderModel.setTopicContent(list.get(i).getTopic().getName());
 				}else{
 					orderModel.setTopicContent(list.get(i).getTopicContent());

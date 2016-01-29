@@ -34,10 +34,11 @@ function getData(){
 					htmlStr += "<td>"+res.errmsg[i].realTime+"</td>";
 					if("1"==res.errmsg[i].status){
 						htmlStr += "<td>已使用</td>";
+						htmlStr += "<td></td>";
 					}else{
 						htmlStr += "<td>未使用</td>";
+						htmlStr += "<td><a class='btn btn-info'  onclick=deleteTime('"+res.errmsg[i].id+"') >删除</a></td>";
 					}
-					htmlStr += "<td><a class='btn btn-info'  onclick=deleteTime('"+res.errmsg[i].id+"') >删除</a></td>";
 					htmlStr += "</tr>";
 				}
 			}
@@ -58,9 +59,11 @@ function addTime(){
 		type:"POST",
 		dataType:"json",
 		success:function(res){
-			if(null!=res){
+			if("success"==res.result){
 				alert("添加成功!");
 				getData();
+			}else{
+				alert("该时间已存在!");
 			}
 		}
 	})

@@ -67,7 +67,7 @@ public class TutorTimeServiceImpl implements TutorTimeService {
 		buffer.append(" AND ");
 		buffer.append(" realDate =  '");
 		buffer.append(realDate);
-		buffer.append("'  ");
+		buffer.append("'  AND status = 0 ");
 		
 		return tutorTimeDao.getByHql(buffer.toString());
 	}
@@ -86,7 +86,7 @@ public class TutorTimeServiceImpl implements TutorTimeService {
 		return tutorTimeDao.find(timeId);
 	}
 
-	public boolean checkByDate(String date, String time) {
+	public boolean checkByDate(String date, String time,Integer tutorId) {
 	buffer = new StringBuffer();
 		
 		buffer.append(" FROM TutorTime ");
@@ -96,7 +96,8 @@ public class TutorTimeServiceImpl implements TutorTimeService {
 		buffer.append("' AND ");
 		buffer.append(" realDate =  '");
 		buffer.append(date);
-		buffer.append("'  ");
+		buffer.append("' AND qTutor.id= ");
+		buffer.append(tutorId);
 		
 		List<TutorTime> list = tutorTimeDao.getByHql(buffer.toString());
 		if(null!=list&&!list.isEmpty()){

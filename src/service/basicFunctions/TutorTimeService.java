@@ -20,5 +20,5 @@ public interface TutorTimeService {
 
 	public TutorTime getById(Integer timeId);
 
-	public boolean checkByDate(String date, String time);
+	public boolean checkByDate(String date, String time,Integer tutorId);
 }

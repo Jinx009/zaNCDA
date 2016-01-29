@@ -106,6 +106,13 @@ public class TutorTimeData {
 		HttpWebIOHelper._printWebJson(data, response);
 	}
 	
+	/**
+	 * 导师端自己添加时间
+	 * @param response
+	 * @param request
+	 * @throws ParseException
+	 * @throws IOException
+	 */
 	@RequestMapping(value = "/tutor/data/addTime",method = RequestMethod.POST)
 	public void addTime(HttpServletResponse response,HttpServletRequest request) throws ParseException, IOException{
 		Tutor tutor = (Tutor) request.getSession().getAttribute(ConstantUtil.TUTOR_SESSION);
@@ -119,7 +126,7 @@ public class TutorTimeData {
 		tutorTime.setRealDate(sdf.parse(date));
 		tutorTime.setRealTime(time);
 		tutorTime.setStatus(0);
-		boolean status = tutorTimeService.checkByDate(date,time);
+		boolean status = tutorTimeService.checkByDate(date,time,tutor.getId());
 		if(status){
 			data.put(ConstantUtil.RESULT,ConstantUtil.FAILURE);
 		}else{
@@ -136,9 +143,10 @@ public class TutorTimeData {
 	 * 检查导师时间是否占用
 	 * @param req
 	 * @param response
+	 * @throws IOException 
 	 */
 	@RequestMapping(value = "/customer/data/checkTutorTime",method = RequestMethod.POST)
-	public void checkTime(HttpServletRequest req,HttpServletResponse response){
+	public void checkTime(HttpServletRequest req,HttpServletResponse response) throws IOException{
 		Integer timeId = Integer.valueOf(req.getParameter("time"));
 		TutorTime tutorTime = tutorTimeService.getById(timeId);
 		data = new HashMap<String, Object>();
@@ -147,15 +155,23 @@ public class TutorTimeData {
 		}else{
 			data.put(ConstantUtil.RESULT,ConstantUtil.SUCCESS);
 		}
+		HttpWebIOHelper._printWebJson(data, response);
 	}
 	
+	/**
+	 * 后台添加导师时间
+	 * @param response
+	 * @param request
+	 * @throws ParseException
+	 * @throws IOException
+	 */
 	@RequestMapping(value = "/admin/data/addTime",method = RequestMethod.POST)
 	public void addAdminTime(HttpServletResponse response,HttpServletRequest request) throws ParseException, IOException{
 		Integer id = Integer.valueOf(request.getParameter("id"));
 		Tutor tutor = tutorService.find(id);
 		String date = request.getParameter("date");
 		String time = request.getParameter("time");
-		
+		data = new HashMap<String, Object>();
 		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
 		
 		TutorTime tutorTime = new TutorTime();
@@ -163,14 +179,17 @@ public class TutorTimeData {
 		tutorTime.setRealDate(sdf.parse(date));
 		tutorTime.setRealTime(time);
 		tutorTime.setStatus(0);
+		boolean status = tutorTimeService.checkByDate(date,time,tutor.getId());
+		if(status){
+			data.put(ConstantUtil.RESULT,ConstantUtil.FAILURE);
+		}else{
+			data.put(ConstantUtil.RESULT,ConstantUtil.SUCCESS);
+			tutorTimeService.save(tutorTime);
+		}
 		
-		tutorTimeService.save(tutorTime);
-		
-		data = new HashMap<String, Object>();
-		data.put(ConstantUtil.RESULT,ConstantUtil.SUCCESS);
 		data.put(ConstantUtil.ERROR_MSG,"保存成功!");
 		
-		HttpWebIOHelper._printWebJson(date, response);
+		HttpWebIOHelper._printWebJson(data, response);
 	}
 	
 	/**
