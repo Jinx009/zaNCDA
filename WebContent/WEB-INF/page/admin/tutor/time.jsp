@@ -154,10 +154,22 @@ function deleteTime(id){
 	   								<th>选择时间</th>
 	   								<td>
 	   									<select class="form-control" id="time" >
-											<option value="8:00-12:00" selected="selected">8:00-12:00</option>
-											<option value="12:00-16:00" >12:00-16:00</option>
-											<option value="16:00-20:00" >16:00-20:00</option>
-											<option value="8:00-20:00" >8:00-20:00</option>
+											<option value="1" selected="selected">8:00-12:00(上午)</option>
+											<option value="2" >12:00-16:00（中午）</option>
+											<option value="3" >16:00-20:00（下午）</option>
+											<option value="4" >8:00-20:00（全天）</option>
+											<option value="8:00-9:00" >8:00-9:00</option>
+											<option value="9:00-10:00" >9:00-10:00</option>
+											<option value="10:00-11:00" >10:00-11:00</option>
+											<option value="11:00-12:00" >11:00-12:00</option>
+											<option value="12:00-13:00" >12:00-13:00</option>
+											<option value="13:00-14:00" >13:00-14:00</option>
+											<option value="14:00-15:00" >14:00-15:00</option>
+											<option value="15:00-16:00" >15:00-16:00</option>
+											<option value="16:00-17:00" >16:00-17:00</option>
+											<option value="17:00-18:00" >17:00-18:00</option>
+											<option value="18:00-19:00" >18:00-19:00</option>
+											<option value="19:00-20:00" >19:00-20:00</option>
 										</select>
 	   								</td>
 	   							</tr>

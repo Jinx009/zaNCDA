@@ -120,20 +120,76 @@ public class TutorTimeData {
 		String time = request.getParameter("time");
 		data = new HashMap<String, Object>();
 		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
-		
-		TutorTime tutorTime = new TutorTime();
-		tutorTime.setqTutor(tutor);
-		tutorTime.setRealDate(sdf.parse(date));
-		tutorTime.setRealTime(time);
-		tutorTime.setStatus(0);
-		boolean status = tutorTimeService.checkByDate(date,time,tutor.getId());
-		if(status){
-			data.put(ConstantUtil.RESULT,ConstantUtil.FAILURE);
+		if("1".equals(time)){
+			String[] str = new String[]{"8:00-9:00","9:00-10:00","10:00-11:00","11:00-12:00"};
+			for(int i = 0;i<str.length;i++){
+				TutorTime tutorTime = new TutorTime();
+				tutorTime.setqTutor(tutor);
+				tutorTime.setRealDate(sdf.parse(date));
+				tutorTime.setRealTime(str[i]);
+				tutorTime.setStatus(0);
+				boolean status = tutorTimeService.checkByDate(date,str[i],tutor.getId());
+				if(!status){
+					tutorTimeService.save(tutorTime);
+				}
+				data.put(ConstantUtil.RESULT,ConstantUtil.SUCCESS);
+			}
+		}else if("2".equals(time)){
+			String[] str = new String[]{"12:00-13:00","13:00-14:00","14:00-15:00","15:00-16:00"};
+			for(int i = 0;i<str.length;i++){
+				TutorTime tutorTime = new TutorTime();
+				tutorTime.setqTutor(tutor);
+				tutorTime.setRealDate(sdf.parse(date));
+				tutorTime.setRealTime(str[i]);
+				tutorTime.setStatus(0);
+				boolean status = tutorTimeService.checkByDate(date,str[i],tutor.getId());
+				if(!status){
+					tutorTimeService.save(tutorTime);
+				}
+				data.put(ConstantUtil.RESULT,ConstantUtil.SUCCESS);
+			}
+		}else if("3".equals(time)){
+			String[] str = new String[]{"16:00-17:00","17:00-18:00","18:00-19:00","19:00-20:00"};
+			for(int i = 0;i<str.length;i++){
+				TutorTime tutorTime = new TutorTime();
+				tutorTime.setqTutor(tutor);
+				tutorTime.setRealDate(sdf.parse(date));
+				tutorTime.setRealTime(str[i]);
+				tutorTime.setStatus(0);
+				boolean status = tutorTimeService.checkByDate(date,str[i],tutor.getId());
+				if(!status){
+					tutorTimeService.save(tutorTime);
+				}
+				data.put(ConstantUtil.RESULT,ConstantUtil.SUCCESS);
+			}
+		}else if("4".equals(time)){
+			String[] str = new String[]{"8:00-9:00","9:00-10:00","10:00-11:00","11:00-12:00","12:00-13:00","13:00-14:00","14:00-15:00","15:00-16:00","16:00-17:00","17:00-18:00","18:00-19:00","19:00-20:00"};
+			for(int i = 0;i<str.length;i++){
+				TutorTime tutorTime = new TutorTime();
+				tutorTime.setqTutor(tutor);
+				tutorTime.setRealDate(sdf.parse(date));
+				tutorTime.setRealTime(str[i]);
+				tutorTime.setStatus(0);
+				boolean status = tutorTimeService.checkByDate(date,str[i],tutor.getId());
+				if(!status){
+					tutorTimeService.save(tutorTime);
+				}
+				data.put(ConstantUtil.RESULT,ConstantUtil.SUCCESS);
+			}
 		}else{
-			data.put(ConstantUtil.RESULT,ConstantUtil.SUCCESS);
-			tutorTimeService.save(tutorTime);
+			TutorTime tutorTime = new TutorTime();
+			tutorTime.setqTutor(tutor);
+			tutorTime.setRealDate(sdf.parse(date));
+			tutorTime.setRealTime(time);
+			tutorTime.setStatus(0);
+			boolean status = tutorTimeService.checkByDate(date,time,tutor.getId());
+			if(status){
+				data.put(ConstantUtil.RESULT,ConstantUtil.FAILURE);
+			}else{
+				data.put(ConstantUtil.RESULT,ConstantUtil.SUCCESS);
+				tutorTimeService.save(tutorTime);
+			}
 		}
-		
 		data.put(ConstantUtil.ERROR_MSG,"保存成功!");
 		
 		HttpWebIOHelper._printWebJson(data, response);
@@ -173,18 +229,75 @@ public class TutorTimeData {
 		String time = request.getParameter("time");
 		data = new HashMap<String, Object>();
 		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
-		
-		TutorTime tutorTime = new TutorTime();
-		tutorTime.setqTutor(tutor);
-		tutorTime.setRealDate(sdf.parse(date));
-		tutorTime.setRealTime(time);
-		tutorTime.setStatus(0);
-		boolean status = tutorTimeService.checkByDate(date,time,tutor.getId());
-		if(status){
-			data.put(ConstantUtil.RESULT,ConstantUtil.FAILURE);
+		if("1".equals(time)){
+			String[] str = new String[]{"8:00-9:00","9:00-10:00","10:00-11:00","11:00-12:00"};
+			for(int i = 0;i<str.length;i++){
+				TutorTime tutorTime = new TutorTime();
+				tutorTime.setqTutor(tutor);
+				tutorTime.setRealDate(sdf.parse(date));
+				tutorTime.setRealTime(str[i]);
+				tutorTime.setStatus(0);
+				boolean status = tutorTimeService.checkByDate(date,str[i],tutor.getId());
+				if(!status){
+					tutorTimeService.save(tutorTime);
+				}
+				data.put(ConstantUtil.RESULT,ConstantUtil.SUCCESS);
+			}
+		}else if("2".equals(time)){
+			String[] str = new String[]{"12:00-13:00","13:00-14:00","14:00-15:00","15:00-16:00"};
+			for(int i = 0;i<str.length;i++){
+				TutorTime tutorTime = new TutorTime();
+				tutorTime.setqTutor(tutor);
+				tutorTime.setRealDate(sdf.parse(date));
+				tutorTime.setRealTime(str[i]);
+				tutorTime.setStatus(0);
+				boolean status = tutorTimeService.checkByDate(date,str[i],tutor.getId());
+				if(!status){
+					tutorTimeService.save(tutorTime);
+				}
+				data.put(ConstantUtil.RESULT,ConstantUtil.SUCCESS);
+			}
+		}else if("3".equals(time)){
+			String[] str = new String[]{"16:00-17:00","17:00-18:00","18:00-19:00","19:00-20:00"};
+			for(int i = 0;i<str.length;i++){
+				TutorTime tutorTime = new TutorTime();
+				tutorTime.setqTutor(tutor);
+				tutorTime.setRealDate(sdf.parse(date));
+				tutorTime.setRealTime(str[i]);
+				tutorTime.setStatus(0);
+				boolean status = tutorTimeService.checkByDate(date,str[i],tutor.getId());
+				if(!status){
+					tutorTimeService.save(tutorTime);
+				}
+				data.put(ConstantUtil.RESULT,ConstantUtil.SUCCESS);
+			}
+		}else if("4".equals(time)){
+			String[] str = new String[]{"8:00-9:00","9:00-10:00","10:00-11:00","11:00-12:00","12:00-13:00","13:00-14:00","14:00-15:00","15:00-16:00","16:00-17:00","17:00-18:00","18:00-19:00","19:00-20:00"};
+			for(int i = 0;i<str.length;i++){
+				TutorTime tutorTime = new TutorTime();
+				tutorTime.setqTutor(tutor);
+				tutorTime.setRealDate(sdf.parse(date));
+				tutorTime.setRealTime(str[i]);
+				tutorTime.setStatus(0);
+				boolean status = tutorTimeService.checkByDate(date,str[i],tutor.getId());
+				if(!status){
+					tutorTimeService.save(tutorTime);
+				}
+				data.put(ConstantUtil.RESULT,ConstantUtil.SUCCESS);
+			}
 		}else{
-			data.put(ConstantUtil.RESULT,ConstantUtil.SUCCESS);
-			tutorTimeService.save(tutorTime);
+			TutorTime tutorTime = new TutorTime();
+			tutorTime.setqTutor(tutor);
+			tutorTime.setRealDate(sdf.parse(date));
+			tutorTime.setRealTime(time);
+			tutorTime.setStatus(0);
+			boolean status = tutorTimeService.checkByDate(date,time,tutor.getId());
+			if(status){
+				data.put(ConstantUtil.RESULT,ConstantUtil.FAILURE);
+			}else{
+				data.put(ConstantUtil.RESULT,ConstantUtil.SUCCESS);
+				tutorTimeService.save(tutorTime);
+			}
 		}
 		
 		data.put(ConstantUtil.ERROR_MSG,"保存成功!");
