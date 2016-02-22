@@ -7,7 +7,11 @@
 <title>导师时间</title>
 <link rel="stylesheet" href="/sp/css/base.css" />
 <link rel="stylesheet" href="/sp/css/ncda.css" />
-
+<style type="text/css">
+.boxWrap{
+	position: fixed;
+}
+</style>
 <script type="text/javascript" src="/sp/dist/jquery.js" ></script>
 <script type="text/javascript" src="/sp/js/common.js" ></script>
 <script type="text/javascript" src="/sp/js/laydate/laydate.js" ></script>
