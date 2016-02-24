@@ -150,8 +150,8 @@ function hideDiv(){
 			<input placeholder="请输入日期" readonly="readonly" id="date" class="interview-inp left" onclick="laydate()">
 			<select class="interview-sel center" id="time" >
 				<option value="1" selected="selected">8:00-12:00（上午）</option>
-				<option value="2" >12:00-16:00（中午）</option>
-				<option value="3" >16:00-20:00（下午）</option>
+				<option value="2" >12:00-16:00（下午）</option>
+				<option value="3" >16:00-20:00（晚间）</option>
 				<option value="4" >8:00-20:00（全天）</option>
 				<option value="8:00-9:00" >8:00-9:00</option>
 				<option value="9:00-10:00" >9:00-10:00</option>
