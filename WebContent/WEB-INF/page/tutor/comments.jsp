@@ -59,7 +59,7 @@ function doSendComments(){
 	var params = "appealOne="+appealOne+"&appealTwo="+appealTwo+"&appealThree="+appealThree+
 				 "&question="+question+"&solveStatus="+solveStatus+"&solveTool="+solveTool+
 				 "&adviceOne="+adviceOne+"&adviceTwo="+adviceTwo+"&adviceThree="+adviceThree+
-				 "&solveAssess="+solveAssess+"&id="+id;
+				 "&solveAssess="+solveAssess+"&id="+id+"&solveResult="+solveResult;
 	
 	$.ajax({
 		url:"/comments/data/save.html",

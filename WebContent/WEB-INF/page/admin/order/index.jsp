@@ -122,20 +122,21 @@ function getComments(index){
 		success:function(res){
 			if("success"==res.result){
 				var htmlStr = "";
-				
-				for(var i = 0;i<res.errmsg.length;i++){
-					htmlStr += "<tr><th>编号:"+res.errmsg[i].id+"添加时间:"+jsDateTimeOnly(res.errmsg[i].addTime)+"</th></tr>";
-					htmlStr += "<tr><td>诉求一:"+res.errmsg[i].appealOne+"</td></tr>";
-					htmlStr += "<tr><td>诉求二:"+res.errmsg[i].appealTwo+"</td></tr>";
-					htmlStr += "<tr><td>诉求三:"+res.errmsg[i].appealThree+"</td></tr>";
-					htmlStr += "<tr><td>主要问题:"+res.errmsg[i].question+"</td></tr>";
-					htmlStr += "<tr><td>辅导策略（问题解决情况）:"+res.errmsg[i].solveStatus+"</td></tr>";
-					htmlStr += "<tr><td>辅导策略（主要辅导工具）:"+res.errmsg[i].solveTool+"</td></tr>";
-					htmlStr += "<tr><td>发展建议一:"+res.errmsg[i].adviceOne+"</td></tr>";
-					htmlStr += "<tr><td>发展建议二:"+res.errmsg[i].adviceTwo+"</td></tr>";
-					htmlStr += "<tr><td>发展建议三:"+res.errmsg[i].adviceThree+"</td></tr>";
-					htmlStr += "<tr><td>辅导成效（问题解决情况）:"+res.errmsg[i].solveResult+"</td></tr>";
-					htmlStr += "<tr><td>辅导成效（自我评估）:"+res.errmsg[i].solveAssess+"</td></tr>";
+				if(null!=res.errmsg){
+					for(var i = 0;i<res.errmsg.length;i++){
+						htmlStr += "<tr><th>编号:"+res.errmsg[i].id+"添加时间:"+jsDateTimeOnly(res.errmsg[i].addTime)+"</th></tr>";
+						htmlStr += "<tr><td>诉求一:"+res.errmsg[i].appealOne+"</td></tr>";
+						htmlStr += "<tr><td>诉求二:"+res.errmsg[i].appealTwo+"</td></tr>";
+						htmlStr += "<tr><td>诉求三:"+res.errmsg[i].appealThree+"</td></tr>";
+						htmlStr += "<tr><td>主要问题:"+res.errmsg[i].question+"</td></tr>";
+						htmlStr += "<tr><td>辅导策略（问题解决情况）:"+res.errmsg[i].solveStatus+"</td></tr>";
+						htmlStr += "<tr><td>辅导策略（主要辅导工具）:"+res.errmsg[i].solveTool+"</td></tr>";
+						htmlStr += "<tr><td>发展建议一:"+res.errmsg[i].adviceOne+"</td></tr>";
+						htmlStr += "<tr><td>发展建议二:"+res.errmsg[i].adviceTwo+"</td></tr>";
+						htmlStr += "<tr><td>发展建议三:"+res.errmsg[i].adviceThree+"</td></tr>";
+						htmlStr += "<tr><td>辅导成效（问题解决情况）:"+res.errmsg[i].solveResult+"</td></tr>";
+						htmlStr += "<tr><td>辅导成效（自我评估）:"+res.errmsg[i].solveAssess+"</td></tr>";
+					}
 				}
 				$("#commentsData").html(htmlStr);
 			}
