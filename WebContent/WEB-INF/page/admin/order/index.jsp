@@ -87,7 +87,7 @@ function getScore(index){
 		success:function(res){
 			if("success"==res.result){
 				var htmlStr = "";
-				
+				if(null!=res.errmsg){
 				for(var i = 0;i<res.errmsg.length;i++){
 					htmlStr += "<tr>";
 					htmlStr += "<td>"+jsDateTimeOnly(res.errmsg[i].addTime)+"</td>";
@@ -97,7 +97,7 @@ function getScore(index){
 					htmlStr += "<td>"+res.errmsg[i].fourScore+"</td>";
 					htmlStr += "<td>"+res.errmsg[i].content+"</td>";
 					htmlStr += "</tr>";
-				}
+				}}
 				$("#scoreData").html(htmlStr);
 			}
 		}
